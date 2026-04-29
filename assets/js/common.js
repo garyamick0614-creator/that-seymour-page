@@ -11,10 +11,11 @@
     { href: '/news.html',        label: 'News' },
     { href: '/schools.html',     label: 'Schools' },
     { href: '/businesses.html',  label: 'Businesses' },
+    { href: '/map.html',         label: 'Map' },
     { href: '/qa.html',          label: 'Q&A' },
     { href: '/blog.html',        label: 'Blog' },
     { href: '/tip.html',         label: 'Submit Tip' },
-    { href: '/hub.html',         label: 'Seymour Hub' }
+    { href: '/hub.html',         label: 'Hub card' }
   ];
 
   const FAMILY = [
@@ -43,7 +44,7 @@
     <span class="brand-mark">TSP</span>
     <div class="brand-text">
       <span class="brand-title">That Seymour Page</span>
-      <span class="brand-sub">Hosted by That Computer Guy 26</span>
+      <span class="brand-sub">Hosted by <a href="https://thatcomputerguy26.org" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">That Computer Guy 26</a></span>
     </div>
   </a>
   <nav class="topbar-nav">${links}</nav>
