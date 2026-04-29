@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit a tip &mdash; Seymour Hub</title>
+<meta name="description" content="Send Seymour Hub a tip — events, storm damage, business issues, school updates, anything community-relevant. Anonymous is fine.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Submit a tip</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Got something we should look at?</h1>
+    <p class="muted">Events to add, storm-cleanup needs, business issues, school news, anything community-relevant. Anonymous is fine. Tips POST to the TCG home server (Gary gets a push notification on every submission), with a Netlify Forms fallback when the server is offline.</p>
+
+    <div id="serverChip" class="chip chip-warn mt-2"><span class="dot"></span> checking server&hellip;</div>
+
+    <form id="tipForm" class="tip-card mt-4" name="seymour-tip" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" netlify>
+      <input type="hidden" name="form-name" value="seymour-tip">
+      <input type="hidden" name="site" value="seymour-hub">
+      <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <div class="field">
+        <label for="tCategory">Category</label>
+        <select id="tCategory" name="category">
+          <option value="event">Event to add</option>
+          <option value="storm">Storm cleanup / weather</option>
+          <option value="school">Schools (SCSC)</option>
+          <option value="business">Business issue</option>
+          <option value="city">City government</option>
+          <option value="correction">Correction / fix</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="tSubject">Subject *</label>
+        <input type="text" id="tSubject" name="subject" maxlength="200" required placeholder="e.g. Cleanup help needed on N Pine St, or Seymour Brewing live music Friday">
+      </div>
+
+      <div class="field">
+        <label for="tBody">Details *</label>
+        <textarea id="tBody" name="body" maxlength="4000" required placeholder="What happened, when, where, and how to verify. Photos: email gary@thatcomputerguy26.org with the same subject line."></textarea>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="tName">Your name (optional)</label>
+          <input type="text" id="tName" name="name" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="tContact">Email or phone (optional)</label>
+          <input type="text" id="tContact" name="contact" maxlength="160" placeholder="for follow-up if needed">
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="tWhen">When did this happen?</label>
+          <input type="text" id="tWhen" name="when" maxlength="80" placeholder="e.g. April 27, around 5 PM">
+        </div>
+        <div class="field">
+          <label for="tWhere">Where?</label>
+          <input type="text" id="tWhere" name="where" maxlength="160" placeholder="e.g. Walnut St, downtown Seymour">
+        </div>
+      </div>
+
+      <button type="submit">Send tip &rarr;</button>
+      <p id="tipMsg" class="muted small mt-2"></p>
+    </form>
+
+    <h3 class="section-title mt-4">Other ways to reach us</h3>
+    <ul>
+      <li>Call/text Gary: <a href="tel:8124149097">812-414-9097</a></li>
+      <li>Email: <a href="mailto:gary@thatcomputerguy26.org">gary@thatcomputerguy26.org</a></li>
+      <li>City calendar: <a href="mailto:info@seymourin.org">info@seymourin.org</a></li>
+    </ul>
+
+    <h3 class="section-title mt-4">What we publish</h3>
+    <p class="muted">Verified items go on the home page or in the next weekly hub. We don't publish names without consent. Tips that look like spam, threats, or harassment are deleted.</p>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+const TCG_API = 'https://api.thatcomputerguy26.org';
+const form = document.getElementById('tipForm');
+const msg = document.getElementById('tipMsg');
+const chip = document.getElementById('serverChip');
+
+(async function check() {
+  try {
+    // 405 from a GET on the POST-only tip endpoint = server is live and the route exists.
+    const r = await fetch(TCG_API + '/api/tips/submit', { method: 'GET', cache: 'no-cache' });
+    if (r.status === 405 || r.ok) {
+      chip.className = 'chip';
+      chip.innerHTML = '<span class="dot"></span> server live · push-notify enabled';
+    } else {
+      throw new Error(r.status);
+    }
+  } catch (e) {
+    chip.className = 'chip chip-warn';
+    chip.innerHTML = '<span class="dot"></span> server offline · using Netlify Forms fallback';
+  }
+})();
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  msg.innerHTML = '<span class="spinner"></span> sending&hellip;';
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  // Don't ship the honeypot to the server.
+  delete data['bot-field'];
+
+  // 1) Try TCG home-server first (matches IBE/civic-hub pattern).
+  let serverOK = false;
+  try {
+    const r = await fetch(TCG_API + '/api/tips/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({ source: 'seymour-hub.netlify.app' }, data))
+    });
+    serverOK = r.ok;
+  } catch (e) { serverOK = false; }
+
+  // 2) Always also POST to Netlify Forms so Gary has a paper trail in the dashboard.
+  try {
+    const fd = new FormData(form);
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(fd).toString()
+    });
+  } catch (e) { /* non-fatal */ }
+
+  msg.innerHTML = serverOK
+    ? '&#x2705; Sent. Gary got a push notification. Thanks!'
+    : '&#x2705; Sent via fallback. We\'ll see it within a few minutes.';
+  btn.disabled = false;
+  form.reset();
+});
+</script>
+
+<!-- Netlify Forms requires the form HTML to also exist as a static, scrubbable element on first build. -->
+<form name="seymour-tip" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="subject"><input type="text" name="body">
+  <input type="text" name="category"><input type="text" name="site">
+  <input type="text" name="name"><input type="text" name="contact">
+  <input type="text" name="when"><input type="text" name="where">
+  <input type="text" name="bot-field">
+</form>
+
+</body>
+</html>

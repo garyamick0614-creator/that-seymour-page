@@ -1,0 +1,55 @@
+# Netlify config — Seymour Hub (seymour-hub.netlify.app)
+# Part of the TCG family of sites.
+
+[build]
+  publish = "."
+  command = "echo 'static site - functions auto-detected'"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Scheduled refresh jobs — every 2 hours
+[functions."weather-refresh"]
+  schedule = "0 */2 * * *"
+
+[functions."news-refresh"]
+  schedule = "15 */2 * * *"
+
+[functions."events-refresh"]
+  schedule = "30 */2 * * *"
+
+# Pretty URL for blog reads
+[[redirects]]
+  from = "/api/blog"
+  to = "/.netlify/functions/blog"
+  status = 200
+
+[[redirects]]
+  from = "/api/whoami"
+  to = "/.netlify/functions/whoami"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://api.thatcomputerguy26.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.weather.gov https://api.thatcomputerguy26.org; frame-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.thatcomputerguy26.org"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

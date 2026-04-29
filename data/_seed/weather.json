@@ -1,0 +1,25 @@
+{
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "source": "Seed (initial render). Live data refreshes every 2h via weather-refresh function.",
+  "location": { "name": "Seymour, IN", "lat": 38.9556, "lon": -85.8900, "county": "Jackson (INC071)" },
+  "current": {
+    "name": "Now",
+    "temperature": 49,
+    "temperatureUnit": "F",
+    "windSpeed": "8 mph",
+    "windDirection": "NW",
+    "shortForecast": "Decreasing clouds",
+    "detailedForecast": "Cooling post-storm. Partly cloudy, breezy. No active alerts."
+  },
+  "daily": [
+    { "name": "Today",      "temperature": 49, "temperatureUnit": "F", "shortForecast": "Decreasing clouds", "windSpeed": "8 mph NW" },
+    { "name": "Tonight",    "temperature": 30, "temperatureUnit": "F", "shortForecast": "Mostly clear",      "windSpeed": "5 mph N"  },
+    { "name": "Thursday",   "temperature": 57, "temperatureUnit": "F", "shortForecast": "Sunny",             "windSpeed": "7 mph SW" },
+    { "name": "Friday",     "temperature": 54, "temperatureUnit": "F", "shortForecast": "Mix of clouds",     "windSpeed": "10 mph S" },
+    { "name": "Saturday",   "temperature": 59, "temperatureUnit": "F", "shortForecast": "Partly sunny",      "windSpeed": "8 mph S"  },
+    { "name": "Sunday",     "temperature": 64, "temperatureUnit": "F", "shortForecast": "Showers possible",  "windSpeed": "10 mph SW"},
+    { "name": "Monday",     "temperature": 62, "temperatureUnit": "F", "shortForecast": "Partly sunny",      "windSpeed": "8 mph W"  }
+  ],
+  "hourly": [],
+  "alerts": []
+}

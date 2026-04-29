@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community blog &mdash; Seymour Hub</title>
+<meta name="description" content="Open community blog for Seymour. No accounts. Your IP gets a friendly handle and you can post. Good faith only.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Community blog</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Seymour neighbors talking shop</h1>
+    <p class="muted">No accounts, no email collection. Your IP address gets a stable, friendly handle (e.g. <code>Quiet-Pelican-417</code>) so people can recognize regulars without giving up their identity. Same IP &mdash; same handle, every visit. Good-faith posting only; threats, harassment, or doxxing get pulled.</p>
+
+    <div class="card mt-4" id="meCard">
+      <p class="eyebrow">You're posting as</p>
+      <h2 class="blog-handle" id="myHandle" style="font-size:22px;margin:6px 0">Loading&hellip;</h2>
+      <p class="muted small" id="myHelp">Your handle is derived from a salted hash of your IP and a daily rotation key. We never store the raw IP.</p>
+    </div>
+
+    <form id="postForm" class="tip-card mt-4">
+      <div class="field">
+        <label for="pTitle">Title (optional)</label>
+        <input type="text" id="pTitle" maxlength="120" placeholder="e.g. Anyone need a hand on Pine St cleanup?">
+      </div>
+      <div class="field">
+        <label for="pBody">What's on your mind? *</label>
+        <textarea id="pBody" maxlength="2000" required placeholder="Keep it civil. No personal info about other people. Markdown not supported &mdash; plain text only."></textarea>
+      </div>
+      <button type="submit">Post &rarr;</button>
+      <p id="postMsg" class="muted small mt-2"></p>
+    </form>
+
+    <h3 class="section-title mt-4">Recent posts</h3>
+    <div id="posts"><p class="muted">Loading&hellip;</p></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+let MY = { handle: null };
+
+async function loadMe() {
+  try {
+    const r = await fetch('/api/whoami', { cache: 'no-cache' });
+    if (!r.ok) throw new Error(r.status);
+    MY = await r.json();
+    document.getElementById('myHandle').textContent = MY.handle;
+  } catch (e) {
+    document.getElementById('myHandle').textContent = 'Anonymous-Visitor';
+    document.getElementById('myHelp').textContent = 'Could not derive a stable handle right now. You can still post; mods will see what you wrote.';
+  }
+}
+
+async function loadPosts() {
+  const host = document.getElementById('posts');
+  try {
+    const r = await fetch('/api/blog?limit=50', { cache: 'no-cache' });
+    if (!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    if (!j.posts || !j.posts.length) {
+      host.innerHTML = '<p class="muted">No posts yet. Be the first.</p>';
+      return;
+    }
+    host.innerHTML = j.posts.map(p => {
+      const t = new Date(p.createdAt);
+      const when = t.toLocaleString();
+      return `<article class="blog-post">
+        <div class="blog-meta">
+          <span class="blog-handle">${SH.escapeHTML(p.handle)}</span>
+          <span>&middot;</span>
+          <span>${SH.escapeHTML(when)}</span>
+          ${p.title ? `<span>&middot;</span><strong>${SH.escapeHTML(p.title)}</strong>` : ''}
+        </div>
+        <div class="blog-body">${SH.escapeHTML(p.body)}</div>
+      </article>`;
+    }).join('');
+  } catch (e) {
+    host.innerHTML = '<p class="muted">Could not load posts. Refresh in a minute.</p>';
+  }
+}
+
+document.getElementById('postForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const title = document.getElementById('pTitle').value.trim();
+  const body  = document.getElementById('pBody').value.trim();
+  const msg   = document.getElementById('postMsg');
+  if (!body) return;
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  msg.innerHTML = '<span class="spinner"></span> posting&hellip;';
+  try {
+    const r = await fetch('/api/blog', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, body })
+    });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || r.status);
+    msg.textContent = '✅ Posted as ' + j.post.handle;
+    document.getElementById('pTitle').value = '';
+    document.getElementById('pBody').value  = '';
+    loadPosts();
+  } catch (e) {
+    msg.textContent = 'Could not post: ' + (e.message || e);
+  }
+  btn.disabled = false;
+});
+
+(async function () {
+  await loadMe();
+  await loadPosts();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "source": "TripAdvisor, Yelp, Glassdoor, local lists — compiled by TCG.",
+  "businesses": [
+    { "rank": 1,  "name": "Rails Craft Brew & Eatery",       "category": "American / Steakhouse",     "rating": 4.1, "reviews": 193, "notes": "Craft beers, steaks. Highest review volume in town." },
+    { "rank": 2,  "name": "Larrison's Diner",                 "category": "American / Diner",          "rating": 4.4, "reviews": 115, "notes": "Burgers, breakfast. Locally beloved." },
+    { "rank": 3,  "name": "Schwatzer's German Restaurant",    "category": "German",                    "rating": 4.8, "reviews": 7,   "notes": "Authentic fare. Small review volume but top-rated." },
+    { "rank": 4,  "name": "The Townhouse Cafe",               "category": "American / Cafe",           "rating": 4.4, "reviews": 78,  "notes": "Daily specials." },
+    { "rank": 5,  "name": "Rose Acre Farms",                  "category": "Agriculture",                "rating": 3.6, "reviews": null,"notes": "Top employer. Glassdoor average." },
+    { "rank": 6,  "name": "Schneck Medical Center",           "category": "Healthcare",                 "rating": null,"reviews": null,"notes": "Major employer; high patient ratings." },
+    { "rank": 7,  "name": "SpringHill Camps",                 "category": "Camps / Nonprofit",          "rating": 4.1, "reviews": null,"notes": "Community favorite." },
+    { "rank": 8,  "name": "Swifty Oil",                        "category": "Convenience / Gas",         "rating": 3.9, "reviews": null,"notes": "Local chain." },
+    { "rank": 9,  "name": "Kocolene",                          "category": "Fuel / Convenience",        "rating": null,"reviews": null,"notes": "Reliable stops." },
+    { "rank": 10, "name": "Walmart Supercenter",               "category": "Retail",                    "rating": null,"reviews": null,"notes": "Everyday shopping hub." },
+    { "rank": 11, "name": "Valeo Sylvania",                    "category": "Manufacturing",             "rating": null,"reviews": null,"notes": "Key employer." },
+    { "rank": 12, "name": "Cummins Industrial Center",         "category": "Manufacturing",             "rating": null,"reviews": null,"notes": "Industrial leader." },
+    { "rank": 13, "name": "Seymour Tubing Inc",                "category": "Manufacturing",             "rating": null,"reviews": null,"notes": "Local production." },
+    { "rank": 14, "name": "Ruler Foods",                        "category": "Grocery",                   "rating": null,"reviews": null,"notes": "Budget shopping." },
+    { "rank": 15, "name": "Silgan Plastics",                    "category": "Manufacturing",             "rating": null,"reviews": null,"notes": "Steady employer." },
+    { "rank": 16, "name": "PepsiCo (local operations)",         "category": "Distribution",              "rating": null,"reviews": null,"notes": "High-rated logistics." },
+    { "rank": 17, "name": "JCBank",                             "category": "Banking",                   "rating": null,"reviews": null,"notes": "Best Places to Work honoree." },
+    { "rank": 18, "name": "The Seymour Brewing Co.",            "category": "Brewery",                   "rating": 5.0, "reviews": 1,   "notes": "New craft spot. Sample size = 1; treat with caveat." },
+    { "rank": 19, "name": "Starbucks (Seymour)",                "category": "Coffee",                    "rating": null,"reviews": 12,  "notes": "Quick service." },
+    { "rank": 20, "name": "Blacksheep Pizza",                   "category": "Pizza (regional)",          "rating": 4.8, "reviews": 119, "notes": "Regional draw — nearby." }
+  ]
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events &mdash; Seymour Hub</title>
+<meta name="description" content="Interactive events timeline for Seymour, Indiana — last 30 days plus upcoming. Auto-refreshed every 2 hours.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body data-update-from="/data/events.json">
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Events</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Seymour events &mdash; recent and upcoming</h1>
+    <p class="muted">Hover or tap any item for details. Pulled from the city calendar, Seymour Main Street, SCSC, and TCG sources. Auto-refreshed every 2 hours.</p>
+
+    <div class="row mt-4" id="filterRow">
+      <button class="btn-o" data-filter="all">All</button>
+      <button class="btn-o" data-filter="upcoming">Upcoming</button>
+      <button class="btn-o" data-filter="past">Past 30 days</button>
+      <button class="btn-o" data-filter="city">City govt</button>
+      <button class="btn-o" data-filter="school">Schools</button>
+      <button class="btn-o" data-filter="weather">Weather</button>
+      <button class="btn-o" data-filter="festival">Festivals</button>
+    </div>
+
+    <h3 class="section-title mt-4">Upcoming</h3>
+    <div class="timeline" id="tlUpcoming"></div>
+
+    <h3 class="section-title mt-4">Last 30 days</h3>
+    <div class="timeline" id="tlPast"></div>
+
+    <h3 class="section-title mt-4">Submit your event</h3>
+    <p class="muted">Want it on next week's hub? Email <a href="mailto:info@seymourin.org">info@seymourin.org</a> for the city calendar, post to the <a href="https://www.facebook.com/SeymourMainStreet/" target="_blank" rel="noopener">Seymour Main Street Facebook page</a>, or list on <a href="https://www.visitindiana.com/events" target="_blank" rel="noopener">VisitIndiana.com</a> for broader promotion. You can also <a href="/tip.html">drop a tip here</a> and we'll add it to next week's hub.</p>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+let DATA = null;
+function classFor(kind) {
+  if (kind === 'weather') return 't-alert';
+  if (kind === 'school') return 't-info';
+  if (kind === 'city' || kind === 'festival') return 't-ok';
+  return '';
+}
+function renderItem(it) {
+  return `<div class="t-item ${classFor(it.kind)}" data-kind="${it.kind}">
+    <div class="t-date">${SH.escapeHTML(it.dateLabel)}</div>
+    <div class="t-title">${SH.escapeHTML(it.title)} ${it.tag ? `<span class="pill pill-${it.pillTone || 'info'}">${SH.escapeHTML(it.tag)}</span>` : ''}</div>
+    <p class="t-blurb">${SH.escapeHTML(it.blurb || '')}${it.url ? ` <a href="${it.url}" target="_blank" rel="noopener">link &rarr;</a>` : ''}</p>
+  </div>`;
+}
+function render(filter) {
+  if (!DATA) return;
+  const wantUp = !filter || filter === 'all' || filter === 'upcoming';
+  const wantPast = !filter || filter === 'all' || filter === 'past';
+  const kindFilter = ['city','school','weather','festival'].includes(filter) ? filter : null;
+
+  const filt = (arr) => kindFilter ? arr.filter(x => x.kind === kindFilter) : arr;
+
+  document.getElementById('tlUpcoming').innerHTML =
+    wantUp ? filt(DATA.upcoming).map(renderItem).join('') : '';
+  document.getElementById('tlPast').innerHTML =
+    wantPast ? filt(DATA.past).map(renderItem).join('') : '';
+}
+(async function () {
+  DATA = await SH.loadJSON('/data/events.json');
+  render('all');
+  document.querySelectorAll('#filterRow [data-filter]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#filterRow [data-filter]').forEach(x => x.classList.remove('btn-p'));
+      document.querySelectorAll('#filterRow [data-filter]').forEach(x => x.classList.add('btn-o'));
+      b.classList.remove('btn-o');
+      b.classList.add('btn-p');
+      render(b.dataset.filter);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

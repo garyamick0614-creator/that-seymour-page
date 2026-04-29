@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather &mdash; Seymour Hub</title>
+<meta name="description" content="Live National Weather Service forecast for Seymour, Indiana. 7-day outlook, current conditions, and severe-weather alerts.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body data-update-from="/data/weather.json">
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Weather</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Seymour &mdash; live forecast</h1>
+    <p class="muted">National Weather Service (Indianapolis office). Lat 38.96, lon &minus;85.89. Auto-refresh every 2 hours.</p>
+
+    <div id="alertBox"></div>
+
+    <div class="card mt-4" id="currentCard">
+      <p class="eyebrow">Now</p>
+      <h2 id="curTemp" style="font-size:42px;margin:0">&mdash;</h2>
+      <p id="curCond" class="muted" style="font-size:15px">Loading National Weather Service&hellip;</p>
+      <p id="curWind" class="small muted"></p>
+    </div>
+
+    <h3 class="section-title mt-4">Next 7 days</h3>
+    <div class="fc-grid" id="fcGrid"></div>
+
+    <h3 class="section-title mt-4">Hourly &mdash; next 24 hours</h3>
+    <div class="card" style="overflow-x:auto">
+      <table class="tbl" id="hourlyTbl">
+        <thead><tr><th>Time</th><th>Temp</th><th>Wind</th><th>Conditions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h3 class="section-title mt-4">Sources</h3>
+    <ul>
+      <li><a href="https://forecast.weather.gov/MapClick.php?lat=38.9556&amp;lon=-85.8900" target="_blank" rel="noopener">NWS Seymour forecast page</a></li>
+      <li><a href="https://www.weather.gov/ind/" target="_blank" rel="noopener">NWS Indianapolis office (warnings &amp; reports)</a></li>
+      <li><a href="https://www.accuweather.com/en/us/seymour-in/47274/weather-forecast/335220" target="_blank" rel="noopener">AccuWeather &mdash; Seymour</a></li>
+      <li><a href="https://weather.com/weather/today/l/Seymour+IN" target="_blank" rel="noopener">weather.com &mdash; Seymour</a></li>
+    </ul>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(async function () {
+  const w = await SH.loadJSON('/data/weather.json');
+  if (!w) {
+    document.getElementById('curCond').textContent = 'Could not load weather snapshot.';
+    return;
+  }
+  if (w.current) {
+    const c = w.current;
+    document.getElementById('curTemp').textContent = c.temperature + '°' + c.temperatureUnit;
+    document.getElementById('curCond').textContent = c.shortForecast + (c.detailedForecast ? ' — ' + c.detailedForecast : '');
+    document.getElementById('curWind').textContent = (c.windSpeed ? 'Wind: ' + c.windSpeed : '') + (c.windDirection ? ' ' + c.windDirection : '');
+  }
+  if (w.daily && w.daily.length) {
+    document.getElementById('fcGrid').innerHTML = w.daily.slice(0, 14).map(d =>
+      `<div class="fc-tile">
+        <div class="fc-day">${SH.escapeHTML(d.name)}</div>
+        <div class="fc-temp">${d.temperature}°${SH.escapeHTML(d.temperatureUnit)}</div>
+        <div class="fc-cond">${SH.escapeHTML(d.shortForecast || '')}</div>
+        <div class="small muted" style="margin-top:4px">${SH.escapeHTML(d.windSpeed || '')}</div>
+      </div>`
+    ).join('');
+  }
+  if (w.hourly && w.hourly.length) {
+    const rows = w.hourly.slice(0, 24).map(h => {
+      const t = new Date(h.startTime);
+      const lbl = t.toLocaleTimeString([], { hour: 'numeric', hour12: true });
+      return `<tr>
+        <td>${SH.escapeHTML(lbl)}</td>
+        <td><strong>${h.temperature}°${SH.escapeHTML(h.temperatureUnit)}</strong></td>
+        <td>${SH.escapeHTML(h.windSpeed || '')} ${SH.escapeHTML(h.windDirection || '')}</td>
+        <td>${SH.escapeHTML(h.shortForecast || '')}</td>
+      </tr>`;
+    }).join('');
+    document.querySelector('#hourlyTbl tbody').innerHTML = rows;
+  }
+  if (w.alerts && w.alerts.length) {
+    document.getElementById('alertBox').innerHTML = w.alerts.map(a =>
+      `<div class="card mt-2" style="border-color:var(--accent-4);background:rgba(248,113,113,.08)">
+        <span class="pill pill-alert">${SH.escapeHTML(a.severity || 'Alert')}</span>
+        <h3 class="card-title" style="margin-top:8px">${SH.escapeHTML(a.event)}</h3>
+        <p class="card-blurb">${SH.escapeHTML(a.headline || a.description || '')}</p>
+      </div>`
+    ).join('');
+  }
+})();
+</script>
+
+</body>
+</html>

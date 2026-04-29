@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "source": "Seed (initial render). Live data refreshes every 2h via events-refresh function (which reads /data/events-source.json).",
+  "counts": { "upcoming": 9, "past": 8 },
+  "upcoming": [
+    { "date": "2026-05-01", "dateLabel": "May 1, 2026 · in 2 days",   "kind": "school",   "title": "SCSC budget re-vote",         "blurb": "Re-vote following Apr 17 614–924 rejection. $1.6M cut to middle-school STEM/science and HS French at stake.", "tag": "Schools",  "pillTone": "alert", "url": "https://www.scsc.k12.in.us" },
+    { "date": "2026-05-01", "dateLabel": "May 1, 2026 · in 2 days",   "kind": "school",   "title": "SHS Tennis vs Woodland",      "blurb": "Athletics schedule.", "tag": "Sports", "pillTone": "info", "url": "https://www.seymourschools.org/athletics/sportsschedules" },
+    { "date": "2026-05-02", "dateLabel": "May 2, 2026 · in 3 days",   "kind": "festival", "title": "Crossroads of Cultures",      "blurb": "Annual cultural festival downtown.", "tag": "Festival", "pillTone": "ok" },
+    { "date": "2026-05-05", "dateLabel": "May 5, 2026 · in 6 days",   "kind": "city",     "title": "Election Day",                 "blurb": "Polls open. Check Jackson County clerk for precinct.", "tag": "Civic", "pillTone": "info" },
+    { "date": "2026-05-11", "dateLabel": "May 11, 2026 · in 12 days", "kind": "city",     "title": "City Council meeting",         "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
+    { "date": "2026-05-14", "dateLabel": "May 14, 2026 · in 15 days", "kind": "city",     "title": "Board of Works",               "blurb": "Routine board meeting.", "tag": "Board", "pillTone": "info" },
+    { "date": "2026-05-16", "dateLabel": "May 16, 2026 · in 17 days", "kind": "school",   "title": "SHS commencement",             "blurb": "Seymour High School graduation ceremony.", "tag": "Schools", "pillTone": "ok" },
+    { "date": "2026-05-29", "dateLabel": "May 29, 2026 · in 30 days", "kind": "school",   "title": "Volleyball tryouts",           "blurb": "Auxiliary gym; register via athletics or SHS Facebook. Physicals required.", "tag": "Sports", "pillTone": "info" },
+    { "date": "2026-09-19", "dateLabel": "Sep 19, 2026 · in 143 days","kind": "festival", "title": "BurgerFest 2026 — 36th annual","blurb": "World's Largest Hamburger Parade, Bun Run, eating contest, live music 2-11 PM. Lead sponsor: Elexco.", "tag": "Festival", "pillTone": "ok" }
+  ],
+  "past": [
+    { "date": "2026-04-29", "dateLabel": "Apr 29, 2026 · today",     "kind": "school",   "title": "SHS budget workshop",          "blurb": "Public budget discussion ahead of May 1 re-vote.", "tag": "Schools", "pillTone": "info" },
+    { "date": "2026-04-28", "dateLabel": "Apr 28, 2026 · yesterday", "kind": "city",     "title": "Storm aftermath & cleanup",     "blurb": "Debris removal across Jackson County.", "tag": "Cleanup", "pillTone": "warn" },
+    { "date": "2026-04-27", "dateLabel": "Apr 27, 2026 · 2 days ago","kind": "weather",  "title": "Severe weather: tornadoes, hail, flooding across central IN", "blurb": "NWS confirmed multiple tornadoes; Jackson County tornado between Bobtown and Cortland.", "tag": "Storm", "pillTone": "alert", "url": "https://www.weather.gov/ind/" },
+    { "date": "2026-04-27", "dateLabel": "Apr 27, 2026 · 2 days ago","kind": "city",     "title": "City Council meeting",          "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
+    { "date": "2026-04-24", "dateLabel": "Apr 24, 2026 · 5 days ago","kind": "festival", "title": "Crossroads Acoustic Festival",  "blurb": "Two-day acoustic music festival downtown (Apr 24-25).", "tag": "Festival", "pillTone": "ok" },
+    { "date": "2026-04-17", "dateLabel": "Apr 17, 2026 · 12 days ago","kind":"school",   "title": "SCSC referendum failed 614–924","blurb": "Re-vote scheduled May 1.", "tag": "Schools", "pillTone": "alert" },
+    { "date": "2026-04-13", "dateLabel": "Apr 13, 2026 · 16 days ago","kind":"city",     "title": "Make Seymour Shine week begins","blurb": "Annual citywide cleanup; extra curbside pickup Apr 13-17.", "tag": "City", "pillTone": "ok" },
+    { "date": "2026-04-13", "dateLabel": "Apr 13, 2026 · 16 days ago","kind":"city",     "title": "City Council meeting",          "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" }
+  ]
+}

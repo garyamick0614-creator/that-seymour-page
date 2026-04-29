@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top businesses &mdash; Seymour Hub</title>
+<meta name="description" content="Top 20 reviewed and most impactful businesses in Seymour, Indiana. Sortable by category, rating, and review volume.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body data-update-from="/data/businesses.json">
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Top businesses</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Seymour &mdash; Top 20 reviewed</h1>
+    <p class="muted">Compiled from TripAdvisor, Yelp, Glassdoor, and local lists. Reviews dominate the consumer view; manufacturers lead the employer view. Click any column header to sort.</p>
+
+    <div class="row mt-4">
+      <input type="search" id="filter" placeholder="Filter by name, category, or note&hellip;" style="max-width:340px">
+      <span class="muted small" style="align-self:center">&nbsp;<span id="resultCount">20</span> businesses</span>
+    </div>
+
+    <div class="card mt-4" style="overflow-x:auto;padding:0">
+      <table class="tbl" id="bizTbl">
+        <thead><tr>
+          <th data-sort="rank" style="cursor:pointer">#</th>
+          <th data-sort="name" style="cursor:pointer">Business</th>
+          <th data-sort="category" style="cursor:pointer">Category</th>
+          <th data-sort="rating" style="cursor:pointer">Rating</th>
+          <th data-sort="reviews" style="cursor:pointer">Reviews</th>
+          <th>Notes</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h3 class="section-title mt-4">Methodology</h3>
+    <p class="muted">Rankings blend review volume, average rating, and employment impact. Consumer-facing eateries dominate the review counts; manufacturers like Aisin, Cummins, Valeo, Silgan, and Rose Acre Farms lead employer reach. Send corrections via the <a href="/tip.html">tip form</a>.</p>
+
+    <h3 class="section-title mt-4">IBE deep dives</h3>
+    <p class="muted">For investigations on Seymour and Jackson County businesses, see the <a href="https://ibetcg.netlify.app" target="_blank" rel="noopener">Indiana Businesses Exposed</a> sister site &mdash; including the <a href="https://ibetcg.netlify.app/article/jackson-manufacturing-audit.html" target="_blank" rel="noopener">Jackson Manufacturing Audit</a>, <a href="https://ibetcg.netlify.app/article/kfc-seymour-tipton.html" target="_blank" rel="noopener">KFC Tipton St investigation</a>, and the <a href="https://ibetcg.netlify.app/article/seymour-bottom-10.html" target="_blank" rel="noopener">Seymour Bottom 10</a>.</p>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+let DATA = [];
+let SORT = { col: 'rank', dir: 1 };
+
+function render() {
+  const q = document.getElementById('filter').value.trim().toLowerCase();
+  let rows = DATA.filter(r => !q || JSON.stringify(r).toLowerCase().includes(q));
+  rows.sort((a, b) => {
+    let av = a[SORT.col]; let bv = b[SORT.col];
+    if (typeof av === 'string') { av = av.toLowerCase(); bv = bv.toLowerCase(); }
+    if (av == null) av = '';
+    if (bv == null) bv = '';
+    return (av < bv ? -1 : av > bv ? 1 : 0) * SORT.dir;
+  });
+  document.getElementById('resultCount').textContent = rows.length;
+  document.querySelector('#bizTbl tbody').innerHTML = rows.map(r =>
+    `<tr>
+      <td><strong>${r.rank}</strong></td>
+      <td>${SH.escapeHTML(r.name)}</td>
+      <td><span class="pill">${SH.escapeHTML(r.category)}</span></td>
+      <td>${r.rating ? r.rating.toFixed(1) : '&mdash;'}</td>
+      <td>${r.reviews || '&mdash;'}</td>
+      <td class="muted small">${SH.escapeHTML(r.notes || '')}</td>
+    </tr>`
+  ).join('');
+}
+
+(async function () {
+  const j = await SH.loadJSON('/data/businesses.json');
+  DATA = (j && j.businesses) || [];
+  render();
+  document.getElementById('filter').addEventListener('input', render);
+  document.querySelectorAll('[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.sort;
+      SORT.dir = (SORT.col === col) ? -SORT.dir : 1;
+      SORT.col = col;
+      render();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

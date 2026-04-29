@@ -1,0 +1,20 @@
+{
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "source": "Seed (initial render). Live RSS pulls refresh every 2h via news-refresh function.",
+  "counts": { "indiana": 3, "us": 3, "global": 3 },
+  "indiana": [
+    { "title": "Central Indiana storms confirmed three tornadoes; recovery ongoing", "link": "https://www.weather.gov/ind/", "description": "NWS Indianapolis confirmed multiple tornadoes from the April 27 severe-weather outbreak, including one in Jackson County between Bobtown and Cortland.", "source": "NWS Indianapolis", "pubDate": "2026-04-28T12:00:00Z", "pubDateLabel": "yesterday" },
+    { "title": "Indianapolis data-center proposals spark public meetings on regulation", "link": "https://www.indystar.com/", "description": "City and county boards weigh power-draw, water, and zoning rules.", "source": "IndyStar", "pubDate": "2026-04-28T09:00:00Z", "pubDateLabel": "yesterday" },
+    { "title": "WNBA preseason: Indiana Fever vs. Dallas Wings highlights", "link": "https://www.wibc.com/", "description": "Preseason results and player notes.", "source": "WIBC", "pubDate": "2026-04-27T20:00:00Z", "pubDateLabel": "2d ago" }
+  ],
+  "us": [
+    { "title": "President hosts King Charles III and Queen Camilla at White House state dinner", "link": "https://www.npr.org/", "description": "Diplomatic visit and dinner program.", "source": "NPR", "pubDate": "2026-04-28T22:00:00Z", "pubDateLabel": "yesterday" },
+    { "title": "Federal Reserve resists quick rate cuts despite political pressure", "link": "https://apnews.com/", "description": "Chair signals data-dependent posture; market reaction.", "source": "AP", "pubDate": "2026-04-28T16:00:00Z", "pubDateLabel": "yesterday" },
+    { "title": "ICE expands detention amid lawsuits; senior DOJ official quits over case handling", "link": "https://www.npr.org/", "description": "Procedural challenges and resignation.", "source": "NPR", "pubDate": "2026-04-27T18:00:00Z", "pubDateLabel": "2d ago" }
+  ],
+  "global": [
+    { "title": "US-Israel-Iran tensions stall diplomatically; China gains regional influence", "link": "https://www.bbc.com/news/world", "description": "Diplomatic channels paused; Beijing pursues parallel track.", "source": "BBC World", "pubDate": "2026-04-28T17:00:00Z", "pubDateLabel": "yesterday" },
+    { "title": "Europe headlines — ongoing international stories midday update", "link": "https://www.bbc.com/news/world/europe", "description": "Brussels, Berlin, Paris briefs.", "source": "BBC World", "pubDate": "2026-04-28T11:00:00Z", "pubDateLabel": "yesterday" },
+    { "title": "Canada notes RSV hospitalizations doubled recently", "link": "https://www.aljazeera.com/", "description": "Public-health update.", "source": "Al Jazeera", "pubDate": "2026-04-27T14:00:00Z", "pubDateLabel": "2d ago" }
+  ]
+}

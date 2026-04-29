@@ -1,0 +1,14 @@
+{
+  "name": "seymour-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Seymour Hub — local news, weather, events, schools, businesses, blog, and tips for Seymour, Indiana. Part of the TCG family of sites.",
+  "scripts": {
+    "dev": "netlify dev",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^9.1.2",
+    "@netlify/functions": "^4.2.7"
+  }
+}

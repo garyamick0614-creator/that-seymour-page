@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seymour Hub &mdash; Local news, weather, events &amp; community</title>
+<meta name="description" content="Seymour, Indiana weekly hub: local news, weather, events, schools, top businesses, community Q&A, blog, and tip line. Auto-refreshed every 2 hours. By Gary Amick / TCG Solutions.">
+<meta name="author" content="Gary Amick — That Computer Guy 26 / TCG Solutions">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<meta property="og:title" content="Seymour Hub — Local news, weather, events & community">
+<meta property="og:description" content="Seymour, Indiana weekly hub. Auto-refreshed every 2 hours.">
+<meta property="og:type" content="website">
+</head>
+<body data-update-from="/data/weather.json">
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Seymour, Indiana &middot; weekly hub</p>
+    <h1>What's happening in Seymour this week.</h1>
+    <p class="lead">Local news, weather, events, schools, businesses, and community voices &mdash; pulled together in one spot. Live data refreshes every two hours from public sources. Independent and non-commercial, built by Gary Amick (<em>That Computer Guy 26 / TCG Solutions</em>) right here in Seymour.</p>
+    <div class="cta-row">
+      <a class="btn-p" href="/events.html">See the timeline &rarr;</a>
+      <a class="btn-o" href="/weather.html">Live weather</a>
+      <a class="btn-o" href="/blog.html">Community blog</a>
+      <a class="btn-o" href="/tip.html">Submit a tip</a>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- Gary disclaimer — TCG family signature -->
+  <aside class="gary-disclaimer">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">&#x1F44B;</span><strong class="tag">From Gary at TCG</strong></div>
+    <p style="margin:6px 0">Hey Seymour &mdash; this hub is built and maintained locally on the TCG home server. AI tools and multi-LLM research help me fact-check fast, but every post here is human-guided. I'm <strong>Gary from That Computer Guy 26 / TCG Solutions</strong>: hardware repairs, AI automations, custom websites/software, pentesting, and business IT.</p>
+    <p style="margin:6px 0">Questions, corrections, or want to add an event? Call/text <a href="tel:8124149097" style="color:var(--accent);font-weight:600">812-414-9097</a> or use the <a href="/tip.html" style="color:var(--accent);font-weight:600">tip form</a>. Anonymous is fine.</p>
+  </aside>
+
+  <!-- Live snapshot row -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Live snapshot</p>
+      <h2>Right now in Seymour</h2>
+      <p class="muted">Pulled from National Weather Service, public RSS feeds, and the city calendar. Auto-refresh every 2 hours.</p>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="/weather.html">
+        <div class="card-emoji">&#x1F324;</div>
+        <h3 class="card-title">Weather <span id="weatherChip" class="pill pill-info">loading</span></h3>
+        <p class="card-blurb" id="weatherBlurb">Latest NWS forecast for Seymour (38.96, -85.89). Tap for the 7-day outlook and severe-weather alerts.</p>
+      </a>
+      <a class="card" href="/events.html">
+        <div class="card-emoji">&#x1F4C5;</div>
+        <h3 class="card-title">Next event <span id="eventChip" class="pill">soon</span></h3>
+        <p class="card-blurb" id="eventBlurb">City Council, Crossroads of Cultures, BurgerFest 2026 &mdash; the full timeline and what's coming up.</p>
+      </a>
+      <a class="card" href="/news.html">
+        <div class="card-emoji">&#x1F4F0;</div>
+        <h3 class="card-title">Headlines <span id="newsChip" class="pill">live</span></h3>
+        <p class="card-blurb" id="newsBlurb">Indiana, US, and global headlines refreshed every 2 hours from public RSS sources.</p>
+      </a>
+      <a class="card" href="/schools.html">
+        <div class="card-emoji">&#x1F392;</div>
+        <h3 class="card-title">Seymour schools</h3>
+        <p class="card-blurb">SCSC budget vote re-do May 1, athletics schedule, graduation, alerts.</p>
+      </a>
+      <a class="card" href="/businesses.html">
+        <div class="card-emoji">&#x1F3EA;</div>
+        <h3 class="card-title">Top 20 businesses</h3>
+        <p class="card-blurb">Reviewed and ranked by volume, rating, and employment impact.</p>
+      </a>
+      <a class="card" href="/blog.html">
+        <div class="card-emoji">&#x1F4AC;</div>
+        <h3 class="card-title">Community blog <span id="blogChip" class="pill">open</span></h3>
+        <p class="card-blurb">No accounts. Your IP gets a friendly handle and you can post. Good faith only.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured story -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">This week</p>
+      <h2>Storm cleanup continues; cleanup-week meets a busy event calendar.</h2>
+      <p class="muted">Updated April 29, 2026.</p>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,rgba(248,113,113,.12),rgba(251,191,36,.04));border-color:rgba(248,113,113,.4)">
+      <p class="eyebrow" style="color:var(--accent-4)">Storm recovery</p>
+      <h3 class="card-title" style="font-size:18px">April 27 storms left damage across Jackson County.</h3>
+      <p class="card-blurb">National Weather Service reporting confirmed multiple rounds of thunderstorms across central Indiana on April 27, with tornadoes, strong winds, hail, and flooding. Local coverage noted a tornado in Jackson County northwest of Seymour between Bobtown and Cortland. Cleanup is the focus; the storm landed during the city's annual Make Seymour Shine week (Apr 13-17), so curbside debris pickup capacity was already up.</p>
+    </div>
+
+    <h3 class="section-title">What's happening around town</h3>
+    <ul style="list-style:none;padding:0;margin:0">
+      <li class="card" style="margin-bottom:10px"><strong>Crossroads Acoustic Festival</strong> &mdash; Apr 24-25 (recap on Seymour Main Street)</li>
+      <li class="card" style="margin-bottom:10px"><strong>City Council meeting</strong> &mdash; Apr 27 (next: May 11 &amp; 26, 7 PM, George Green Chambers)</li>
+      <li class="card" style="margin-bottom:10px"><strong>Crossroads of Cultures</strong> &mdash; May 2</li>
+      <li class="card" style="margin-bottom:10px"><strong>SCSC budget re-vote</strong> &mdash; May 1 (after Apr 17 614&ndash;924 rejection)</li>
+      <li class="card" style="margin-bottom:10px"><strong>BurgerFest 2026</strong> &mdash; Sep 19, downtown (36th year, Elexco main-stage sponsor)</li>
+    </ul>
+
+    <p class="muted" style="margin-top:14px">A simple way to sum up the week: Seymour took a hit from the storms, but the community is doing what it does best &mdash; cleaning up, checking in, and moving forward. <a href="/events.html">See the full timeline &rarr;</a></p>
+  </section>
+
+  <!-- TCG family promo -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">TCG family</p>
+      <h2>Other places worth bookmarking.</h2>
+    </div>
+    <div class="ext-grid">
+      <a class="ext-card" href="https://thatcomputerguy26.org" target="_blank" rel="noopener">
+        <div class="ext-label">Main site</div>
+        <div class="ext-val">That Computer Guy 26</div>
+        <div class="ext-desc">Hardware repairs, AI automations, custom sites/software, pentesting, business IT &mdash; serving Jackson and Bartholomew counties.</div>
+      </a>
+      <a class="ext-card" href="https://ibetcg.netlify.app" target="_blank" rel="noopener">
+        <div class="ext-label">Investigations</div>
+        <div class="ext-val">Indiana Businesses Exposed</div>
+        <div class="ext-desc">Public-records research and consumer-protection journalism. Source-cited articles on Indiana businesses.</div>
+      </a>
+      <a class="ext-card" href="https://tcgpredictions.netlify.app" target="_blank" rel="noopener">
+        <div class="ext-label">AI dashboards</div>
+        <div class="ext-val">TCG Predictions</div>
+        <div class="ext-desc">Live news, conflicts, markets, disasters, cyber, space, and Indiana data &mdash; with 24h / 7d / 30d AI outlooks per category.</div>
+      </a>
+      <a class="ext-card" href="https://ibetcg.netlify.app/civic-hub.html" target="_blank" rel="noopener">
+        <div class="ext-label">Civic data</div>
+        <div class="ext-val">Civic Hub</div>
+        <div class="ext-desc">Direct portals: mycase.in.gov, IDOC, IRACS, county clerks. The fast way to look something up yourself.</div>
+      </a>
+      <a class="ext-card" href="https://southern-indiana-justice.netlify.app" target="_blank" rel="noopener">
+        <div class="ext-label">Judicial stats</div>
+        <div class="ext-val">Southern Indiana Justice</div>
+        <div class="ext-desc">Counties, facilities, programs, methodology &mdash; the judicial-stats hub for southern Indiana.</div>
+      </a>
+      <a class="ext-card" href="/hub.html">
+        <div class="ext-label">This site</div>
+        <div class="ext-val">Seymour Hub &rarr;</div>
+        <div class="ext-desc">All Seymour topics in one card &mdash; events, weather, schools, businesses, blog, tip line, family links.</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(async function () {
+  const w = await SH.loadJSON('/data/weather.json');
+  if (w && w.current) {
+    const c = w.current;
+    document.getElementById('weatherBlurb').textContent =
+      c.shortForecast + ' · ' + c.temperature + '°' + c.temperatureUnit + ' · ' + (c.windSpeed || '');
+    const chip = document.getElementById('weatherChip');
+    chip.textContent = c.temperature + '°' + c.temperatureUnit;
+    chip.className = 'pill pill-info';
+  }
+  const e = await SH.loadJSON('/data/events.json');
+  if (e && e.upcoming && e.upcoming.length) {
+    const u = e.upcoming[0];
+    document.getElementById('eventBlurb').textContent = u.title + ' · ' + u.dateLabel + (u.location ? ' · ' + u.location : '');
+    document.getElementById('eventChip').textContent = u.dateLabel;
+  }
+  const n = await SH.loadJSON('/data/news.json');
+  if (n && n.indiana && n.indiana.length) {
+    document.getElementById('newsBlurb').textContent = 'Indiana: ' + n.indiana[0].title;
+    document.getElementById('newsChip').textContent = n.indiana.length + ' headlines';
+    document.getElementById('newsChip').className = 'pill pill-ok';
+  }
+})();
+</script>
+
+</body>
+</html>
