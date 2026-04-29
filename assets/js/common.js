@@ -34,16 +34,16 @@
 
     return `
 <div class="status-bar">
-  <span id="liveChip" class="chip chip-info"><span class="dot"></span> Seymour Hub &middot; live</span>
+  <span id="liveChip" class="chip chip-info"><span class="dot"></span> That Seymour Page &middot; live</span>
   <span class="muted">Local &middot; auto-refreshed every 2h &middot; non-commercial</span>
   <span class="muted" id="lastUpdate"></span>
 </div>
 <header class="topbar">
   <a class="brand" href="/">
-    <span class="brand-mark">SEY</span>
+    <span class="brand-mark">TSP</span>
     <div class="brand-text">
-      <span class="brand-title">Seymour Hub</span>
-      <span class="brand-sub">Local &middot; weather &middot; events &middot; TCG Solutions</span>
+      <span class="brand-title">That Seymour Page</span>
+      <span class="brand-sub">Hosted by That Computer Guy 26</span>
     </div>
   </a>
   <nav class="topbar-nav">${links}</nav>
@@ -57,7 +57,7 @@
   <div class="container">
     <div class="foot-grid">
       <div>
-        <h4>Seymour Hub</h4>
+        <h4>That Seymour Page</h4>
         <ul>
           <li><a href="/index.html">Home</a></li>
           <li><a href="/events.html">Events</a></li>
@@ -73,7 +73,7 @@
           <li><a href="/blog.html">Blog</a></li>
           <li><a href="/qa.html">Q&amp;A</a></li>
           <li><a href="/tip.html">Submit a tip</a></li>
-          <li><a href="/hub.html">Seymour Hub</a></li>
+          <li><a href="/hub.html">Hub card</a></li>
         </ul>
       </div>
       <div>
@@ -92,7 +92,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      &copy; ${new Date().getFullYear()} Seymour Hub &middot; That Computer Guy 26 / TCG Solutions &middot;
+      &copy; ${new Date().getFullYear()} That Seymour Page &middot; Hosted by That Computer Guy 26 / TCG Solutions &middot;
       Independent &middot; Source-cited &middot; Non-commercial
     </div>
   </div>

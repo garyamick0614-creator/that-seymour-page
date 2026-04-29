@@ -1,4 +1,4 @@
-# Seymour Hub
+# That Seymour Page
 
 Local news, weather, events, schools, businesses, blog, and tips for Seymour, Indiana.
 
