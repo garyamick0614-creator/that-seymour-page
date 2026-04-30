@@ -61,7 +61,7 @@
     document.getElementById('content').innerHTML = '<p class="muted">Could not load community data.</p>';
     return;
   }
-  const order = ['recurring', 'civic', 'faith', 'food', 'family', 'volunteer', 'crisis'];
+  const order = ['recurring', 'volunteer-dates', 'sports', 'civic', 'faith', 'food', 'family', 'volunteer', 'crisis', 'submit'];
   const tocLinks = [];
   const html = order.map(key => {
     const g = j.groups[key];
@@ -75,8 +75,9 @@
       if (it.address && /^\s*\d/.test(it.address)) {
         actions.push(`<a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(it.name + ', ' + it.address)}" target="_blank" rel="noopener">Directions &rarr;</a>`);
       }
+      const whenBadge = it.when ? `<span class="pill pill-warn" style="margin-left:6px">${SH.escapeHTML(it.when)}</span>` : '';
       return `<div class="${cardCls}" style="border-left-color:${g.color}">
-        <h3 class="card-title">${SH.escapeHTML(it.name)}</h3>
+        <h3 class="card-title">${SH.escapeHTML(it.name)}${whenBadge}</h3>
         ${it.address ? `<div class="resource-meta">${SH.escapeHTML(it.address)}</div>` : ''}
         ${it.blurb ? `<p class="card-blurb">${SH.escapeHTML(it.blurb)}</p>` : ''}
         ${actions.length ? `<div class="resource-actions" style="margin-top:8px;display:flex;gap:14px;flex-wrap:wrap">${actions.join(' &middot; ')}</div>` : ''}
