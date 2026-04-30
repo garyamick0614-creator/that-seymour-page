@@ -562,6 +562,78 @@
       "address": "Seymour, IN (OSM-verified industrial site)",
       "mappable": true,
       "blurb": "Second Cummins facility in Seymour \u2014 separate from the Engine Plant. Featured in IBE Manufacturing Audit."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-silgan-plastics",
+      "title": "Silgan Plastics (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.934461,
+      "lon": -85.880706,
+      "address": "3779 N County Road 850 E, Seymour, IN 47274",
+      "mappable": true,
+      "blurb": "Silgan Plastics \u2014 featured in IBE Manufacturing Audit. Address verified via public web sources."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-lannett-company",
+      "title": "Lannett Company (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.927901,
+      "lon": -85.90857,
+      "address": "1101 C Ave W (Freeman Field), Seymour, IN 47274",
+      "mappable": true,
+      "blurb": "Lannett Company \u2014 featured in IBE Manufacturing Audit. Address verified via public web sources."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-rr-donnelley",
+      "title": "RR Donnelley (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.93329,
+      "lon": -85.895231,
+      "address": "709 A Ave E (Freeman Field), Seymour, IN 47274",
+      "mappable": true,
+      "blurb": "RR Donnelley \u2014 featured in IBE Manufacturing Audit. Address verified via public web sources."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-the-royal-group-trg",
+      "title": "The Royal Group (TRG) (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.969447,
+      "lon": -85.857348,
+      "address": "2245 Killion Ave, Seymour, IN 47274",
+      "mappable": true,
+      "blurb": "The Royal Group (TRG) \u2014 featured in IBE Manufacturing Audit. Address verified via public web sources."
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-javajoint",
+      "title": "Java Joint (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.958592,
+      "lon": -85.890081,
+      "address": "120 N Chestnut St, Seymour, IN 47274",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series. Address verified via public web sources."
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-allstateinn",
+      "title": "Allstate Inn (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.958682,
+      "lon": -85.839898,
+      "address": "2603 Outlet Blvd, Seymour, IN 47274",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series. Address verified via public web sources."
     }
   ]
 }
