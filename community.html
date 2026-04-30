@@ -44,7 +44,7 @@
   <section class="section">
     <p class="eyebrow">Community</p>
     <h1 style="margin:6px 0 12px;font-size:32px">Where Seymour shows up for itself</h1>
-    <p class="muted">Civic clubs, churches, food pantries, kid programs, volunteer slots, recurring events, and crisis resources &mdash; all in one place. If you've got something we should add, <a href="/tip.html">drop a tip</a>.</p>
+    <p class="muted">Verified community resources for Seymour and Jackson County &mdash; recurring events, food pantries, family programs, schools, crisis hotlines. We only list items with a public record we can point to. If your group, church, sports league, or volunteer event isn't here, <a href="/tip.html">drop a tip</a> with the details and we'll verify and add it. We don't make stuff up.</p>
 
     <div class="toc" id="toc"></div>
     <div id="content"></div>
@@ -61,7 +61,7 @@
     document.getElementById('content').innerHTML = '<p class="muted">Could not load community data.</p>';
     return;
   }
-  const order = ['recurring', 'volunteer-dates', 'sports', 'civic', 'faith', 'food', 'family', 'volunteer', 'crisis', 'submit'];
+  const order = ['recurring', 'volunteer-dates', 'crisis', 'food', 'family', 'schools-athletics', 'city-resources', 'submit'];
   const tocLinks = [];
   const html = order.map(key => {
     const g = j.groups[key];

@@ -1,126 +1,80 @@
 {
-  "_comment": "Community resources for Seymour and Jackson County: civic clubs, faith communities, food pantries, family-care nonprofits, recurring events, volunteer opportunities, sports leagues, scheduled volunteer days. Curated locally; corrections via /tip.html.",
-  "updatedAt": "2026-04-30T02:00:00Z",
+  "_comment": "Community resources for Seymour and Jackson County. Conservative list — only items with verifiable public record (city site, schools website, public 501c3, or direct web presence). For everything else, visitors submit via /tip.html and Gary verifies before adding.",
+  "updatedAt": "2026-04-30T02:30:00Z",
   "groups": {
-    "civic": {
-      "label": "Civic clubs",
-      "color": "#22d3ee",
+    "recurring": {
+      "label": "Recurring annual events",
+      "color": "#f87171",
       "items": [
-        { "name": "Seymour Lions Club",         "blurb": "Service organization — eyeglasses, scholarships, community fundraisers.", "url": "https://e-clubhouse.org/sites/seymourin/", "address": null },
-        { "name": "Seymour Rotary Club",         "blurb": "Weekly meetings, scholarships, international service.", "url": "https://www.rotary.org/clubsearch", "address": null },
-        { "name": "Seymour Kiwanis Club",        "blurb": "Focus on kids and youth programs.", "url": "https://www.kiwanis.org/", "address": null },
-        { "name": "Jackson County Jaycees (JCs)","blurb": "Young-adult leadership and service.", "url": null, "address": null },
-        { "name": "American Legion Post 89",     "blurb": "Veterans service organization.", "address": "Seymour, IN", "url": null },
-        { "name": "VFW Post 1925",                "blurb": "Veterans of Foreign Wars — events, fundraisers, hall rental.", "address": "Seymour, IN", "url": null }
-      ]
-    },
-    "faith": {
-      "label": "Faith communities",
-      "color": "#a78bfa",
-      "items": [
-        { "name": "First United Methodist Church Seymour", "address": "204 N Walnut St, Seymour, IN 47274", "url": "https://seymourfirstumc.org" },
-        { "name": "First Baptist Church Seymour",          "address": "330 Bruce St, Seymour, IN 47274",   "url": null },
-        { "name": "Calvary Baptist Church",                "address": "1311 W Tipton St, Seymour, IN 47274", "url": null },
-        { "name": "St. Ambrose Catholic Church",           "address": "325 S Chestnut St, Seymour, IN 47274", "url": "https://stambroseseymour.org" },
-        { "name": "Immanuel Lutheran Church",              "address": "808 N Chestnut St, Seymour, IN 47274", "url": null },
-        { "name": "Central Christian Church",              "address": "501 N Chestnut St, Seymour, IN 47274", "url": null },
-        { "name": "The Tabernacle (Pentecostal)",          "address": "Seymour, IN", "url": null },
-        { "name": "Trinity Lutheran Church (south)",       "address": "6300 S US Hwy 31, Seymour, IN", "url": "https://www.trinitycougars.com" }
+        { "name": "Make Seymour Shine cleanup week", "blurb": "City's annual citywide spring cleanup with extra curbside debris pickup. Organized by City Hall.", "url": "https://www.seymourin.org", "address": "Citywide, Seymour", "when": "Mid-April annually" },
+        { "name": "Crossroads Acoustic Festival", "blurb": "Two-day downtown acoustic music festival. Promoted by Seymour Main Street.", "url": "https://www.facebook.com/SeymourMainStreet/", "address": "Downtown Seymour", "when": "Late April" },
+        { "name": "Crossroads of Cultures", "blurb": "Annual cultural festival downtown.", "address": "Downtown Seymour", "when": "Early May" },
+        { "name": "Jackson County Fair", "blurb": "4-H showcase, livestock, midway, music. Hosted at the county fairgrounds in Brownstown.", "url": "https://www.jacksoncountyfairgrounds.org/", "address": "269 W Hwy 250, Brownstown, IN 47220", "when": "July annually" },
+        { "name": "BurgerFest", "blurb": "World's Largest Hamburger Parade, Bun Run, eating contest, live music. 36th year in 2026.", "url": "https://www.seymourburgerfest.com", "address": "Downtown Seymour", "when": "Sep 19, 2026 (third Saturday of September annually)" }
       ]
     },
     "food": {
-      "label": "Food pantries & meal programs",
+      "label": "Food pantries & emergency assistance",
       "color": "#34d399",
       "items": [
-        { "name": "Anchor House Family Assistance Center", "blurb": "Food pantry, household goods, family-care services. The main hub for emergency food in Jackson County.", "address": "836 S Walnut St, Seymour, IN 47274", "phone": "812-522-9308", "url": "https://anchorhouseseymour.org" },
-        { "name": "Community Provisions",                  "blurb": "Pop-up grocery distribution.", "address": "Seymour, IN", "url": null },
-        { "name": "Sacks of Love (SCSC schools)",          "blurb": "Weekend food packs for SCSC kids.", "address": null, "url": null },
-        { "name": "Salvation Army Seymour",                "blurb": "Food pantry and emergency assistance.", "address": "Seymour, IN", "url": "https://www.salvationarmyusa.org/", "phone": null }
+        { "name": "Anchor House Family Assistance Center", "blurb": "Food pantry, household goods, emergency family services. The main hub for emergency food in Jackson County.", "address": "836 S Walnut St, Seymour, IN 47274", "phone": "812-522-9308", "url": "https://anchorhouseseymour.org" },
+        { "name": "Salvation Army Seymour", "blurb": "Food pantry and emergency assistance — call before stopping by for current hours.", "url": "https://www.salvationarmyusa.org/", "address": "Seymour, IN" }
       ]
     },
     "family": {
-      "label": "Family & youth resources",
+      "label": "Family & youth programs",
       "color": "#fbbf24",
       "items": [
-        { "name": "Boys & Girls Club of Seymour", "blurb": "After-school programs, summer camps, sports.", "address": "950 S O'Brien St, Seymour, IN 47274", "url": "https://www.bgcseymour.org" },
-        { "name": "Girls Inc. Jackson County",     "blurb": "Programs for girls 6–18: STEM, leadership, healthy living.", "address": "951 N Park St, Seymour, IN 47274", "url": "https://www.girlsinc-jacksonco.org" },
-        { "name": "Boy Scouts Troop 575",          "blurb": "Local scouting troop.", "address": "Seymour, IN", "url": null },
-        { "name": "Girl Scouts of Central Indiana","blurb": "Local troops in Seymour and Jackson County.", "url": "https://www.girlscoutsindiana.org/" },
-        { "name": "4-H Jackson County",            "blurb": "Animal projects, county fair, scholarships.", "url": "https://extension.purdue.edu/county/jackson", "address": "Jackson County" },
-        { "name": "Project Graduation (SHS)",      "blurb": "Substance-free senior celebration. Annual golf-outing fundraiser in April.", "url": null, "address": null }
+        { "name": "Boys & Girls Club of Seymour", "blurb": "After-school programs, summer camps, sports for kids and teens.", "address": "Seymour, IN", "url": "https://www.bgcseymour.org" },
+        { "name": "Girls Inc. of Jackson County", "blurb": "Programs for girls 6-18: STEM, leadership, healthy living.", "address": "Seymour, IN", "url": "https://www.girlsinc-jacksonco.org" },
+        { "name": "4-H Jackson County (Purdue Extension)", "blurb": "Animal projects, scholarships, county fair. Run through Purdue Extension.", "url": "https://extension.purdue.edu/county/jackson", "address": "Jackson County" }
       ]
     },
-    "volunteer": {
-      "label": "Volunteer opportunities",
-      "color": "#22d3ee",
+    "schools-athletics": {
+      "label": "Schools & school athletics",
+      "color": "#a78bfa",
       "items": [
-        { "name": "Schneck Medical Center Volunteers", "blurb": "Volunteer in patient services, gift shop, hospitality.", "url": "https://www.schneckmed.org/get-involved/volunteer", "address": "411 W Tipton St, Seymour, IN" },
-        { "name": "Anchor House volunteer team",       "blurb": "Sort donations, pack pantry boxes, drive deliveries.", "url": "https://anchorhouseseymour.org/volunteer", "address": "836 S Walnut St, Seymour, IN" },
-        { "name": "Library volunteers",                "blurb": "Reading programs, events, shelving.", "url": "https://www.myjclibrary.org", "address": "303 W 2nd St, Seymour, IN" },
-        { "name": "Seymour Main Street",               "blurb": "Downtown beautification, festival staffing, banner program.", "url": "https://www.facebook.com/SeymourMainStreet/", "address": null },
-        { "name": "Make Seymour Shine (annual cleanup)","blurb": "April citywide cleanup; the city coordinates volunteer pickup routes.", "url": "https://www.seymourin.org", "address": null }
-      ]
-    },
-    "recurring": {
-      "label": "Things to do every week / month",
-      "color": "#f87171",
-      "items": [
-        { "name": "First Friday Downtown",         "blurb": "First Friday of the month, Apr–Oct. Music, art, food trucks on Chestnut.", "url": "https://www.facebook.com/SeymourMainStreet/", "address": "Downtown Seymour" },
-        { "name": "Concerts at Bicentennial Park", "blurb": "Free outdoor music series, summer evenings.", "address": "Bicentennial Park, Seymour, IN" },
-        { "name": "Farmers Market",                "blurb": "Saturday morning May–October.", "url": "https://www.seymourin.org", "address": "Downtown Seymour" },
-        { "name": "Crossroads Acoustic Festival",  "blurb": "Two-day downtown festival, late April.", "address": "Downtown Seymour" },
-        { "name": "Crossroads of Cultures",        "blurb": "Annual cultural festival, early May.", "address": "Downtown Seymour" },
-        { "name": "Jackson County Fair",           "blurb": "July, 4-H showcase, midway, livestock, music.", "url": "https://www.jacksoncountyfairgrounds.org/", "address": "269 W Hwy 250, Brownstown, IN 47220" },
-        { "name": "BurgerFest",                     "blurb": "Third Saturday in September, downtown.", "url": "https://www.seymourburgerfest.com", "address": "Downtown Seymour" },
-        { "name": "Oktoberfest at Schwatzer's",    "blurb": "Annual fall celebration with German fare.", "address": "100 W 2nd St, Seymour, IN" }
-      ]
-    },
-    "crisis": {
-      "label": "Crisis & support",
-      "color": "#f87171",
-      "items": [
-        { "name": "988 Suicide & Crisis Lifeline", "blurb": "Call or text 988 — 24/7, free, confidential.", "url": "https://988lifeline.org/", "phone": "988" },
-        { "name": "Anchor House emergency assistance", "blurb": "Emergency food, hygiene kits, household goods.", "address": "836 S Walnut St, Seymour, IN", "phone": "812-522-9308" },
-        { "name": "Turning Point Domestic Violence Services", "blurb": "24-hour crisis line, shelter, advocacy.", "phone": "812-379-9844", "url": "https://www.turningpointdv.org" },
-        { "name": "Centerstone (mental health)",   "blurb": "Local mental health and addiction services.", "phone": "1-800-344-8802", "url": "https://centerstone.org/" },
-        { "name": "Indiana 211",                   "blurb": "Dial 2-1-1 for help finding human services in Indiana.", "url": "https://in211.org/", "phone": "211" }
-      ]
-    },
-    "sports": {
-      "label": "Sports & leagues",
-      "color": "#34d399",
-      "items": [
-        { "name": "Seymour Little League",          "blurb": "Baseball and softball for ages 5-12. Spring registration; games at Kasting/Gaiser fields.", "url": "https://www.facebook.com/SeymourLittleLeague/", "address": "Seymour, IN" },
-        { "name": "Seymour Babe Ruth Baseball",     "blurb": "Baseball for ages 13-15.", "url": null, "address": "Seymour, IN" },
-        { "name": "Seymour Pony League",             "blurb": "Baseball/softball, intermediate age groups.", "url": null, "address": "Seymour, IN" },
-        { "name": "Seymour Youth Soccer",            "blurb": "Spring and fall leagues for U6-U16.", "url": null, "address": "Seymour, IN" },
-        { "name": "SHS Owls athletics",              "blurb": "Football, basketball, baseball, softball, volleyball, tennis, golf, track, cross country, soccer, swimming, wrestling.", "url": "https://www.seymourschools.org/athletics/sportsschedules", "address": "1350 W 2nd St, Seymour, IN 47274" },
-        { "name": "Trinity Lutheran Cougars",        "blurb": "Athletics for the private high school south of town.", "url": "https://www.trinitycougars.com", "address": "6300 S US Hwy 31, Seymour, IN" },
-        { "name": "Adult slow-pitch softball",       "blurb": "Summer leagues at Gaiser Park / Sports Complex.", "url": "https://www.seymourin.org", "address": "Seymour Sports Complex" },
-        { "name": "Pickleball — Seymour",            "blurb": "Open play at city courts; check the city site for schedules.", "url": "https://www.seymourin.org", "address": "Seymour, IN" },
-        { "name": "Schneck Foundation 5K",           "blurb": "Annual community 5K supporting Schneck Medical Center foundation.", "url": "https://www.schneckmed.org", "address": "Schneck Medical Center, Seymour" }
+        { "name": "SHS Owls athletics", "blurb": "Seymour High School sports schedules — football, basketball, baseball, softball, volleyball, tennis, golf, track, cross country, soccer, swimming, wrestling.", "url": "https://www.seymourschools.org/athletics/sportsschedules", "address": "1350 W 2nd St, Seymour, IN 47274" },
+        { "name": "Trinity Lutheran Cougars", "blurb": "Athletics for the private Christian high school south of town.", "url": "https://www.trinitycougars.com", "address": "6300 S US Hwy 31, Seymour, IN" },
+        { "name": "Seymour Community Schools (SCSC)", "blurb": "District site — alerts, calendars, athletics, news.", "url": "https://www.scsc.k12.in.us", "address": "Seymour, IN" }
       ]
     },
     "volunteer-dates": {
       "label": "Volunteer days with dates",
       "color": "#fbbf24",
       "items": [
-        { "name": "Make Seymour Shine cleanup week",        "blurb": "Citywide spring cleanup with extra curbside pickup. Sign up to staff drop-off sites.", "address": "Citywide, Seymour", "url": "https://www.seymourin.org", "phone": null, "when": "Apr 13–17, 2026" },
-        { "name": "Project Graduation golf outing",          "blurb": "Senior-class fundraiser for SHS Project Graduation. Players and hole sponsors needed.", "address": "Seymour, IN", "url": null, "phone": null, "when": "April (annual)" },
-        { "name": "Crossroads of Cultures festival",         "blurb": "Volunteer day-of for setup, info booths, kids' activities.", "address": "Downtown Seymour", "url": null, "phone": null, "when": "May 2, 2026" },
-        { "name": "Jackson County Fair",                      "blurb": "4-H needs gate workers, parking volunteers, livestock helpers.", "address": "269 W Hwy 250, Brownstown, IN 47220", "url": "https://www.jacksoncountyfairgrounds.org/", "phone": null, "when": "July 18–25, 2026" },
-        { "name": "BurgerFest 2026",                          "blurb": "Volunteer day-of: parade staging, Bun Run setup, info booths, ketchup-slide attendants.", "address": "Downtown Seymour", "url": "https://www.seymourburgerfest.com", "phone": null, "when": "Sep 19, 2026" },
-        { "name": "Anchor House food drives (rolling)",      "blurb": "Sort donations, pack pantry boxes, drive deliveries. Drop in any time.", "address": "836 S Walnut St, Seymour, IN", "url": "https://anchorhouseseymour.org/volunteer", "phone": "812-522-9308", "when": "Year-round" },
-        { "name": "Schneck Volunteer onboarding",            "blurb": "New-volunteer orientation; gift shop, hospitality, patient services.", "address": "411 W Tipton St, Seymour, IN", "url": "https://www.schneckmed.org/get-involved/volunteer", "phone": null, "when": "Quarterly" },
-        { "name": "Library reading buddies",                  "blurb": "Help kids with summer reading; afternoon shifts in June and July.", "address": "303 W 2nd St, Seymour, IN", "url": "https://www.myjclibrary.org", "phone": "812-522-3412", "when": "June–July annually" },
-        { "name": "Operation Christmas Child packing",       "blurb": "Shoebox-gift packing through several Seymour churches.", "address": "Various churches, Seymour", "url": "https://www.samaritanspurse.org/operation-christmas-child/", "phone": null, "when": "November (annual)" }
+        { "name": "Make Seymour Shine cleanup week", "blurb": "Citywide spring cleanup. Coordinate via City Hall.", "url": "https://www.seymourin.org", "address": "Citywide, Seymour", "when": "Mid-April annually" },
+        { "name": "Crossroads of Cultures festival", "blurb": "Volunteer day-of for setup, info booths, kids' activities.", "address": "Downtown Seymour", "when": "Early May" },
+        { "name": "Jackson County Fair", "blurb": "Gate workers, parking volunteers, livestock helpers via 4-H.", "address": "269 W Hwy 250, Brownstown, IN 47220", "url": "https://www.jacksoncountyfairgrounds.org/", "when": "July annually" },
+        { "name": "BurgerFest 2026", "blurb": "Volunteer day-of: parade staging, Bun Run setup, info booths.", "address": "Downtown Seymour", "url": "https://www.seymourburgerfest.com", "when": "Sep 19, 2026" },
+        { "name": "Anchor House food drives (rolling)", "blurb": "Sort donations, pack pantry boxes, drive deliveries.", "address": "836 S Walnut St, Seymour, IN", "url": "https://anchorhouseseymour.org/", "phone": "812-522-9308", "when": "Year-round" }
+      ]
+    },
+    "crisis": {
+      "label": "Crisis & support hotlines",
+      "color": "#f87171",
+      "items": [
+        { "name": "988 Suicide & Crisis Lifeline", "blurb": "Call or text 988 — 24/7, free, confidential.", "url": "https://988lifeline.org/", "phone": "988" },
+        { "name": "Anchor House emergency assistance", "blurb": "Emergency food, hygiene kits, household goods. Call before driving over.", "address": "836 S Walnut St, Seymour, IN", "phone": "812-522-9308", "url": "https://anchorhouseseymour.org/" },
+        { "name": "Turning Point Domestic Violence Services", "blurb": "24-hour crisis line, shelter, advocacy. Serves the south-central Indiana region.", "phone": "812-379-9844", "url": "https://www.turningpointdv.org" },
+        { "name": "Centerstone (mental health)", "blurb": "Mental health and addiction services across Indiana.", "phone": "1-800-344-8802", "url": "https://centerstone.org/" },
+        { "name": "Indiana 211", "blurb": "Dial 2-1-1 for help finding human services in Indiana.", "url": "https://in211.org/", "phone": "211" }
+      ]
+    },
+    "city-resources": {
+      "label": "City &amp; county resources",
+      "color": "#22d3ee",
+      "items": [
+        { "name": "City of Seymour (official)", "blurb": "Council agendas, public-comment intake, calendar, codes.", "url": "https://www.seymourin.org", "address": "Seymour, IN" },
+        { "name": "Jackson County Government", "blurb": "County offices, courts, recorder, treasurer, surveyor.", "url": "https://www.jacksoncounty.in.gov", "address": "Brownstown, IN" },
+        { "name": "Jackson County Public Library — Seymour", "blurb": "Library services, programs, public computers.", "url": "https://www.myjclibrary.org", "address": "303 W 2nd St, Seymour, IN 47274", "phone": "812-522-3412" }
       ]
     },
     "submit": {
       "label": "Got something to add?",
       "color": "#a78bfa",
       "items": [
-        { "name": "Submit a community resource",  "blurb": "We don't have everything. If your group, church, sports league, or volunteer event isn't listed, drop it on the tip line and we'll add it.", "url": "/tip.html", "address": null, "phone": "812-414-9097" }
+        { "name": "Submit a community resource", "blurb": "We keep this list short and verified — no made-up entries. If your group, church, sports league, or volunteer event isn't here, drop it on the tip line and we'll verify and add it. We need the name, address (street number please), website, and what the group does.", "url": "/tip.html", "phone": "812-414-9097" }
       ]
     }
   }
