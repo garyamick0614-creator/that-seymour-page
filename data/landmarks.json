@@ -22,25 +22,24 @@
       "address": "390 S Jackson Park Dr, Seymour, IN 47274",
       "phone": "812-414-9097",
       "url": "https://thatcomputerguy26.org",
-      "blurb": "Gary's shop. Computer repairs, business IT, websites, AI tools. Call before stopping by."
+      "blurb": "Gary's shop. Computer repairs, business IT, websites, AI tools. Call before stopping by.",
+      "mappable": true
     },
     {
       "name": "Seymour City Hall",
       "category": "City",
-      "lat": 38.962153,
-      "lon": -85.891486,
       "address": "301-309 N Chestnut St, Seymour, IN 47274",
       "url": "https://www.seymourin.org",
-      "blurb": "City offices, mayor, public-comment intake."
+      "blurb": "City offices, mayor, public-comment intake.",
+      "mappable": false
     },
     {
       "name": "George Green Chambers (Council)",
       "category": "City",
-      "lat": 38.962153,
-      "lon": -85.891486,
       "address": "301-309 N Chestnut St, Seymour, IN 47274",
       "url": "https://www.seymourin.org",
-      "blurb": "Where City Council meets, biweekly at 7 PM."
+      "blurb": "Where City Council meets, biweekly at 7 PM.",
+      "mappable": false
     },
     {
       "name": "Seymour Police Department",
@@ -50,7 +49,8 @@
       "address": "205 N Ewing St, Seymour, IN 47274",
       "phone": "812-522-1234",
       "url": "https://www.seymourpolice.org",
-      "blurb": "City police HQ."
+      "blurb": "City police HQ.",
+      "mappable": true
     },
     {
       "name": "Seymour Fire Department (Station 1)",
@@ -58,7 +58,8 @@
       "lat": 38.9597,
       "lon": -85.8923,
       "address": "311 N Walnut St, Seymour, IN 47274",
-      "blurb": "Fire HQ + EMS."
+      "blurb": "Fire HQ + EMS.",
+      "mappable": true
     },
     {
       "name": "Seymour Fire Station 2",
@@ -66,7 +67,8 @@
       "lat": 38.958017,
       "lon": -85.86843,
       "address": "1402 E Tipton St, Seymour, IN 47274",
-      "blurb": "East-side fire station."
+      "blurb": "East-side fire station.",
+      "mappable": true
     },
     {
       "name": "Jackson County Sheriff's Office",
@@ -76,7 +78,8 @@
       "address": "220 E Walnut St, Brownstown, IN 47220",
       "phone": "812-358-2141",
       "url": "https://www.jacksoncosheriff.com",
-      "blurb": "Jackson County HQ - Brownstown."
+      "blurb": "Jackson County HQ - Brownstown.",
+      "mappable": true
     },
     {
       "name": "Jackson County Courthouse",
@@ -85,7 +88,8 @@
       "lon": -86.0418,
       "address": "111 S Main St, Brownstown, IN 47220",
       "url": "https://www.jacksoncounty.in.gov",
-      "blurb": "County courts and clerk."
+      "blurb": "County courts and clerk.",
+      "mappable": true
     },
     {
       "name": "Jackson County Public Library - Seymour",
@@ -95,7 +99,8 @@
       "address": "303 W 2nd St, Seymour, IN 47274",
       "phone": "812-522-3412",
       "url": "https://www.myjclibrary.org",
-      "blurb": "Main library branch downtown."
+      "blurb": "Main library branch downtown.",
+      "mappable": true
     },
     {
       "name": "U.S. Post Office - Seymour",
@@ -104,7 +109,8 @@
       "lon": -85.8897,
       "address": "115 W 2nd St, Seymour, IN 47274",
       "url": "https://www.usps.com",
-      "blurb": "Downtown post office."
+      "blurb": "Downtown post office.",
+      "mappable": true
     },
     {
       "name": "Schneck Medical Center",
@@ -114,7 +120,8 @@
       "address": "411 W Tipton St, Seymour, IN 47274",
       "phone": "812-522-2349",
       "url": "https://www.schneckmed.org",
-      "blurb": "Major employer, full-service hospital."
+      "blurb": "Major employer, full-service hospital.",
+      "mappable": true
     },
     {
       "name": "Seymour High School",
@@ -123,7 +130,8 @@
       "lon": -85.907,
       "address": "1350 W 2nd St, Seymour, IN 47274",
       "url": "https://shs.seymourschools.org",
-      "blurb": "SHS - home of the Owls."
+      "blurb": "SHS - home of the Owls.",
+      "mappable": true
     },
     {
       "name": "Seymour Middle School",
@@ -132,7 +140,8 @@
       "lon": -85.892171,
       "address": "920 N Walnut St, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
-      "blurb": "Public middle school."
+      "blurb": "Public middle school.",
+      "mappable": true
     },
     {
       "name": "Cortland Elementary",
@@ -141,7 +150,8 @@
       "lon": -85.953,
       "address": "8533 N County Road 25 W, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
-      "blurb": "Rural elementary school NW of town."
+      "blurb": "Rural elementary school NW of town.",
+      "mappable": true
     },
     {
       "name": "Margaret R. Brown Elementary",
@@ -150,7 +160,8 @@
       "lon": -85.878,
       "address": "404 N Cottage Dr, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
-      "blurb": "Public elementary."
+      "blurb": "Public elementary.",
+      "mappable": true
     },
     {
       "name": "Emerson Elementary",
@@ -159,16 +170,16 @@
       "lon": -85.882883,
       "address": "504 S Vine St, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
-      "blurb": "Public elementary."
+      "blurb": "Public elementary.",
+      "mappable": true
     },
     {
       "name": "Seymour-Redding Elementary",
       "category": "School",
-      "lat": 38.943,
-      "lon": -85.893,
       "address": "S Chestnut Hills Dr, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
-      "blurb": "Public elementary, south side."
+      "blurb": "Public elementary, south side.",
+      "mappable": false
     },
     {
       "name": "Trinity Lutheran High School",
@@ -177,58 +188,53 @@
       "lon": -85.859,
       "address": "6300 S US Hwy 31, Seymour, IN 47274",
       "url": "https://www.trinitycougars.com",
-      "blurb": "Private Christian high school south of town."
+      "blurb": "Private Christian high school south of town.",
+      "mappable": true
     },
     {
       "name": "Seymour Sports Complex / Gaiser Park",
       "category": "Park",
-      "lat": 38.9468,
-      "lon": -85.8765,
       "address": "S Park Ave, Seymour, IN 47274",
-      "blurb": "Ball fields, walking paths, playgrounds."
+      "blurb": "Ball fields, walking paths, playgrounds.",
+      "mappable": false
     },
     {
       "name": "Shields Park",
       "category": "Park",
-      "lat": 38.9645,
-      "lon": -85.8847,
       "address": "Park Ave & Indianapolis Ave, Seymour, IN 47274",
-      "blurb": "Playground, basketball, pavilion."
+      "blurb": "Playground, basketball, pavilion.",
+      "mappable": false
     },
     {
       "name": "Burkart Park",
       "category": "Park",
-      "lat": 38.952,
-      "lon": -85.878,
       "address": "Burkart Blvd & 9th St, Seymour, IN 47274",
-      "blurb": "Soccer fields, walking paths."
+      "blurb": "Soccer fields, walking paths.",
+      "mappable": false
     },
     {
       "name": "Freeman Field Heritage District",
       "category": "Landmark",
-      "lat": 38.916026,
-      "lon": -85.891819,
       "address": "Freeman Field, Seymour, IN",
       "url": "https://en.wikipedia.org/wiki/Freeman_Army_Airfield",
-      "blurb": "WWII airfield site, museum and heritage."
+      "blurb": "WWII airfield site, museum and heritage.",
+      "mappable": false
     },
     {
       "name": "Crossroads of America Mural / Downtown",
       "category": "Landmark",
-      "lat": 38.9591,
-      "lon": -85.8908,
       "address": "Chestnut St & 2nd St, Seymour, IN",
       "url": "https://en.wikipedia.org/wiki/Seymour,_Indiana",
-      "blurb": "Heart of downtown - historic district."
+      "blurb": "Heart of downtown - historic district.",
+      "mappable": false
     },
     {
       "name": "John Mellencamp 'Small Town' marker",
       "category": "Landmark",
-      "lat": 38.9591,
-      "lon": -85.8915,
       "address": "Downtown Seymour",
       "url": "https://en.wikipedia.org/wiki/John_Mellencamp",
-      "blurb": "Mellencamp grew up in Seymour - the inspiration for 'Small Town'."
+      "blurb": "Mellencamp grew up in Seymour - the inspiration for 'Small Town'.",
+      "mappable": false
     }
   ]
 }

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community &mdash; That Seymour Page</title>
+<meta name="description" content="Civic clubs, faith communities, food pantries, youth programs, volunteer opportunities, recurring events, and crisis support around Seymour, Indiana.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .group-band {
+    display: flex; align-items: center; gap: 10px; margin: 28px 0 12px;
+  }
+  .group-band .swatch {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35);
+  }
+  .group-band h2 { margin: 0; font-size: 22px; }
+  .resource-card { border-left: 4px solid var(--border); }
+  .crisis-card { border-color: var(--accent-4); background: linear-gradient(135deg, rgba(248,113,113,.10), rgba(167,139,250,.04)); }
+  .resource-meta { font-size: 12px; color: var(--muted); margin: 4px 0 8px; }
+  .resource-actions a { font-size: 13px; font-weight: 600; }
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--panel); backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    margin: 14px 0;
+  }
+  .toc a {
+    font-size: 12px; padding: 5px 11px; border-radius: 999px;
+    background: rgba(31, 38, 48, .55); border: 1px solid var(--border);
+    color: var(--text); font-weight: 600;
+  }
+  .toc a:hover { border-color: var(--border-strong); color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Community</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Where Seymour shows up for itself</h1>
+    <p class="muted">Civic clubs, churches, food pantries, kid programs, volunteer slots, recurring events, and crisis resources &mdash; all in one place. If you've got something we should add, <a href="/tip.html">drop a tip</a>.</p>
+
+    <div class="toc" id="toc"></div>
+    <div id="content"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(async function () {
+  const j = await SH.loadJSON('/data/community.json');
+  if (!j || !j.groups) {
+    document.getElementById('content').innerHTML = '<p class="muted">Could not load community data.</p>';
+    return;
+  }
+  const order = ['recurring', 'civic', 'faith', 'food', 'family', 'volunteer', 'crisis'];
+  const tocLinks = [];
+  const html = order.map(key => {
+    const g = j.groups[key];
+    if (!g) return '';
+    tocLinks.push(`<a href="#g-${key}">${SH.escapeHTML(g.label)}</a>`);
+    const items = (g.items || []).map(it => {
+      const cardCls = key === 'crisis' ? 'card resource-card crisis-card' : 'card resource-card';
+      const actions = [];
+      if (it.url)   actions.push(`<a href="${SH.escapeHTML(it.url)}" target="_blank" rel="noopener">Website &rarr;</a>`);
+      if (it.phone) actions.push(`<a href="tel:${SH.escapeHTML(String(it.phone).replace(/[^0-9+]/g,''))}">Call ${SH.escapeHTML(it.phone)}</a>`);
+      if (it.address && /^\s*\d/.test(it.address)) {
+        actions.push(`<a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(it.name + ', ' + it.address)}" target="_blank" rel="noopener">Directions &rarr;</a>`);
+      }
+      return `<div class="${cardCls}" style="border-left-color:${g.color}">
+        <h3 class="card-title">${SH.escapeHTML(it.name)}</h3>
+        ${it.address ? `<div class="resource-meta">${SH.escapeHTML(it.address)}</div>` : ''}
+        ${it.blurb ? `<p class="card-blurb">${SH.escapeHTML(it.blurb)}</p>` : ''}
+        ${actions.length ? `<div class="resource-actions" style="margin-top:8px;display:flex;gap:14px;flex-wrap:wrap">${actions.join(' &middot; ')}</div>` : ''}
+      </div>`;
+    }).join('');
+    return `<section id="g-${key}">
+      <div class="group-band">
+        <span class="swatch" style="background:${g.color}"></span>
+        <h2>${SH.escapeHTML(g.label)}</h2>
+        <span class="muted small" style="margin-left:auto">${(g.items || []).length} listings</span>
+      </div>
+      <div class="card-grid">${items}</div>
+    </section>`;
+  }).join('');
+
+  document.getElementById('toc').innerHTML = tocLinks.join('');
+  document.getElementById('content').innerHTML = html;
+})();
+</script>
+
+</body>
+</html>

@@ -12,6 +12,7 @@
     { href: '/news.html',        label: 'News' },
     { href: '/schools.html',     label: 'Schools' },
     { href: '/businesses.html',  label: 'Places' },
+    { href: '/community.html',   label: 'Community' },
     { href: '/reviews.html',     label: 'Reviews' },
     { href: '/map.html',         label: 'Map' },
     { href: '/qa.html',          label: 'Q&A' },

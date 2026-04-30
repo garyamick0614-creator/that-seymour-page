@@ -10,7 +10,8 @@
       "lat": 38.9585,
       "lon": -85.8729,
       "address": "1127 E Tipton St, Seymour, IN",
-      "blurb": "Gary visited and got cold food and undercooked chicken \u2014 same pattern customers have been complaining about for months."
+      "blurb": "Gary visited and got cold food and undercooked chicken \u2014 same pattern customers have been complaining about for months.",
+      "mappable": true
     },
     {
       "slug": "verified-american-rental",
@@ -20,27 +21,26 @@
       "lat": 38.9495,
       "lon": -85.8728,
       "address": "1201 A Ave E, Seymour, IN",
-      "blurb": "BBB-accredited since 2004. A+, 50+ locations, 45-year history. The IBE Legacy Operator framework in action."
+      "blurb": "BBB-accredited since 2004. A+, 50+ locations, 45-year history. The IBE Legacy Operator framework in action.",
+      "mappable": true
     },
     {
       "slug": "jackson-manufacturing-audit",
       "title": "Jackson County Manufacturing Audit \u2014 Top 10 Employers",
       "severity": "info",
       "kind": "place",
-      "lat": 38.9788,
-      "lon": -85.917,
       "address": "Jackson County, IN",
-      "blurb": "Aisin, Valeo, Cummins Seymour, Silgan, Cerrowire, and the rest. The 10 biggest manufacturing employers in the county."
+      "blurb": "Aisin, Valeo, Cummins Seymour, Silgan, Cerrowire, and the rest. The 10 biggest manufacturing employers in the county.",
+      "mappable": false
     },
     {
       "slug": "seymour-bottom-10",
       "title": "Seymour Bottom 10 \u2014 local businesses investigated",
       "severity": "warning",
       "kind": "place",
-      "lat": 38.9591,
-      "lon": -85.8903,
       "address": "Various, Seymour",
-      "blurb": "10-part series on the worst-rated local businesses. Food, lodging, repair, contracting."
+      "blurb": "10-part series on the worst-rated local businesses. Food, lodging, repair, contracting.",
+      "mappable": false
     },
     {
       "slug": "jcbank",
@@ -50,87 +50,80 @@
       "lat": 38.9579,
       "lon": -85.8898,
       "address": "125 S Chestnut St, Seymour, IN",
-      "blurb": "Headquartered in Seymour, regional community bank that still feels like a neighborhood institution."
+      "blurb": "Headquartered in Seymour, regional community bank that still feels like a neighborhood institution.",
+      "mappable": true
     },
     {
       "slug": "summit",
       "title": "Summit Cleaners \u2014 70 years of laundry, not just dry cleaning",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.9583,
-      "lon": -85.8902,
       "address": "Downtown Seymour",
-      "blurb": "Tucked along a quiet stretch of downtown. Worn counters, the smell of detergent, decades of trust."
+      "blurb": "Tucked along a quiet stretch of downtown. Worn counters, the smell of detergent, decades of trust.",
+      "mappable": false
     },
     {
       "slug": "crave",
       "title": "Crave Nutrition \u2014 Seymour's wellness caf\u00e9 incognito",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.9569,
-      "lon": -85.878,
       "address": "Seymour, IN",
-      "blurb": "Smoothie bowls, protein shakes, protein-infused coffee \u2014 a hidden gem."
+      "blurb": "Smoothie bowls, protein shakes, protein-infused coffee \u2014 a hidden gem.",
+      "mappable": false
     },
     {
       "slug": "moxie",
       "title": "Moxie Coffee Company \u2014 Seymour's downtown third place",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.9596,
-      "lon": -85.8915,
       "address": "Steinker Platz, Seymour",
-      "blurb": "Corner storefront with oversized windows. A steady, unflashy hum of conversation."
+      "blurb": "Corner storefront with oversized windows. A steady, unflashy hum of conversation.",
+      "mappable": false
     },
     {
       "slug": "darlage",
       "title": "Darlage Greenhouse \u2014 the underground yard architect",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.999,
-      "lon": -85.903,
       "address": "Five miles outside Seymour",
-      "blurb": "Looks like a roadside stop, functions like Seymour's hidden landscaping HQ."
+      "blurb": "Looks like a roadside stop, functions like Seymour's hidden landscaping HQ.",
+      "mappable": false
     },
     {
       "slug": "jubilee",
       "title": "Jubilee Flowers & Gift Baskets",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.9636,
-      "lon": -85.883,
       "address": "Michigan Ave, Seymour",
-      "blurb": "The kind of place people avoid until they absolutely can't."
+      "blurb": "The kind of place people avoid until they absolutely can't.",
+      "mappable": false
     },
     {
       "slug": "decorating",
       "title": "Seymour Decorating Center \u2014 silent partner to home renos",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.958,
-      "lon": -85.892,
       "address": "Seymour, IN",
-      "blurb": "Looks like a paint store, secretly a full-service design consult."
+      "blurb": "Looks like a paint store, secretly a full-service design consult.",
+      "mappable": false
     },
     {
       "slug": "sexton",
       "title": "Sexton Advertising \u2014 Seymour's low-key brand machine",
       "severity": "positive",
       "kind": "place",
-      "lat": 38.959,
-      "lon": -85.893,
       "address": "Just off downtown, Seymour",
-      "blurb": "Logos on Seymour's work trucks, custom tees, magnets on everything that moves."
+      "blurb": "Logos on Seymour's work trucks, custom tees, magnets on everything that moves.",
+      "mappable": false
     },
     {
       "slug": "schools",
       "title": "Seymour schools under pressure",
       "severity": "info",
       "kind": "place",
-      "lat": 38.955,
-      "lon": -85.907,
       "address": "Seymour Community Schools",
-      "blurb": "Why the 5,000-student district sits in a crossfire of politics, policing, and budget pressure."
+      "blurb": "Why the 5,000-student district sits in a crossfire of politics, policing, and budget pressure.",
+      "mappable": false
     },
     {
       "slug": "microcosm",
@@ -138,7 +131,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Seymour, IN (topic)",
-      "blurb": "Why what happens here mirrors small towns across the country."
+      "blurb": "Why what happens here mirrors small towns across the country.",
+      "mappable": false
     },
     {
       "slug": "ice-raids",
@@ -146,7 +140,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Jackson County, IN (topic)",
-      "blurb": "Coverage of immigration enforcement actions in town and the community response."
+      "blurb": "Coverage of immigration enforcement actions in town and the community response.",
+      "mappable": false
     },
     {
       "slug": "homeless",
@@ -154,7 +149,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Seymour, IN (topic)",
-      "blurb": "Who's homeless in Seymour, where they're staying, and the gaps in service."
+      "blurb": "Who's homeless in Seymour, where they're staying, and the gaps in service.",
+      "mappable": false
     },
     {
       "slug": "drugs",
@@ -162,7 +158,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Jackson County, IN (topic)",
-      "blurb": "Methamphetamine, fentanyl, and pill diversion \u2014 beyond the headlines."
+      "blurb": "Methamphetamine, fentanyl, and pill diversion \u2014 beyond the headlines.",
+      "mappable": false
     },
     {
       "slug": "emergency",
@@ -170,7 +167,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Seymour, IN (topic)",
-      "blurb": "Police, fire, EMS \u2014 call volumes and pressure points."
+      "blurb": "Police, fire, EMS \u2014 call volumes and pressure points.",
+      "mappable": false
     },
     {
       "slug": "flock",
@@ -178,7 +176,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Seymour, IN (topic)",
-      "blurb": "Where Flock automated license-plate readers are deployed locally."
+      "blurb": "Where Flock automated license-plate readers are deployed locally.",
+      "mappable": false
     },
     {
       "slug": "reentry-indiana",
@@ -186,17 +185,17 @@
       "severity": "info",
       "kind": "topic",
       "address": "Southern Indiana",
-      "blurb": "Why reentry from prison is harder than people think."
+      "blurb": "Why reentry from prison is harder than people think.",
+      "mappable": false
     },
     {
       "slug": "jail",
       "title": "Jackson County Jail \u2014 roster analysis & booking patterns",
       "severity": "info",
       "kind": "place",
-      "lat": 38.8836,
-      "lon": -86.0405,
       "address": "Jackson County Jail, Brownstown",
-      "blurb": "What public booking data shows about who ends up in jail and why."
+      "blurb": "What public booking data shows about who ends up in jail and why.",
+      "mappable": false
     },
     {
       "slug": "business-crossfire",
@@ -204,7 +203,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Seymour, IN (topic)",
-      "blurb": "When local business decisions get hit by political crossfire."
+      "blurb": "When local business decisions get hit by political crossfire.",
+      "mappable": false
     },
     {
       "slug": "power-money-politics-2026",
@@ -212,37 +212,35 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana statewide",
-      "blurb": "Why the 2026 statewide picture matters for Seymour's businesses."
+      "blurb": "Why the 2026 statewide picture matters for Seymour's businesses.",
+      "mappable": false
     },
     {
       "slug": "self",
       "title": "Self-investigation profile \u2014 Gary Dawayne Amick",
       "severity": "info",
       "kind": "place",
-      "lat": 38.9598,
-      "lon": -85.8733,
       "address": "That Computer Guy 26, Seymour",
-      "blurb": "A self-investigation profile of IBE's own founder. Transparency document and IBE template."
+      "blurb": "A self-investigation profile of IBE's own founder. Transparency document and IBE template.",
+      "mappable": false
     },
     {
       "slug": "verified-taco-bell-scottsburg",
       "title": "Verified \u2014 Taco Bell Scottsburg",
       "severity": "info",
       "kind": "place",
-      "lat": 38.6845,
-      "lon": -85.7704,
       "address": "Scottsburg, IN",
-      "blurb": "Taco Bell Scottsburg under the IBE methodology \u2014 neighboring Scott County."
+      "blurb": "Taco Bell Scottsburg under the IBE methodology \u2014 neighboring Scott County.",
+      "mappable": false
     },
     {
       "slug": "dons",
       "title": "Don's Auto Sales \u2014 Franklin, Indiana",
       "severity": "warning",
       "kind": "place",
-      "lat": 39.4815,
-      "lon": -86.0533,
       "address": "Franklin, IN",
-      "blurb": "Levi was in recovery, working, saving for a car. Then Don's happened."
+      "blurb": "Levi was in recovery, working, saving for a car. Then Don's happened.",
+      "mappable": false
     },
     {
       "slug": "ransomware",
@@ -250,7 +248,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Indiana statewide",
-      "blurb": "Recent ransomware attacks affecting Indiana businesses and counties."
+      "blurb": "Recent ransomware attacks affecting Indiana businesses and counties.",
+      "mappable": false
     },
     {
       "slug": "scandals2026",
@@ -258,7 +257,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Indiana statewide",
-      "blurb": "Running tally of Indiana political and business scandals in 2026."
+      "blurb": "Running tally of Indiana political and business scandals in 2026.",
+      "mappable": false
     },
     {
       "slug": "trump2",
@@ -266,7 +266,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "Indiana-relevant federal coverage."
+      "blurb": "Indiana-relevant federal coverage.",
+      "mappable": false
     },
     {
       "slug": "epstein",
@@ -274,7 +275,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "National",
-      "blurb": "Investigation coverage."
+      "blurb": "Investigation coverage.",
+      "mappable": false
     },
     {
       "slug": "hea1593",
@@ -282,7 +284,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana legislation",
-      "blurb": "What HEA 1593 does, who it affects, and why it matters."
+      "blurb": "What HEA 1593 does, who it affects, and why it matters.",
+      "mappable": false
     },
     {
       "slug": "ic2449",
@@ -290,7 +293,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana statute",
-      "blurb": "Plain-language walkthrough of Indiana's data-breach notification statute."
+      "blurb": "Plain-language walkthrough of Indiana's data-breach notification statute.",
+      "mappable": false
     },
     {
       "slug": "civil",
@@ -298,7 +302,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Southern Indiana",
-      "blurb": "Civil-rights questions running through southern Indiana counties."
+      "blurb": "Civil-rights questions running through southern Indiana counties.",
+      "mappable": false
     },
     {
       "slug": "credit",
@@ -306,7 +311,8 @@
       "severity": "warning",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "How credit-report errors hurt Indiana consumers and how to fight back."
+      "blurb": "How credit-report errors hurt Indiana consumers and how to fight back.",
+      "mappable": false
     },
     {
       "slug": "anonymous",
@@ -314,7 +320,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "IBE process",
-      "blurb": "How IBE handles anonymous tips and what crosses the publish bar."
+      "blurb": "How IBE handles anonymous tips and what crosses the publish bar.",
+      "mappable": false
     },
     {
       "slug": "brand",
@@ -322,7 +329,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana / national",
-      "blurb": "Reputation manipulation tactics and how to spot them."
+      "blurb": "Reputation manipulation tactics and how to spot them.",
+      "mappable": false
     },
     {
       "slug": "bullet",
@@ -330,7 +338,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "Quick-read consumer-protection bullet points."
+      "blurb": "Quick-read consumer-protection bullet points.",
+      "mappable": false
     },
     {
       "slug": "artistic",
@@ -338,7 +347,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "Coverage of arts-adjacent businesses and practices."
+      "blurb": "Coverage of arts-adjacent businesses and practices.",
+      "mappable": false
     },
     {
       "slug": "anthropic",
@@ -346,7 +356,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "AI policy",
-      "blurb": "How Anthropic's tools fit into TCG's local research workflow."
+      "blurb": "How Anthropic's tools fit into TCG's local research workflow.",
+      "mappable": false
     },
     {
       "slug": "conflicts2030",
@@ -354,17 +365,17 @@
       "severity": "info",
       "kind": "topic",
       "address": "Global",
-      "blurb": "Long-horizon conflict outlook through 2030."
+      "blurb": "Long-horizon conflict outlook through 2030.",
+      "mappable": false
     },
     {
       "slug": "columbus20",
       "title": "Columbus 20 \u2014 top businesses in nearby Columbus",
       "severity": "info",
       "kind": "place",
-      "lat": 39.2014,
-      "lon": -85.9214,
       "address": "Columbus, IN",
-      "blurb": "Top 20 businesses in Columbus, IN (Bartholomew County)."
+      "blurb": "Top 20 businesses in Columbus, IN (Bartholomew County).",
+      "mappable": false
     },
     {
       "slug": "economy2026",
@@ -372,7 +383,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "State economic outlook for 2026."
+      "blurb": "State economic outlook for 2026.",
+      "mappable": false
     },
     {
       "slug": "lumos",
@@ -380,7 +392,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "Coverage under the Lumos banner."
+      "blurb": "Coverage under the Lumos banner.",
+      "mappable": false
     },
     {
       "slug": "ntn",
@@ -388,7 +401,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "Indiana",
-      "blurb": "How neighborhood networks shape outcomes."
+      "blurb": "How neighborhood networks shape outcomes.",
+      "mappable": false
     },
     {
       "slug": "overview",
@@ -396,7 +410,8 @@
       "severity": "info",
       "kind": "topic",
       "address": "IBE methodology",
-      "blurb": "How IBE investigations work, end to end."
+      "blurb": "How IBE investigations work, end to end.",
+      "mappable": false
     },
     {
       "slug": "power",
@@ -404,17 +419,17 @@
       "severity": "info",
       "kind": "topic",
       "address": "Seymour, IN (topic)",
-      "blurb": "Mapping power and influence in Seymour."
+      "blurb": "Mapping power and influence in Seymour.",
+      "mappable": false
     },
     {
       "slug": "superior",
       "title": "Superior \u2014 investigated business",
       "severity": "warning",
       "kind": "place",
-      "lat": 38.958,
-      "lon": -85.878,
       "address": "Seymour, IN",
-      "blurb": "Investigation of Superior \u2014 see article for specifics."
+      "blurb": "Investigation of Superior \u2014 see article for specifics.",
+      "mappable": false
     }
   ]
 }

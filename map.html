@@ -123,6 +123,10 @@
       </aside>
     </div>
 
+    <h3 class="section-title mt-4">Articles &amp; places without a verified street address</h3>
+    <p class="muted small">Some IBE articles cover topics, areas, or businesses without a specific street number we can pin precisely. Rather than fake a location, we list them here so they're still easy to find.</p>
+    <div class="card-grid mt-2" id="unmappedList"></div>
+
     <h3 class="section-title mt-4">What the icons mean</h3>
     <ul>
       <li><strong>Numbered amber pins (1&ndash;20)</strong>: the Top 20 reviewed businesses, ranked.</li>
@@ -453,6 +457,49 @@ function renderLayerKey() {
       if (r && r.onClick) r.onClick();
     });
   });
+
+  // ===== Unmapped section — articles + places without a verified street address =====
+  const unmapped = [];
+  if (ibe && ibe.articles) {
+    ibe.articles.filter(a => !a.mappable).forEach(a => {
+      const sevColor = a.severity === 'alert' ? '#f87171'
+        : a.severity === 'warning' ? '#fbbf24'
+        : a.severity === 'positive' ? '#34d399' : '#22d3ee';
+      unmapped.push({
+        kind: 'IBE article',
+        title: a.title,
+        sub: a.address || '',
+        body: a.blurb || '',
+        href: 'https://ibetcg.netlify.app/article/' + a.slug + '.html',
+        external: true,
+        color: sevColor
+      });
+    });
+  }
+  if (gary && gary.reviews) {
+    gary.reviews.filter(g => !g.mappable).forEach(g => {
+      unmapped.push({
+        kind: "Gary's pick",
+        title: g.name,
+        sub: g.address || '',
+        body: g.title + ' — ' + (g.body || '').slice(0, 160) + '…',
+        href: '/reviews.html',
+        external: false,
+        color: '#34d399'
+      });
+    });
+  }
+
+  document.getElementById('unmappedList').innerHTML = unmapped.length
+    ? unmapped.map(u =>
+        `<a class="card" href="${SH.escapeHTML(u.href)}"${u.external ? ' target="_blank" rel="noopener"' : ''}
+            style="border-left: 4px solid ${u.color}">
+          <div style="font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:4px">${SH.escapeHTML(u.kind)}</div>
+          <h3 class="card-title" style="font-size:15px">${SH.escapeHTML(u.title)}</h3>
+          <div class="muted small" style="margin:-4px 0 6px">${SH.escapeHTML(u.sub)}</div>
+          <p class="card-blurb" style="font-size:13px">${SH.escapeHTML(u.body)}</p>
+        </a>`).join('')
+    : '<p class="muted">All places have verified addresses — nothing in this section right now.</p>';
 
   renderLayerKey();
 })();

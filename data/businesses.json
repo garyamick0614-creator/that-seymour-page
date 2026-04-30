@@ -35,7 +35,8 @@
       "address": "211 S Chestnut St, Seymour, IN 47274",
       "lat": 38.9569,
       "lon": -85.8895,
-      "notes": "Craft beers, steaks. Highest review volume in town."
+      "notes": "Craft beers, steaks. Highest review volume in town.",
+      "mappable": true
     },
     {
       "rank": 2,
@@ -46,7 +47,8 @@
       "address": "200 S Chestnut St, Seymour, IN 47274",
       "lat": 38.9571,
       "lon": -85.8896,
-      "notes": "Burgers, breakfast. Locally beloved."
+      "notes": "Burgers, breakfast. Locally beloved.",
+      "mappable": true
     },
     {
       "rank": 3,
@@ -57,7 +59,8 @@
       "address": "100 W 2nd St, Seymour, IN 47274",
       "lat": 38.9595,
       "lon": -85.891,
-      "notes": "Authentic fare. Small review volume but top-rated."
+      "notes": "Authentic fare. Small review volume but top-rated.",
+      "mappable": true
     },
     {
       "rank": 4,
@@ -68,7 +71,8 @@
       "address": "115 W 2nd St, Seymour, IN 47274",
       "lat": 38.959147,
       "lon": -85.889695,
-      "notes": "Daily specials."
+      "notes": "Daily specials.",
+      "mappable": true
     },
     {
       "rank": 5,
@@ -79,7 +83,8 @@
       "address": "6874 N 700 E, Seymour, IN 47274",
       "lat": 39.024,
       "lon": -85.7825,
-      "notes": "Top employer. Glassdoor average. North of town."
+      "notes": "Top employer. Glassdoor average. North of town.",
+      "mappable": true
     },
     {
       "rank": 6,
@@ -90,7 +95,8 @@
       "address": "411 W Tipton St, Seymour, IN 47274",
       "lat": 38.9552,
       "lon": -85.8918,
-      "notes": "Major employer; high patient ratings."
+      "notes": "Major employer; high patient ratings.",
+      "mappable": true
     },
     {
       "rank": 7,
@@ -101,7 +107,8 @@
       "address": "740 Hartford Pl, Seymour, IN 47274",
       "lat": 38.971,
       "lon": -85.8945,
-      "notes": "Community favorite."
+      "notes": "Community favorite.",
+      "mappable": true
     },
     {
       "rank": 8,
@@ -112,7 +119,8 @@
       "address": "707 E Tipton St, Seymour, IN 47274",
       "lat": 38.958206,
       "lon": -85.879273,
-      "notes": "Local chain."
+      "notes": "Local chain.",
+      "mappable": true
     },
     {
       "rank": 9,
@@ -123,7 +131,8 @@
       "address": "1410 E Tipton St, Seymour, IN 47274",
       "lat": 38.958,
       "lon": -85.8683,
-      "notes": "Reliable stops."
+      "notes": "Reliable stops.",
+      "mappable": true
     },
     {
       "rank": 10,
@@ -134,7 +143,8 @@
       "address": "1600 E Tipton St, Seymour, IN 47274",
       "lat": 38.9555,
       "lon": -85.8645,
-      "notes": "Everyday shopping hub."
+      "notes": "Everyday shopping hub.",
+      "mappable": true
     },
     {
       "rank": 11,
@@ -145,7 +155,8 @@
       "address": "1231 A Ave E, Seymour, IN 47274",
       "lat": 38.929987,
       "lon": -85.899429,
-      "notes": "Key employer."
+      "notes": "Key employer.",
+      "mappable": true
     },
     {
       "rank": 12,
@@ -156,7 +167,8 @@
       "address": "1900 W County Road 200 N, Seymour, IN 47274",
       "lat": 38.9788,
       "lon": -85.917,
-      "notes": "Industrial leader."
+      "notes": "Industrial leader.",
+      "mappable": true
     },
     {
       "rank": 13,
@@ -167,7 +179,8 @@
       "address": "1140 N OBrien St, Seymour, IN 47274",
       "lat": 38.972734,
       "lon": -85.876644,
-      "notes": "Local production."
+      "notes": "Local production.",
+      "mappable": true
     },
     {
       "rank": 14,
@@ -178,7 +191,8 @@
       "address": "1615 W Tipton St, Seymour, IN 47274",
       "lat": 38.946433,
       "lon": -85.918581,
-      "notes": "Budget shopping (W Tipton corridor)."
+      "notes": "Budget shopping (W Tipton corridor).",
+      "mappable": true
     },
     {
       "rank": 15,
@@ -189,7 +203,8 @@
       "address": "201 S County Road 1100 E, Seymour, IN 47274",
       "lat": 38.9445,
       "lon": -85.854,
-      "notes": "Steady employer (east of town)."
+      "notes": "Steady employer (east of town).",
+      "mappable": true
     },
     {
       "rank": 16,
@@ -200,7 +215,8 @@
       "address": "1001 N Sandy Creek Dr, Seymour, IN 47274",
       "lat": 38.964626,
       "lon": -85.843964,
-      "notes": "High-rated logistics."
+      "notes": "High-rated logistics.",
+      "mappable": true
     },
     {
       "rank": 17,
@@ -211,7 +227,8 @@
       "address": "125 S Chestnut St, Seymour, IN 47274",
       "lat": 38.9579,
       "lon": -85.8898,
-      "notes": "Best Places to Work honoree. Headquartered in Seymour."
+      "notes": "Best Places to Work honoree. Headquartered in Seymour.",
+      "mappable": true
     },
     {
       "rank": 18,
@@ -222,7 +239,8 @@
       "address": "112 W 2nd St, Seymour, IN 47274",
       "lat": 38.9594,
       "lon": -85.8915,
-      "notes": "New craft spot. Sample size = 1; treat with caveat."
+      "notes": "New craft spot. Sample size = 1; treat with caveat.",
+      "mappable": true
     },
     {
       "rank": 19,
@@ -233,7 +251,8 @@
       "address": "1612 E Tipton St, Seymour, IN 47274",
       "lat": 38.958031,
       "lon": -85.864081,
-      "notes": "Quick service."
+      "notes": "Quick service.",
+      "mappable": true
     },
     {
       "rank": 20,
@@ -244,7 +263,8 @@
       "address": "510 N Pine St, Brownstown, IN 47220",
       "lat": 38.8838,
       "lon": -86.0405,
-      "notes": "Regional draw - nearby (Brownstown)."
+      "notes": "Regional draw - nearby (Brownstown).",
+      "mappable": true
     }
   ]
 }
