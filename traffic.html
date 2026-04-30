@@ -66,9 +66,10 @@
 
     <div class="filter-bar">
       <span id="refreshChip" class="chip chip-info"><span class="spinner"></span> loading cameras&hellip;</span>
-      <select id="countySel"><option value="">All counties</option></select>
+      <select id="countySel"><option value="">Local counties (default)</option></select>
       <select id="routeSel"><option value="">All routes</option></select>
       <input type="search" id="qInput" placeholder="Search camera name&hellip;">
+      <button class="btn-o" id="toggleAll" type="button">Show all 122 statewide</button>
       <span class="muted small" id="counter"></span>
     </div>
 
@@ -90,7 +91,9 @@
 <script>
 const TCG_API = 'https://api.thatcomputerguy26.org';
 const REFRESH_MS = 300000; // 5 minutes
-const STATE = { cameras: [], stats: null, county: '', route: '', q: '', tick: 0 };
+const LOCAL_COUNTIES = ['Jackson', 'Bartholomew', 'Scott', 'Jennings', 'Brown'];
+// Default to local counties on first load — keeps the page responsive on cell connections.
+const STATE = { cameras: [], stats: null, county: '', route: '', q: '', tick: 0, showAll: false };
 
 // Endpoints we try. Each is "expected" but only shown if it actually works.
 const SOURCES = [
@@ -135,11 +138,15 @@ function fillFilters() {
 }
 
 function filtered() {
-  return STATE.cameras.filter(c =>
-    (!STATE.county || c.county === STATE.county) &&
-    (!STATE.route  || c.route  === STATE.route)  &&
-    (!STATE.q      || (c.name || '').toLowerCase().includes(STATE.q))
-  );
+  return STATE.cameras.filter(c => {
+    // Default scope: only show local counties (Jackson, Bartholomew, Scott, Jennings, Brown).
+    // The "Show all" button flips STATE.showAll to true.
+    if (!STATE.showAll && !STATE.county && !LOCAL_COUNTIES.includes(c.county)) return false;
+    if (STATE.county && c.county !== STATE.county) return false;
+    if (STATE.route  && c.route  !== STATE.route)  return false;
+    if (STATE.q      && !(c.name || '').toLowerCase().includes(STATE.q)) return false;
+    return true;
+  });
 }
 
 function renderGrid() {
@@ -230,6 +237,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('countySel').addEventListener('change', e => { STATE.county = e.target.value; renderGrid(); });
   document.getElementById('routeSel').addEventListener('change',  e => { STATE.route  = e.target.value; renderGrid(); });
   document.getElementById('qInput').addEventListener('input',     e => { STATE.q      = e.target.value.toLowerCase(); renderGrid(); });
+  document.getElementById('toggleAll').addEventListener('click', () => {
+    STATE.showAll = !STATE.showAll;
+    document.getElementById('toggleAll').textContent = STATE.showAll
+      ? 'Back to local counties'
+      : 'Show all 122 statewide';
+    renderGrid();
+  });
   tick();
   setInterval(tick, REFRESH_MS);
 });

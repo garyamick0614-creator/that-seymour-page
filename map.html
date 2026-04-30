@@ -233,10 +233,23 @@ function renderLayerKey() {
     .setView([center.lat, center.lon], center.zoom);
   STATE.map = map;
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  // Base layers — street (default) and satellite (Esri World Imagery + label overlay)
+  const streetTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap, &copy; CARTO',
     subdomains: 'abcd', maxZoom: 19
-  }).addTo(map);
+  });
+  const satelliteTiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, USDA, USGS, AeroGRID, IGN',
+    maxZoom: 19
+  });
+  const satLabels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '', maxZoom: 19, pane: 'overlayPane'
+  });
+  streetTiles.addTo(map);
+  L.control.layers(
+    { 'Street': streetTiles, 'Satellite': L.layerGroup([satelliteTiles, satLabels]) },
+    null, { position: 'topright', collapsed: false }
+  ).addTo(map);
 
   // Define layers
   addLayer('biz',       'Top 20 places',     '#fbbf24');
@@ -365,11 +378,69 @@ function renderLayerKey() {
     });
   }
 
-  // --- Build legend list (just the top-20 + Gary picks for navigability) ---
-  legend.innerHTML = legendRows.slice(0, 40).map((r, i) =>
-    `<li data-i="${i}"><span class="swatch" style="background:${r.color}"></span>
-      <div><div class="l-name">${SH.escapeHTML(r.name)}</div><div class="l-cat">${SH.escapeHTML(r.sub || '')}</div></div></li>`
-  ).join('');
+  // --- Capture every other markered place into the legend so all groups appear ---
+  if (ibe && ibe.articles) {
+    ibe.articles.forEach(a => {
+      if (typeof a.lat !== 'number') return;
+      const good = a.severity === 'positive' || a.severity === 'info';
+      const grp = good ? 'IBE good (★)' : 'IBE caution (★)';
+      const m = STATE.layers[good ? 'ibeGood' : 'ibeBad'].layer.getLayers().find(x => {
+        const ll = x.getLatLng(); return Math.abs(ll.lat - a.lat) < 1e-6 && Math.abs(ll.lng - a.lon) < 1e-6;
+      });
+      legendRows.push({ group: grp, name: a.title, sub: a.address || '', color: good ? '#fbbf24' : '#f87171',
+        onClick: () => { map.setView([a.lat, a.lon], 16); if (m) m.openPopup(); }});
+    });
+  }
+  if (gary && gary.reviews) {
+    gary.reviews.forEach(g => {
+      legendRows.push({ group: "Gary's picks", name: g.name, sub: g.category, color: '#34d399',
+        onClick: () => { map.setView([g.lat, g.lon], 16); }});
+    });
+  }
+  if (lm && lm.items) {
+    lm.items.forEach(it => {
+      const colors = lm.categoryColors || {};
+      legendRows.push({ group: it.category, name: it.name, sub: it.address || '', color: colors[it.category] || '#a78bfa',
+        onClick: () => { map.setView([it.lat, it.lon], it.category === 'TCG' ? 17 : 16); }});
+    });
+  }
+  if (sf && sf.places) {
+    sf.places.forEach(p => {
+      const colors = sf.categoryColors || {};
+      legendRows.push({ group: p.category, name: p.name, sub: p.address || '', color: colors[p.category] || '#22d3ee',
+        onClick: () => { map.setView([p.lat, p.lon], 16); }});
+    });
+  }
+
+  // --- Render grouped legend with counts ---
+  const groups = {};
+  legendRows.forEach((r, i) => {
+    const g = r.group || 'Top 20 places';
+    (groups[g] = groups[g] || []).push({ ...r, i });
+  });
+  const groupOrder = ['Top 20 places', 'TCG', 'IBE good (★)', "Gary's picks", 'IBE caution (★)',
+                     'City', 'Public Safety', 'Court', 'Hospital', 'School', 'Library', 'Park', 'Postal',
+                     'Landmark', 'Fast Food', 'Shopping', 'Grocery', 'Pharmacy', 'Dollar Store'];
+  const sortedGroups = Object.keys(groups).sort((a, b) => {
+    const ai = groupOrder.indexOf(a); const bi = groupOrder.indexOf(b);
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
+
+  legend.innerHTML = sortedGroups.map(g => {
+    const items = groups[g];
+    const swatch = items[0].color;
+    return `<details open style="margin-bottom:10px">
+      <summary style="cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:rgba(31,38,48,.55);font-weight:700;font-size:12px">
+        <span style="width:10px;height:10px;border-radius:50%;background:${swatch};border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></span>
+        ${SH.escapeHTML(g)} <span class="muted" style="margin-left:auto;font-weight:400">${items.length}</span>
+      </summary>
+      <ul style="margin:6px 0 0">
+        ${items.map(r => `<li data-i="${r.i}"><span class="swatch" style="background:${r.color}"></span>
+          <div><div class="l-name">${SH.escapeHTML(r.name)}</div><div class="l-cat">${SH.escapeHTML(r.sub || '')}</div></div></li>`).join('')}
+      </ul>
+    </details>`;
+  }).join('');
+
   legend.querySelectorAll('li').forEach(li => {
     li.addEventListener('click', () => {
       legend.querySelectorAll('li').forEach(x => x.classList.remove('active'));
