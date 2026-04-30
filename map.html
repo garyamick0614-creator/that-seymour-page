@@ -406,6 +406,45 @@ function renderLayerKey() {
     });
   }
 
+  // --- OSM-verified places (99 entries from OpenStreetMap) ---
+  const osmCatToLayer = {
+    'Restaurant': 'osmRest', 'Fast Food': 'osmFood', 'Grocery': 'osmGrocery',
+    'Hardware / Garden': 'osmHardware', 'Auto': 'osmAuto', 'Retail': 'osmRetail',
+    'Personal Service': 'osmService', 'Other Shop': 'osmRetail', 'Banking': 'osmBank',
+    'Pharmacy': 'osmMed', 'Medical': 'osmMed', 'Gas / Fuel': 'osmFuel',
+    'Public Safety': 'safety', 'Library': 'osmCommunity', 'Postal': 'postal',
+    'Government': 'city', 'School': 'osmSchool', 'Faith': 'osmFaith',
+    'Community': 'osmCommunity', 'Entertainment': 'osmEnt', 'Fitness': 'osmFitness',
+    'Park': 'osmPark', 'Sports': 'osmSports', 'Lodging': 'osmLodging', 'Landmark': 'landmark'
+  };
+  if (osm && osm.places) {
+    osm.places.forEach(p => {
+      if (typeof p.lat !== 'number') return;
+      const colors = osm.categoryColors || {};
+      const color = colors[p.category] || '#9aa6b2';
+      const layerKey = osmCatToLayer[p.category] || 'osmOther';
+      const tags = [];
+      if (p.cuisine) tags.push('<span class="pill">' + SH.escapeHTML(p.cuisine) + '</span>');
+      if (p.denomination) tags.push('<span class="pill">' + SH.escapeHTML(p.denomination) + '</span>');
+      const m = L.marker([p.lat, p.lon], { icon: smallPinIcon(color), title: p.name })
+        .bindPopup(popup(p.name, SH.escapeHTML(p.category),
+          (p.address ? `<div>${SH.escapeHTML(p.address)}</div>` : '') +
+          (tags.length ? `<div style="margin-top:4px">${tags.join(' ')}</div>` : '') +
+          (p.hours ? `<div class="muted small" style="margin-top:6px"><strong>Hours:</strong> ${SH.escapeHTML(p.hours)}</div>` : ''),
+          (p.url ? `<a href="${SH.escapeHTML(p.url)}" target="_blank" rel="noopener">Website &rarr;</a> &middot; ` : '') +
+          (p.phone ? `<a href="tel:${SH.escapeHTML(String(p.phone).replace(/[^0-9+]/g,''))}">Call</a> &middot; ` : '') +
+          `<a href="${gmapsUrl(p.name, p.address || '', p.lat, p.lon)}" target="_blank" rel="noopener">Directions &rarr;</a>` +
+          ` &middot; <a href="https://www.openstreetmap.org/node/${p.osm_id}" target="_blank" rel="noopener">OSM source</a>`
+        ));
+      if (STATE.layers[layerKey]) m.addTo(STATE.layers[layerKey].layer);
+      legendRows.push({
+        group: 'OSM ' + p.category,
+        name: p.name, sub: p.address || '',
+        color, onClick: () => { map.setView([p.lat, p.lon], 17); m.openPopup(); }
+      });
+    });
+  }
+
   // --- Capture every other markered place into the legend so all groups appear ---
   if (ibe && ibe.articles) {
     ibe.articles.forEach(a => {
