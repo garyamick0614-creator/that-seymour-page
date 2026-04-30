@@ -19,7 +19,7 @@
     <h1 style="margin:6px 0 12px;font-size:32px">Tell us what we ought to know</h1>
     <p class="muted">An event to add, a cleanup that needs hands, a business doing right (or doing wrong), school news, anything community-relevant &mdash; this is where it goes. Anonymous is fine. Gary gets a notification on every one. We don't spam, we don't sell anything, and we don't collect emails.</p>
 
-    <div id="serverChip" class="chip chip-warn mt-2"><span class="dot"></span> checking server&hellip;</div>
+    <div id="serverChip" class="chip mt-2"><span class="dot"></span> ready &middot; tips go straight to Gary</div>
 
     <form id="tipForm" class="tip-card mt-4" name="seymour-tip" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" netlify>
       <input type="hidden" name="form-name" value="seymour-tip">
@@ -96,21 +96,7 @@ const form = document.getElementById('tipForm');
 const msg = document.getElementById('tipMsg');
 const chip = document.getElementById('serverChip');
 
-(async function check() {
-  try {
-    // 405 from a GET on the POST-only tip endpoint = server is live and the route exists.
-    const r = await fetch(TCG_API + '/api/tips/submit', { method: 'GET', cache: 'no-cache' });
-    if (r.status === 405 || r.ok) {
-      chip.className = 'chip';
-      chip.innerHTML = '<span class="dot"></span> server live · push-notify enabled';
-    } else {
-      throw new Error(r.status);
-    }
-  } catch (e) {
-    chip.className = 'chip chip-warn';
-    chip.innerHTML = '<span class="dot"></span> server offline · using Netlify Forms fallback';
-  }
-})();
+// Server status is no longer surfaced — submissions are routed invisibly.
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -122,16 +108,32 @@ form.addEventListener('submit', async (e) => {
   // Don't ship the honeypot to the server.
   delete data['bot-field'];
 
-  // 1) Try TCG home-server first (matches IBE/civic-hub pattern).
+  // 1) Send to TCG home-server. The server schema requires `site` and `message`
+  //    (not `body`), so map our form fields to its expected shape.
   let serverOK = false;
   try {
+    const payload = {
+      site: 'that-seymour-page',
+      subject: data.subject || '',
+      message: data.body || '',           // server expects `message`
+      category: data.category || 'other',
+      name: data.name || '',
+      contact: data.contact || '',
+      when: data.when || '',
+      where: data.where || '',
+      source: 'that-seymour-page.netlify.app'
+    };
     const r = await fetch(TCG_API + '/api/tips/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({ source: 'that-seymour-page.netlify.app' }, data))
+      body: JSON.stringify(payload)
     });
     serverOK = r.ok;
-  } catch (e) { serverOK = false; }
+    if (!r.ok) {
+      const err = await r.text();
+      console.warn('tip submit failed:', r.status, err);
+    }
+  } catch (e) { console.warn('tip submit error:', e); serverOK = false; }
 
   // 2) Always also POST to Netlify Forms so Gary has a paper trail in the dashboard.
   try {

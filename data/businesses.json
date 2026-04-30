@@ -66,8 +66,8 @@
       "rating": 4.4,
       "reviews": 78,
       "address": "115 W 2nd St, Seymour, IN 47274",
-      "lat": 38.9591,
-      "lon": -85.8917,
+      "lat": 38.959147,
+      "lon": -85.889695,
       "notes": "Daily specials."
     },
     {
@@ -110,8 +110,8 @@
       "rating": 3.9,
       "reviews": null,
       "address": "707 E Tipton St, Seymour, IN 47274",
-      "lat": 38.9582,
-      "lon": -85.8838,
+      "lat": 38.958206,
+      "lon": -85.879273,
       "notes": "Local chain."
     },
     {
@@ -143,8 +143,8 @@
       "rating": null,
       "reviews": null,
       "address": "1231 A Ave E, Seymour, IN 47274",
-      "lat": 38.9495,
-      "lon": -85.8728,
+      "lat": 38.929987,
+      "lon": -85.899429,
       "notes": "Key employer."
     },
     {
@@ -165,8 +165,8 @@
       "rating": null,
       "reviews": null,
       "address": "1140 N OBrien St, Seymour, IN 47274",
-      "lat": 38.9678,
-      "lon": -85.8887,
+      "lat": 38.972734,
+      "lon": -85.876644,
       "notes": "Local production."
     },
     {
@@ -176,8 +176,8 @@
       "rating": null,
       "reviews": null,
       "address": "1615 W Tipton St, Seymour, IN 47274",
-      "lat": 38.9582,
-      "lon": -85.9117,
+      "lat": 38.946433,
+      "lon": -85.918581,
       "notes": "Budget shopping (W Tipton corridor)."
     },
     {
@@ -198,8 +198,8 @@
       "rating": null,
       "reviews": null,
       "address": "1001 N Sandy Creek Dr, Seymour, IN 47274",
-      "lat": 38.9665,
-      "lon": -85.854,
+      "lat": 38.964626,
+      "lon": -85.843964,
       "notes": "High-rated logistics."
     },
     {
@@ -231,8 +231,8 @@
       "rating": null,
       "reviews": 12,
       "address": "1612 E Tipton St, Seymour, IN 47274",
-      "lat": 38.9573,
-      "lon": -85.8676,
+      "lat": 38.958031,
+      "lon": -85.864081,
       "notes": "Quick service."
     },
     {

@@ -27,8 +27,8 @@
     {
       "name": "Seymour City Hall",
       "category": "City",
-      "lat": 38.9599,
-      "lon": -85.8908,
+      "lat": 38.962153,
+      "lon": -85.891486,
       "address": "301-309 N Chestnut St, Seymour, IN 47274",
       "url": "https://www.seymourin.org",
       "blurb": "City offices, mayor, public-comment intake."
@@ -36,8 +36,8 @@
     {
       "name": "George Green Chambers (Council)",
       "category": "City",
-      "lat": 38.9599,
-      "lon": -85.8908,
+      "lat": 38.962153,
+      "lon": -85.891486,
       "address": "301-309 N Chestnut St, Seymour, IN 47274",
       "url": "https://www.seymourin.org",
       "blurb": "Where City Council meets, biweekly at 7 PM."
@@ -63,16 +63,16 @@
     {
       "name": "Seymour Fire Station 2",
       "category": "Public Safety",
-      "lat": 38.9486,
-      "lon": -85.874,
+      "lat": 38.958017,
+      "lon": -85.86843,
       "address": "1402 E Tipton St, Seymour, IN 47274",
       "blurb": "East-side fire station."
     },
     {
       "name": "Jackson County Sheriff's Office",
       "category": "Public Safety",
-      "lat": 38.8836,
-      "lon": -86.0405,
+      "lat": 38.878528,
+      "lon": -86.040319,
       "address": "220 E Walnut St, Brownstown, IN 47220",
       "phone": "812-358-2141",
       "url": "https://www.jacksoncosheriff.com",
@@ -128,8 +128,8 @@
     {
       "name": "Seymour Middle School",
       "category": "School",
-      "lat": 38.9647,
-      "lon": -85.8825,
+      "lat": 38.959795,
+      "lon": -85.892171,
       "address": "920 N Walnut St, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
       "blurb": "Public middle school."
@@ -155,8 +155,8 @@
     {
       "name": "Emerson Elementary",
       "category": "School",
-      "lat": 38.9549,
-      "lon": -85.8865,
+      "lat": 38.953033,
+      "lon": -85.882883,
       "address": "504 S Vine St, Seymour, IN 47274",
       "url": "https://www.scsc.k12.in.us",
       "blurb": "Public elementary."
@@ -206,8 +206,8 @@
     {
       "name": "Freeman Field Heritage District",
       "category": "Landmark",
-      "lat": 38.9215,
-      "lon": -85.8554,
+      "lat": 38.916026,
+      "lon": -85.891819,
       "address": "Freeman Field, Seymour, IN",
       "url": "https://en.wikipedia.org/wiki/Freeman_Army_Airfield",
       "blurb": "WWII airfield site, museum and heritage."

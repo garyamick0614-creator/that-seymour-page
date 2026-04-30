@@ -12,22 +12,22 @@
     {
       "name": "McDonald's - E Tipton",
       "category": "Fast Food",
-      "lat": 38.9579,
-      "lon": -85.8741,
+      "lat": 38.958537,
+      "lon": -85.875958,
       "address": "1100 E Tipton St, Seymour, IN"
     },
     {
       "name": "McDonald's - W Tipton",
       "category": "Fast Food",
-      "lat": 38.9582,
-      "lon": -85.9028,
+      "lat": 38.949657,
+      "lon": -85.911163,
       "address": "1502 W Tipton St, Seymour, IN"
     },
     {
       "name": "Burger King",
       "category": "Fast Food",
-      "lat": 38.9576,
-      "lon": -85.8682,
+      "lat": 38.958031,
+      "lon": -85.863602,
       "address": "1614 E Tipton St, Seymour, IN"
     },
     {
@@ -40,8 +40,8 @@
     {
       "name": "Taco Bell",
       "category": "Fast Food",
-      "lat": 38.9579,
-      "lon": -85.8793,
+      "lat": 38.958598,
+      "lon": -85.866516,
       "address": "1024 E Tipton St, Seymour, IN"
     },
     {
@@ -54,36 +54,36 @@
     {
       "name": "Subway",
       "category": "Fast Food",
-      "lat": 38.9583,
-      "lon": -85.8807,
+      "lat": 38.957742,
+      "lon": -85.869066,
       "address": "907 E Tipton St, Seymour, IN"
     },
     {
       "name": "Long John Silver's / A&W",
       "category": "Fast Food",
-      "lat": 38.958,
-      "lon": -85.8825,
+      "lat": 38.958028,
+      "lon": -85.875408,
       "address": "1000 E Tipton St, Seymour, IN"
     },
     {
       "name": "Arby's",
       "category": "Fast Food",
-      "lat": 38.9569,
-      "lon": -85.873,
+      "lat": 38.957414,
+      "lon": -85.857416,
       "address": "1325 E Tipton St, Seymour, IN"
     },
     {
       "name": "Hardee's",
       "category": "Fast Food",
-      "lat": 38.9576,
-      "lon": -85.8702,
+      "lat": 38.958186,
+      "lon": -85.867008,
       "address": "1505 E Tipton St, Seymour, IN"
     },
     {
       "name": "Pizza Hut",
       "category": "Fast Food",
-      "lat": 38.9586,
-      "lon": -85.8843,
+      "lat": 38.958424,
+      "lon": -85.867964,
       "address": "1126 E Tipton St, Seymour, IN"
     },
     {
@@ -96,22 +96,22 @@
     {
       "name": "Papa John's",
       "category": "Fast Food",
-      "lat": 38.958,
-      "lon": -85.878,
+      "lat": 38.957878,
+      "lon": -85.880882,
       "address": "E Tipton St, Seymour, IN"
     },
     {
       "name": "Tres Amigos",
       "category": "Fast Food",
-      "lat": 38.9583,
-      "lon": -85.878,
+      "lat": 38.957832,
+      "lon": -85.883731,
       "address": "E Tipton St, Seymour, IN"
     },
     {
       "name": "El Charro Mexican",
       "category": "Fast Food",
-      "lat": 38.959,
-      "lon": -85.892,
+      "lat": 38.959861,
+      "lon": -85.888401,
       "address": "Downtown Seymour, IN"
     },
     {
@@ -138,8 +138,8 @@
     {
       "name": "Lowe's",
       "category": "Shopping",
-      "lat": 38.955,
-      "lon": -85.86,
+      "lat": 38.957853,
+      "lon": -85.855294,
       "address": "2010 E Tipton St, Seymour, IN"
     },
     {
@@ -152,15 +152,15 @@
     {
       "name": "Goody's Family Clothing",
       "category": "Shopping",
-      "lat": 38.9568,
-      "lon": -85.866,
+      "lat": 38.957832,
+      "lon": -85.883731,
       "address": "E Tipton St, Seymour, IN"
     },
     {
       "name": "Maurices",
       "category": "Shopping",
-      "lat": 38.9572,
-      "lon": -85.8665,
+      "lat": 38.957832,
+      "lon": -85.883731,
       "address": "E Tipton St, Seymour, IN"
     },
     {
@@ -173,36 +173,36 @@
     {
       "name": "Aldi",
       "category": "Grocery",
-      "lat": 38.9582,
-      "lon": -85.8753,
+      "lat": 38.957318,
+      "lon": -85.861819,
       "address": "1015 E Tipton St, Seymour, IN"
     },
     {
       "name": "Ruler Foods",
       "category": "Grocery",
-      "lat": 38.9582,
-      "lon": -85.9117,
+      "lat": 38.946433,
+      "lon": -85.918581,
       "address": "1615 W Tipton St, Seymour, IN"
     },
     {
       "name": "Save-A-Lot",
       "category": "Grocery",
-      "lat": 38.958,
-      "lon": -85.91,
+      "lat": 38.955084,
+      "lon": -85.898055,
       "address": "W Tipton St, Seymour, IN"
     },
     {
       "name": "CVS Pharmacy",
       "category": "Pharmacy",
-      "lat": 38.9579,
-      "lon": -85.878,
+      "lat": 38.958023,
+      "lon": -85.874133,
       "address": "1100 E Tipton St, Seymour, IN"
     },
     {
       "name": "Walgreens",
       "category": "Pharmacy",
-      "lat": 38.9576,
-      "lon": -85.873,
+      "lat": 38.958375,
+      "lon": -85.884784,
       "address": "1305 E Tipton St, Seymour, IN"
     },
     {
@@ -215,29 +215,29 @@
     {
       "name": "Dollar General - N Walnut",
       "category": "Dollar Store",
-      "lat": 38.962,
-      "lon": -85.887,
+      "lat": 38.959795,
+      "lon": -85.892171,
       "address": "N Walnut St, Seymour, IN"
     },
     {
       "name": "Dollar General - W Tipton",
       "category": "Dollar Store",
-      "lat": 38.958,
-      "lon": -85.905,
+      "lat": 38.955084,
+      "lon": -85.898055,
       "address": "W Tipton St, Seymour, IN"
     },
     {
       "name": "Dollar Tree",
       "category": "Dollar Store",
-      "lat": 38.9582,
-      "lon": -85.878,
+      "lat": 38.95988,
+      "lon": -85.864491,
       "address": "Tipton St, Seymour, IN"
     },
     {
       "name": "Family Dollar",
       "category": "Dollar Store",
-      "lat": 38.9588,
-      "lon": -85.87,
+      "lat": 38.956128,
+      "lon": -85.895943,
       "address": "Tipton St, Seymour, IN"
     }
   ]

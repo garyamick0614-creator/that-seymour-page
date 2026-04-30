@@ -295,9 +295,12 @@ function renderLayerKey() {
     });
   }
 
-  // --- IBE articles (stars: gold for good/info, red for warning/alert) ---
+  // --- IBE articles ---
+  // Only pin articles with kind:'place' (verified specific addresses).
+  // Topic-level articles are listed in /reviews.html and intentionally NOT on the map.
   if (ibe && ibe.articles) {
     ibe.articles.forEach(a => {
+      if (a.kind !== 'place') return;
       if (typeof a.lat !== 'number') return;
       const good = a.severity === 'positive' || a.severity === 'info';
       const m = L.marker([a.lat, a.lon], { icon: starIcon(good), title: a.title })
@@ -381,6 +384,7 @@ function renderLayerKey() {
   // --- Capture every other markered place into the legend so all groups appear ---
   if (ibe && ibe.articles) {
     ibe.articles.forEach(a => {
+      if (a.kind !== 'place') return;  // skip topic-level (not place-specific)
       if (typeof a.lat !== 'number') return;
       const good = a.severity === 'positive' || a.severity === 'info';
       const grp = good ? 'IBE good (★)' : 'IBE caution (★)';
