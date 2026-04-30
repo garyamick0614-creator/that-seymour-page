@@ -224,12 +224,13 @@ function renderLayerKey() {
 }
 
 (async function () {
-  const [biz, ibe, gary, lm, sf] = await Promise.all([
+  const [biz, ibe, gary, lm, sf, osm] = await Promise.all([
     SH.loadJSON('/data/businesses.json'),
     SH.loadJSON('/data/ibe-articles.json'),
     SH.loadJSON('/data/gary-reviews.json'),
     SH.loadJSON('/data/landmarks.json'),
-    SH.loadJSON('/data/shopping-fast-food.json')
+    SH.loadJSON('/data/shopping-fast-food.json'),
+    SH.loadJSON('/data/osm-places.json')
   ]);
 
   const center = (biz && biz.center) || { lat: 38.9595, lon: -85.8903, zoom: 13 };
@@ -273,6 +274,26 @@ function renderLayerKey() {
   addLayer('pharm',     'Pharmacy',           '#a78bfa');
   addLayer('dollar',    'Dollar stores',      '#fbbf24');
   addLayer('tcg',       'That Computer Guy',  '#f97316');
+  // OSM-verified additions (99 entries)
+  addLayer('osmRest',   'OSM Restaurants',    '#fbbf24');
+  addLayer('osmFood',   'OSM Fast Food',      '#f87171');
+  addLayer('osmGrocery','OSM Grocery',        '#34d399');
+  addLayer('osmAuto',   'OSM Auto',           '#60a5fa');
+  addLayer('osmRetail', 'OSM Retail',         '#22d3ee');
+  addLayer('osmService','OSM Personal Service','#a78bfa');
+  addLayer('osmBank',   'OSM Banking',        '#a78bfa');
+  addLayer('osmMed',    'OSM Medical',        '#f87171');
+  addLayer('osmFuel',   'OSM Gas / Fuel',     '#22d3ee');
+  addLayer('osmFaith',  'OSM Faith',          '#a78bfa');
+  addLayer('osmSchool', 'OSM Schools',        '#a78bfa');
+  addLayer('osmPark',   'OSM Parks',          '#34d399');
+  addLayer('osmFitness','OSM Fitness',        '#34d399');
+  addLayer('osmEnt',    'OSM Entertainment',  '#fbbf24');
+  addLayer('osmLodging','OSM Lodging',        '#fbbf24');
+  addLayer('osmHardware','OSM Hardware',      '#34d399');
+  addLayer('osmSports', 'OSM Sports',         '#34d399');
+  addLayer('osmCommunity','OSM Community',    '#34d399');
+  addLayer('osmOther',  'OSM Other',          '#9aa6b2');
 
   // Add all to map by default
   Object.values(STATE.layers).forEach(l => l.layer.addTo(map));

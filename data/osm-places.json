@@ -1,0 +1,961 @@
+{
+  "_comment": "Verified businesses and amenities in Seymour, IN. Source: OpenStreetMap via Overpass API. Every entry has real coordinates from OSM contributors. Run .bin/fetch-osm.py to refresh.",
+  "updatedAt": "2026-04-30T02:42:32Z",
+  "source": "OpenStreetMap (Overpass API)",
+  "bbox": "38.91,-85.94,38.99,-85.83",
+  "categoryColors": {
+    "Restaurant": "#fbbf24",
+    "Fast Food": "#f87171",
+    "Grocery": "#34d399",
+    "Hardware / Garden": "#34d399",
+    "Auto": "#60a5fa",
+    "Retail": "#22d3ee",
+    "Personal Service": "#a78bfa",
+    "Other Shop": "#22d3ee",
+    "Banking": "#a78bfa",
+    "Pharmacy": "#a78bfa",
+    "Medical": "#f87171",
+    "Gas / Fuel": "#22d3ee",
+    "Public Safety": "#f87171",
+    "Library": "#34d399",
+    "Postal": "#22d3ee",
+    "Government": "#22d3ee",
+    "School": "#a78bfa",
+    "Faith": "#a78bfa",
+    "Community": "#34d399",
+    "Entertainment": "#fbbf24",
+    "Fitness": "#34d399",
+    "Park": "#34d399",
+    "Sports": "#34d399",
+    "Lodging": "#fbbf24",
+    "Landmark": "#a78bfa",
+    "Other": "#9aa6b2"
+  },
+  "places": [
+    {
+      "name": "Advance Auto Parts",
+      "category": "Auto",
+      "lat": 38.95704,
+      "lon": -85.885768,
+      "osm_id": 12449895717,
+      "mappable": true
+    },
+    {
+      "name": "AutoZone",
+      "category": "Auto",
+      "lat": 38.958655,
+      "lon": -85.880386,
+      "osm_id": 12449895720,
+      "mappable": true
+    },
+    {
+      "name": "Bob Poynter Chrysler Dodge Jeep Ram Fiat",
+      "category": "Auto",
+      "lat": 38.959392,
+      "lon": -85.857927,
+      "osm_id": 1035153900,
+      "address": "1873 East Tipton Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Garage Inc",
+      "category": "Auto",
+      "lat": 38.959498,
+      "lon": -85.887313,
+      "osm_id": 11011308893,
+      "address": "114 North Ewing Street",
+      "mappable": true
+    },
+    {
+      "name": "O'Reilly Auto Parts",
+      "category": "Auto",
+      "lat": 38.958545,
+      "lon": -85.873879,
+      "osm_id": 12449895724,
+      "mappable": true
+    },
+    {
+      "name": "Superior Auto",
+      "category": "Auto",
+      "lat": 38.957658,
+      "lon": -85.863751,
+      "osm_id": 1035153897,
+      "mappable": true
+    },
+    {
+      "name": "Centra Credit Union",
+      "category": "Banking",
+      "lat": 38.956472,
+      "lon": -85.872667,
+      "osm_id": 1191505996,
+      "address": "520 South Jackson Park Drive, Seymour, IN 47274",
+      "phone": "+1-812-523-3230",
+      "mappable": true
+    },
+    {
+      "name": "Jackson County Bank",
+      "category": "Banking",
+      "lat": 38.957397,
+      "lon": -85.889332,
+      "osm_id": 1185367792,
+      "mappable": true
+    },
+    {
+      "name": "Jackson Community Center",
+      "category": "Community",
+      "lat": 38.957876,
+      "lon": -85.889575,
+      "osm_id": 1185367808,
+      "mappable": true
+    },
+    {
+      "name": "Showplace Cinemas Seymour",
+      "category": "Entertainment",
+      "lat": 38.963059,
+      "lon": -85.839837,
+      "osm_id": 1933085497,
+      "address": "357 Tanger Boulevard, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Bethel African Methodist Episcopal Church",
+      "category": "Faith",
+      "lat": 38.955713,
+      "lon": -85.895001,
+      "osm_id": 559916770,
+      "address": "200 South Lynn Street, Seymour, IN 47274",
+      "religion": "christian",
+      "denomination": "african_methodist_episcopal",
+      "mappable": true
+    },
+    {
+      "name": "First Presbyterian Church",
+      "category": "Faith",
+      "lat": 38.959734,
+      "lon": -85.892555,
+      "osm_id": 1185392292,
+      "religion": "christian",
+      "denomination": "presbyterian",
+      "mappable": true
+    },
+    {
+      "name": "Peace Lutheran Church",
+      "category": "Faith",
+      "lat": 38.957149,
+      "lon": -85.890943,
+      "osm_id": 1187274164,
+      "address": "330 West Tipton Street, Seymour, IN 47274",
+      "religion": "christian",
+      "denomination": "lutheran",
+      "mappable": true
+    },
+    {
+      "name": "Saint Ambrose Church",
+      "category": "Faith",
+      "lat": 38.955174,
+      "lon": -85.888515,
+      "osm_id": 3520856395,
+      "address": "325 South Chestnut Street, Seymour, IN 47274",
+      "url": "http://stambrosecatholic.com/parish/",
+      "religion": "christian",
+      "denomination": "roman_catholic",
+      "mappable": true
+    },
+    {
+      "name": "Arby's",
+      "category": "Fast Food",
+      "lat": 38.957414,
+      "lon": -85.857416,
+      "osm_id": 12449895730,
+      "cuisine": "sandwich",
+      "mappable": true
+    },
+    {
+      "name": "Burger King",
+      "category": "Fast Food",
+      "lat": 38.958577,
+      "lon": -85.856787,
+      "osm_id": 12449895732,
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Culver's",
+      "category": "Fast Food",
+      "lat": 38.95935,
+      "lon": -85.847923,
+      "osm_id": 11976772323,
+      "phone": "+1 812-405-2497",
+      "url": "https://www.culvers.com/restaurants/seymour-in-sandy-creek",
+      "hours": "Mo-Th 10:00-22:00; Fr-Sa 10:00-23:00; Su 10:00-22:00",
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Freddy's",
+      "category": "Fast Food",
+      "lat": 38.9574,
+      "lon": -85.856686,
+      "osm_id": 12449895731,
+      "cuisine": "ice_cream;burger",
+      "mappable": true
+    },
+    {
+      "name": "KFC",
+      "category": "Fast Food",
+      "lat": 38.958492,
+      "lon": -85.872888,
+      "osm_id": 12449895725,
+      "address": "1127 East Tipton Street, Seymour, IN 47274",
+      "url": "https://locations.kfc.com/in/seymour/1127-east-tipton",
+      "cuisine": "chicken",
+      "mappable": true
+    },
+    {
+      "name": "Little Caesars",
+      "category": "Fast Food",
+      "lat": 38.957744,
+      "lon": -85.870215,
+      "osm_id": 1173996042,
+      "cuisine": "pizza",
+      "mappable": true
+    },
+    {
+      "name": "McDonald's",
+      "category": "Fast Food",
+      "lat": 38.958904,
+      "lon": -85.83718,
+      "osm_id": 591079400,
+      "url": "https://www.mcdonalds.com/us/en-us/location/in/seymour/427-stevens-way/15568.html",
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "McDonald's",
+      "category": "Fast Food",
+      "lat": 38.958546,
+      "lon": -85.875958,
+      "osm_id": 1192762560,
+      "address": "913 East Tipton Street, IN 47274",
+      "phone": "+1 812-522-3868",
+      "url": "https://www.mcdonalds.com/us/en-us/location/in/seymour/913-east-tipton-st/2233.html",
+      "hours": "Mo-Su 06:00-22:00",
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Papa John's",
+      "category": "Fast Food",
+      "lat": 38.957878,
+      "lon": -85.880882,
+      "osm_id": 4527482889,
+      "address": "600 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 812-523-3949",
+      "url": "https://locations.papajohns.com/united-states/in/47274/seymour/600-e-tipton-st",
+      "hours": "Mo-Th 09:30-24:00; Fr-Sa 09:30-01:00; Su 11:00-24:00",
+      "cuisine": "pizza",
+      "mappable": true
+    },
+    {
+      "name": "Penn Station",
+      "category": "Fast Food",
+      "lat": 38.959229,
+      "lon": -85.848919,
+      "osm_id": 11976772324,
+      "cuisine": "sandwich",
+      "mappable": true
+    },
+    {
+      "name": "Rally's",
+      "category": "Fast Food",
+      "lat": 38.958537,
+      "lon": -85.866838,
+      "osm_id": 1191506013,
+      "url": "https://checkersandrallys.com/location/rally-s-8246-east-tipton-st-2794469",
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Steak 'n Shake",
+      "category": "Fast Food",
+      "lat": 38.957667,
+      "lon": -85.863248,
+      "osm_id": 556371247,
+      "address": "1640 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 812-523-6616",
+      "url": "https://www.steaknshake.com/locations/in-seymour-e-tipton-street/",
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Subway",
+      "category": "Fast Food",
+      "lat": 38.957743,
+      "lon": -85.869066,
+      "osm_id": 1173996043,
+      "address": "1280 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 812-523-8106",
+      "url": "https://restaurants.subway.com/united-states/in/seymour/1280-east-tipton-st",
+      "hours": "09:00-22:00",
+      "cuisine": "sandwich",
+      "mappable": true
+    },
+    {
+      "name": "Taco Bell",
+      "category": "Fast Food",
+      "lat": 38.958801,
+      "lon": -85.838908,
+      "osm_id": 1190937825,
+      "address": "2017 Outlet Boulevard, Seymour, IN 47274",
+      "phone": "+1 812-271-0631",
+      "url": "https://locations.tacobell.com/in/seymour/2017-outlet-blvd.html",
+      "hours": "Mo-We 07:00-02:00; Th-Sa 07:00-03:00; Su 07:00-02:00",
+      "cuisine": "tex-mex",
+      "mappable": true
+    },
+    {
+      "name": "Taco Bell",
+      "category": "Fast Food",
+      "lat": 38.958609,
+      "lon": -85.866516,
+      "osm_id": 1191506014,
+      "cuisine": "tex-mex",
+      "mappable": true
+    },
+    {
+      "name": "Wendy's",
+      "category": "Fast Food",
+      "lat": 38.958407,
+      "lon": -85.874972,
+      "osm_id": 12449895723,
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "White Castle",
+      "category": "Fast Food",
+      "lat": 38.957579,
+      "lon": -85.855912,
+      "osm_id": 12449895733,
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Anytime Fitness",
+      "category": "Fitness",
+      "lat": 38.957733,
+      "lon": -85.876805,
+      "osm_id": 12449895722,
+      "hours": "24/7",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Gas / Fuel",
+      "lat": 38.958412,
+      "lon": -85.849058,
+      "osm_id": 9499760653,
+      "address": "2119 East Tipton Street, Seymour, IN 47274",
+      "url": "https://www.circlek.com/store-locator/US/seymour/2119-e-tipton-st/4700101",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Gas / Fuel",
+      "lat": 38.958886,
+      "lon": -85.838169,
+      "osm_id": 591079401,
+      "url": "https://www.circlek.com/store-locator/US/seymour/416-stevens-way/4702233",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Gas / Fuel",
+      "lat": 38.9584,
+      "lon": -85.880835,
+      "osm_id": 1173996094,
+      "mappable": true
+    },
+    {
+      "name": "Murphy USA",
+      "category": "Gas / Fuel",
+      "lat": 38.957283,
+      "lon": -85.864791,
+      "osm_id": 1159044419,
+      "mappable": true
+    },
+    {
+      "name": "Shell",
+      "category": "Gas / Fuel",
+      "lat": 38.952574,
+      "lon": -85.88037,
+      "osm_id": 1191505959,
+      "address": "612 East Oak Street, Seymour, IN 47274",
+      "phone": "+1-812-523-1130",
+      "mappable": true
+    },
+    {
+      "name": "Speedway",
+      "category": "Gas / Fuel",
+      "lat": 38.957752,
+      "lon": -85.865553,
+      "osm_id": 9499760664,
+      "address": "1530 East Tipton Street, Seymour, IN 47274",
+      "url": "https://www.speedway.com/locations/IN/Seymour/1530-East-Tipton-Street",
+      "mappable": true
+    },
+    {
+      "name": "ALDI",
+      "category": "Grocery",
+      "lat": 38.957308,
+      "lon": -85.861819,
+      "osm_id": 556371248,
+      "address": "1710 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 844-444-7023",
+      "url": "https://stores.aldi.us/in/seymour/1710-east-tipton-st",
+      "hours": "Mo-Su 09:00-20:00",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Grocery",
+      "lat": 38.958626,
+      "lon": -85.849121,
+      "osm_id": 9499760654,
+      "address": "2119 East Tipton Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Grocery",
+      "lat": 38.959054,
+      "lon": -85.838396,
+      "osm_id": 591079402,
+      "mappable": true
+    },
+    {
+      "name": "Jay C Food Stores",
+      "category": "Grocery",
+      "lat": 38.959213,
+      "lon": -85.864419,
+      "osm_id": 9499760640,
+      "address": "1541 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 812 522 2883",
+      "hours": "07:00-22:00",
+      "mappable": true
+    },
+    {
+      "name": "Shell",
+      "category": "Grocery",
+      "lat": 38.952332,
+      "lon": -85.880408,
+      "osm_id": 1191505960,
+      "mappable": true
+    },
+    {
+      "name": "Speedway",
+      "category": "Grocery",
+      "lat": 38.957596,
+      "lon": -85.865556,
+      "osm_id": 9499760663,
+      "address": "1530 East Tipton Street, Seymour, IN 47274",
+      "url": "https://www.speedway.com/locations/IN/Seymour/1530-East-Tipton-Street",
+      "mappable": true
+    },
+    {
+      "name": "Walmart Supercenter",
+      "category": "Grocery",
+      "lat": 38.955471,
+      "lon": -85.864599,
+      "osm_id": 556371274,
+      "address": "1600 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 812-522-8838",
+      "url": "https://www.walmart.com/store/1033-seymour-in",
+      "hours": "24/7",
+      "mappable": true
+    },
+    {
+      "name": "Harbor Freight Tools",
+      "category": "Hardware / Garden",
+      "lat": 38.960244,
+      "lon": -85.866415,
+      "osm_id": 12449895728,
+      "mappable": true
+    },
+    {
+      "name": "Union Hardware",
+      "category": "Hardware / Garden",
+      "lat": 38.957421,
+      "lon": -85.889989,
+      "osm_id": 11025449077,
+      "mappable": true
+    },
+    {
+      "name": "Jackson County Public Library",
+      "category": "Library",
+      "lat": 38.958356,
+      "lon": -85.892133,
+      "osm_id": 556401010,
+      "mappable": true
+    },
+    {
+      "name": "Hampton",
+      "category": "Lodging",
+      "lat": 38.960685,
+      "lon": -85.844974,
+      "osm_id": 1111726813,
+      "address": "247 North Sandy Creek Drive, Seymour, IN 47274",
+      "phone": "+1 812-523-2409",
+      "url": "https://hamptoninn.hilton.com/en/hp/hotels/index.jhtml?ctyhocn=CLUSMHX",
+      "mappable": true
+    },
+    {
+      "name": "Jackson County Animal Clinic",
+      "category": "Medical",
+      "lat": 38.964778,
+      "lon": -85.835163,
+      "osm_id": 11981640913,
+      "mappable": true
+    },
+    {
+      "name": "Schneck Medical Center",
+      "category": "Medical",
+      "lat": 38.955177,
+      "lon": -85.891919,
+      "osm_id": 182954334,
+      "address": "411 West Tipton Street, Seymour 47274",
+      "phone": "+1 812 522 2349",
+      "url": "https://www.schneckmed.org/",
+      "hours": "24/7",
+      "mappable": true
+    },
+    {
+      "name": "Voss & Sons Funeral Service",
+      "category": "Other Shop",
+      "lat": 38.960706,
+      "lon": -85.890602,
+      "osm_id": 11011215992,
+      "mappable": true
+    },
+    {
+      "name": "Crossroads Community Park",
+      "category": "Park",
+      "lat": 38.958278,
+      "lon": -85.887297,
+      "osm_id": 585451474,
+      "mappable": true
+    },
+    {
+      "name": "Freeman Field",
+      "category": "Park",
+      "lat": 38.91598,
+      "lon": -85.891522,
+      "osm_id": 556314963,
+      "address": "210 East 11th Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Gaiser Park",
+      "category": "Park",
+      "lat": 38.947675,
+      "lon": -85.888365,
+      "osm_id": 556288302,
+      "address": "300 South Chestnut Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Harmony Park",
+      "category": "Park",
+      "lat": 38.956212,
+      "lon": -85.899338,
+      "osm_id": 556310989,
+      "address": "700 Maple Avenue, Seymour, IN 47274",
+      "url": "https://www.facebook.com/pages/The-Home-Depot-Stage-At-Harmony-Park/103282353356522",
+      "mappable": true
+    },
+    {
+      "name": "Kasting Park",
+      "category": "Park",
+      "lat": 38.948732,
+      "lon": -85.90135,
+      "osm_id": 556310990,
+      "address": "800 Kasting Road, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Kessler Park",
+      "category": "Park",
+      "lat": 38.953956,
+      "lon": -85.877992,
+      "osm_id": 556371240,
+      "address": "800 East Brown Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Mellencamp Plaza",
+      "category": "Park",
+      "lat": 38.959558,
+      "lon": -85.889484,
+      "osm_id": 1185367840,
+      "mappable": true
+    },
+    {
+      "name": "One Chamber Square",
+      "category": "Park",
+      "lat": 38.95814,
+      "lon": -85.889701,
+      "osm_id": 556396473,
+      "mappable": true
+    },
+    {
+      "name": "Shields Park",
+      "category": "Park",
+      "lat": 38.965193,
+      "lon": -85.886733,
+      "osm_id": 185706200,
+      "mappable": true
+    },
+    {
+      "name": "Steinker Platz",
+      "category": "Park",
+      "lat": 38.956525,
+      "lon": -85.889725,
+      "osm_id": 556310986,
+      "url": "https://www.facebook.com/pages/Steinker-Platz/1443825279202330",
+      "mappable": true
+    },
+    {
+      "name": "Westside Park",
+      "category": "Park",
+      "lat": 38.951744,
+      "lon": -85.898121,
+      "osm_id": 556371289,
+      "address": "920 Jackson Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "A Total Tan",
+      "category": "Personal Service",
+      "lat": 38.959931,
+      "lon": -85.889918,
+      "osm_id": 11011308888,
+      "address": "101 West 3rd Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Buzz Hair Design Studio",
+      "category": "Personal Service",
+      "lat": 38.959422,
+      "lon": -85.888341,
+      "osm_id": 11011308892,
+      "address": "116 East 2nd Street, Seymour, IN",
+      "mappable": true
+    },
+    {
+      "name": "Fit for a King",
+      "category": "Personal Service",
+      "lat": 38.95918,
+      "lon": -85.889334,
+      "osm_id": 11011308882,
+      "address": "105 West 2nd Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Sandy's One Hour Dry Cleaners",
+      "category": "Personal Service",
+      "lat": 38.959672,
+      "lon": -85.888935,
+      "osm_id": 11011308890,
+      "address": "103 East 2nd Street",
+      "mappable": true
+    },
+    {
+      "name": "Youniquely You Tattoo",
+      "category": "Personal Service",
+      "lat": 38.959372,
+      "lon": -85.888692,
+      "osm_id": 11011308894,
+      "mappable": true
+    },
+    {
+      "name": "1852 Cafe",
+      "category": "Restaurant",
+      "lat": 38.959147,
+      "lon": -85.889695,
+      "osm_id": 11011308883,
+      "address": "115 West 2nd Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Applebee's",
+      "category": "Restaurant",
+      "lat": 38.958655,
+      "lon": -85.861985,
+      "osm_id": 12449895729,
+      "phone": "+1 812-405-4202",
+      "url": "https://restaurants.applebees.com/en-us/in/seymour/1705-e.-tipton-st.-96049",
+      "cuisine": "american",
+      "mappable": true
+    },
+    {
+      "name": "Bonanza Steakhouse",
+      "category": "Restaurant",
+      "lat": 38.958687,
+      "lon": -85.852391,
+      "osm_id": 556316637,
+      "address": "2045 East Tipton Street, Seymour, IN 47274",
+      "cuisine": "american;steak;buffet",
+      "mappable": true
+    },
+    {
+      "name": "Brewskies Downtown",
+      "category": "Restaurant",
+      "lat": 38.959861,
+      "lon": -85.888401,
+      "osm_id": 11011215612,
+      "mappable": true
+    },
+    {
+      "name": "Brooklyn Pizza Company",
+      "category": "Restaurant",
+      "lat": 38.956103,
+      "lon": -85.899464,
+      "osm_id": 556310988,
+      "address": "753 West 2nd Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Chili's",
+      "category": "Restaurant",
+      "lat": 38.958676,
+      "lon": -85.85076,
+      "osm_id": 556316635,
+      "cuisine": "tex-mex",
+      "mappable": true
+    },
+    {
+      "name": "Cracker Barrel",
+      "category": "Restaurant",
+      "lat": 38.95989,
+      "lon": -85.846117,
+      "osm_id": 1190937843,
+      "cuisine": "american",
+      "mappable": true
+    },
+    {
+      "name": "Don Chuy Taquer\u00eda",
+      "category": "Restaurant",
+      "lat": 38.959464,
+      "lon": -85.889901,
+      "osm_id": 11011308879,
+      "address": "112 West 2nd Street, Seymour, IN 47274",
+      "cuisine": "mexican",
+      "mappable": true
+    },
+    {
+      "name": "El Nopal",
+      "category": "Restaurant",
+      "lat": 38.958526,
+      "lon": -85.858748,
+      "osm_id": 1035153899,
+      "address": "1863 East Tipton Street, Seymour, IN 47274",
+      "cuisine": "mexican",
+      "mappable": true
+    },
+    {
+      "name": "On The Rox",
+      "category": "Restaurant",
+      "lat": 38.956598,
+      "lon": -85.885486,
+      "osm_id": 961934796,
+      "address": "214 South Broadway Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Pizza Hut",
+      "category": "Restaurant",
+      "lat": 38.958424,
+      "lon": -85.867964,
+      "osm_id": 12449895727,
+      "cuisine": "pizza",
+      "mappable": true
+    },
+    {
+      "name": "Rails Craft Brew & Eatery",
+      "category": "Restaurant",
+      "lat": 38.958635,
+      "lon": -85.889505,
+      "osm_id": 11011308887,
+      "address": "114 Saint Louis Avenue, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Schw\u00e4tzer's German Restaurant",
+      "category": "Restaurant",
+      "lat": 38.959028,
+      "lon": -85.889092,
+      "osm_id": 11011308880,
+      "cuisine": "german",
+      "mappable": true
+    },
+    {
+      "name": "Starbucks",
+      "category": "Restaurant",
+      "lat": 38.958563,
+      "lon": -85.850267,
+      "osm_id": 556316634,
+      "address": "2103 East Tipton Street, Seymour, IN 47274",
+      "phone": "+1 812-528-6792",
+      "url": "https://www.starbucks.com/store-locator/store/1019817/seymour-us-50-i-65-2103-e-tipton-st-seymour-in-472743569-us",
+      "cuisine": "coffee_shop",
+      "mappable": true
+    },
+    {
+      "name": "Waffle House",
+      "category": "Restaurant",
+      "lat": 38.958984,
+      "lon": -85.840136,
+      "osm_id": 591079403,
+      "hours": "24/7",
+      "cuisine": "american",
+      "mappable": true
+    },
+    {
+      "name": "Goodwill",
+      "category": "Retail",
+      "lat": 38.958856,
+      "lon": -85.859163,
+      "osm_id": 4526865091,
+      "mappable": true
+    },
+    {
+      "name": "M&M Office Products",
+      "category": "Retail",
+      "lat": 38.959691,
+      "lon": -85.88883,
+      "osm_id": 11011308891,
+      "address": "105 East 2nd Street",
+      "mappable": true
+    },
+    {
+      "name": "The Magic of Books",
+      "category": "Retail",
+      "lat": 38.959065,
+      "lon": -85.889665,
+      "osm_id": 11011308886,
+      "address": "115 West 2nd Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Verizon",
+      "category": "Retail",
+      "lat": 38.958492,
+      "lon": -85.868919,
+      "osm_id": 12449895726,
+      "mappable": true
+    },
+    {
+      "name": "Emerson Elementary School",
+      "category": "School",
+      "lat": 38.961164,
+      "lon": -85.898033,
+      "osm_id": 358653402,
+      "mappable": true
+    },
+    {
+      "name": "Immanuel-Lutheran School",
+      "category": "School",
+      "lat": 38.953002,
+      "lon": -85.889022,
+      "osm_id": 358657046,
+      "mappable": true
+    },
+    {
+      "name": "Lincoln School",
+      "category": "School",
+      "lat": 38.953387,
+      "lon": -85.882199,
+      "osm_id": 358658544,
+      "mappable": true
+    },
+    {
+      "name": "Riley School",
+      "category": "School",
+      "lat": 38.964249,
+      "lon": -85.884695,
+      "osm_id": 358664672,
+      "mappable": true
+    },
+    {
+      "name": "Saint Ambrose School",
+      "category": "School",
+      "lat": 38.955646,
+      "lon": -85.888743,
+      "osm_id": 358665380,
+      "address": "301 South Chestnut Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Seymour High School",
+      "category": "School",
+      "lat": 38.954966,
+      "lon": -85.906559,
+      "osm_id": 1158754191,
+      "address": "1350 West 2nd Street, Seymour, IN 47274",
+      "url": "shs.scsc.k12.in.us",
+      "mappable": true
+    },
+    {
+      "name": "Seymour Intermediate School",
+      "category": "School",
+      "lat": 38.947192,
+      "lon": -85.892719,
+      "osm_id": 358657290,
+      "address": "1000 S Poplar Street, Seymour, IN 47274",
+      "url": "https://si.scsc.k12.in.us/",
+      "mappable": true
+    },
+    {
+      "name": "Seymour-Redding Elementary School",
+      "category": "School",
+      "lat": 38.977323,
+      "lon": -85.88994,
+      "osm_id": 358667155,
+      "address": "1700 N Ewing St 47274",
+      "mappable": true
+    },
+    {
+      "name": "Shields Junior High School",
+      "category": "School",
+      "lat": 38.962275,
+      "lon": -85.893588,
+      "osm_id": 358667364,
+      "mappable": true
+    },
+    {
+      "name": "Washington School",
+      "category": "School",
+      "lat": 38.95397,
+      "lon": -85.889934,
+      "osm_id": 358670035,
+      "mappable": true
+    },
+    {
+      "name": "SHS Pool",
+      "category": "Sports",
+      "lat": 38.956876,
+      "lon": -85.906097,
+      "osm_id": 3520822701,
+      "mappable": true
+    },
+    {
+      "name": "Shields Park City Pool",
+      "category": "Sports",
+      "lat": 38.965699,
+      "lon": -85.886162,
+      "osm_id": 700924481,
+      "address": "794 North Park Street, Seymour, IN 47274",
+      "mappable": true
+    }
+  ]
+}
