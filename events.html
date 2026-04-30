@@ -4,10 +4,136 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Events &mdash; That Seymour Page</title>
-<meta name="description" content="Interactive events timeline for Seymour, Indiana — last 30 days plus upcoming. Auto-refreshed every 2 hours.">
+<meta name="description" content="What's happening in Seymour, Indiana — this week, this month, the rest of the year. Refreshes every 2 hours.">
 <meta name="theme-color" content="#0e1116">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .next-up {
+    background: linear-gradient(135deg, rgba(251,191,36,.14), rgba(167,139,250,.06));
+    border: 1px solid rgba(251,191,36,.4);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+    backdrop-filter: blur(var(--blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(140%);
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .next-up::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(251,191,36,.08), transparent 60%);
+    pointer-events: none;
+  }
+  .next-up .nu-when {
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 700;
+  }
+  .next-up h2 { font-size: clamp(20px, 3vw, 28px); margin: 6px 0 10px; }
+  .next-up p { color: var(--dim); margin: 0; }
+  .month-chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .month-chip {
+    flex-shrink: 0;
+    background: rgba(31, 38, 48, .55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dim);
+    transition: all .15s;
+    font-family: inherit;
+  }
+  .month-chip:hover { color: var(--text); border-color: var(--border-strong); }
+  .month-chip.active { background: rgba(251,191,36,.15); color: var(--accent); border-color: var(--accent); }
+  .ev-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform .2s, border-color .2s, background .2s;
+    position: relative;
+  }
+  .ev-card:hover { transform: translateX(2px); border-color: var(--border-strong); background: var(--panel-2); }
+  .ev-card.kind-weather { border-left: 4px solid var(--accent-4); }
+  .ev-card.kind-school  { border-left: 4px solid var(--accent-2); }
+  .ev-card.kind-city    { border-left: 4px solid var(--accent-5); }
+  .ev-card.kind-festival{ border-left: 4px solid var(--accent-3); }
+  .ev-date {
+    flex-shrink: 0;
+    background: rgba(7, 9, 13, .6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 10px;
+    text-align: center;
+    width: 64px;
+  }
+  .ev-day { font-size: 22px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .ev-mon { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+  .ev-rel { font-size: 10px; color: var(--accent-3); margin-top: 4px; font-weight: 600; }
+  .ev-body { flex: 1; min-width: 0; }
+  .ev-title { font-weight: 700; font-size: 15px; margin: 0 0 4px; }
+  .ev-blurb { font-size: 13px; color: var(--dim); margin: 0; line-height: 1.45; }
+  .ev-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .seg-toggle {
+    display: inline-flex;
+    background: rgba(31, 38, 48, .55);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 14px;
+  }
+  .seg-toggle button {
+    padding: 6px 14px;
+    border: none;
+    background: transparent;
+    color: var(--dim);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 7px;
+    font-family: inherit;
+    transition: background .15s, color .15s;
+  }
+  .seg-toggle button.active {
+    background: var(--accent);
+    color: var(--ink);
+  }
+  .show-more {
+    text-align: center;
+    margin: 14px 0;
+  }
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .stat-strip .stat strong { font-size: 22px; }
+  .stat-strip .stat span { font-size: 10.5px; }
+</style>
 </head>
 <body data-update-from="/data/events.json">
 
@@ -16,27 +142,40 @@
 <main class="container">
   <section class="section">
     <p class="eyebrow">Events</p>
-    <h1 style="margin:6px 0 12px;font-size:32px">Seymour events &mdash; recent and upcoming</h1>
-    <p class="muted">Hover or tap any item for details. Pulled from the city calendar, Seymour Main Street, SCSC, and TCG sources. Auto-refreshed every 2 hours.</p>
+    <h1 style="margin:6px 0 14px;font-size:clamp(28px, 4vw, 36px)">What's happening around town</h1>
 
-    <div class="row mt-4" id="filterRow">
-      <button class="btn-o" data-filter="all">All</button>
-      <button class="btn-o" data-filter="upcoming">Upcoming</button>
-      <button class="btn-o" data-filter="past">Past 30 days</button>
-      <button class="btn-o" data-filter="city">City govt</button>
-      <button class="btn-o" data-filter="school">Schools</button>
-      <button class="btn-o" data-filter="weather">Weather</button>
-      <button class="btn-o" data-filter="festival">Festivals</button>
+    <div class="next-up" id="nextUp">
+      <div class="nu-when">Next up</div>
+      <h2 id="nuTitle">Loading the next event&hellip;</h2>
+      <p id="nuBlurb"></p>
     </div>
 
-    <h3 class="section-title mt-4">Upcoming</h3>
-    <div class="timeline" id="tlUpcoming"></div>
+    <div class="stat-strip" id="statStrip"></div>
 
-    <h3 class="section-title mt-4">Last 30 days</h3>
-    <div class="timeline" id="tlPast"></div>
+    <div class="seg-toggle" id="segToggle" role="tablist">
+      <button class="active" data-seg="upcoming">Upcoming</button>
+      <button data-seg="past">Last 30 days</button>
+      <button data-seg="all">Everything</button>
+    </div>
+
+    <div class="row" style="margin-bottom:8px;align-items:center;flex-wrap:wrap;gap:10px">
+      <span class="muted small">Filter:</span>
+      <div class="month-chips" id="kindFilter">
+        <button class="month-chip active" data-kind="">All kinds</button>
+        <button class="month-chip" data-kind="city">City</button>
+        <button class="month-chip" data-kind="school">Schools</button>
+        <button class="month-chip" data-kind="festival">Festivals</button>
+        <button class="month-chip" data-kind="weather">Weather</button>
+      </div>
+    </div>
+
+    <div class="month-chips" id="monthChips"></div>
+
+    <div id="eventList"></div>
+    <div class="show-more" id="showMoreWrap"></div>
 
     <h3 class="section-title mt-4">Submit your event</h3>
-    <p class="muted">Want it on next week's hub? Email <a href="mailto:info@seymourin.org">info@seymourin.org</a> for the city calendar, post to the <a href="https://www.facebook.com/SeymourMainStreet/" target="_blank" rel="noopener">Seymour Main Street Facebook page</a>, or list on <a href="https://www.visitindiana.com/events" target="_blank" rel="noopener">VisitIndiana.com</a> for broader promotion. You can also <a href="/tip.html">drop a tip here</a> and we'll add it to next week's hub.</p>
+    <p class="muted">Want it on next week's hub? Email <a href="mailto:info@seymourin.org">info@seymourin.org</a> for the city calendar, post to the <a href="https://www.facebook.com/SeymourMainStreet/" target="_blank" rel="noopener">Seymour Main Street Facebook page</a>, or list on <a href="https://www.visitindiana.com/events" target="_blank" rel="noopener">VisitIndiana.com</a>. You can also <a href="/tip.html">drop a tip here</a> &mdash; we'll add it.</p>
   </section>
 </main>
 
@@ -44,43 +183,186 @@
 
 <script src="/assets/js/common.js"></script>
 <script>
-let DATA = null;
-function classFor(kind) {
-  if (kind === 'weather') return 't-alert';
-  if (kind === 'school') return 't-info';
-  if (kind === 'city' || kind === 'festival') return 't-ok';
-  return '';
+const STATE = { all: [], seg: 'upcoming', kind: '', month: '', show: 12 };
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function parseISODate(d) {
+  return new Date(d.length === 10 ? d + 'T12:00:00Z' : d);
 }
-function renderItem(it) {
-  return `<div class="t-item ${classFor(it.kind)}" data-kind="${it.kind}">
-    <div class="t-date">${SH.escapeHTML(it.dateLabel)}</div>
-    <div class="t-title">${SH.escapeHTML(it.title)} ${it.tag ? `<span class="pill pill-${it.pillTone || 'info'}">${SH.escapeHTML(it.tag)}</span>` : ''}</div>
-    <p class="t-blurb">${SH.escapeHTML(it.blurb || '')}${it.url ? ` <a href="${it.url}" target="_blank" rel="noopener">link &rarr;</a>` : ''}</p>
+
+function relLabel(d) {
+  const target = parseISODate(d).getTime();
+  const now = Date.now();
+  const days = Math.round((target - now) / 86400000);
+  if (days === 0) return 'today';
+  if (days === 1) return 'tomorrow';
+  if (days === -1) return 'yesterday';
+  if (days > 0 && days <= 30) return 'in ' + days + 'd';
+  if (days > 30 && days <= 365) return 'in ' + Math.round(days/30) + 'mo';
+  if (days < 0 && days >= -30) return Math.abs(days) + 'd ago';
+  return new Date(target).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function pillTone(t) {
+  return ({ alert: 'pill-alert', warn: 'pill-warn', ok: 'pill-ok', info: 'pill-info' })[t] || 'pill-info';
+}
+
+function eventCard(e) {
+  const dt = parseISODate(e.date);
+  const day = dt.getUTCDate();
+  const mon = MONTH_NAMES[dt.getUTCMonth()];
+  const tags = (e.tag ? `<span class="pill ${pillTone(e.pillTone)}">${SH.escapeHTML(e.tag)}</span>` : '');
+  return `<div class="ev-card kind-${e.kind || 'city'}" data-url="${SH.escapeHTML(e.url || '')}">
+    <div class="ev-date">
+      <div class="ev-day">${day}</div>
+      <div class="ev-mon">${mon}</div>
+      <div class="ev-rel">${relLabel(e.date)}</div>
+    </div>
+    <div class="ev-body">
+      <h4 class="ev-title">${SH.escapeHTML(e.title)}</h4>
+      <p class="ev-blurb">${SH.escapeHTML(e.blurb || '')}</p>
+      <div class="ev-tags">${tags}</div>
+    </div>
   </div>`;
 }
-function render(filter) {
-  if (!DATA) return;
-  const wantUp = !filter || filter === 'all' || filter === 'upcoming';
-  const wantPast = !filter || filter === 'all' || filter === 'past';
-  const kindFilter = ['city','school','weather','festival'].includes(filter) ? filter : null;
 
-  const filt = (arr) => kindFilter ? arr.filter(x => x.kind === kindFilter) : arr;
-
-  document.getElementById('tlUpcoming').innerHTML =
-    wantUp ? filt(DATA.upcoming).map(renderItem).join('') : '';
-  document.getElementById('tlPast').innerHTML =
-    wantPast ? filt(DATA.past).map(renderItem).join('') : '';
+function getList() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const t0 = today.getTime();
+  return STATE.all
+    .filter(e => {
+      const t = parseISODate(e.date).getTime();
+      if (STATE.seg === 'upcoming' && t < t0) return false;
+      if (STATE.seg === 'past' && (t >= t0 || t < t0 - 30*86400000)) return false;
+      if (STATE.kind && e.kind !== STATE.kind) return false;
+      if (STATE.month) {
+        const m = parseISODate(e.date);
+        const ym = m.getUTCFullYear() + '-' + String(m.getUTCMonth()+1).padStart(2,'0');
+        if (ym !== STATE.month) return false;
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      const ta = parseISODate(a.date).getTime();
+      const tb = parseISODate(b.date).getTime();
+      return STATE.seg === 'past' ? tb - ta : ta - tb;
+    });
 }
-(async function () {
-  DATA = await SH.loadJSON('/data/events.json');
-  render('all');
-  document.querySelectorAll('#filterRow [data-filter]').forEach(b => {
+
+function render() {
+  const list = getList();
+  const slice = list.slice(0, STATE.show);
+  document.getElementById('eventList').innerHTML = slice.length
+    ? slice.map(eventCard).join('')
+    : '<p class="muted">Nothing in this view. Try a different filter.</p>';
+
+  const wrap = document.getElementById('showMoreWrap');
+  if (list.length > STATE.show) {
+    wrap.innerHTML = `<button class="btn-o" id="showMore">Show ${Math.min(12, list.length - STATE.show)} more (of ${list.length} total)</button>`;
+    document.getElementById('showMore').addEventListener('click', () => { STATE.show += 12; render(); });
+  } else {
+    wrap.innerHTML = '';
+  }
+
+  // Wire URL clicks
+  document.querySelectorAll('.ev-card').forEach(c => {
+    c.addEventListener('click', () => {
+      const u = c.dataset.url;
+      if (u) window.open(u, '_blank', 'noopener');
+    });
+  });
+}
+
+function renderHero() {
+  const upcoming = STATE.all
+    .filter(e => parseISODate(e.date).getTime() >= Date.now() - 86400000)
+    .sort((a, b) => parseISODate(a.date) - parseISODate(b.date));
+  const next = upcoming[0];
+  if (!next) {
+    document.getElementById('nuTitle').textContent = 'Nothing on the books right now';
+    document.getElementById('nuBlurb').textContent = 'Got something to add? Drop a tip and we\'ll list it.';
+    return;
+  }
+  const dt = parseISODate(next.date);
+  document.getElementById('nuTitle').textContent = next.title;
+  document.getElementById('nuBlurb').innerHTML = `<strong>${dt.toLocaleDateString('en-US',{weekday:'long', month:'long', day:'numeric'})}</strong> &middot; ${relLabel(next.date)}<br>${SH.escapeHTML(next.blurb || '')}`;
+}
+
+function renderStats() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const t0 = today.getTime();
+  const upcoming = STATE.all.filter(e => parseISODate(e.date).getTime() >= t0).length;
+  const this7 = STATE.all.filter(e => {
+    const t = parseISODate(e.date).getTime();
+    return t >= t0 && t < t0 + 7*86400000;
+  }).length;
+  const past30 = STATE.all.filter(e => {
+    const t = parseISODate(e.date).getTime();
+    return t < t0 && t >= t0 - 30*86400000;
+  }).length;
+  const fests = STATE.all.filter(e => e.kind === 'festival' && parseISODate(e.date).getTime() >= t0).length;
+
+  document.getElementById('statStrip').innerHTML = `
+    <div class="stat"><strong>${this7}</strong><span>Next 7 days</span></div>
+    <div class="stat"><strong>${upcoming}</strong><span>Upcoming total</span></div>
+    <div class="stat"><strong>${past30}</strong><span>Last 30 days</span></div>
+    <div class="stat"><strong>${fests}</strong><span>Festivals coming</span></div>`;
+}
+
+function renderMonthChips() {
+  const monSet = new Set();
+  STATE.all.forEach(e => {
+    const d = parseISODate(e.date);
+    monSet.add(d.getUTCFullYear() + '-' + String(d.getUTCMonth()+1).padStart(2,'0'));
+  });
+  const months = Array.from(monSet).sort();
+  const chips = ['<button class="month-chip active" data-month="">All months</button>'];
+  months.forEach(ym => {
+    const [y, m] = ym.split('-');
+    chips.push(`<button class="month-chip" data-month="${ym}">${MONTH_NAMES[parseInt(m,10)-1]} ${y.slice(2)}</button>`);
+  });
+  document.getElementById('monthChips').innerHTML = chips.join('');
+  document.querySelectorAll('#monthChips .month-chip').forEach(b => {
     b.addEventListener('click', () => {
-      document.querySelectorAll('#filterRow [data-filter]').forEach(x => x.classList.remove('btn-p'));
-      document.querySelectorAll('#filterRow [data-filter]').forEach(x => x.classList.add('btn-o'));
-      b.classList.remove('btn-o');
-      b.classList.add('btn-p');
-      render(b.dataset.filter);
+      document.querySelectorAll('#monthChips .month-chip').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      STATE.month = b.dataset.month || '';
+      STATE.show = 12;
+      render();
+    });
+  });
+}
+
+(async function () {
+  // Source: events.json gives upcoming + past split. Combine for the master list.
+  const j = await SH.loadJSON('/data/events.json');
+  if (!j) { document.getElementById('eventList').innerHTML = '<p class="muted">Could not load events. Try again.</p>'; return; }
+  STATE.all = (j.upcoming || []).concat(j.past || []);
+
+  renderHero();
+  renderStats();
+  renderMonthChips();
+  render();
+
+  // Segment switch
+  document.querySelectorAll('#segToggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#segToggle button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      STATE.seg = b.dataset.seg;
+      STATE.show = 12;
+      render();
+    });
+  });
+
+  // Kind filter
+  document.querySelectorAll('#kindFilter .month-chip').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#kindFilter .month-chip').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      STATE.kind = b.dataset.kind || '';
+      STATE.show = 12;
+      render();
     });
   });
 })();
