@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviews &mdash; That Seymour Page</title>
+<meta name="description" content="Reviews of Seymour-area businesses — from Indiana Businesses Exposed (deep investigations) and Gary's plain-talk picks.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .review-card { border-left: 4px solid var(--border); padding-left: 14px; }
+  .review-card.sev-positive { border-left-color: var(--accent-3); }
+  .review-card.sev-info     { border-left-color: var(--accent-5); }
+  .review-card.sev-warning  { border-left-color: var(--accent); }
+  .review-card.sev-alert    { border-left-color: var(--accent-4); }
+  .stars { color: var(--accent); letter-spacing: 2px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Reviews</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Honest takes on Seymour businesses</h1>
+    <p class="muted">Two flavors here. Indiana Businesses Exposed is the deep investigation side &mdash; public records, complaints, the whole picture. Gary's Picks is the porch-talk side &mdash; quick takes from someone who lives here.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="ibe" role="tab">Indiana Businesses Exposed</button>
+      <button class="tab" data-tab="gary" role="tab">Gary's Picks</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-ibe">
+      <div class="row" style="margin-bottom:14px">
+        <input type="search" id="ibeFilter" placeholder="Filter IBE articles..." style="max-width:300px">
+        <a href="https://ibetcg.netlify.app/articles.html" target="_blank" rel="noopener" class="btn-o">Full archive at IBE &rarr;</a>
+        <a href="/map.html" class="btn-o">View on map &rarr;</a>
+      </div>
+      <div id="ibeList" class="card-grid"></div>
+    </div>
+
+    <div class="tab-panel" id="tab-gary">
+      <p class="muted small">Plain-voice reviews from Gary. Same person who runs the shop, same person typing this. No paid placements.</p>
+      <div class="row" style="margin-bottom:14px">
+        <input type="search" id="garyFilter" placeholder="Filter Gary's picks..." style="max-width:300px">
+        <a href="/map.html" class="btn-o">View on map &rarr;</a>
+      </div>
+      <div id="garyList" class="card-grid"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+function severityClass(s) {
+  return 'sev-' + (s || 'info');
+}
+function severityPill(s) {
+  const map = { positive: 'pill-ok', warning: 'pill-warn', alert: 'pill-alert', info: 'pill-info' };
+  const label = { positive: 'Positive', warning: 'Caution', alert: 'Alert', info: 'Info' }[s] || 'Info';
+  return `<span class="pill ${map[s] || 'pill-info'}">${label}</span>`;
+}
+
+let IBE = [], GARY = [];
+
+function renderIBE(filter) {
+  const q = (filter || '').toLowerCase();
+  const list = q ? IBE.filter(a => JSON.stringify(a).toLowerCase().includes(q)) : IBE;
+  document.getElementById('ibeList').innerHTML = list.map(a =>
+    `<a class="card review-card ${severityClass(a.severity)}" href="https://ibetcg.netlify.app/article/${SH.escapeHTML(a.slug)}.html" target="_blank" rel="noopener">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">${severityPill(a.severity)}<span class="muted small">${SH.escapeHTML(a.address || '')}</span></div>
+      <h3 class="card-title" style="font-size:16px">${SH.escapeHTML(a.title)}</h3>
+      <p class="card-blurb">${SH.escapeHTML(a.blurb || '')}</p>
+      <p class="muted small" style="margin-top:8px">Read at IBE &rarr;</p>
+    </a>`
+  ).join('');
+}
+
+function renderGary(filter) {
+  const q = (filter || '').toLowerCase();
+  const list = q ? GARY.filter(g => JSON.stringify(g).toLowerCase().includes(q)) : GARY;
+  document.getElementById('garyList').innerHTML = list.map(g =>
+    `<div class="card review-card sev-positive" data-name="${SH.escapeHTML(g.name)}">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <span class="pill">${SH.escapeHTML(g.category || '')}</span>
+        <span class="stars">${'★'.repeat(g.stars || 0)}${'☆'.repeat(5 - (g.stars || 0))}</span>
+      </div>
+      <h3 class="card-title" style="font-size:16px">${SH.escapeHTML(g.name)}</h3>
+      <p class="muted small" style="margin:-4px 0 8px">${SH.escapeHTML(g.address || '')}</p>
+      <p style="font-weight:600;margin:0 0 6px">${SH.escapeHTML(g.title)}</p>
+      <p class="card-blurb">${SH.escapeHTML(g.body)}</p>
+    </div>`
+  ).join('');
+}
+
+(async function () {
+  const [ibe, gary] = await Promise.all([
+    SH.loadJSON('/data/ibe-articles.json'),
+    SH.loadJSON('/data/gary-reviews.json')
+  ]);
+  IBE  = (ibe  && ibe.articles) || [];
+  GARY = (gary && gary.reviews) || [];
+  renderIBE(''); renderGary('');
+
+  document.getElementById('ibeFilter').addEventListener('input', e => renderIBE(e.target.value));
+  document.getElementById('garyFilter').addEventListener('input', e => renderGary(e.target.value));
+
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

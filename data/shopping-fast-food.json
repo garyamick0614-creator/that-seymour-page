@@ -1,0 +1,41 @@
+{
+  "_comment": "Shopping centers, fast food, dollar stores, and grocery in Seymour, IN. Coordinates approximate for known locations along Tipton St / Walmart corridor / downtown.",
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "categoryColors": {
+    "Fast Food":        "#f87171",
+    "Shopping":         "#22d3ee",
+    "Grocery":          "#34d399",
+    "Pharmacy":         "#a78bfa",
+    "Dollar Store":     "#fbbf24"
+  },
+  "places": [
+    { "name": "McDonald's — E Tipton",     "category": "Fast Food",     "lat": 38.9579, "lon": -85.8741, "address": "1100 E Tipton St, Seymour, IN" },
+    { "name": "McDonald's — W Tipton",     "category": "Fast Food",     "lat": 38.9583, "lon": -85.9028, "address": "1502 W Tipton St, Seymour, IN" },
+    { "name": "Burger King",                "category": "Fast Food",     "lat": 38.9573, "lon": -85.8682, "address": "1614 E Tipton St, Seymour, IN" },
+    { "name": "Wendy's",                    "category": "Fast Food",     "lat": 38.9582, "lon": -85.8765, "address": "1206 E Tipton St, Seymour, IN" },
+    { "name": "Taco Bell",                  "category": "Fast Food",     "lat": 38.9577, "lon": -85.8793, "address": "1024 E Tipton St, Seymour, IN" },
+    { "name": "KFC — E Tipton",             "category": "Fast Food",     "lat": 38.9580, "lon": -85.8842, "address": "1127 E Tipton St, Seymour, IN" },
+    { "name": "Subway",                     "category": "Fast Food",     "lat": 38.9583, "lon": -85.8807, "address": "907 E Tipton St, Seymour, IN" },
+    { "name": "Long John Silver's / A&W",   "category": "Fast Food",     "lat": 38.9580, "lon": -85.8825, "address": "1000 E Tipton St, Seymour, IN" },
+    { "name": "Arby's",                     "category": "Fast Food",     "lat": 38.9569, "lon": -85.8730, "address": "1325 E Tipton St, Seymour, IN" },
+    { "name": "Hardee's",                   "category": "Fast Food",     "lat": 38.9576, "lon": -85.8702, "address": "1505 E Tipton St, Seymour, IN" },
+    { "name": "Pizza Hut",                  "category": "Fast Food",     "lat": 38.9586, "lon": -85.8843, "address": "1126 E Tipton St, Seymour, IN" },
+    { "name": "Domino's Pizza",             "category": "Fast Food",     "lat": 38.9580, "lon": -85.8910, "address": "211 N Chestnut St, Seymour, IN" },
+    { "name": "Papa John's",                "category": "Fast Food",     "lat": 38.9580, "lon": -85.8780, "address": "1100 E Tipton St area, Seymour, IN" },
+    { "name": "Walmart Supercenter",        "category": "Shopping",      "lat": 38.9573, "lon": -85.8678, "address": "1600 E Tipton St, Seymour, IN" },
+    { "name": "Tractor Supply",             "category": "Shopping",      "lat": 38.9558, "lon": -85.8635, "address": "1900 E Tipton St, Seymour, IN" },
+    { "name": "Big Lots",                   "category": "Shopping",      "lat": 38.9572, "lon": -85.8670, "address": "Walmart plaza, E Tipton St, Seymour, IN" },
+    { "name": "Lowe's",                     "category": "Shopping",      "lat": 38.9550, "lon": -85.8600, "address": "2010 E Tipton St, Seymour, IN" },
+    { "name": "Rural King",                 "category": "Shopping",      "lat": 38.9588, "lon": -85.8600, "address": "1980 E Tipton St area, Seymour, IN" },
+    { "name": "Kroger",                     "category": "Grocery",       "lat": 38.9576, "lon": -85.8754, "address": "1207 E Tipton St, Seymour, IN" },
+    { "name": "Aldi",                       "category": "Grocery",       "lat": 38.9576, "lon": -85.8782, "address": "1015 E Tipton St, Seymour, IN" },
+    { "name": "Ruler Foods",                "category": "Grocery",       "lat": 38.9583, "lon": -85.9117, "address": "1615 W Tipton St, Seymour, IN" },
+    { "name": "Save-A-Lot",                 "category": "Grocery",       "lat": 38.9580, "lon": -85.9100, "address": "W Tipton St, Seymour, IN" },
+    { "name": "CVS Pharmacy",               "category": "Pharmacy",      "lat": 38.9579, "lon": -85.8780, "address": "1100 E Tipton St, Seymour, IN" },
+    { "name": "Walgreens",                  "category": "Pharmacy",      "lat": 38.9576, "lon": -85.8730, "address": "1305 E Tipton St, Seymour, IN" },
+    { "name": "Dollar General — N Walnut",  "category": "Dollar Store",  "lat": 38.9620, "lon": -85.8870, "address": "N Walnut St, Seymour, IN" },
+    { "name": "Dollar General — W Tipton",  "category": "Dollar Store",  "lat": 38.9580, "lon": -85.9050, "address": "W Tipton St, Seymour, IN" },
+    { "name": "Dollar Tree",                "category": "Dollar Store",  "lat": 38.9582, "lon": -85.8780, "address": "Tipton St, Seymour, IN" },
+    { "name": "Family Dollar",              "category": "Dollar Store",  "lat": 38.9588, "lon": -85.8700, "address": "Tipton St, Seymour, IN" }
+  ]
+}

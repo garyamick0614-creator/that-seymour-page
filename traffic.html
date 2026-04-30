@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traffic &mdash; That Seymour Page</title>
+<meta name="description" content="Live INDOT traffic cameras around Seymour, Indiana — Jackson, Bartholomew, and Scott counties — refreshed every 5 minutes.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .cam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+  .cam-tile {
+    background: var(--panel);
+    backdrop-filter: blur(var(--blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(140%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .25s, border-color .2s, box-shadow .2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .cam-tile:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--shadow-md); }
+  .cam-img-wrap { aspect-ratio: 4/3; background: #0a0d11; position: relative; overflow: hidden; }
+  .cam-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
+  .cam-img-wrap .fail {
+    position: absolute; inset: 0; display: none;
+    align-items: center; justify-content: center;
+    color: var(--muted); font-size: 12px; text-align: center; padding: 14px;
+    background: rgba(7,9,13,.7);
+  }
+  .cam-tile.broken .cam-img-wrap .fail { display: flex; }
+  .cam-tile.broken .cam-img-wrap img { opacity: .15; }
+  .cam-meta { padding: 10px 14px 14px; }
+  .cam-name { font-size: 14px; font-weight: 600; margin: 0 0 4px; line-height: 1.3; }
+  .cam-sub { font-size: 12px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
+  .cam-sub .pill { font-size: 10px; padding: 1px 7px; }
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; align-items: center; }
+  .filter-bar select, .filter-bar input { max-width: 220px; padding: 8px 12px; font-size: 14px; }
+  .source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .src-card {
+    background: var(--panel);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .src-card .src-name { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .src-card .src-status { font-size: 11px; color: var(--accent-3); }
+  .src-card.bad .src-status { color: var(--accent-4); }
+  #refreshChip { transition: opacity .3s; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Traffic</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Live cameras around Seymour</h1>
+    <p class="muted">INDOT and local traffic cams pulled live from <code>api.thatcomputerguy26.org</code>. The page refreshes by itself every 5 minutes. Click a tile for a bigger picture and the camera details. If a feed is offline it gets quietly hidden &mdash; we don't show stuff that's broken.</p>
+
+    <div class="filter-bar">
+      <span id="refreshChip" class="chip chip-info"><span class="spinner"></span> loading cameras&hellip;</span>
+      <select id="countySel"><option value="">All counties</option></select>
+      <select id="routeSel"><option value="">All routes</option></select>
+      <input type="search" id="qInput" placeholder="Search camera name&hellip;">
+      <span class="muted small" id="counter"></span>
+    </div>
+
+    <div class="cam-grid" id="camGrid"></div>
+
+    <h3 class="section-title mt-4">Live data sources</h3>
+    <p class="muted small" style="margin:0 0 10px">These are the endpoints feeding this page. Green = working right now. Red = down. Hidden cards aren't a bug &mdash; they're routes that haven't been deployed yet.</p>
+    <div class="source-grid" id="srcGrid"></div>
+
+    <h3 class="section-title mt-4">Quick info</h3>
+    <ul>
+      <li><strong>Jackson County:</strong> Seymour's home county &mdash; I-65, US-50, SR-11.</li>
+      <li><strong>Bartholomew County:</strong> Columbus and the I-65 corridor going north.</li>
+      <li><strong>Scott County:</strong> Scottsburg and Austin going south down I-65.</li>
+      <li><strong>Real-time alerts:</strong> for severe weather closures, see the <a href="/weather.html">weather page</a>.</li>
+    </ul>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+const TCG_API = 'https://api.thatcomputerguy26.org';
+const REFRESH_MS = 300000; // 5 minutes
+const STATE = { cameras: [], stats: null, county: '', route: '', q: '', tick: 0 };
+
+// Endpoints we try. Each is "expected" but only shown if it actually works.
+const SOURCES = [
+  { id: 'index',   label: 'INDOT index',   url: TCG_API + '/api/indot/' },
+  { id: 'cameras', label: 'Camera list',   url: TCG_API + '/api/indot/cameras?limit=500' },
+  { id: 'stats',   label: 'Stats',         url: TCG_API + '/api/indot/stats' },
+  { id: 'webcams', label: 'Webcams',       url: TCG_API + '/api/webcams/' }
+];
+
+async function probe(src) {
+  const t0 = performance.now();
+  try {
+    const r = await fetch(src.url, { cache: 'no-cache' });
+    return { ...src, ok: r.ok, status: r.status, ms: Math.round(performance.now() - t0) };
+  } catch (e) {
+    return { ...src, ok: false, status: 0, ms: Math.round(performance.now() - t0), error: String(e) };
+  }
+}
+
+function renderSources(results) {
+  const grid = document.getElementById('srcGrid');
+  // Hide entirely-broken endpoints (status 0 or 404). Show 200/4xx-with-data.
+  const visible = results.filter(r => r.ok || (r.status >= 200 && r.status < 500));
+  if (!visible.length) {
+    grid.innerHTML = '<p class="muted small">All sources offline. Try again in 5 minutes or check '
+      + '<a href="' + TCG_API + '" target="_blank" rel="noopener">api.thatcomputerguy26.org</a>.</p>';
+    return;
+  }
+  grid.innerHTML = visible.map(r =>
+    '<div class="src-card' + (r.ok ? '' : ' bad') + '">'
+    + '<div class="src-name">' + SH.escapeHTML(r.label) + '</div>'
+    + '<div class="src-status">' + (r.ok ? '&#x25CF; live · ' + r.ms + 'ms' : '&#x25CF; ' + r.status) + '</div>'
+    + '<div class="muted small" style="margin-top:4px;word-break:break-all">' + SH.escapeHTML(r.url) + '</div>'
+    + '</div>'
+  ).join('');
+}
+
+async function loadCameras() {
+  const r = await fetch(TCG_API + '/api/indot/cameras?limit=500&t=' + Date.now(), { cache: 'no-cache' });
+  if (!r.ok) throw new Error(r.status);
+  const j = await r.json();
+  return j.items || [];
+}
+
+function fillFilters() {
+  const counties = Array.from(new Set(STATE.cameras.map(c => c.county).filter(Boolean))).sort();
+  const routes   = Array.from(new Set(STATE.cameras.map(c => c.route).filter(Boolean))).sort();
+  const cs = document.getElementById('countySel');
+  const rs = document.getElementById('routeSel');
+  // Preserve current selection
+  const curC = cs.value, curR = rs.value;
+  cs.innerHTML = '<option value="">All counties</option>' + counties.map(c => '<option' + (c === curC ? ' selected' : '') + '>' + SH.escapeHTML(c) + '</option>').join('');
+  rs.innerHTML = '<option value="">All routes</option>'   + routes.map(r => '<option'   + (r === curR ? ' selected' : '') + '>' + SH.escapeHTML(r) + '</option>').join('');
+}
+
+function filtered() {
+  return STATE.cameras.filter(c =>
+    (!STATE.county || c.county === STATE.county) &&
+    (!STATE.route  || c.route  === STATE.route)  &&
+    (!STATE.q      || (c.name || '').toLowerCase().includes(STATE.q))
+  );
+}
+
+function renderGrid() {
+  const list = filtered();
+  document.getElementById('counter').textContent = list.length + ' of ' + STATE.cameras.length + ' cameras';
+  // Sort: Jackson County first, then alpha
+  list.sort((a, b) => {
+    const ja = a.county === 'Jackson' ? 0 : 1;
+    const jb = b.county === 'Jackson' ? 0 : 1;
+    if (ja !== jb) return ja - jb;
+    return (a.name || '').localeCompare(b.name || '');
+  });
+
+  const grid = document.getElementById('camGrid');
+  if (!list.length) {
+    grid.innerHTML = '<p class="muted">No cameras match. Clear the filters above.</p>';
+    return;
+  }
+  // Cache-bust image URLs so the browser pulls a fresh frame on each refresh tick.
+  const t = STATE.tick;
+  grid.innerHTML = list.map(c => {
+    const sep = c.image_url && c.image_url.includes('?') ? '&' : '?';
+    const img = c.image_url ? c.image_url + sep + 't=' + t : '';
+    const tags = [];
+    if (c.route) tags.push('<span class="pill pill-info">' + SH.escapeHTML(c.route) + '</span>');
+    if (c.direction) tags.push('<span class="pill">' + SH.escapeHTML(c.direction) + '</span>');
+    if (c.category) tags.push('<span class="pill">' + SH.escapeHTML(c.category) + '</span>');
+    return '<div class="cam-tile" data-id="' + SH.escapeHTML(c.camera_id) + '">'
+      + '<div class="cam-img-wrap">'
+      +   (img ? '<img src="' + SH.escapeHTML(img) + '" alt="' + SH.escapeHTML(c.name || 'camera') + '" loading="lazy" onerror="this.closest(\'.cam-tile\').classList.add(\'broken\')">' : '')
+      +   '<div class="fail">No image right now</div>'
+      + '</div>'
+      + '<div class="cam-meta">'
+      +   '<div class="cam-name">' + SH.escapeHTML(c.name || c.camera_id) + '</div>'
+      +   '<div class="cam-sub"><span>' + SH.escapeHTML(c.county || '?') + '</span>' + tags.join('') + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  // Wire click → modal
+  grid.querySelectorAll('.cam-tile').forEach(tile => {
+    tile.addEventListener('click', () => {
+      const c = STATE.cameras.find(x => x.camera_id === tile.dataset.id);
+      if (!c) return;
+      const sep = c.image_url && c.image_url.includes('?') ? '&' : '?';
+      const lastSeen = c.last_seen ? new Date(c.last_seen * 1000).toLocaleString() : 'unknown';
+      SH.openModal(
+        '<div class="m-meta">' + SH.escapeHTML(c.county || '?') + (c.route ? ' &middot; ' + SH.escapeHTML(c.route) : '') + (c.direction ? ' &middot; ' + SH.escapeHTML(c.direction) : '') + '</div>'
+        + '<h3>' + SH.escapeHTML(c.name || c.camera_id) + '</h3>'
+        + (c.image_url ? '<img src="' + SH.escapeHTML(c.image_url + sep + 't=' + Date.now()) + '" alt="' + SH.escapeHTML(c.name) + '" style="width:100%;border-radius:10px;margin:8px 0">' : '')
+        + '<div class="m-body">'
+        +   '<p>Last update: ' + SH.escapeHTML(lastSeen) + '</p>'
+        +   '<p>Camera ID: <code>' + SH.escapeHTML(c.camera_id) + '</code></p>'
+        +   (c.lat && c.lon ? '<p>Coordinates: ' + c.lat.toFixed(4) + ', ' + c.lon.toFixed(4) + '</p>' : '')
+        + '</div>'
+        + '<div class="m-actions">'
+        +   (c.lat && c.lon ? '<a class="btn-o" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + c.lat + ',' + c.lon + '">Open in Google Maps &rarr;</a>' : '')
+        +   (c.image_url ? '<a class="btn-o" target="_blank" rel="noopener" href="' + SH.escapeHTML(c.image_url) + '">Direct image &rarr;</a>' : '')
+        + '</div>'
+      );
+    });
+  });
+}
+
+async function tick() {
+  const chip = document.getElementById('refreshChip');
+  chip.style.opacity = '0.5';
+  chip.innerHTML = '<span class="spinner"></span> refreshing&hellip;';
+  try {
+    STATE.tick = Date.now();
+    STATE.cameras = await loadCameras();
+    fillFilters();
+    renderGrid();
+    chip.className = 'chip';
+    chip.innerHTML = '<span class="dot"></span> live &middot; updated ' + new Date().toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
+  } catch (e) {
+    chip.className = 'chip chip-warn';
+    chip.innerHTML = '<span class="dot"></span> camera feed offline';
+    document.getElementById('camGrid').innerHTML = '<p class="muted">Camera feed isn\'t reachable right now. The page will keep trying every 5 minutes.</p>';
+  } finally {
+    chip.style.opacity = '1';
+  }
+  // Probe sources in parallel and refresh status panel
+  Promise.all(SOURCES.map(probe)).then(renderSources);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('countySel').addEventListener('change', e => { STATE.county = e.target.value; renderGrid(); });
+  document.getElementById('routeSel').addEventListener('change',  e => { STATE.route  = e.target.value; renderGrid(); });
+  document.getElementById('qInput').addEventListener('input',     e => { STATE.q      = e.target.value.toLowerCase(); renderGrid(); });
+  tick();
+  setInterval(tick, REFRESH_MS);
+});
+</script>
+
+</body>
+</html>

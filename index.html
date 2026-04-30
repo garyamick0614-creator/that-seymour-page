@@ -19,15 +19,15 @@
 
 <section class="hero">
   <div class="container">
-    <p class="eyebrow">Seymour, Indiana &middot; weekly hub</p>
-    <h1>What's happening in Seymour this week.</h1>
-    <p class="lead">Local news, weather, events, schools, businesses, and community voices &mdash; pulled together in one spot. Live data refreshes every two hours from public sources. Independent and non-commercial, built by Gary Amick (<em>That Computer Guy 26 / TCG Solutions</em>) right here in Seymour.</p>
+    <p class="eyebrow">Seymour, Indiana</p>
+    <h1>What's going on in town this week.</h1>
+    <p class="lead">News, weather, school stuff, the events calendar, top spots to eat, and a porch where neighbors can talk &mdash; all on one page. The data checks in by itself every couple of hours, so what you see here is what's actually happening today. Built and kept up by Gary Amick (<em>That Computer Guy 26</em>), right here in Seymour.</p>
     <div class="cta-row">
-      <a class="btn-p" href="/events.html">See the timeline &rarr;</a>
-      <a class="btn-o" href="/weather.html">Live weather</a>
-      <a class="btn-o" href="/map.html">Business map</a>
-      <a class="btn-o" href="/blog.html">Community blog</a>
-      <a class="btn-o" href="/tip.html">Submit a tip</a>
+      <a class="btn-p" href="/events.html">See what's coming up &rarr;</a>
+      <a class="btn-o" href="/weather.html">Today's weather</a>
+      <a class="btn-o" href="/map.html">Where to find places</a>
+      <a class="btn-o" href="/blog.html">Talk on the porch</a>
+      <a class="btn-o" href="/tip.html">Drop us a tip</a>
     </div>
     <a href="https://thatcomputerguy26.org" target="_blank" rel="noopener" style="display:block;margin-top:24px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);max-width:760px">
       <img src="/assets/tcg-logo.svg" alt="That Computer Guy 26 / TCG Solutions" style="display:block;width:100%;height:auto">
@@ -37,55 +37,50 @@
 
 <main class="container">
 
-  <!-- Gary disclaimer — TCG family signature -->
-  <aside class="gary-disclaimer">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">&#x1F44B;</span><strong class="tag">From Gary at TCG</strong></div>
-    <p style="margin:6px 0">Hey Seymour &mdash; this hub is built and maintained locally on the TCG home server. AI tools and multi-LLM research help me fact-check fast, but every post here is human-guided. I'm <strong>Gary from That Computer Guy 26 / TCG Solutions</strong>: hardware repairs, AI automations, custom websites/software, pentesting, and business IT.</p>
-    <p style="margin:6px 0">Questions, corrections, or want to add an event? Call/text <a href="tel:8124149097" style="color:var(--accent);font-weight:600">812-414-9097</a> or use the <a href="/tip.html" style="color:var(--accent);font-weight:600">tip form</a>. Anonymous is fine.</p>
-  </aside>
+<!-- Disclaimer is now injected globally via /assets/js/common.js (footer block) -->
 
   <!-- Live snapshot row -->
   <section class="section">
     <div class="section-head">
-      <p class="eyebrow">Live snapshot</p>
-      <h2>Right now in Seymour</h2>
-      <p class="muted">Pulled from National Weather Service, public RSS feeds, and the city calendar. Auto-refresh every 2 hours.</p>
+      <p class="eyebrow">Right now</p>
+      <h2>What's going on in town</h2>
+      <p class="muted">Weather comes straight from the National Weather Service. News comes from local Indiana papers, NPR, AP, and BBC. Events come from the city calendar and Seymour Main Street. The whole page checks in by itself every couple of hours.</p>
     </div>
     <div class="card-grid">
       <a class="card" href="/weather.html">
         <div class="card-emoji">&#x1F324;</div>
         <h3 class="card-title">Weather <span id="weatherChip" class="pill pill-info">loading</span></h3>
-        <p class="card-blurb" id="weatherBlurb">Latest NWS forecast for Seymour (38.96, -85.89). Tap for the 7-day outlook and severe-weather alerts.</p>
+        <p class="card-blurb" id="weatherBlurb">The latest forecast for Seymour straight from the National Weather Service. Tap for the week ahead and any storm alerts.</p>
       </a>
       <a class="card" href="/events.html">
         <div class="card-emoji">&#x1F4C5;</div>
-        <h3 class="card-title">Next event <span id="eventChip" class="pill">soon</span></h3>
-        <p class="card-blurb" id="eventBlurb">City Council, Crossroads of Cultures, BurgerFest 2026 &mdash; the full timeline and what's coming up.</p>
+        <h3 class="card-title">Coming up <span id="eventChip" class="pill">soon</span></h3>
+        <p class="card-blurb" id="eventBlurb">City Council, Crossroads of Cultures, BurgerFest &mdash; what's on the calendar and what just happened.</p>
       </a>
       <a class="card" href="/news.html">
         <div class="card-emoji">&#x1F4F0;</div>
         <h3 class="card-title">Headlines <span id="newsChip" class="pill">live</span></h3>
-        <p class="card-blurb" id="newsBlurb">Indiana, US, and global headlines refreshed every 2 hours from public RSS sources.</p>
+        <p class="card-blurb" id="newsBlurb">Indiana, country-wide, and around-the-world stories. Pulled in fresh every couple of hours.</p>
       </a>
       <a class="card" href="/schools.html">
         <div class="card-emoji">&#x1F392;</div>
         <h3 class="card-title">Seymour schools</h3>
-        <p class="card-blurb">SCSC budget vote re-do May 1, athletics schedule, graduation, alerts.</p>
+        <p class="card-blurb">Budget re-vote May 1, sports schedule, graduation, and where to check for delays.</p>
       </a>
       <a class="card" href="/businesses.html">
         <div class="card-emoji">&#x1F3EA;</div>
-        <h3 class="card-title">Top 20 businesses</h3>
-        <p class="card-blurb">Reviewed and ranked by volume, rating, and employment impact.</p>
+        <h3 class="card-title">Top 20 places in town</h3>
+        <p class="card-blurb">The 20 most-reviewed and biggest-employer spots in Seymour, sorted however you like.</p>
       </a>
       <a class="card" href="/blog.html">
         <div class="card-emoji">&#x1F4AC;</div>
-        <h3 class="card-title">Community blog <span id="blogChip" class="pill">open</span></h3>
-        <p class="card-blurb">No accounts. Your IP gets a friendly handle and you can post. Good faith only.</p>
+        <h3 class="card-title">The porch <span id="blogChip" class="pill">open</span></h3>
+        <p class="card-blurb">A spot where neighbors can talk. No sign-up needed. You get a friendly nickname and you can post.</p>
       </a>
       <a class="card" href="/map.html">
         <div class="card-emoji">&#x1F5FA;</div>
-        <h3 class="card-title">Interactive map <span class="pill pill-info">20 pins</span></h3>
-        <p class="card-blurb">All 20 ranked Seymour businesses on a live OpenStreetMap with category-colored pins, a sortable legend, and one-tap directions.</p>
+        <h3 class="card-title">Map of town <span class="pill pill-info">20 pins</span></h3>
+        <p class="card-blurb">Every spot on the Top 20 list, dropped on the map. Click a pin and you'll get directions in one tap.</p>
       </a>
     </div>
   </section>
@@ -94,26 +89,26 @@
   <section class="section">
     <div class="section-head">
       <p class="eyebrow">This week</p>
-      <h2>Storm cleanup continues; cleanup-week meets a busy event calendar.</h2>
+      <h2>Storms hit, cleanup's on, and there's still plenty going on around town.</h2>
       <p class="muted">Updated April 29, 2026.</p>
     </div>
 
     <div class="card" style="background:linear-gradient(135deg,rgba(248,113,113,.12),rgba(251,191,36,.04));border-color:rgba(248,113,113,.4)">
       <p class="eyebrow" style="color:var(--accent-4)">Storm recovery</p>
-      <h3 class="card-title" style="font-size:18px">April 27 storms left damage across Jackson County.</h3>
-      <p class="card-blurb">National Weather Service reporting confirmed multiple rounds of thunderstorms across central Indiana on April 27, with tornadoes, strong winds, hail, and flooding. Local coverage noted a tornado in Jackson County northwest of Seymour between Bobtown and Cortland. Cleanup is the focus; the storm landed during the city's annual Make Seymour Shine week (Apr 13-17), so curbside debris pickup capacity was already up.</p>
+      <h3 class="card-title" style="font-size:18px">April 27 storms tore through Jackson County.</h3>
+      <p class="card-blurb">A line of thunderstorms came across central Indiana on Sunday afternoon &mdash; tornadoes, hail, hard wind, and flooding. The Weather Service confirmed a tornado on the ground in Jackson County between Bobtown and Cortland, just northwest of town. A lot of folks have trees down and yards to clear. Lucky timing in one way: the storm hit during Make Seymour Shine week (Apr 13&ndash;17), so the city's extra curbside pickup was already running.</p>
     </div>
 
-    <h3 class="section-title">What's happening around town</h3>
+    <h3 class="section-title">Around town</h3>
     <ul style="list-style:none;padding:0;margin:0">
-      <li class="card" style="margin-bottom:10px"><strong>Crossroads Acoustic Festival</strong> &mdash; Apr 24-25 (recap on Seymour Main Street)</li>
-      <li class="card" style="margin-bottom:10px"><strong>City Council meeting</strong> &mdash; Apr 27 (next: May 11 &amp; 26, 7 PM, George Green Chambers)</li>
-      <li class="card" style="margin-bottom:10px"><strong>Crossroads of Cultures</strong> &mdash; May 2</li>
-      <li class="card" style="margin-bottom:10px"><strong>SCSC budget re-vote</strong> &mdash; May 1 (after Apr 17 614&ndash;924 rejection)</li>
-      <li class="card" style="margin-bottom:10px"><strong>BurgerFest 2026</strong> &mdash; Sep 19, downtown (36th year, Elexco main-stage sponsor)</li>
+      <li class="card" style="margin-bottom:10px"><strong>Crossroads Acoustic Festival</strong> &mdash; Apr 24&ndash;25 (recap on Seymour Main Street)</li>
+      <li class="card" style="margin-bottom:10px"><strong>City Council</strong> &mdash; met Apr 27. Next ones: May 11 and May 26, 7 PM at George Green Chambers</li>
+      <li class="card" style="margin-bottom:10px"><strong>Crossroads of Cultures</strong> &mdash; May 2 downtown</li>
+      <li class="card" style="margin-bottom:10px"><strong>School budget re-vote</strong> &mdash; May 1 (the first one failed Apr 17, 614 to 924)</li>
+      <li class="card" style="margin-bottom:10px"><strong>BurgerFest 2026</strong> &mdash; September 19, downtown. 36th year. Elexco sponsoring the main stage again.</li>
     </ul>
 
-    <p class="muted" style="margin-top:14px">A simple way to sum up the week: Seymour took a hit from the storms, but the community is doing what it does best &mdash; cleaning up, checking in, and moving forward. <a href="/events.html">See the full timeline &rarr;</a></p>
+    <p class="muted" style="margin-top:14px">Short version: town took a hit from the weather, but folks are doing what they always do &mdash; cleaning up, checking on neighbors, and getting on with the week. <a href="/events.html">See everything that's happening &rarr;</a></p>
   </section>
 
   <!-- TCG family promo -->

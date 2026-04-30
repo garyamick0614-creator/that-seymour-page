@@ -1,0 +1,114 @@
+{
+  "_comment": "Plain-voice reviews from Gary about local Seymour spots. Positive, neighborly. Distinct from IBE investigative coverage.",
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "reviews": [
+    {
+      "name": "Larrison's Diner",
+      "category": "Diner",
+      "lat": 38.9580, "lon": -85.8905,
+      "address": "200 S Chestnut St, Seymour, IN",
+      "stars": 5,
+      "title": "Best breakfast in town, no contest.",
+      "body": "If I'm meeting somebody for breakfast and we don't have a place picked, we end up at Larrison's. The pancakes are bigger than the plate, the coffee gets refilled before you ask, and you can hear what the next booth's talking about — which is half of why people come here. Old-school diner that hasn't lost the plot."
+    },
+    {
+      "name": "Rails Craft Brew & Eatery",
+      "category": "American / Steakhouse",
+      "lat": 38.9577, "lon": -85.8908,
+      "address": "211 S Chestnut St, Seymour, IN",
+      "stars": 4,
+      "title": "Date-night without driving to Columbus.",
+      "body": "Steaks come out the way you order them, the beer list is honest, and the room's loud enough to feel alive but not so loud you have to lean over the table. If you're tired of running up to Columbus for something nice, Rails is the local move."
+    },
+    {
+      "name": "Moxie Coffee Company",
+      "category": "Coffee",
+      "lat": 38.9596, "lon": -85.8915,
+      "address": "Steinker Platz, Seymour, IN",
+      "stars": 5,
+      "title": "Where I take my laptop when the shop's quiet.",
+      "body": "Real coffee, not the burnt corporate cup. The owners actually know their regulars by name. Plenty of seats, the wifi works, and nobody hassles you for sitting two hours with a single Americano. If you haven't been, go before the secret gets out."
+    },
+    {
+      "name": "Schwatzer's German Restaurant",
+      "category": "German",
+      "lat": 38.9595, "lon": -85.8910,
+      "address": "100 W 2nd St, Seymour, IN",
+      "stars": 5,
+      "title": "Schnitzel that'll make you call your grandma.",
+      "body": "Nobody's doing what Schwatzer's is doing in this town. Real schnitzel, real spätzle, real sauerbraten. Limited hours and a tiny dining room — show up early or call ahead. Worth the wait every single time."
+    },
+    {
+      "name": "JCBank",
+      "category": "Banking",
+      "lat": 38.9590, "lon": -85.8907,
+      "address": "125 S Chestnut St, Seymour, IN",
+      "stars": 5,
+      "title": "A bank that still picks up the phone.",
+      "body": "JCBank's been here a hundred years and they still act like neighbors. I've called the main number and ended up talking to somebody who knew exactly what was going on with my account. Good luck getting that out of a national bank. They've stayed local on purpose, and you feel it."
+    },
+    {
+      "name": "Darlage Greenhouse",
+      "category": "Garden / Landscaping",
+      "lat": 38.9990, "lon": -85.9030,
+      "address": "Jackson County, IN — five miles out",
+      "stars": 5,
+      "title": "Quietly the best landscaping spot in the county.",
+      "body": "Five miles out a county road, easy to drive past. Don't. They've got plants you can't find in a chain store, and the people running it actually know what'll work in your yard. If you're new to gardening, they'll tell you straight what to plant where instead of just selling you the prettiest thing on the rack."
+    },
+    {
+      "name": "Seymour Brewing Co.",
+      "category": "Brewery",
+      "lat": 38.9595, "lon": -85.8915,
+      "address": "112 W 2nd St, Seymour, IN",
+      "stars": 4,
+      "title": "Small-town brewery doing real work.",
+      "body": "It's new, but the beer's good and the spot fits downtown nicely. They take their craft seriously without being pretentious about it. Drop in, order a flight, talk to whoever's pouring. That's the whole point of a town having its own brewery."
+    },
+    {
+      "name": "Sexton Advertising",
+      "category": "Print / Signage",
+      "lat": 38.9590, "lon": -85.8930,
+      "address": "Just off downtown, Seymour, IN",
+      "stars": 5,
+      "title": "If your team has shirts, Sexton probably printed them.",
+      "body": "I've used Sexton for shirts, magnets, vehicle wraps, and signs. Every job came back right the first time. They quote fair, they don't try to upsell you into stuff you don't need, and the turnaround is way faster than you'd expect from a small shop. That's not luck — that's a well-run print shop."
+    },
+    {
+      "name": "Seymour Decorating Center",
+      "category": "Paint / Design",
+      "lat": 38.9580, "lon": -85.8920,
+      "address": "Seymour, IN",
+      "stars": 5,
+      "title": "Walk in for paint, leave with a plan.",
+      "body": "I've watched these folks talk somebody through a whole-house repaint who came in just looking for a quart of trim. They didn't push the upsell — they actually helped. If you're nervous about color choices, this is the room to go to. Way more than a paint store."
+    },
+    {
+      "name": "Townhouse Cafe",
+      "category": "Cafe",
+      "lat": 38.9596, "lon": -85.8918,
+      "address": "115 W 2nd St, Seymour, IN",
+      "stars": 4,
+      "title": "Daily specials worth showing up for.",
+      "body": "The Townhouse runs a different special every day and the locals know which ones to chase. Reasonable prices, big portions, the kind of place where the staff remember you on the second visit. Park anywhere downtown and walk."
+    },
+    {
+      "name": "Jackson County Public Library — Seymour",
+      "category": "Library",
+      "lat": 38.9601, "lon": -85.8896,
+      "address": "303 W 2nd St, Seymour, IN",
+      "stars": 5,
+      "title": "Way more than a place to borrow books.",
+      "body": "Free wifi, kid programs, public computers, and meeting rooms anybody can book. They run summer reading challenges, tech help sessions, and movie nights. If you've got kids and you're looking for free stuff to do, the library's calendar is goldmine territory."
+    },
+    {
+      "name": "Schneck Medical Center",
+      "category": "Hospital",
+      "lat": 38.9583, "lon": -85.8970,
+      "address": "411 W Tipton St, Seymour, IN",
+      "stars": 4,
+      "title": "We're lucky to have it.",
+      "body": "Most towns this size don't have a full-service hospital. Schneck does ER, surgery, OB, oncology, the works. The ER's the part most people see — wait times can be long when it's busy, but the staff is solid and they keep you informed. Big employer in town, too."
+    }
+  ]
+}

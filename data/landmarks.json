@@ -1,0 +1,39 @@
+{
+  "_comment": "Public offices, schools, parks, downtown landmarks, and TCG. Coordinates are approximate where exact addresses aren't public; the popup links to source/Wikipedia for details.",
+  "updatedAt": "2026-04-29T00:00:00Z",
+  "categoryColors": {
+    "TCG":        "#fbbf24",
+    "City":       "#22d3ee",
+    "Public Safety": "#f87171",
+    "School":     "#a78bfa",
+    "Library":    "#34d399",
+    "Park":       "#34d399",
+    "Postal":     "#22d3ee",
+    "Court":      "#f87171",
+    "Hospital":   "#f87171",
+    "Landmark":   "#a78bfa"
+  },
+  "items": [
+    { "name": "That Computer Guy 26 / TCG Solutions",       "category": "TCG",            "lat": 38.9590, "lon": -85.8902, "address": "Seymour, IN — by appointment", "phone": "812-414-9097", "url": "https://thatcomputerguy26.org", "blurb": "Gary's shop. Computer repairs, business IT, websites, AI tools. Call before stopping by." },
+    { "name": "Seymour City Hall",                           "category": "City",           "lat": 38.9588, "lon": -85.8901, "address": "301-309 N Chestnut St, Seymour, IN 47274", "url": "https://www.seymourin.org", "blurb": "City offices, mayor, public-comment intake." },
+    { "name": "George Green Chambers (Council)",            "category": "City",           "lat": 38.9588, "lon": -85.8902, "address": "301-309 N Chestnut St, Seymour, IN 47274", "url": "https://www.seymourin.org", "blurb": "Where City Council meets, biweekly at 7 PM." },
+    { "name": "Seymour Police Department",                   "category": "Public Safety",  "lat": 38.9583, "lon": -85.8908, "address": "205 N Ewing St, Seymour, IN 47274", "phone": "812-522-1234", "url": "https://www.seymourpolice.org", "blurb": "City police HQ." },
+    { "name": "Seymour Fire Department (Station 1)",         "category": "Public Safety",  "lat": 38.9606, "lon": -85.8898, "address": "311 N Walnut St, Seymour, IN 47274", "blurb": "Fire HQ + EMS." },
+    { "name": "Seymour Fire Station 2",                      "category": "Public Safety",  "lat": 38.9482, "lon": -85.8765, "address": "1402 E Tipton St, Seymour, IN 47274", "blurb": "East-side fire station." },
+    { "name": "Jackson County Sheriff's Office",             "category": "Public Safety",  "lat": 38.8836, "lon": -86.0405, "address": "220 E Walnut St, Brownstown, IN 47220", "phone": "812-358-2141", "url": "https://www.jacksoncosheriff.com", "blurb": "Jackson County HQ — Brownstown." },
+    { "name": "Jackson County Courthouse",                   "category": "Court",          "lat": 38.8829, "lon": -86.0400, "address": "111 S Main St, Brownstown, IN 47220", "url": "https://www.jacksoncounty.in.gov", "blurb": "County courts and clerk." },
+    { "name": "Jackson County Public Library — Seymour",     "category": "Library",        "lat": 38.9601, "lon": -85.8896, "address": "303 W 2nd St, Seymour, IN 47274", "phone": "812-522-3412", "url": "https://www.myjclibrary.org", "blurb": "Main library branch downtown." },
+    { "name": "U.S. Post Office — Seymour",                  "category": "Postal",         "lat": 38.9575, "lon": -85.8925, "address": "115 W 2nd St, Seymour, IN 47274", "url": "https://www.usps.com", "blurb": "Downtown post office." },
+    { "name": "Schneck Medical Center",                      "category": "Hospital",       "lat": 38.9583, "lon": -85.8970, "address": "411 W Tipton St, Seymour, IN 47274", "phone": "812-522-2349", "url": "https://www.schneckmed.org", "blurb": "Major employer, full-service hospital." },
+    { "name": "Seymour High School",                         "category": "School",         "lat": 38.9696, "lon": -85.8718, "address": "1350 W 2nd St, Seymour, IN 47274", "url": "https://shs.seymourschools.org", "blurb": "SHS — home of the Owls." },
+    { "name": "Seymour Middle School",                       "category": "School",         "lat": 38.9647, "lon": -85.8825, "address": "920 N Walnut St, Seymour, IN 47274", "url": "https://www.scsc.k12.in.us", "blurb": "Public middle school." },
+    { "name": "Cortland Elementary",                         "category": "School",         "lat": 38.9870, "lon": -85.9530, "address": "8533 N County Road 25 W, Seymour, IN 47274", "url": "https://www.scsc.k12.in.us", "blurb": "Rural elementary school NW of town." },
+    { "name": "Margaret R. Brown Elementary",                "category": "School",         "lat": 38.9613, "lon": -85.8780, "address": "404 N Cottage Dr, Seymour, IN 47274", "url": "https://www.scsc.k12.in.us", "blurb": "Public elementary." },
+    { "name": "Emerson Elementary",                          "category": "School",         "lat": 38.9589, "lon": -85.8780, "address": "504 S Vine St, Seymour, IN 47274", "url": "https://www.scsc.k12.in.us", "blurb": "Public elementary." },
+    { "name": "Seymour Sports Complex / Gaiser Park",        "category": "Park",           "lat": 38.9468, "lon": -85.8765, "address": "S Park Ave, Seymour, IN 47274", "blurb": "Ball fields, walking paths, playgrounds." },
+    { "name": "Shields Park",                                "category": "Park",           "lat": 38.9645, "lon": -85.8847, "address": "Park Ave & Indianapolis Ave, Seymour, IN 47274", "blurb": "Playground, basketball, pavilion." },
+    { "name": "Freeman Field Heritage District",             "category": "Landmark",       "lat": 38.9215, "lon": -85.8554, "address": "Freeman Field, Seymour, IN", "url": "https://en.wikipedia.org/wiki/Freeman_Army_Airfield", "blurb": "WWII airfield site, museum and heritage." },
+    { "name": "Crossroads of America Mural / Downtown",      "category": "Landmark",       "lat": 38.9595, "lon": -85.8908, "address": "Chestnut St & 2nd St, Seymour, IN", "url": "https://en.wikipedia.org/wiki/Seymour,_Indiana", "blurb": "Heart of downtown — historic district." },
+    { "name": "John Mellencamp 'Small Town' marker",         "category": "Landmark",       "lat": 38.9595, "lon": -85.8920, "address": "Downtown Seymour", "url": "https://en.wikipedia.org/wiki/John_Mellencamp", "blurb": "Mellencamp grew up in Seymour — the inspiration for 'Small Town'." }
+  ]
+}
