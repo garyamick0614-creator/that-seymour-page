@@ -121,9 +121,11 @@
       "title": "Seymour schools under pressure",
       "severity": "info",
       "kind": "place",
-      "address": "Seymour Community Schools",
+      "address": "1350 W 2nd St, Seymour, IN 47274",
       "blurb": "Why the 5,000-student district sits in a crossfire of politics, policing, and budget pressure.",
-      "mappable": false
+      "mappable": true,
+      "lat": 38.955,
+      "lon": -85.907
     },
     {
       "slug": "microcosm",
@@ -193,9 +195,11 @@
       "title": "Jackson County Jail \u2014 roster analysis & booking patterns",
       "severity": "info",
       "kind": "place",
-      "address": "Jackson County Jail, Brownstown",
+      "address": "220 E Walnut St, Brownstown, IN 47220",
       "blurb": "What public booking data shows about who ends up in jail and why.",
-      "mappable": false
+      "mappable": true,
+      "lat": 38.8836,
+      "lon": -86.0405
     },
     {
       "slug": "business-crossfire",
@@ -220,18 +224,22 @@
       "title": "Self-investigation profile \u2014 Gary Dawayne Amick",
       "severity": "info",
       "kind": "place",
-      "address": "That Computer Guy 26, Seymour",
+      "address": "390 S Jackson Park Dr, Seymour, IN 47274",
       "blurb": "A self-investigation profile of IBE's own founder. Transparency document and IBE template.",
-      "mappable": false
+      "mappable": true,
+      "lat": 38.9598,
+      "lon": -85.8733
     },
     {
       "slug": "verified-taco-bell-scottsburg",
       "title": "Verified \u2014 Taco Bell Scottsburg",
       "severity": "info",
       "kind": "place",
-      "address": "Scottsburg, IN",
+      "address": "1153 W McClain Ave, Scottsburg, IN 47170",
       "blurb": "Taco Bell Scottsburg under the IBE methodology \u2014 neighboring Scott County.",
-      "mappable": false
+      "mappable": true,
+      "lat": 38.6852,
+      "lon": -85.7837
     },
     {
       "slug": "dons",
