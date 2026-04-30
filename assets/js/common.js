@@ -19,6 +19,7 @@
     { href: '/blog.html',        label: 'Porch' },
     { href: '/tip.html',         label: 'Tip' },
     { href: '/about.html',       label: 'About' },
+    { href: '/status.html',      label: 'Status' },
     { href: '/hub.html',         label: 'Hub' }
   ];
 

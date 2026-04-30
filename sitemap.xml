@@ -14,5 +14,7 @@
   <url><loc>https://that-seymour-page.netlify.app/blog.html</loc><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/tip.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/community.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/status.html</loc><changefreq>daily</changefreq><priority>0.4</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/hub.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>

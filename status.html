@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status &mdash; That Seymour Page</title>
+<meta name="description" content="Live status dashboard for That Seymour Page — data freshness, last maintenance run, endpoint health, map point counts.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .status-tile {
+    background: var(--panel);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+  .status-tile.ok { border-left: 4px solid var(--accent-3); }
+  .status-tile.warn { border-left: 4px solid var(--accent); }
+  .status-tile.fail { border-left: 4px solid var(--accent-4); }
+  .status-name { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-weight: 700; }
+  .status-val { font-size: 22px; font-weight: 800; margin: 4px 0; line-height: 1.1; color: var(--text); }
+  .status-sub { font-size: 12px; color: var(--muted); }
+  .probe-tbl { width: 100%; border-collapse: collapse; }
+  .probe-tbl td { padding: 6px 10px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .probe-tbl .ok { color: var(--accent-3); font-weight: 600; }
+  .probe-tbl .fail { color: var(--accent-4); font-weight: 600; }
+  .url-cell { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--dim); word-break: break-all; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Status</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">What's working right now</h1>
+    <p class="muted">Live dashboard. Pulled directly from the data files the site uses to render. If something's broken, it shows up here first.</p>
+
+    <h3 class="section-title">Live data feeds</h3>
+    <div class="status-grid" id="feedStatus"></div>
+
+    <h3 class="section-title mt-4">Map data</h3>
+    <div class="status-grid" id="mapStatus"></div>
+
+    <h3 class="section-title mt-4">Last maintenance run</h3>
+    <div id="maintenanceBlock">
+      <p class="muted">Loading&hellip;</p>
+    </div>
+
+    <h3 class="section-title mt-4">Endpoint probes</h3>
+    <div class="card" id="probesCard"><p class="muted">Wait for the next maintenance run (1:05 AM Indianapolis).</p></div>
+
+    <h3 class="section-title mt-4">How it stays fresh</h3>
+    <ul>
+      <li><strong>Every 2 hours:</strong> weather/news/events are pulled by a Netlify Scheduled Function from National Weather Service, public RSS feeds, and the curated event list.</li>
+      <li><strong>Every 5 minutes:</strong> traffic camera images refresh on the Traffic page when you have it open.</li>
+      <li><strong>Daily at 1:05 AM:</strong> a remote agent in Anthropic's cloud probes every endpoint, scrapes city/school sites for new events, writes results here, and commits any changes.</li>
+    </ul>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+function timeAgo(iso) {
+  if (!iso) return 'unknown';
+  const ms = Date.now() - new Date(iso).getTime();
+  if (ms < 60_000) return 'just now';
+  const m = Math.floor(ms / 60_000); if (m < 60) return m + 'm ago';
+  const h = Math.floor(m / 60); if (h < 24) return h + 'h ago';
+  const d = Math.floor(h / 24); return d + 'd ago';
+}
+function freshnessClass(iso, freshHours) {
+  if (!iso) return 'fail';
+  const h = (Date.now() - new Date(iso).getTime()) / 3600000;
+  return h < freshHours ? 'ok' : 'warn';
+}
+function tile(host, name, val, sub, cls) {
+  host.insertAdjacentHTML('beforeend',
+    `<div class="status-tile ${cls || 'ok'}">
+      <div class="status-name">${SH.escapeHTML(name)}</div>
+      <div class="status-val">${val}</div>
+      <div class="status-sub">${sub || ''}</div>
+    </div>`);
+}
+
+(async function () {
+  const feedHost = document.getElementById('feedStatus');
+  const mapHost  = document.getElementById('mapStatus');
+
+  const w = await SH.loadJSON('/data/weather.json');
+  if (w) tile(feedHost, 'Weather', (w.current||{}).temperature + '°' + ((w.current||{}).temperatureUnit||''),
+    'Updated ' + timeAgo(w.updatedAt) + ' · ' + (w.daily||[]).length + ' periods · ' + (w.alerts||[]).length + ' alerts',
+    freshnessClass(w.updatedAt, 4));
+  else tile(feedHost, 'Weather', 'offline', 'feed unreachable', 'fail');
+
+  const n = await SH.loadJSON('/data/news.json');
+  if (n) tile(feedHost, 'News', (n.indiana||[]).length + (n.us||[]).length + (n.global||[]).length,
+    'Updated ' + timeAgo(n.updatedAt) + ' · IN: ' + (n.indiana||[]).length + ' · US: ' + (n.us||[]).length + ' · global: ' + (n.global||[]).length,
+    freshnessClass(n.updatedAt, 4));
+  else tile(feedHost, 'News', 'offline', 'feed unreachable', 'fail');
+
+  const e = await SH.loadJSON('/data/events.json');
+  if (e) tile(feedHost, 'Events', ((e.upcoming||[]).length + (e.past||[]).length),
+    'Updated ' + timeAgo(e.updatedAt) + ' · ' + (e.upcoming||[]).length + ' upcoming · ' + (e.past||[]).length + ' past',
+    freshnessClass(e.updatedAt, 4));
+  else tile(feedHost, 'Events', 'offline', 'feed unreachable', 'fail');
+
+  // Map data tiles
+  const dataFiles = [
+    { path: '/data/osm-places.json',    label: 'OSM verified',  countKey: 'places' },
+    { path: '/data/businesses.json',    label: 'Top 20',        countKey: 'businesses' },
+    { path: '/data/landmarks.json',     label: 'Landmarks',     countKey: 'items' },
+    { path: '/data/shopping-fast-food.json', label: 'Retail/Food', countKey: 'places' },
+    { path: '/data/ibe-articles.json',  label: 'IBE articles',  countKey: 'articles' },
+    { path: '/data/gary-reviews.json',  label: "Gary's picks",  countKey: 'reviews' },
+    { path: '/data/community.json',     label: 'Community',     countKey: null }
+  ];
+  let totalMappable = 0;
+  for (const df of dataFiles) {
+    const j = await SH.loadJSON(df.path);
+    if (!j) { tile(mapHost, df.label, '—', 'unreachable', 'fail'); continue; }
+    let total = 0, mappable = 0;
+    if (df.countKey) {
+      const arr = j[df.countKey] || [];
+      total = arr.length;
+      mappable = arr.filter(x => x.mappable !== false && typeof x.lat === 'number').length;
+    } else if (j.groups) {
+      total = Object.values(j.groups).reduce((s, g) => s + (g.items || []).length, 0);
+      mappable = 0;
+    }
+    totalMappable += mappable;
+    tile(mapHost, df.label, total, mappable + ' mappable · ' + (j.updatedAt ? timeAgo(j.updatedAt) : 'static'),
+      mappable > 0 || !df.countKey ? 'ok' : 'warn');
+  }
+  tile(mapHost, 'Total map pins', totalMappable, 'across all layers', 'ok');
+
+  // Maintenance run
+  const m = await SH.loadJSON('/data/_maintenance.json');
+  const block = document.getElementById('maintenanceBlock');
+  const probesCard = document.getElementById('probesCard');
+  if (m && m.runAt) {
+    const ev = m.events || {};
+    block.innerHTML = `<div class="card">
+      <div class="status-name">Last run</div>
+      <div class="status-val">${SH.escapeHTML(timeAgo(m.runAt))}</div>
+      <div class="status-sub">${SH.escapeHTML(new Date(m.runAt).toLocaleString())}</div>
+      <div class="muted small mt-2">Events added: ${ev.added || 0} · updated: ${ev.updated || 0}</div>
+      ${(m.notes||[]).length ? '<div class="mt-2"><strong>Notes:</strong><ul>' + m.notes.map(n => '<li class="muted small">' + SH.escapeHTML(n) + '</li>').join('') + '</ul></div>' : ''}
+    </div>`;
+    if ((m.probes||[]).length) {
+      const ok = m.probes.filter(p => p.ok).length, fail = m.probes.length - ok;
+      probesCard.innerHTML = `<div style="margin-bottom:10px"><span class="pill pill-ok">${ok} OK</span> ${fail ? `<span class="pill pill-alert">${fail} failed</span>` : ''}</div>
+        <table class="probe-tbl"><tbody>${m.probes.map(p =>
+          `<tr><td><span class="${p.ok ? 'ok' : 'fail'}">${p.ok ? '●' : '✗'}</span> ${p.status||''}</td>
+            <td>${p.ms ? p.ms + 'ms' : ''}</td>
+            <td class="url-cell">${SH.escapeHTML(p.url||'')}</td></tr>`).join('')}</tbody></table>`;
+    }
+  } else {
+    block.innerHTML = `<div class="card">
+      <p class="muted">No maintenance run yet. The first cron-fired run is scheduled for <strong>1:05 AM Indianapolis</strong> (5:05 AM UTC). After that, this section will show what the agent did, the probe results, and any notes.</p>
+    </div>`;
+  }
+})();
+</script>
+
+</body>
+</html>
