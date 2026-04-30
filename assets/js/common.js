@@ -69,7 +69,7 @@
     '/map.html':         ['Top 20 places → /businesses.html', 'IBE reviews → /reviews.html', 'Traffic cams → /traffic.html', 'Submit a place → /tip.html'],
     '/qa.html':          ['Submit a question → /tip.html', 'Events list → /events.html', 'Schools info → /schools.html'],
     '/blog.html':        ['Recent posts → /blog.html', 'Submit a tip → /tip.html', 'Today\'s events → /events.html'],
-    '/tip.html':         ['Call 812-414-9097 → tel:8124149097', 'Email Gary → mailto:gary@thatcomputerguy26.org', 'Add an event → /tip.html'],
+    '/tip.html':         ['Call 812-414-9097 → tel:8124149097', 'Email Gary → mailto:gary.amick0614@gmail.com', 'Add an event → /tip.html'],
     '/about.html':       ['TCG main site → https://thatcomputerguy26.org', 'Indiana Businesses Exposed → https://ibetcg.netlify.app', 'Call Gary → tel:8124149097'],
     '/hub.html':         ['Everything in one place → /hub.html', 'TCG Solutions → https://thatcomputerguy26.org', 'IBE → https://ibetcg.netlify.app']
   };
@@ -129,7 +129,7 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:8124149097">812-414-9097</a></li>
-          <li><a href="mailto:gary@thatcomputerguy26.org">gary@thatcomputerguy26.org</a></li>
+          <li><a href="mailto:gary.amick0614@gmail.com">gary.amick0614@gmail.com</a></li>
           <li class="muted small" style="color:var(--muted);font-size:12px;margin-top:6px">
             Gary Amick &mdash; Seymour, IN
           </li>

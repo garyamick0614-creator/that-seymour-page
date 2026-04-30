@@ -62,7 +62,7 @@
   <section class="section">
     <p class="eyebrow">Traffic</p>
     <h1 style="margin:6px 0 12px;font-size:32px">Live cameras around Seymour</h1>
-    <p class="muted">INDOT and local traffic cams pulled live from <code>api.thatcomputerguy26.org</code>. The page refreshes by itself every 5 minutes. Click a tile for a bigger picture and the camera details. If a feed is offline it gets quietly hidden &mdash; we don't show stuff that's broken.</p>
+    <p class="muted">Live traffic cameras around town and on I-65, US-50, and SR-46. The page refreshes by itself every 5 minutes. Click a tile for a bigger picture and the camera details. If a camera goes offline it gets quietly hidden &mdash; we don't show stuff that's broken.</p>
 
     <div class="filter-bar">
       <span id="refreshChip" class="chip chip-info"><span class="spinner"></span> loading cameras&hellip;</span>
@@ -73,10 +73,6 @@
     </div>
 
     <div class="cam-grid" id="camGrid"></div>
-
-    <h3 class="section-title mt-4">Live data sources</h3>
-    <p class="muted small" style="margin:0 0 10px">These are the endpoints feeding this page. Green = working right now. Red = down. Hidden cards aren't a bug &mdash; they're routes that haven't been deployed yet.</p>
-    <div class="source-grid" id="srcGrid"></div>
 
     <h3 class="section-title mt-4">Quick info</h3>
     <ul>
@@ -114,22 +110,10 @@ async function probe(src) {
   }
 }
 
-function renderSources(results) {
+function renderSources(_results) {
+  // Source-status panel removed from public UI. No-op to keep call sites safe.
   const grid = document.getElementById('srcGrid');
-  // Hide entirely-broken endpoints (status 0 or 404). Show 200/4xx-with-data.
-  const visible = results.filter(r => r.ok || (r.status >= 200 && r.status < 500));
-  if (!visible.length) {
-    grid.innerHTML = '<p class="muted small">All sources offline. Try again in 5 minutes or check '
-      + '<a href="' + TCG_API + '" target="_blank" rel="noopener">api.thatcomputerguy26.org</a>.</p>';
-    return;
-  }
-  grid.innerHTML = visible.map(r =>
-    '<div class="src-card' + (r.ok ? '' : ' bad') + '">'
-    + '<div class="src-name">' + SH.escapeHTML(r.label) + '</div>'
-    + '<div class="src-status">' + (r.ok ? '&#x25CF; live · ' + r.ms + 'ms' : '&#x25CF; ' + r.status) + '</div>'
-    + '<div class="muted small" style="margin-top:4px;word-break:break-all">' + SH.escapeHTML(r.url) + '</div>'
-    + '</div>'
-  ).join('');
+  if (grid) grid.style.display = 'none';
 }
 
 async function loadCameras() {
