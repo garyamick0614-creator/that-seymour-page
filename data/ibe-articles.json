@@ -246,9 +246,11 @@
       "title": "Don's Auto Sales \u2014 Franklin, Indiana",
       "severity": "warning",
       "kind": "place",
-      "address": "Franklin, IN",
-      "blurb": "Levi was in recovery, working, saving for a car. Then Don's happened.",
-      "mappable": false
+      "address": "North Vernon, IN",
+      "blurb": "Levi was in recovery, working, saving for a car. Then Don's happened. (Located in North Vernon, IN \u2014 corrected from Franklin.)",
+      "mappable": true,
+      "lat": 39.0059,
+      "lon": -85.6294
     },
     {
       "slug": "ransomware",
@@ -435,9 +437,119 @@
       "title": "Superior \u2014 investigated business",
       "severity": "warning",
       "kind": "place",
-      "address": "Seymour, IN",
+      "address": "E Tipton St, Seymour, IN",
       "blurb": "Investigation of Superior \u2014 see article for specifics.",
-      "mappable": false
+      "mappable": true,
+      "lat": 38.9577,
+      "lon": -85.8638
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-subway",
+      "title": "Subway (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.9577,
+      "lon": -85.8691,
+      "address": "1280 E Tipton St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series for service issues. Click to read the full breakdown."
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-mcdonalds",
+      "title": "McDonald's (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.9585,
+      "lon": -85.876,
+      "address": "913 E Tipton St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series for service issues. Click to read the full breakdown."
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-taco-bell",
+      "title": "Taco Bell (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.9586,
+      "lon": -85.8665,
+      "address": "E Tipton St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series for service issues. Click to read the full breakdown."
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-dominos-pizza",
+      "title": "Domino's Pizza (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.9593,
+      "lon": -85.8906,
+      "address": "211 N Chestnut St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series for service issues. Click to read the full breakdown."
+    },
+    {
+      "slug": "seymour-bottom-10",
+      "subSlug": "bottom10-white-castle",
+      "title": "White Castle (cited in Seymour Bottom 10)",
+      "severity": "warning",
+      "kind": "place",
+      "lat": 38.9576,
+      "lon": -85.8559,
+      "address": "E Tipton St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Cited in the IBE Seymour Bottom 10 series for service issues. Click to read the full breakdown."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-aisin-usa-manufacturing",
+      "title": "Aisin USA Manufacturing (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.9677,
+      "lon": -85.8584,
+      "address": "Seymour, IN",
+      "mappable": true,
+      "blurb": "Largest auto-parts manufacturer in Jackson County. Featured in IBE Manufacturing Audit."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-cummins-seymour-engine-plant",
+      "title": "Cummins Seymour Engine Plant (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.9623,
+      "lon": -85.8786,
+      "address": "E 3rd St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Major Seymour employer, featured in IBE Manufacturing Audit."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-valeo",
+      "title": "Valeo (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.93,
+      "lon": -85.8994,
+      "address": "A Avenue E, Seymour, IN",
+      "mappable": true,
+      "blurb": "Lighting/electronics manufacturer (1231 A Avenue East). Featured in IBE Manufacturing Audit."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-nippon-steel-pipe-america",
+      "title": "Nippon Steel Pipe America (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.9677,
+      "lon": -85.8688,
+      "address": "1515 E 4th St, Seymour, IN",
+      "mappable": true,
+      "blurb": "Steel-pipe manufacturer. Featured in IBE Manufacturing Audit."
     }
   ]
 }

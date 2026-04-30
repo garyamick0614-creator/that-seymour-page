@@ -1,0 +1,68 @@
+{
+  "superior": {
+    "lat": 38.957667,
+    "lon": -85.863751,
+    "match": "Superior Auto, East Tipton Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Superior Auto, Seymour, IN"
+  },
+  "bottom10-subway": {
+    "lat": 38.957742,
+    "lon": -85.869066,
+    "match": "Subway, 1280, East Tipton Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Subway, Seymour, IN"
+  },
+  "bottom10-mcdonalds": {
+    "lat": 38.958537,
+    "lon": -85.875958,
+    "match": "McDonald's, 913, East Tipton Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "McDonald's, Seymour, IN"
+  },
+  "bottom10-tacobell": {
+    "lat": 38.958598,
+    "lon": -85.866516,
+    "match": "Taco Bell, East Tipton Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Taco Bell, Seymour, IN"
+  },
+  "bottom10-whitecastle": {
+    "lat": 38.957579,
+    "lon": -85.855912,
+    "match": "White Castle, East Tipton Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "White Castle, Seymour, IN"
+  },
+  "mfg-cummins": {
+    "lat": 38.962314,
+    "lon": -85.878552,
+    "match": "Cummins Seymour Engine Plant, East 3rd Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Cummins, Seymour, IN"
+  },
+  "mfg-nippon": {
+    "lat": 38.967689,
+    "lon": -85.868842,
+    "match": "Nippon Steel Pipe America, Inc., 1515, East 4th Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Nippon Steel Pipe America, Seymour, IN"
+  },
+  "dons": {
+    "lat": 39.005875,
+    "lon": -85.629433,
+    "match": "North State Street, Oak Meadow, North Vernon, Jennings County, Indiana, 47265, United States",
+    "query": "Don's Auto, North Vernon, IN"
+  },
+  "bottom10-dominos": {
+    "lat": 38.95928,
+    "lon": -85.890555,
+    "match": "211, North Chestnut Street, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Dominos Pizza Seymour Indiana"
+  },
+  "mfg-aisin-usa": {
+    "lat": 38.967674,
+    "lon": -85.858407,
+    "match": "Aisin, Seymour, Jackson County, Indiana, United States",
+    "query": "Aisin Seymour"
+  },
+  "mfg-valeo": {
+    "lat": 38.929987,
+    "lon": -85.899429,
+    "match": "A Avenue East, Seymour, Jackson County, Indiana, 47274, United States",
+    "query": "Valeo Sylvania, Seymour, IN"
+  }
+}
