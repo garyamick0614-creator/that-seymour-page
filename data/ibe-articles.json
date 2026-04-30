@@ -509,8 +509,8 @@
       "title": "Aisin USA Manufacturing (cited in IBE Manufacturing Audit)",
       "severity": "info",
       "kind": "place",
-      "lat": 38.9677,
-      "lon": -85.8584,
+      "lat": 38.967723,
+      "lon": -85.85925,
       "address": "Seymour, IN",
       "mappable": true,
       "blurb": "Largest auto-parts manufacturer in Jackson County. Featured in IBE Manufacturing Audit."
@@ -550,6 +550,18 @@
       "address": "1515 E 4th St, Seymour, IN",
       "mappable": true,
       "blurb": "Steel-pipe manufacturer. Featured in IBE Manufacturing Audit."
+    },
+    {
+      "slug": "jackson-manufacturing-audit",
+      "subSlug": "mfg-cummins-machining-center",
+      "title": "Cummins Seymour Machining Center (cited in IBE Manufacturing Audit)",
+      "severity": "info",
+      "kind": "place",
+      "lat": 38.960635,
+      "lon": -85.875984,
+      "address": "Seymour, IN (OSM-verified industrial site)",
+      "mappable": true,
+      "blurb": "Second Cummins facility in Seymour \u2014 separate from the Engine Plant. Featured in IBE Manufacturing Audit."
     }
   ]
 }

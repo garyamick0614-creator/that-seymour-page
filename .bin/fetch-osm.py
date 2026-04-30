@@ -2,7 +2,7 @@
 Every entry is real OSM data with real coordinates contributed by mappers."""
 import urllib.request, urllib.parse, json, time, sys
 
-BBOX = "38.91,-85.94,38.99,-85.83"  # south,west,north,east — Seymour, IN
+BBOX = "38.70,-86.10,39.00,-85.70"  # south,west,north,east — Jackson County wide
 
 QUERY = """
 [out:json][timeout:60];

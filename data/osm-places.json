@@ -1,8 +1,8 @@
 {
   "_comment": "Verified businesses and amenities in Seymour, IN. Source: OpenStreetMap via Overpass API. Every entry has real coordinates from OSM contributors. Run .bin/fetch-osm.py to refresh.",
-  "updatedAt": "2026-04-30T02:42:32Z",
+  "updatedAt": "2026-04-30T03:34:12Z",
   "source": "OpenStreetMap (Overpass API)",
-  "bbox": "38.91,-85.94,38.99,-85.83",
+  "bbox": "38.70,-86.10,39.00,-85.70",
   "categoryColors": {
     "Restaurant": "#fbbf24",
     "Fast Food": "#f87171",
@@ -118,6 +118,24 @@
       "mappable": true
     },
     {
+      "name": "Alpha Church",
+      "category": "Faith",
+      "lat": 38.810393,
+      "lon": -85.721415,
+      "osm_id": 358648079,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Bethany Church",
+      "category": "Faith",
+      "lat": 38.771723,
+      "lon": -85.860805,
+      "osm_id": 358649025,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
       "name": "Bethel African Methodist Episcopal Church",
       "category": "Faith",
       "lat": 38.955713,
@@ -129,6 +147,33 @@
       "mappable": true
     },
     {
+      "name": "Cana Church",
+      "category": "Faith",
+      "lat": 38.841827,
+      "lon": -85.767156,
+      "osm_id": 358650834,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Conologue Church",
+      "category": "Faith",
+      "lat": 38.98422,
+      "lon": -85.806363,
+      "osm_id": 358652022,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Delaney Church",
+      "category": "Faith",
+      "lat": 38.747278,
+      "lon": -86.076645,
+      "osm_id": 358652654,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
       "name": "First Presbyterian Church",
       "category": "Faith",
       "lat": 38.959734,
@@ -136,6 +181,71 @@
       "osm_id": 1185392292,
       "religion": "christian",
       "denomination": "presbyterian",
+      "mappable": true
+    },
+    {
+      "name": "Honeytown Church",
+      "category": "Faith",
+      "lat": 38.921164,
+      "lon": -86.030259,
+      "osm_id": 358656569,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Marion Church",
+      "category": "Faith",
+      "lat": 38.861431,
+      "lon": -85.753467,
+      "osm_id": 358659325,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Mount Zion Church",
+      "category": "Faith",
+      "lat": 38.8745,
+      "lon": -85.717747,
+      "osm_id": 358661138,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "New Harmony Church",
+      "category": "Faith",
+      "lat": 38.779779,
+      "lon": -85.790525,
+      "osm_id": 358661610,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "New Hope Church",
+      "category": "Faith",
+      "lat": 38.889544,
+      "lon": -85.81784,
+      "osm_id": 358661637,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "New Life Christian Center",
+      "category": "Faith",
+      "lat": 38.755216,
+      "lon": -85.804465,
+      "osm_id": 781544880,
+      "address": "1200 North Church Street, Austin, IN",
+      "url": "https://www.facebook.com/NLCCAUSTIN/",
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "New Providence Church",
+      "category": "Faith",
+      "lat": 38.72978,
+      "lon": -85.757467,
+      "osm_id": 358661688,
+      "religion": "christian",
       "mappable": true
     },
     {
@@ -150,6 +260,24 @@
       "mappable": true
     },
     {
+      "name": "Pleasant Grove Church",
+      "category": "Faith",
+      "lat": 38.928108,
+      "lon": -86.092205,
+      "osm_id": 358663613,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Russell Chapel",
+      "category": "Faith",
+      "lat": 38.778478,
+      "lon": -85.946806,
+      "osm_id": 358665288,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
       "name": "Saint Ambrose Church",
       "category": "Faith",
       "lat": 38.955174,
@@ -159,6 +287,43 @@
       "url": "http://stambrosecatholic.com/parish/",
       "religion": "christian",
       "denomination": "roman_catholic",
+      "mappable": true
+    },
+    {
+      "name": "Saint Joseph Catholic Church",
+      "category": "Faith",
+      "lat": 38.956165,
+      "lon": -85.741916,
+      "osm_id": 358665887,
+      "religion": "christian",
+      "denomination": "roman_catholic",
+      "mappable": true
+    },
+    {
+      "name": "Wesley Chapel",
+      "category": "Faith",
+      "lat": 38.783051,
+      "lon": -85.757805,
+      "osm_id": 358670173,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Weston Church",
+      "category": "Faith",
+      "lat": 38.908944,
+      "lon": -85.72247,
+      "osm_id": 358670362,
+      "religion": "christian",
+      "mappable": true
+    },
+    {
+      "name": "Zoah Church",
+      "category": "Faith",
+      "lat": 38.703669,
+      "lon": -85.822469,
+      "osm_id": 358671027,
+      "religion": "christian",
       "mappable": true
     },
     {
@@ -189,6 +354,18 @@
       "url": "https://www.culvers.com/restaurants/seymour-in-sandy-creek",
       "hours": "Mo-Th 10:00-22:00; Fr-Sa 10:00-23:00; Su 10:00-22:00",
       "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "Dairy Queen",
+      "category": "Fast Food",
+      "lat": 38.746326,
+      "lon": -85.806743,
+      "osm_id": 934477176,
+      "address": "305 North US 31, Austin, IN 47102",
+      "phone": "+1 812-794-2332",
+      "url": "https://www.dairyqueen.com/us-en/locator/Detail/1719",
+      "cuisine": "ice_cream",
       "mappable": true
     },
     {
@@ -227,6 +404,16 @@
       "lon": -85.83718,
       "osm_id": 591079400,
       "url": "https://www.mcdonalds.com/us/en-us/location/in/seymour/427-stevens-way/15568.html",
+      "cuisine": "burger",
+      "mappable": true
+    },
+    {
+      "name": "McDonald's",
+      "category": "Fast Food",
+      "lat": 38.881585,
+      "lon": -86.039885,
+      "osm_id": 982006646,
+      "url": "https://www.mcdonalds.com/us/en-us/location/in/brownstown/321-n-main-st/12365.html",
       "cuisine": "burger",
       "mappable": true
     },
@@ -352,6 +539,16 @@
     {
       "name": "Circle K",
       "category": "Gas / Fuel",
+      "lat": 38.876626,
+      "lon": -86.043788,
+      "osm_id": 1039395013,
+      "address": "107 West Commerce Street, Brownstown, IN 47220",
+      "phone": "+1-812-358-2175",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Gas / Fuel",
       "lat": 38.958412,
       "lon": -85.849058,
       "osm_id": 9499760653,
@@ -371,9 +568,52 @@
     {
       "name": "Circle K",
       "category": "Gas / Fuel",
+      "lat": 38.741594,
+      "lon": -85.81383,
+      "osm_id": 823985901,
+      "address": "714 West Main Street, Austin, IN 47102",
+      "url": "https://www.circlek.com/store-locator/US/austin/714-w-main-st/4700047",
+      "mappable": true
+    },
+    {
+      "name": "Circle K",
+      "category": "Gas / Fuel",
       "lat": 38.9584,
       "lon": -85.880835,
       "osm_id": 1173996094,
+      "mappable": true
+    },
+    {
+      "name": "Fuel Mart",
+      "category": "Gas / Fuel",
+      "lat": 38.741748,
+      "lon": -85.822128,
+      "osm_id": 823985899,
+      "address": "145 North Dowling Street, Austin, IN 47102",
+      "mappable": true
+    },
+    {
+      "name": "Huck's Food & Fuel",
+      "category": "Gas / Fuel",
+      "lat": 38.74193,
+      "lon": -85.804759,
+      "osm_id": 823985903,
+      "mappable": true
+    },
+    {
+      "name": "Marathon",
+      "category": "Gas / Fuel",
+      "lat": 38.791462,
+      "lon": -85.836786,
+      "osm_id": 11981606527,
+      "mappable": true
+    },
+    {
+      "name": "Marathon",
+      "category": "Gas / Fuel",
+      "lat": 38.88126,
+      "lon": -86.040379,
+      "osm_id": 1066265670,
       "mappable": true
     },
     {
@@ -402,6 +642,24 @@
       "osm_id": 9499760664,
       "address": "1530 East Tipton Street, Seymour, IN 47274",
       "url": "https://www.speedway.com/locations/IN/Seymour/1530-East-Tipton-Street",
+      "mappable": true
+    },
+    {
+      "name": "Sunoco",
+      "category": "Gas / Fuel",
+      "lat": 38.739894,
+      "lon": -85.822056,
+      "osm_id": 538626697,
+      "phone": "+1 812-749-8776",
+      "url": "https://www.sunoco.com/locations/store/118-dowling-st-austin-in-0156544900",
+      "mappable": true
+    },
+    {
+      "name": "Jackson County Courthouse",
+      "category": "Government",
+      "lat": 38.878547,
+      "lon": -86.04151,
+      "osm_id": 4567786394,
       "mappable": true
     },
     {
@@ -434,6 +692,22 @@
       "mappable": true
     },
     {
+      "name": "Circle K",
+      "category": "Grocery",
+      "lat": 38.876694,
+      "lon": -86.043633,
+      "osm_id": 982080237,
+      "mappable": true
+    },
+    {
+      "name": "Huck's Food & Fuel",
+      "category": "Grocery",
+      "lat": 38.741725,
+      "lon": -85.804626,
+      "osm_id": 823985902,
+      "mappable": true
+    },
+    {
       "name": "Jay C Food Stores",
       "category": "Grocery",
       "lat": 38.959213,
@@ -442,6 +716,14 @@
       "address": "1541 East Tipton Street, Seymour, IN 47274",
       "phone": "+1 812 522 2883",
       "hours": "07:00-22:00",
+      "mappable": true
+    },
+    {
+      "name": "Marathon",
+      "category": "Grocery",
+      "lat": 38.791529,
+      "lon": -85.836513,
+      "osm_id": 11981606528,
       "mappable": true
     },
     {
@@ -491,6 +773,118 @@
       "mappable": true
     },
     {
+      "name": "KT Mile Marker 41",
+      "category": "Landmark",
+      "lat": 38.701639,
+      "lon": -85.989998,
+      "osm_id": 7683547145,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 42",
+      "category": "Landmark",
+      "lat": 38.70274,
+      "lon": -86.000535,
+      "osm_id": 7683547133,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 43d",
+      "category": "Landmark",
+      "lat": 38.709748,
+      "lon": -86.007141,
+      "osm_id": 7683547169,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 43s",
+      "category": "Landmark",
+      "lat": 38.704915,
+      "lon": -86.016536,
+      "osm_id": 7683547182,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 44d",
+      "category": "Landmark",
+      "lat": 38.715887,
+      "lon": -86.015435,
+      "osm_id": 7683547157,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 44s",
+      "category": "Landmark",
+      "lat": 38.706308,
+      "lon": -86.032628,
+      "osm_id": 7683547172,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 45d",
+      "category": "Landmark",
+      "lat": 38.723611,
+      "lon": -86.00897,
+      "osm_id": 7683547137,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 45s",
+      "category": "Landmark",
+      "lat": 38.713441,
+      "lon": -86.038351,
+      "osm_id": 7683547152,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 46d",
+      "category": "Landmark",
+      "lat": 38.73128,
+      "lon": -86.017295,
+      "osm_id": 7683547179,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 46s",
+      "category": "Landmark",
+      "lat": 38.716953,
+      "lon": -86.026532,
+      "osm_id": 7683547140,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 47d",
+      "category": "Landmark",
+      "lat": 38.738217,
+      "lon": -86.024912,
+      "osm_id": 7683547161,
+      "mappable": true
+    },
+    {
+      "name": "KT Mile Marker 48d",
+      "category": "Landmark",
+      "lat": 38.72874,
+      "lon": -86.02901,
+      "osm_id": 7683547149,
+      "mappable": true
+    },
+    {
+      "name": "Brownstown Public Library",
+      "category": "Library",
+      "lat": 38.87954,
+      "lon": -86.040426,
+      "osm_id": 1936092428,
+      "mappable": true
+    },
+    {
+      "name": "Crothersville Public Library",
+      "category": "Library",
+      "lat": 38.795116,
+      "lon": -85.83981,
+      "osm_id": 1936093787,
+      "mappable": true
+    },
+    {
       "name": "Jackson County Public Library",
       "category": "Library",
       "lat": 38.958356,
@@ -530,11 +924,31 @@
       "mappable": true
     },
     {
+      "name": "Scott Memorial Health",
+      "category": "Medical",
+      "lat": 38.705164,
+      "lon": -85.786482,
+      "osm_id": 482099050,
+      "address": "1451 North Gardner Street, Scottsburg 47170",
+      "phone": "+1 812 752 3456",
+      "url": "http://www.scottmemorial.com/",
+      "hours": "24/7",
+      "mappable": true
+    },
+    {
       "name": "Voss & Sons Funeral Service",
       "category": "Other Shop",
       "lat": 38.960706,
       "lon": -85.890602,
       "osm_id": 11011215992,
+      "mappable": true
+    },
+    {
+      "name": "Camp Pyoca",
+      "category": "Park",
+      "lat": 38.865054,
+      "lon": -86.02498,
+      "osm_id": 358650693,
       "mappable": true
     },
     {
@@ -571,6 +985,14 @@
       "osm_id": 556310989,
       "address": "700 Maple Avenue, Seymour, IN 47274",
       "url": "https://www.facebook.com/pages/The-Home-Depot-Stage-At-Harmony-Park/103282353356522",
+      "mappable": true
+    },
+    {
+      "name": "Jackson County Park",
+      "category": "Park",
+      "lat": 38.877554,
+      "lon": -86.03765,
+      "osm_id": 556289900,
       "mappable": true
     },
     {
@@ -678,6 +1100,15 @@
       "mappable": true
     },
     {
+      "name": "Cortland Post Office",
+      "category": "Postal",
+      "lat": 38.97258,
+      "lon": -85.964178,
+      "osm_id": 556396464,
+      "address": "3993 East State Road 258, Cortland, IN 47228",
+      "mappable": true
+    },
+    {
       "name": "1852 Cafe",
       "category": "Restaurant",
       "lat": 38.959147,
@@ -734,6 +1165,15 @@
       "mappable": true
     },
     {
+      "name": "Cortland Diner, Bakery, Catering",
+      "category": "Restaurant",
+      "lat": 38.973288,
+      "lon": -85.964173,
+      "osm_id": 556396461,
+      "address": "6528 North County Road 400 East, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
       "name": "Cracker Barrel",
       "category": "Restaurant",
       "lat": 38.95989,
@@ -760,6 +1200,15 @@
       "osm_id": 1035153899,
       "address": "1863 East Tipton Street, Seymour, IN 47274",
       "cuisine": "mexican",
+      "mappable": true
+    },
+    {
+      "name": "Huddle House",
+      "category": "Restaurant",
+      "lat": 38.739891,
+      "lon": -85.82161,
+      "osm_id": 538626698,
+      "cuisine": "american",
       "mappable": true
     },
     {
@@ -855,11 +1304,68 @@
       "mappable": true
     },
     {
+      "name": "Austin Elementary School",
+      "category": "School",
+      "lat": 38.738682,
+      "lon": -85.799799,
+      "osm_id": 358672168,
+      "mappable": true
+    },
+    {
+      "name": "Austin High School",
+      "category": "School",
+      "lat": 38.738939,
+      "lon": -85.799857,
+      "osm_id": 358672161,
+      "mappable": true
+    },
+    {
+      "name": "Austin Middle School",
+      "category": "School",
+      "lat": 38.741308,
+      "lon": -85.80066,
+      "osm_id": 358672164,
+      "mappable": true
+    },
+    {
+      "name": "Cortland Elementary School",
+      "category": "School",
+      "lat": 38.975991,
+      "lon": -85.963649,
+      "osm_id": 358671909,
+      "url": "https://cortland.scsc.k12.in.us/",
+      "mappable": true
+    },
+    {
+      "name": "Cox School",
+      "category": "School",
+      "lat": 38.873944,
+      "lon": -85.891364,
+      "osm_id": 358652251,
+      "mappable": true
+    },
+    {
+      "name": "Emanuel School",
+      "category": "School",
+      "lat": 38.848944,
+      "lon": -85.900253,
+      "osm_id": 358653387,
+      "mappable": true
+    },
+    {
       "name": "Emerson Elementary School",
       "category": "School",
       "lat": 38.961164,
       "lon": -85.898033,
       "osm_id": 358653402,
+      "mappable": true
+    },
+    {
+      "name": "Hayden Elementary School",
+      "category": "School",
+      "lat": 38.981921,
+      "lon": -85.73902,
+      "osm_id": 308738311,
       "mappable": true
     },
     {
@@ -893,6 +1399,14 @@
       "lon": -85.888743,
       "osm_id": 358665380,
       "address": "301 South Chestnut Street, Seymour, IN 47274",
+      "mappable": true
+    },
+    {
+      "name": "Saint Pauls School",
+      "category": "School",
+      "lat": 38.826444,
+      "lon": -86.019979,
+      "osm_id": 358666300,
       "mappable": true
     },
     {
@@ -946,6 +1460,16 @@
       "lat": 38.956876,
       "lon": -85.906097,
       "osm_id": 3520822701,
+      "mappable": true
+    },
+    {
+      "name": "Scott County Family YMCA",
+      "category": "Sports",
+      "lat": 38.700344,
+      "lon": -85.791728,
+      "osm_id": 821993938,
+      "address": "805 Community Way, Scottsburg, IN 47170",
+      "phone": "+18127529622",
       "mappable": true
     },
     {
