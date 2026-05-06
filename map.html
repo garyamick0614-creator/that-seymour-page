@@ -341,6 +341,7 @@ function renderLayerKey() {
   // --- Gary's reviews ---
   if (gary && gary.reviews) {
     gary.reviews.forEach(g => {
+      if (typeof g.lat !== 'number' || typeof g.lon !== 'number') return;
       const m = L.marker([g.lat, g.lon], { icon: smallPinIcon('#34d399'), title: g.name })
         .bindPopup(popup(g.name, `Gary's Pick &middot; ${'★'.repeat(g.stars || 0)}`,
           `<div>${SH.escapeHTML(g.address || '')}</div>` +
@@ -356,6 +357,7 @@ function renderLayerKey() {
   // --- Landmarks (City Hall, schools, fire/police, parks, library, post office, courthouse, hospital, TCG) ---
   if (lm && lm.items) {
     lm.items.forEach(it => {
+      if (typeof it.lat !== 'number' || typeof it.lon !== 'number') return;
       let layerKey = 'landmark';
       let icon;
       const category = (it.category || '').toLowerCase();
@@ -389,6 +391,7 @@ function renderLayerKey() {
   // --- Shopping & fast food ---
   if (sf && sf.places) {
     sf.places.forEach(p => {
+      if (typeof p.lat !== 'number' || typeof p.lon !== 'number') return;
       let layerKey = 'shop';
       const cat = (p.category || '').toLowerCase();
       if (cat === 'fast food')   layerKey = 'food';

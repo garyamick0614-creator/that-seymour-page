@@ -69,7 +69,7 @@
       <select id="countySel"><option value="">Local counties (default)</option></select>
       <select id="routeSel"><option value="">All routes</option></select>
       <input type="search" id="qInput" placeholder="Search camera name&hellip;">
-      <button class="btn-o" id="toggleAll" type="button">Show all 122 statewide</button>
+      <button class="btn-o" id="toggleAll" type="button">Show all statewide</button>
       <span class="muted small" id="counter"></span>
     </div>
 
@@ -162,7 +162,17 @@ function renderGrid() {
 
   const grid = document.getElementById('camGrid');
   if (!list.length) {
-    grid.innerHTML = '<p class="muted">No cameras match. Clear the filters above.</p>';
+    if (!STATE.showAll && !STATE.county && !STATE.route && !STATE.q && STATE.cameras.length > 0) {
+      grid.innerHTML = '<p class="muted">No INDOT cameras in Jackson, Bartholomew, Scott, Jennings, or Brown County in the latest scrape. <button class="btn-o" id="goAllInline" type="button" style="margin-left:6px">Show all ' + STATE.cameras.length + ' statewide</button></p>';
+      const btn = document.getElementById('goAllInline');
+      if (btn) btn.addEventListener('click', () => {
+        STATE.showAll = true;
+        document.getElementById('toggleAll').textContent = 'Back to local counties';
+        renderGrid();
+      });
+    } else {
+      grid.innerHTML = '<p class="muted">No cameras match. Clear the filters above.</p>';
+    }
     return;
   }
   // Cache-bust image URLs so the browser pulls a fresh frame on each refresh tick.
@@ -241,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     STATE.showAll = !STATE.showAll;
     document.getElementById('toggleAll').textContent = STATE.showAll
       ? 'Back to local counties'
-      : 'Show all 122 statewide';
+      : 'Show all statewide (' + STATE.cameras.length + ')';
     renderGrid();
   });
   tick();

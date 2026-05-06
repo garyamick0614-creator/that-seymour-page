@@ -89,12 +89,8 @@
   }
 
   function buildDisclaimer() {
-    return `
-<aside class="gary-disclaimer" style="max-width:880px;margin:24px auto 8px">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:22px">&#x1F44B;</span><strong class="tag">From Gary at TCG</strong></div>
-  <p style="margin:6px 0">Hey Seymour folks &mdash; if our polished articles rub you the wrong way, it's because we use local AI tools + multi-LLM research to dig deep and fact-check fast. I'm <strong>Gary from That Computer Guy 26 / TCG Solutions</strong> in Seymour: hardware repairs, AI automations, custom websites/software, pentesting, business IT, and exposing shady Indiana businesses via <a href="https://ibetcg.netlify.app" target="_blank" rel="noopener" style="color:#22d3ee;text-decoration:none">Indiana Businesses Exposed</a>. No slop here &mdash; just human-guided insights to save you time on real problems like virus removal, data recovery, network setups, or contractor scams.</p>
-  <p style="margin:6px 0">Not your style? Skip it, no hard feelings. We respect the &ldquo;real job&rdquo; grind (CompTIA A+/Network+/Security+, CCNA, serving Jackson/Bartholomew counties) and keep it real with local stories too. Questions? Call/text <a href="tel:8124149097" style="color:#fbbf24;text-decoration:none;font-weight:600">812-414-9097</a> or hit me up &mdash; happy to explain my setup.</p>
-</aside>`;
+    // Gary promo banner removed per operator directive 2026-05-05
+    return '';
   }
 
   function buildFooter() {
