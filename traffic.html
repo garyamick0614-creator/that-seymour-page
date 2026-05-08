@@ -176,10 +176,17 @@ function renderGrid() {
     return;
   }
   // Cache-bust image URLs so the browser pulls a fresh frame on each refresh tick.
+  // The API returns image_url as a path-only ('/api/proxy/<src>/camera-image?id=...')
+  // because most consumers (the dashboard at api.thatcomputerguy26.org/static/...)
+  // are same-origin. We're cross-origin here on netlify.app, so prepend TCG_API
+  // when image_url starts with '/'. Without this every <img> 404s on Netlify
+  // and the page shows "No image right now" for every tile.
   const t = STATE.tick;
+  const absUrl = (u) => u && u.startsWith('/') ? TCG_API + u : u;
   grid.innerHTML = list.map(c => {
-    const sep = c.image_url && c.image_url.includes('?') ? '&' : '?';
-    const img = c.image_url ? c.image_url + sep + 't=' + t : '';
+    const u = absUrl(c.image_url);
+    const sep = u && u.includes('?') ? '&' : '?';
+    const img = u ? u + sep + 't=' + t : '';
     const tags = [];
     if (c.route) tags.push('<span class="pill pill-info">' + SH.escapeHTML(c.route) + '</span>');
     if (c.direction) tags.push('<span class="pill">' + SH.escapeHTML(c.direction) + '</span>');
@@ -201,12 +208,13 @@ function renderGrid() {
     tile.addEventListener('click', () => {
       const c = STATE.cameras.find(x => x.camera_id === tile.dataset.id);
       if (!c) return;
-      const sep = c.image_url && c.image_url.includes('?') ? '&' : '?';
+      const u = absUrl(c.image_url);
+      const sep = u && u.includes('?') ? '&' : '?';
       const lastSeen = c.last_seen ? new Date(c.last_seen * 1000).toLocaleString() : 'unknown';
       SH.openModal(
         '<div class="m-meta">' + SH.escapeHTML(c.county || '?') + (c.route ? ' &middot; ' + SH.escapeHTML(c.route) : '') + (c.direction ? ' &middot; ' + SH.escapeHTML(c.direction) : '') + '</div>'
         + '<h3>' + SH.escapeHTML(c.name || c.camera_id) + '</h3>'
-        + (c.image_url ? '<img src="' + SH.escapeHTML(c.image_url + sep + 't=' + Date.now()) + '" alt="' + SH.escapeHTML(c.name) + '" style="width:100%;border-radius:10px;margin:8px 0">' : '')
+        + (u ? '<img src="' + SH.escapeHTML(u + sep + 't=' + Date.now()) + '" alt="' + SH.escapeHTML(c.name) + '" style="width:100%;border-radius:10px;margin:8px 0">' : '')
         + '<div class="m-body">'
         +   '<p>Last update: ' + SH.escapeHTML(lastSeen) + '</p>'
         +   '<p>Camera ID: <code>' + SH.escapeHTML(c.camera_id) + '</code></p>'
@@ -214,7 +222,7 @@ function renderGrid() {
         + '</div>'
         + '<div class="m-actions">'
         +   (c.lat && c.lon ? '<a class="btn-o" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + c.lat + ',' + c.lon + '">Open in Google Maps &rarr;</a>' : '')
-        +   (c.image_url ? '<a class="btn-o" target="_blank" rel="noopener" href="' + SH.escapeHTML(c.image_url) + '">Direct image &rarr;</a>' : '')
+        +   (u ? '<a class="btn-o" target="_blank" rel="noopener" href="' + SH.escapeHTML(u) + '">Direct image &rarr;</a>' : '')
         + '</div>'
       );
     });
