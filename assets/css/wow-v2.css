@@ -1,0 +1,111 @@
+/* TCG WOW v2 — visual polish CSS. Pairs with /assets/js/tcg-wow-v2.js */
+:root{
+  --wow2-cyan:#22d3ee;
+  --wow2-purple:#a855f7;
+  --wow2-amber:#fbbf24;
+  --wow2-glow:rgba(125,211,252,.45);
+}
+
+/* 10. Scroll progress bar */
+#tcg-wow-scrollbar{
+  position:fixed;top:0;left:0;right:0;height:2px;
+  transform-origin:left center;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--wow2-cyan),var(--wow2-purple) 55%,var(--wow2-amber));
+  z-index:99999;pointer-events:none;will-change:transform;
+  transition:transform .12s linear;
+}
+
+/* 2. Particle canvas inside hero */
+.tcg-wow-stars{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;opacity:.65;mix-blend-mode:screen;
+}
+section.hero>*:not(.tcg-wow-stars),
+.hero>*:not(.tcg-wow-stars){position:relative;z-index:1}
+
+/* 5. Live metric pulse */
+@keyframes tcg-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,.0)}
+  50%{box-shadow:0 0 0 6px rgba(34,211,238,.18)}
+}
+.tcg-pulse{position:relative;animation:tcg-pulse 1.4s ease-in-out infinite}
+.tcg-pulse::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:99px;
+  background:var(--wow2-cyan);box-shadow:0 0 8px var(--wow2-cyan);
+  margin-right:6px;vertical-align:1px;animation:tcg-pulse 1.4s ease-in-out infinite;
+}
+
+/* 6. Cinematic reveal */
+@keyframes tcg-rise{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:none}}
+.tcg-rise{animation:tcg-rise .55s cubic-bezier(.2,.7,.3,1) both}
+@keyframes tcg-stagger{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:none}}
+.tcg-stagger{animation:tcg-stagger .55s cubic-bezier(.2,.7,.3,1) both}
+
+/* 4. Card flip */
+.tcg-flip{perspective:900px}
+.tcg-flip-i{position:relative;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.3,1);min-height:inherit}
+.tcg-flip:hover .tcg-flip-i,.tcg-flip:focus-within .tcg-flip-i{transform:rotateY(180deg)}
+.tcg-flip-f,.tcg-flip-b{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.tcg-flip-b{position:absolute;inset:0;transform:rotateY(180deg);
+  display:flex;align-items:center;justify-content:center;padding:18px;
+  background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(168,85,247,.14));
+  border-radius:inherit;font-weight:600;text-align:center;color:inherit;
+}
+
+/* 7. Better focus rings */
+:focus-visible{
+  outline:none !important;
+  box-shadow:0 0 0 3px rgba(34,211,238,.45),0 0 0 5px rgba(168,85,247,.18) !important;
+  border-radius:6px;
+}
+
+/* 8. Skeleton shimmer */
+@keyframes tcg-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.tcg-skeleton,.skeleton-loading,[data-skeleton]{
+  background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.10) 50%,rgba(255,255,255,.04) 75%);
+  background-size:200% 100%;
+  animation:tcg-shimmer 1.6s linear infinite;
+  border-radius:8px;color:transparent !important;
+}
+
+/* 9. Footer fabric badge */
+#tcg-fabric-badge{
+  position:fixed;bottom:10px;right:10px;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 9px;border-radius:99px;
+  background:rgba(14,17,22,.78);
+  border:1px solid rgba(34,211,238,.35);
+  color:#cbd5e1;font:600 10px/1.2 system-ui,sans-serif;letter-spacing:.04em;
+  backdrop-filter:blur(6px) saturate(140%);-webkit-backdrop-filter:blur(6px) saturate(140%);
+  z-index:9998;cursor:default;user-select:none;
+}
+#tcg-fabric-badge .tcg-fb-dot{
+  width:6px;height:6px;border-radius:99px;background:var(--wow2-cyan);
+  box-shadow:0 0 6px var(--wow2-cyan);animation:tcg-pulse 1.6s ease-in-out infinite;
+}
+#tcg-fabric-badge .tcg-fb-tip{
+  position:absolute;bottom:120%;right:0;white-space:nowrap;
+  background:#0e1116;border:1px solid rgba(34,211,238,.3);color:#cbd5e1;
+  padding:6px 9px;border-radius:6px;font-weight:500;letter-spacing:.02em;
+  opacity:0;transform:translateY(4px);pointer-events:none;
+  transition:opacity .18s,transform .18s;
+}
+#tcg-fabric-badge:hover .tcg-fb-tip,
+#tcg-fabric-badge:focus-within .tcg-fb-tip{opacity:1;transform:none}
+
+/* Mobile — keep tap targets, hide costly effects */
+@media (max-width:640px){
+  .tcg-wow-stars{opacity:.35}
+  #tcg-fabric-badge{font-size:9px;padding:4px 7px}
+  a,button,.btn,.btn-p,.btn-o,.cta{min-height:44px}
+}
+
+/* Reduced-motion: silence everything that animates */
+@media (prefers-reduced-motion:reduce){
+  #tcg-wow-scrollbar{display:none}
+  .tcg-wow-stars{display:none}
+  .tcg-pulse,.tcg-pulse::before,
+  .tcg-rise,.tcg-stagger,
+  .tcg-skeleton,#tcg-fabric-badge .tcg-fb-dot{animation:none !important}
+  .tcg-flip-i{transition:none !important}
+}
