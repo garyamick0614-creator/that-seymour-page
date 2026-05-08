@@ -99,22 +99,22 @@ function tile(host, name, val, sub, cls) {
   const feedHost = document.getElementById('feedStatus');
   const mapHost  = document.getElementById('mapStatus');
 
-  const w = await SH.loadJSON('/data/weather.json');
+  const w = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/weather/full');
   if (w) tile(feedHost, 'Weather', (w.current||{}).temperature + '°' + ((w.current||{}).temperatureUnit||''),
-    'Updated ' + timeAgo(w.updatedAt) + ' · ' + (w.daily||[]).length + ' periods · ' + (w.alerts||[]).length + ' alerts',
-    freshnessClass(w.updatedAt, 4));
+    'Updated ' + timeAgo(w.updatedAt || w.fetchedAt) + ' · ' + (w.daily||[]).length + ' periods · ' + (w.alerts||[]).length + ' alerts',
+    freshnessClass(w.updatedAt || w.fetchedAt, 4));
   else tile(feedHost, 'Weather', 'offline', 'feed unreachable', 'fail');
 
-  const n = await SH.loadJSON('/data/news.json');
+  const n = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/news');
   if (n) tile(feedHost, 'News', (n.indiana||[]).length + (n.us||[]).length + (n.global||[]).length,
-    'Updated ' + timeAgo(n.updatedAt) + ' · IN: ' + (n.indiana||[]).length + ' · US: ' + (n.us||[]).length + ' · global: ' + (n.global||[]).length,
-    freshnessClass(n.updatedAt, 4));
+    'Updated ' + timeAgo(n.generatedAt || n.fetchedAt) + ' · IN: ' + (n.indiana||[]).length + ' · US: ' + (n.us||[]).length + ' · global: ' + (n.global||[]).length,
+    freshnessClass(n.generatedAt || n.fetchedAt, 4));
   else tile(feedHost, 'News', 'offline', 'feed unreachable', 'fail');
 
-  const e = await SH.loadJSON('/data/events.json');
-  if (e) tile(feedHost, 'Events', ((e.upcoming||[]).length + (e.past||[]).length),
-    'Updated ' + timeAgo(e.updatedAt) + ' · ' + (e.upcoming||[]).length + ' upcoming · ' + (e.past||[]).length + ' past',
-    freshnessClass(e.updatedAt, 4));
+  const e = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/events');
+  if (e) tile(feedHost, 'Events', ((e.upcoming||[]).length + (e.pastWeek||e.past||[]).length),
+    'Updated ' + timeAgo(e.generatedAt || e.fetchedAt) + ' · ' + (e.upcoming||[]).length + ' upcoming · ' + (e.pastWeek||e.past||[]).length + ' past',
+    freshnessClass(e.generatedAt || e.fetchedAt, 4));
   else tile(feedHost, 'Events', 'offline', 'feed unreachable', 'fail');
 
   // Map data tiles

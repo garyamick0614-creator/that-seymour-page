@@ -51,7 +51,7 @@ let MY = { handle: null };
 
 async function loadMe() {
   try {
-    const r = await fetch('/api/whoami', { cache: 'no-cache' });
+    const r = await fetch('https://api.thatcomputerguy26.org/api/whoami', { cache: 'no-cache' });
     if (!r.ok) throw new Error(r.status);
     MY = await r.json();
     document.getElementById('myHandle').textContent = MY.handle;
@@ -64,7 +64,7 @@ async function loadMe() {
 async function loadPosts() {
   const host = document.getElementById('posts');
   try {
-    const r = await fetch('/api/blog?limit=50', { cache: 'no-cache' });
+    const r = await fetch('https://api.thatcomputerguy26.org/api/blog?limit=50', { cache: 'no-cache' });
     if (!r.ok) throw new Error(r.status);
     const j = await r.json();
     if (!j.posts || !j.posts.length) {
@@ -99,7 +99,7 @@ document.getElementById('postForm').addEventListener('submit', async (e) => {
   btn.disabled = true;
   msg.innerHTML = '<span class="spinner"></span> posting&hellip;';
   try {
-    const r = await fetch('/api/blog', {
+    const r = await fetch('https://api.thatcomputerguy26.org/api/blog', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, body })

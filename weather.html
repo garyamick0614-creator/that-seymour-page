@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body data-update-from="/data/weather.json">
+<body data-update-from="https://api.thatcomputerguy26.org/api/seymour/weather/full">
 
 <div id="site-header"></div>
 
@@ -54,7 +54,10 @@
 <script src="/assets/js/common.js"></script>
 <script>
 (async function () {
-  const w = await SH.loadJSON('/data/weather.json');
+  // Pulled live from api.thatcomputerguy26.org (NWS api.weather.gov upstream)
+  // — the /data/weather.json static cache was retired; the home server is
+  // now the canonical NWS proxy.
+  const w = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/weather/full');
   if (!w) {
     document.getElementById('curCond').textContent = 'Could not load weather snapshot.';
     return;

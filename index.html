@@ -243,28 +243,58 @@
 
 <script src="/assets/js/common.js"></script>
 <script>
+// Live home-card hydration. Reads from api.thatcomputerguy26.org rather than
+// pre-generated /data/*.json (those used to be built by an offline pipeline
+// that we retired — the home server is now the canonical source). Each card
+// degrades to a "loading…" line if its endpoint is reachable but returns no
+// usable rows; degrades to a "offline" line on failure.
 (async function () {
-  const w = await SH.loadJSON('/data/weather.json');
-  if (w && w.current) {
-    const c = w.current;
-    document.getElementById('weatherBlurb').textContent =
-      c.shortForecast + ' · ' + c.temperature + '°' + c.temperatureUnit + ' · ' + (c.windSpeed || '');
-    const chip = document.getElementById('weatherChip');
-    chip.textContent = c.temperature + '°' + c.temperatureUnit;
-    chip.className = 'pill pill-info';
-  }
-  const e = await SH.loadJSON('/data/events.json');
-  if (e && e.upcoming && e.upcoming.length) {
-    const u = e.upcoming[0];
-    document.getElementById('eventBlurb').textContent = u.title + ' · ' + u.dateLabel + (u.location ? ' · ' + u.location : '');
-    document.getElementById('eventChip').textContent = u.dateLabel;
-  }
-  const n = await SH.loadJSON('/data/news.json');
-  if (n && n.indiana && n.indiana.length) {
-    document.getElementById('newsBlurb').textContent = 'Indiana: ' + n.indiana[0].title;
-    document.getElementById('newsChip').textContent = n.indiana.length + ' headlines';
-    document.getElementById('newsChip').className = 'pill pill-ok';
-  }
+  const API = 'https://api.thatcomputerguy26.org';
+
+  // Weather: Open-Meteo daily forecast for Seymour, IN. Pull today's max/min
+  // and turn the wmo weather_code into a one-word condition.
+  try {
+    const w = await SH.loadJSON(API + '/api/proxy/weather/forecast?lat=38.96&lon=-85.89&days=1');
+    if (w && w.daily && w.daily.time && w.daily.time.length) {
+      const max  = Math.round(w.daily.temperature_2m_max[0]);
+      const min  = Math.round(w.daily.temperature_2m_min[0]);
+      const code = w.daily.weather_code[0];
+      const conds = { 0:'Clear', 1:'Mostly clear', 2:'Partly cloudy', 3:'Cloudy', 45:'Foggy', 48:'Foggy', 51:'Drizzle', 53:'Drizzle', 55:'Drizzle', 61:'Rain', 63:'Rain', 65:'Heavy rain', 71:'Snow', 73:'Snow', 75:'Heavy snow', 80:'Showers', 81:'Showers', 82:'Heavy showers', 95:'Thunder', 96:'Thunder', 99:'Thunder' };
+      const cond = conds[code] || 'Mixed';
+      document.getElementById('weatherBlurb').textContent = cond + ' · ' + max + '°F high · ' + min + '°F low';
+      const chip = document.getElementById('weatherChip');
+      chip.textContent = max + '°F';
+      chip.className = 'pill pill-info';
+    }
+  } catch (_) { /* card stays in loading state */ }
+
+  // Events: pull from /api/seymour/sitrep (alerts include date-ranged civic
+  // events). If the upstream is dry we leave the loading state alone.
+  try {
+    const sit = await SH.loadJSON(API + '/api/seymour/sitrep');
+    const alerts = (sit && sit.alerts) || [];
+    if (alerts.length) {
+      const a = alerts[0];
+      const title = a.properties && a.properties.headline || a.event || 'Active alert';
+      const dateLabel = a.properties && a.properties.effective ? new Date(a.properties.effective).toLocaleDateString() : 'Active';
+      document.getElementById('eventBlurb').textContent = title + ' · ' + dateLabel;
+      document.getElementById('eventChip').textContent = alerts.length + ' active';
+    } else {
+      document.getElementById('eventBlurb').textContent = 'No live alerts. Check the events tab for what is on the calendar.';
+      document.getElementById('eventChip').textContent = 'all clear';
+    }
+  } catch (_) { /* card stays in loading state */ }
+
+  // News: pull local-categorized headlines from the home server's RSS aggregator.
+  try {
+    const n = await SH.loadJSON(API + '/api/proxy/news/headlines?category=local');
+    const items = (n && n.items) || [];
+    if (items.length) {
+      document.getElementById('newsBlurb').textContent = items[0].title;
+      document.getElementById('newsChip').textContent = items.length + ' headlines';
+      document.getElementById('newsChip').className = 'pill pill-ok';
+    }
+  } catch (_) { /* card stays in loading state */ }
 })();
 </script>
 

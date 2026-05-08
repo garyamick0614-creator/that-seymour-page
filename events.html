@@ -135,7 +135,7 @@
   .stat-strip .stat span { font-size: 10.5px; }
 </style>
 </head>
-<body data-update-from="/data/events.json">
+<body data-update-from="https://api.thatcomputerguy26.org/api/seymour/events">
 
 <div id="site-header"></div>
 
@@ -334,10 +334,12 @@ function renderMonthChips() {
 }
 
 (async function () {
-  // Source: events.json gives upcoming + past split. Combine for the master list.
-  const j = await SH.loadJSON('/data/events.json');
+  // Source: home server's /api/seymour/events (upcoming + pastWeek). Combine
+  // for the master list. The legacy /data/events.json was retired; the
+  // server reads operator-curated entries from TCGSecrets/config/seymour-events.json.
+  const j = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/events');
   if (!j) { document.getElementById('eventList').innerHTML = '<p class="muted">Could not load events. Try again.</p>'; return; }
-  STATE.all = (j.upcoming || []).concat(j.past || []);
+  STATE.all = (j.upcoming || []).concat(j.pastWeek || j.past || []);
 
   renderHero();
   renderStats();
