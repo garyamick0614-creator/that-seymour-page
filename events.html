@@ -333,13 +333,41 @@ function renderMonthChips() {
   });
 }
 
+// Heuristic: classify event into one of the kind buckets based on title/source.
+// The server returns operator-curated entries with no `kind` field, so we
+// derive it here so the page's kind filter and color stripes actually work.
+function inferKind(e) {
+  const blob = ((e.title || '') + ' ' + (e.source || '') + ' ' + (e.location || '')).toLowerCase();
+  if (/\b(burgerfest|oktoberfest|fest|farmers? market|fair|parade)\b/.test(blob)) return 'festival';
+  if (/\b(school|shs|scsc|tryout|graduation|commencement|seymour high|board|district)\b/.test(blob)) return 'school';
+  if (/\b(storm|tornado|flood|severe|weather|cleanup)\b/.test(blob)) return 'weather';
+  return 'city';
+}
+function normalize(e) {
+  const kind = e.kind || inferKind(e);
+  // Build a "blurb" from location and source so the card body isn't empty.
+  let blurb = e.blurb;
+  if (!blurb) {
+    const bits = [];
+    if (e.location) bits.push(e.location);
+    if (e.source && (!e.location || e.source.toLowerCase() !== e.location.toLowerCase())) bits.push('Source: ' + e.source);
+    blurb = bits.join(' — ');
+  }
+  return Object.assign({}, e, {
+    kind,
+    blurb,
+    tag: e.tag || (e.dateLabel || ''),
+    pillTone: e.pillTone || (kind === 'festival' ? 'ok' : kind === 'weather' ? 'alert' : 'info')
+  });
+}
+
 (async function () {
   // Source: home server's /api/seymour/events (upcoming + pastWeek). Combine
   // for the master list. The legacy /data/events.json was retired; the
   // server reads operator-curated entries from TCGSecrets/config/seymour-events.json.
   const j = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/events');
   if (!j) { document.getElementById('eventList').innerHTML = '<p class="muted">Could not load events. Try again.</p>'; return; }
-  STATE.all = (j.upcoming || []).concat(j.pastWeek || j.past || []);
+  STATE.all = (j.upcoming || []).concat(j.pastWeek || j.past || []).map(normalize);
 
   renderHero();
   renderStats();
