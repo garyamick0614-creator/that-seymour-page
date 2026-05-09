@@ -202,9 +202,14 @@ img, svg { max-width: 100%; height: auto; }
   .brand-text { display: none; }
 }
 
-/* Hero */
+/* Site header host — empty before common.js hydrates, hide so it never reserves layout space. */
+#site-header:empty { display: none; }
+/* When populated, no extra margin/padding so the topbar sits flush against status-bar/ticker stack. */
+#site-header { display: block; }
+
+/* Hero — tightened 2026-05-08 to remove the perceived gap between nav and content */
 .hero {
-  padding: 48px 0 40px;
+  padding: 24px 0 32px;
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -265,8 +270,11 @@ img, svg { max-width: 100%; height: auto; }
 .btn-o:hover { background: rgba(251,191,36,.14); transform: translateY(-2px); text-decoration: none; }
 
 /* Sections */
-.section { padding: 36px 0; border-bottom: 1px solid rgba(167,139,250,.08); }
+.section { padding: 28px 0 32px; border-bottom: 1px solid rgba(167,139,250,.08); }
 .section:last-child { border-bottom: none; }
+/* Tighten the first section right after hero — wave divider already provides separation */
+main.container > .section:first-child { padding-top: 18px; }
+main.container > .tcg-wow-wave-wrap + .section { padding-top: 12px; }
 .section-head { margin-bottom: 22px; max-width: 760px; }
 .section-head h2 {
   font-size: clamp(22px, 2.5vw, 28px);

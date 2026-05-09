@@ -1,0 +1,157 @@
+/* TCG WOW v3 — cinematic polish. Pairs with /assets/js/tcg-wow-v3.js
+   Stacks on top of wow-v2.css. ~4KB. Respects prefers-reduced-motion. */
+:root{
+  --wow3-cyan:#22d3ee;
+  --wow3-purple:#a855f7;
+  --wow3-amber:#fbbf24;
+  --wow3-bg:rgba(15,23,42,.75);
+}
+
+/* ---------- 1. 3D card tilt + spotlight overlay ---------- */
+.card,.tile,.cell,.cat-card,.fcard,.ext-card,.broker-card{
+  transform-style:preserve-3d;
+  transform:perspective(900px) rotateX(0) rotateY(0) translateZ(0);
+  transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease;
+  will-change:transform;
+}
+.tcg-wow-tilting{transition:transform .08s linear !important;}
+.tcg-wow-spot{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  opacity:0;transition:opacity .25s ease;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
+    rgba(125,211,252,.18), transparent 65%);
+  mix-blend-mode:lighten;z-index:2;
+}
+.tcg-wow-tilting .tcg-wow-spot,.tcg-wow-hovered .tcg-wow-spot{opacity:1;}
+.card,.tile,.cell,.cat-card,.fcard,.ext-card,.broker-card{position:relative;}
+
+/* ---------- 2. Global cursor spotlight ---------- */
+#tcg-wow-cursor{
+  position:fixed;inset:0;pointer-events:none;z-index:99998;
+  background:radial-gradient(400px circle at var(--cx,-200px) var(--cy,-200px),
+    rgba(125,211,252,.07), transparent 60%);
+  mix-blend-mode:lighten;transition:background-position .1s linear;
+  opacity:0;transition:opacity .4s ease;
+}
+#tcg-wow-cursor.on{opacity:1;}
+
+/* ---------- 3. Hero title shimmer ---------- */
+.hero h1{
+  position:relative;
+  background-image:
+    linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%),
+    linear-gradient(90deg,#fff 0%,#fff 40%,var(--wow3-cyan) 100%);
+  background-size:220% 100%, 100% 100%;
+  background-clip:text;-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:tcgShimmer 4.2s ease-in-out infinite;
+}
+@keyframes tcgShimmer{
+  0%{background-position:200% 0,0 0;}
+  60%{background-position:-100% 0,0 0;}
+  100%{background-position:-100% 0,0 0;}
+}
+
+/* ---------- 4. Parallax hero (driven via --tcg-scroll var) ---------- */
+.hero h1{transform:translate3d(0,calc(var(--tcg-scroll,0px) * .6),0);}
+.hero .eyebrow{transform:translate3d(0,calc(var(--tcg-scroll,0px) * .25),0);}
+
+/* ---------- 5. SVG wave divider ---------- */
+.tcg-wow-wave{
+  display:block;width:100%;height:36px;margin:0;padding:0;
+  pointer-events:none;opacity:.85;
+}
+.tcg-wow-wave-wrap{
+  /* Pull wave up so it overlaps the previous section's bottom padding instead of
+     stacking 54px of empty visual space below the hero / between sections. */
+  margin:-18px 0 -8px;line-height:0;
+}
+
+/* ---------- 7. Scroll indicator ---------- */
+#tcg-wow-scrolldown{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+  color:rgba(125,211,252,.85);font:600 12px/1 system-ui,sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;pointer-events:none;z-index:5;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  animation:tcgBounceY 2.2s ease-in-out infinite;
+  transition:opacity .5s ease,transform .5s ease;
+}
+#tcg-wow-scrolldown.gone{opacity:0;transform:translate(-50%,20px);}
+#tcg-wow-scrolldown svg{width:18px;height:18px;}
+@keyframes tcgBounceY{
+  0%,100%{transform:translate(-50%,0);}
+  50%{transform:translate(-50%,8px);}
+}
+
+/* ---------- 8. Odometer-rolling counter ---------- */
+.tcg-odometer{display:inline-flex;vertical-align:baseline;line-height:1;}
+.tcg-odo-digit{
+  display:inline-block;height:1em;overflow:hidden;
+  position:relative;width:.62em;text-align:center;
+}
+.tcg-odo-digit > span{
+  display:block;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);
+  will-change:transform;line-height:1;
+}
+.tcg-odo-digit > span > b{display:block;font-weight:inherit;height:1em;line-height:1;}
+.tcg-odo-static{display:inline-block;}
+
+/* ---------- 9. Animated gradient borders ---------- */
+@property --tcg-ang{syntax:'<angle>';inherits:false;initial-value:0deg;}
+.cat-card.featured,.tile.tile-hero,[data-tcg-glow]{
+  position:relative;
+  background:
+    linear-gradient(var(--wow3-bg),var(--wow3-bg)) padding-box,
+    conic-gradient(from var(--tcg-ang,0deg),
+      var(--wow3-cyan),var(--wow3-purple),var(--wow3-amber),var(--wow3-cyan)) border-box;
+  border:2px solid transparent;
+  animation:tcgRotateBorder 8s linear infinite;
+}
+@keyframes tcgRotateBorder{to{--tcg-ang:360deg;}}
+/* Fallback for browsers w/o @property: still get static border */
+@supports not (background: conic-gradient(from 0deg, red, blue) border-box){
+  .cat-card.featured,.tile.tile-hero,[data-tcg-glow]{border-color:var(--wow3-cyan);}
+}
+
+/* ---------- 10. Micro-interactions ---------- */
+/* link underline grows from left */
+a:not(.btn):not(.btn-p):not(.cta):not(.nav a):not([data-tcg-no-underline]){
+  position:relative;background-image:linear-gradient(currentColor,currentColor);
+  background-size:0 1px;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size .3s cubic-bezier(.2,.8,.2,1);
+}
+a:not(.btn):not(.btn-p):not(.cta):not([data-tcg-no-underline]):hover{
+  background-size:100% 1px;
+}
+/* checkbox draw */
+input[type=checkbox]:checked{transition:all .2s ease;}
+/* word-by-word fade-up */
+.tcg-word{
+  display:inline-block;opacity:0;transform:translateY(14px);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1);
+  transition-delay:calc(var(--i,0) * 60ms);
+}
+.tcg-word.in{opacity:1;transform:translateY(0);}
+
+/* ---------- Confetti canvas ---------- */
+#tcg-wow-confetti{
+  position:fixed;inset:0;pointer-events:none;z-index:99997;
+}
+
+/* ---------- Touch / small viewport / reduced motion ---------- */
+@media (hover:none),(pointer:coarse),(max-width:768px){
+  .card,.tile,.cell,.cat-card,.fcard,.ext-card,.broker-card{transform:none !important;}
+  .tcg-wow-spot{display:none;}
+  #tcg-wow-cursor{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero h1{animation:none;background:linear-gradient(90deg,#fff,var(--wow3-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero h1,.hero .eyebrow{transform:none !important;}
+  .cat-card.featured,.tile.tile-hero,[data-tcg-glow]{animation:none;}
+  #tcg-wow-scrolldown{animation:none;}
+  .tcg-word{opacity:1;transform:none;transition:none;}
+  #tcg-wow-cursor{display:none;}
+}
+
+/* ---------- Don't break v2 ---------- */
+.tcg-wow-spot,#tcg-wow-cursor,#tcg-wow-confetti{contain:layout style;}

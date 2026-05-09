@@ -9,6 +9,7 @@
     { href: '/events.html',      label: 'Events' },
     { href: '/weather.html',     label: 'Weather' },
     { href: '/traffic.html',     label: 'Traffic' },
+    { href: '/gas.html',         label: 'Gas Prices' },
     { href: '/news.html',        label: 'News' },
     { href: '/schools.html',     label: 'Schools' },
     { href: '/businesses.html',  label: 'Places' },
@@ -60,7 +61,8 @@
   // ===== Top ticker — most popular destinations, page-specific =====
   // Plain-language picks. Each item is what a typical visitor would want next.
   const TICKER_BY_PATH = {
-    '/index.html':       ['Today\'s weather →/weather.html', 'What\'s coming up →/events.html', 'Storm cleanup → /events.html', 'Top 20 places → /businesses.html', 'Drop a tip → /tip.html'],
+    '/index.html':       ['Today\'s weather →/weather.html', 'What\'s coming up →/events.html', 'Gas prices near Seymour → /gas.html', 'Storm cleanup → /events.html', 'Top 20 places → /businesses.html', 'Drop a tip → /tip.html'],
+    '/gas.html':         ['Indiana state avg → /gas.html', '3-day predictions → /gas.html', 'Oil markets → /gas.html', 'Energy news → /gas.html', 'Today\'s weather → /weather.html'],
     '/events.html':      ['City Council May 11 → /events.html', 'BurgerFest Sep 19 → /events.html', 'Submit your event → /tip.html', 'Schools calendar → /schools.html'],
     '/weather.html':     ['Storm alerts (live) → /weather.html', 'Traffic cams → /traffic.html', 'Storm cleanup events → /events.html'],
     '/traffic.html':     ['Jackson County cams → /traffic.html', 'I-65 cams → /traffic.html', 'Weather → /weather.html', 'Map of town → /map.html'],
