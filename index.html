@@ -69,9 +69,7 @@ section.hero>*{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){section.hero::before{animation:none}.fade-in{opacity:1;transform:none;transition:none}}
 @media(max-width:640px){a,button,.btn,.cta{min-height:44px}html,body{overflow-x:hidden}}
 ::selection{background:rgba(251,191,36,.32);color:#0e1116}
-</style>
-<link rel="stylesheet" href="/assets/css/wow-v2.css">
-</head>
+</style></head>
 <body data-update-from="/data/weather.json">
 <script>
 (function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -60px 0px'});function arm(){document.querySelectorAll('section,.card,.tile,.cell,.fcard,.ext-card').forEach(function(el){if(!el.classList.contains('fade-in')&&!el.matches('.hero')){el.classList.add('fade-in');io.observe(el)}})}if(document.readyState!=='loading')arm();else document.addEventListener('DOMContentLoaded',arm);})();
@@ -322,7 +320,5 @@ section.hero>*{position:relative;z-index:1}
 })();
 </script>
 
-<script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script>
-<script defer src="/assets/js/tcg-wow-v2.js"></script>
-</body>
+<script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script></body>
 </html>
