@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jackson County Archive &mdash; That Seymour Page</title>
+<meta name="description" content="Historical IBE articles touching Jackson County, Indiana — Seymour, Brownstown, Crothersville, Medora. Backfilled from Indiana Businesses Exposed.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body data-update-from="/data/jackson-archive.json">
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Jackson County archive</p>
+    <h1 style="margin:6px 0 12px;font-size:32px">Every Jackson County story we've published</h1>
+    <p class="muted">Investigations, reviews, public-records work, and daily briefs &mdash; pulled together from Indiana Businesses Exposed (IBE). Anything tied to Seymour, Brownstown, Crothersville, Medora, or Jackson County at large shows up here. Newest first.</p>
+
+    <div class="row mt-4" style="margin-bottom:14px;gap:12px;flex-wrap:wrap">
+      <input type="search" id="archiveFilter" placeholder="Search Jackson archive…" style="max-width:340px">
+      <span class="muted small" id="archiveCount">Loading…</span>
+      <a href="https://ibetcg.netlify.app" target="_blank" rel="noopener" class="btn-o">Full IBE site &rarr;</a>
+      <a href="/news.html" class="btn-o">Today's Jackson news &rarr;</a>
+    </div>
+
+    <div id="archiveByMonth"></div>
+
+    <div id="archiveEmpty" class="card" style="display:none;text-align:center;padding:32px">
+      <h3 class="card-title">No Jackson articles in the archive yet</h3>
+      <p class="muted">The daily generator will populate this page going forward. Check back tomorrow.</p>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(function () {
+  function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
+  function fmtDate(iso){
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+  }
+  function monthKey(iso){
+    if (!iso) return 'Undated';
+    var d = new Date(iso);
+    if (isNaN(d)) return 'Undated';
+    return d.toLocaleDateString('en-US',{year:'numeric',month:'long'});
+  }
+  function severityClass(s){ return 'sev-' + (s || 'info'); }
+
+  var byMonthHost = document.getElementById('archiveByMonth');
+  var emptyHost   = document.getElementById('archiveEmpty');
+  var countEl     = document.getElementById('archiveCount');
+  var filterEl    = document.getElementById('archiveFilter');
+
+  var ALL = [];
+
+  function render(filterText){
+    var q = (filterText || '').toLowerCase().trim();
+    var filtered = !q ? ALL : ALL.filter(function(a){
+      return (a.title||'').toLowerCase().indexOf(q) >= 0
+          || (a.blurb||'').toLowerCase().indexOf(q) >= 0
+          || (a.body_md||'').toLowerCase().indexOf(q) >= 0
+          || (a.address||'').toLowerCase().indexOf(q) >= 0;
+    });
+
+    countEl.textContent = filtered.length + ' article' + (filtered.length===1?'':'s')
+      + (q ? ' matching "' + q + '"' : '') + ' &middot; archive updated '
+      + ''.replace(/.*/,''); // placeholder
+
+    if (filtered.length === 0) {
+      byMonthHost.innerHTML = '';
+      emptyHost.style.display = '';
+      return;
+    }
+    emptyHost.style.display = 'none';
+
+    // Group by month
+    var groups = {};
+    var order = [];
+    for (var i=0;i<filtered.length;i++){
+      var k = monthKey(filtered[i].generatedAt);
+      if (!groups[k]) { groups[k] = []; order.push(k); }
+      groups[k].push(filtered[i]);
+    }
+
+    var html = order.map(function(monthLabel){
+      var cards = groups[monthLabel].map(function(a){
+        var dateStr = fmtDate(a.generatedAt);
+        var srcs = (a.sources || []).slice(0, 4);
+        var srcHtml = srcs.length ? '<div class="muted small" style="margin-top:8px">Sources: '
+          + srcs.map(function(s){
+              if (s && s.url) return '<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.title||s.source||'source')+'</a>';
+              return esc(s && (s.title||s.source) || '');
+            }).filter(Boolean).join(' &middot; ')
+          + '</div>' : '';
+        var linkOut = a.ibeUrl
+          ? '<a href="'+esc(a.ibeUrl)+'" target="_blank" rel="noopener" class="btn-o" style="margin-top:8px">Read on IBE &rarr;</a>'
+          : '';
+        var addr = a.address ? '<div class="muted small">'+esc(a.address)+'</div>' : '';
+        var blurb = a.blurb ? '<p style="margin:8px 0 4px">'+esc(a.blurb)+'</p>' : '';
+        return '<article class="card review-card '+severityClass(a.severity)+'" style="padding:14px 16px">'
+          + '<h3 class="card-title" style="margin:0 0 4px">'+esc(a.title)+'</h3>'
+          + (dateStr ? '<div class="muted small">'+dateStr+'</div>' : '')
+          + addr
+          + blurb
+          + srcHtml
+          + linkOut
+          + '</article>';
+      }).join('');
+
+      return '<section class="section" style="padding:16px 0">'
+        + '<h2 class="section-title" style="margin:8px 0 12px;color:var(--accent)">'+esc(monthLabel)+'</h2>'
+        + '<div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">'
+        + cards
+        + '</div>'
+        + '</section>';
+    }).join('');
+
+    byMonthHost.innerHTML = html;
+  }
+
+  fetch('/data/jackson-archive.json', { cache: 'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('archive '+r.status); return r.json(); })
+    .then(function(data){
+      ALL = (data && data.articles) || [];
+      // Already sorted newest-first in the backfill script, but resort defensively.
+      ALL.sort(function(a,b){
+        var da = a.generatedAt ? Date.parse(a.generatedAt) : 0;
+        var db = b.generatedAt ? Date.parse(b.generatedAt) : 0;
+        return db - da;
+      });
+      render('');
+    })
+    .catch(function(e){
+      byMonthHost.innerHTML = '';
+      emptyHost.style.display = '';
+      countEl.textContent = 'Could not load archive (' + (e && e.message ? e.message : 'error') + ')';
+    });
+
+  filterEl.addEventListener('input', function(){ render(filterEl.value); });
+})();
+</script>
+
+<style>
+  .review-card { border-left: 4px solid var(--border); padding-left: 14px; }
+  .review-card.sev-positive { border-left-color: var(--accent-3); }
+  .review-card.sev-info     { border-left-color: var(--accent-5); }
+  .review-card.sev-warning  { border-left-color: var(--accent); }
+  .review-card.sev-alert    { border-left-color: var(--accent-4); }
+  .review-card .btn-o { font-size: 13px; padding: 4px 10px; }
+</style>
+</body>
+</html>

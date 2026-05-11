@@ -11,6 +11,7 @@
     { href: '/traffic.html',     label: 'Traffic' },
     { href: '/gas.html',         label: 'Gas Prices' },
     { href: '/news.html',        label: 'News' },
+    { href: '/jackson-archive.html', label: 'Jackson Archive' },
     { href: '/schools.html',     label: 'Schools' },
     { href: '/businesses.html',  label: 'Places' },
     { href: '/community.html',   label: 'Community' },
