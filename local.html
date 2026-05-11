@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local &mdash; That Seymour Page</title>
+<meta name="description" content="Deep local content for Jackson County, Indiana — Seymour Tribune, WJAA, Crothersville Times, the Banner, county and city government, schools, and community events. Scraped daily.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .local-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 980px) { .local-grid { grid-template-columns: minmax(0, 1fr) 320px; } }
+  .panel { border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; background: rgba(31, 38, 48, .45); }
+  .panel h2 { font-size: 20px; margin: 0 0 12px; }
+  .panel .entry { padding: 12px 0; border-top: 1px solid var(--border); }
+  .panel .entry:first-of-type { border-top: 0; padding-top: 0; }
+  .panel .entry h3 { font-size: 16px; margin: 0 0 4px; line-height: 1.35; }
+  .panel .entry h3 a { color: var(--text); text-decoration: none; }
+  .panel .entry h3 a:hover { color: var(--accent); text-decoration: underline; }
+  .entry-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; color: var(--dim); margin-bottom: 4px; }
+  .entry-meta .pill { font-size: 11px; padding: 2px 8px; }
+  .entry p { margin: 4px 0 0; color: var(--dim); font-size: 14px; line-height: 1.5; }
+  details.biz-toggle > summary { cursor: pointer; padding: 10px 0; font-weight: 600; color: var(--accent); }
+  .biz-item { padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .biz-item:first-of-type { border-top: 0; }
+  .biz-item .name { font-weight: 600; }
+  .empty { color: var(--dim); font-style: italic; padding: 18px 0; }
+  .stamp { font-size: 12px; color: var(--dim); margin-top: 6px; }
+  .entity-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 999px; background: rgba(34, 211, 238, .14); color: var(--accent-5, #67e8f9); margin-right: 6px; text-transform: uppercase; letter-spacing: .04em; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Local intelligence</p>
+    <h1 style="margin:6px 0 8px;font-size:32px">Jackson County, up close</h1>
+    <p class="muted">Hard-news, civic agendas, school announcements, and community events &mdash; pulled daily from the Tribune of Seymour, WJAA, the Banner, Crothersville Times, Jackson County and City of Seymour government sites, the Sheriff, schools, and the Visit Seymour calendar. Read the <a href="/intelligence.html" style="color:var(--accent)">AI-summarized daily brief</a> first if you want the gist.</p>
+    <p class="stamp" id="generatedStamp">Loading&hellip;</p>
+  </section>
+
+  <section class="section">
+    <div class="local-grid">
+      <div>
+        <div class="panel" style="margin-bottom:20px">
+          <h2>Local news</h2>
+          <div id="newsList"><p class="empty">Loading&hellip;</p></div>
+        </div>
+
+        <div class="panel" style="margin-bottom:20px">
+          <h2>Civic activity</h2>
+          <p class="stamp" style="margin:0 0 12px">County commissioners, City Council, Sheriff's office, planning &amp; zoning, school boards.</p>
+          <div id="civicList"><p class="empty">Loading&hellip;</p></div>
+        </div>
+
+        <div class="panel">
+          <h2>Events &amp; community</h2>
+          <div id="eventsList"><p class="empty">Loading&hellip;</p></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h2>Business directory</h2>
+          <p class="stamp" style="margin:0 0 12px">From the Greater Seymour Chamber. Local-only.</p>
+          <details class="biz-toggle">
+            <summary>Show businesses</summary>
+            <div id="bizList"><p class="empty">Loading&hellip;</p></div>
+          </details>
+        </div>
+
+        <div class="panel" style="margin-top:20px">
+          <h2>Stay current</h2>
+          <p class="muted" style="font-size:14px;margin:0 0 10px">This page refreshes every hour from the API.</p>
+          <p><a href="/intelligence.html" style="color:var(--accent)">Daily AI intelligence brief &rarr;</a></p>
+          <p><a href="/news.html" style="color:var(--accent)">Regional headlines &rarr;</a></p>
+          <p><a href="/events.html" style="color:var(--accent)">Full events list &rarr;</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(function(){
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+  function dateLabel(s){
+    if (!s) return '';
+    try { return String(s).slice(0,10); } catch { return ''; }
+  }
+  function relative(s){
+    if (!s) return '';
+    var d = new Date(s);
+    if (isNaN(d)) return String(s).slice(0,10);
+    var now = Date.now();
+    var diff = (now - d.getTime()) / 1000;
+    if (diff < 0) return d.toISOString().slice(0,10);
+    if (diff < 3600)   return Math.round(diff/60) + 'm ago';
+    if (diff < 86400)  return Math.round(diff/3600) + 'h ago';
+    if (diff < 604800) return Math.round(diff/86400) + 'd ago';
+    return d.toISOString().slice(0,10);
+  }
+
+  function renderNews(items){
+    var host = document.getElementById('newsList');
+    if (!items || items.length === 0) { host.innerHTML = '<p class="empty">No news scraped yet. Daily pipeline runs at 06:25.</p>'; return; }
+    host.innerHTML = items.slice(0, 15).map(function(n){
+      var when = n.published_at || n.fetched_at;
+      return '<div class="entry">'
+           +   '<div class="entry-meta">'
+           +     '<span class="pill">' + esc(n.source || 'source') + '</span>'
+           +     '<span>' + esc(relative(when)) + '</span>'
+           +     (n.byline ? '<span>by ' + esc(n.byline) + '</span>' : '')
+           +   '</div>'
+           +   '<h3>' + (n.url ? '<a href="' + esc(n.url) + '" target="_blank" rel="noopener">' + esc(n.headline) + '</a>' : esc(n.headline)) + '</h3>'
+           +   (n.body_md ? '<p>' + esc(String(n.body_md).slice(0, 220)) + (n.body_md.length > 220 ? '…' : '') + '</p>' : '')
+           + '</div>';
+    }).join('');
+  }
+
+  function renderCivic(items){
+    var host = document.getElementById('civicList');
+    if (!items || items.length === 0) { host.innerHTML = '<p class="empty">No civic items yet. Pipeline scrapes county + city + sheriff + schools daily.</p>'; return; }
+    // Group by entity, keep entity order from first appearance.
+    var groups = {};
+    var order = [];
+    items.forEach(function(c){
+      var k = c.entity || 'other';
+      if (!groups[k]) { groups[k] = []; order.push(k); }
+      groups[k].push(c);
+    });
+    var html = order.map(function(entity){
+      var rows = groups[entity].slice(0, 5).map(function(c){
+        return '<div class="entry">'
+             +   '<div class="entry-meta">'
+             +     '<span class="entity-tag">' + esc(c.kind || 'item') + '</span>'
+             +     '<span>' + esc(relative(c.meeting_date || c.fetched_at)) + '</span>'
+             +   '</div>'
+             +   '<h3>' + (c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.title) + '</a>' : esc(c.title)) + '</h3>'
+             +   (c.body_md ? '<p>' + esc(String(c.body_md).slice(0, 200)) + (c.body_md.length > 200 ? '…' : '') + '</p>' : '')
+             + '</div>';
+      }).join('');
+      return '<div style="margin-bottom:14px">'
+           +   '<p class="entry-meta" style="margin:0 0 6px;font-weight:600;color:var(--accent)">' + esc(entity.replace(/-/g,' ')) + '</p>'
+           +   rows
+           + '</div>';
+    }).join('');
+    host.innerHTML = html;
+  }
+
+  function renderEvents(items){
+    var host = document.getElementById('eventsList');
+    if (!items || items.length === 0) { host.innerHTML = '<p class="empty">No events scraped yet.</p>'; return; }
+    host.innerHTML = items.slice(0, 12).map(function(e){
+      var when = e.when_start ? dateLabel(e.when_start) : '';
+      return '<div class="entry">'
+           +   '<div class="entry-meta">'
+           +     (when ? '<span class="pill" style="background:rgba(251,191,36,.14);color:var(--accent)">' + esc(when) + '</span>' : '<span class="pill">Date TBD</span>')
+           +     (e.location ? '<span>' + esc(e.location) + '</span>' : '')
+           +   '</div>'
+           +   '<h3>' + (e.source_url ? '<a href="' + esc(e.source_url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>' : esc(e.name)) + '</h3>'
+           +   (e.body_md ? '<p>' + esc(String(e.body_md).slice(0, 220)) + (e.body_md.length > 220 ? '…' : '') + '</p>' : '')
+           + '</div>';
+    }).join('');
+  }
+
+  function renderBiz(items){
+    var host = document.getElementById('bizList');
+    if (!items || items.length === 0) { host.innerHTML = '<p class="empty">Chamber directory not scraped yet.</p>'; return; }
+    host.innerHTML = items.slice(0, 30).map(function(b){
+      return '<div class="biz-item">'
+           +   '<span class="name">' + (b.url ? '<a href="' + esc(b.url) + '" target="_blank" rel="noopener" style="color:var(--text);text-decoration:none">' + esc(b.name) + '</a>' : esc(b.name)) + '</span>'
+           +   (b.kind ? ' <span class="muted small">· ' + esc(b.kind) + '</span>' : '')
+           +   (b.address ? '<div class="muted small">' + esc(b.address) + '</div>' : '')
+           +   (b.phone ? '<div class="muted small">' + esc(b.phone) + '</div>' : '')
+           + '</div>';
+    }).join('');
+  }
+
+  function loadStatic(){
+    return fetch('/data/local-scrape.json', { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  function loadLive(){
+    return Promise.all([
+      fetch('https://api.thatcomputerguy26.org/api/public/seymour/news?limit=25').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+      fetch('https://api.thatcomputerguy26.org/api/public/seymour/civic?limit=40').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+      fetch('https://api.thatcomputerguy26.org/api/public/seymour/events?limit=25').then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    ]);
+  }
+
+  function applyStatic(payload){
+    var stamp = document.getElementById('generatedStamp');
+    if (stamp && payload && payload.generatedAt) {
+      stamp.textContent = 'Snapshot generated ' + String(payload.generatedAt).slice(0,16).replace('T',' ') + ' UTC · ' + ((payload.counts||{}).news||0) + ' news · ' + ((payload.counts||{}).civic||0) + ' civic · ' + ((payload.counts||{}).events||0) + ' events.';
+    }
+    renderNews(payload && payload.news);
+    renderCivic(payload && payload.civic);
+    renderEvents(payload && payload.events);
+    renderBiz(payload && payload.business);
+  }
+
+  function applyLive(triplet){
+    if (triplet[0] && triplet[0].items) renderNews(triplet[0].items);
+    if (triplet[1] && triplet[1].items) renderCivic(triplet[1].items);
+    if (triplet[2] && triplet[2].items) renderEvents(triplet[2].items);
+  }
+
+  // Static snapshot first (pre-rendered, no network race), then live API
+  // for fresher data.
+  loadStatic().then(applyStatic).catch(function(){
+    var st = document.getElementById('generatedStamp');
+    if (st) st.textContent = 'Pre-rendered snapshot unavailable — loading live API…';
+  });
+  loadLive().then(applyLive).catch(function(){});
+  // Auto-refresh hourly.
+  setInterval(function(){ loadLive().then(applyLive).catch(function(){}); }, 60 * 60 * 1000);
+})();
+</script>
+<script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script>
+</body>
+</html>

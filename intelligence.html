@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intelligence &mdash; That Seymour Page</title>
+<meta name="description" content="AI-summarized daily intelligence brief for Jackson County, Indiana. Clustered from local news, civic agendas, and community events; generated each morning by a local LLM.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  .hero {
+    background: linear-gradient(135deg, rgba(251,191,36,.14), rgba(167,139,250,.06));
+    border: 1px solid rgba(251,191,36,.4);
+    border-radius: var(--radius-lg);
+    padding: 28px 30px;
+    backdrop-filter: blur(var(--blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(140%);
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(251,191,36,.08), transparent 60%);
+    pointer-events: none;
+  }
+  .hero .when { font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-weight: 700; }
+  .hero h1 { font-size: clamp(24px, 4vw, 34px); margin: 6px 0 14px; }
+  .hero .brief p { color: var(--text); font-size: 16px; line-height: 1.65; margin: 0 0 12px; }
+  .hero .brief p:last-child { margin-bottom: 0; }
+  .panel { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; background: rgba(31, 38, 48, .45); margin-bottom: 20px; }
+  .panel h2 { font-size: 20px; margin: 0 0 12px; }
+  .stories-list, .actions-list { list-style: none; padding: 0; margin: 0; }
+  .stories-list li, .actions-list li { padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; line-height: 1.5; }
+  .stories-list li:first-child, .actions-list li:first-child { border-top: 0; padding-top: 0; }
+  .stories-list .idx { display: inline-block; min-width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; background: rgba(251,191,36,.18); color: var(--accent); font-weight: 700; font-size: 12px; margin-right: 8px; }
+  .actions-list li::before { content: "📌 "; }
+  .methodology { font-size: 13px; color: var(--dim); border-top: 1px solid var(--border); padding-top: 14px; margin-top: 18px; line-height: 1.6; }
+  .methodology code { background: rgba(167,139,250,.12); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  .topic-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .topic-chip { font-size: 11px; padding: 3px 9px; border-radius: 999px; background: rgba(34, 211, 238, .14); color: var(--accent-5, #67e8f9); text-transform: uppercase; letter-spacing: .04em; }
+  .empty { color: var(--dim); font-style: italic; padding: 12px 0; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="container">
+  <section class="section">
+    <p class="eyebrow">Daily intelligence</p>
+    <article class="hero">
+      <div class="when" id="briefWhen">Loading&hellip;</div>
+      <h1 id="briefTitle">Jackson County, today</h1>
+      <div class="brief" id="briefBody"><p class="empty">Loading the daily brief&hellip;</p></div>
+    </article>
+
+    <div class="panel">
+      <h2>Stories to watch</h2>
+      <ol class="stories-list" id="storiesList"><li class="empty">Loading&hellip;</li></ol>
+    </div>
+
+    <div class="panel">
+      <h2>Civic action callouts</h2>
+      <ul class="actions-list" id="actionsList"><li class="empty">Loading&hellip;</li></ul>
+    </div>
+
+    <div class="panel">
+      <h2>What this is</h2>
+      <p class="muted" style="margin:0 0 8px;font-size:14px">A local AI runs each morning at 06:25 over the previous 24 hours of scraped Jackson-County content — local news, civic agendas, school announcements, sheriff updates, and community events. It clusters by topic and writes the brief above. Every source it sees is also linked on <a href="/local.html" style="color:var(--accent)">/local</a>; nothing is hidden.</p>
+      <p class="muted" style="margin:0;font-size:14px">Treat this as a starting point, not the last word — verify anything that matters before you act on it. Source links are always primary.</p>
+      <div class="methodology" id="methodology">Loading methodology&hellip;</div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(function(){
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+
+  function paragraphs(text){
+    if (!text) return ['<p class="empty">No brief generated yet.</p>'];
+    var parts = String(text).split(/\n{2,}/).map(function(p){ return p.trim(); }).filter(Boolean);
+    if (parts.length === 0) parts = [String(text)];
+    return parts.map(function(p){ return '<p>' + esc(p) + '</p>'; });
+  }
+
+  function renderIntelligence(data){
+    var when  = document.getElementById('briefWhen');
+    var body  = document.getElementById('briefBody');
+    var sList = document.getElementById('storiesList');
+    var aList = document.getElementById('actionsList');
+    var meta  = document.getElementById('methodology');
+
+    if (!data) {
+      if (body) body.innerHTML = '<p class="empty">No daily brief available. Check back after 06:25 tomorrow.</p>';
+      return;
+    }
+    if (when) {
+      var ts = (data.generatedAt || '').replace('T',' ').slice(0,16);
+      when.textContent = (data.period ? data.period.toUpperCase() : 'DAILY') + ' BRIEF · ' + ts + ' UTC';
+    }
+    if (body) body.innerHTML = paragraphs(data.brief_md || data.summary_md).join('');
+
+    var stories = data.stories_to_watch || [];
+    if (sList) {
+      if (stories.length === 0) {
+        sList.innerHTML = '<li class="empty">No specific stories flagged this run.</li>';
+      } else {
+        sList.innerHTML = stories.map(function(s, i){
+          return '<li><span class="idx">' + (i+1) + '</span>' + esc(s) + '</li>';
+        }).join('');
+      }
+    }
+
+    var actions = data.civic_actions || [];
+    if (aList) {
+      if (actions.length === 0) {
+        aList.innerHTML = '<li class="empty">No upcoming civic actions surfaced this run.</li>';
+      } else {
+        aList.innerHTML = actions.map(function(a){ return '<li>' + esc(a) + '</li>'; }).join('');
+      }
+    }
+
+    if (meta) {
+      var topics = Object.keys(data.sourcesByTopic || {});
+      var chips = topics.map(function(t){ return '<span class="topic-chip">' + esc(t) + '</span>'; }).join('');
+      meta.innerHTML = 'Model: <code>' + esc(data.model || 'local-llm') + '</code> · '
+                     + 'Sources analyzed: <code>' + (data.sourcesCount || 0) + '</code> items across '
+                     + '<code>' + topics.length + '</code> topics · '
+                     + 'Last generated: <code>' + esc((data.generatedAt || '').slice(0,16).replace('T',' ')) + ' UTC</code>'
+                     + (chips ? '<div class="topic-chips">' + chips + '</div>' : '');
+    }
+  }
+
+  function loadStatic(){
+    return fetch('/data/intelligence.json', { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  function loadLive(){
+    return fetch('https://api.thatcomputerguy26.org/api/public/seymour/intelligence/latest', { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        if (!j || !j.item) return null;
+        // API returns the DB row; align fields with the snapshot shape.
+        return {
+          generatedAt:    j.item.generated_at,
+          period:         j.item.period,
+          model:          j.item.model_name,
+          sourcesCount:   j.item.sources_count,
+          brief_md:       j.item.summary_md,
+          stories_to_watch: [],
+          civic_actions:  [],
+          sourcesByTopic: {},
+        };
+      });
+  }
+
+  // Static first (works offline / no API), then live API enriches it.
+  loadStatic().then(renderIntelligence).catch(function(){
+    loadLive().then(renderIntelligence).catch(function(){
+      var body = document.getElementById('briefBody');
+      if (body) body.innerHTML = '<p class="empty">No intelligence brief is currently available. The pipeline runs daily at 06:25.</p>';
+    });
+  });
+})();
+</script>
+<script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script>
+</body>
+</html>

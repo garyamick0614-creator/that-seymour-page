@@ -1,0 +1,455 @@
+{
+  "generatedAt": "2026-05-11T19:58:23.897Z",
+  "county": "Jackson",
+  "counts": {
+    "news": 12,
+    "civic": 20,
+    "events": 15,
+    "business": 0
+  },
+  "news": [
+    {
+      "source": "crothersville-times",
+      "headline": "Crothersville FFA Receives Awards",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://crothersvilletimes.com/ffa-receive-awards/",
+      "fetched_at": "2026-05-11T19:55:39.183Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "SICA Featuring Two Jackson County Artists Through May",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://crothersvilletimes.com/sica-featuring-two-jackson-county-artists-through-may/",
+      "fetched_at": "2026-05-11T19:55:39.183Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "American Legion Auxiliary Selling Mother’s Day Flowers",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://crothersvilletimes.com/american-legion-auxiliary-selling-mothers-day-flowers/",
+      "fetched_at": "2026-05-11T19:55:39.183Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "« Older Entries",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://crothersvilletimes.com/page/2/?et_blog",
+      "fetched_at": "2026-05-11T19:55:39.182Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "Upsets in Republican Primary Elections",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://crothersvilletimes.com/upsets-in-republican-primary-elections/",
+      "fetched_at": "2026-05-11T19:55:39.182Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "Jackson County Industrial Leader To Retire After 42 Years",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://crothersvilletimes.com/jackson-county-industrial-leader-to-retire-after-42-years/",
+      "fetched_at": "2026-05-11T19:55:39.182Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "[Jackson County Industrial Leader To Retire After 42 Years](https://crothersvilletimes.com/jackson-county-industrial-leader-to-retire-after-42-years/)",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://www.crothersvilletimes.com/#%5BJackson%20County%20Industrial%20Leader%20To%20Retire%20After%2042%20Years%5D(",
+      "fetched_at": "2026-05-11T19:55:39.181Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "[SICA Featuring Two Jackson County Artists Through May](https://crothersvilletimes.com/sica-featuring-two-jackson-county-artists-through-may/)",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://www.crothersvilletimes.com/#%5BSICA%20Featuring%20Two%20Jackson%20County%20Artists%20Through%20May%5D(http",
+      "fetched_at": "2026-05-11T19:55:39.181Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "[Rug Hooking Class at Heritage Center](https://crothersvilletimes.com/rug-hooking-class-at-heritage-center/)",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://www.crothersvilletimes.com/#%5BRug%20Hooking%20Class%20at%20Heritage%20Center%5D(https%3A%2F%2Fcrothersville",
+      "fetched_at": "2026-05-11T19:55:39.181Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "[Crothersville FFA Receives Awards](https://crothersvilletimes.com/ffa-receive-awards/)",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://www.crothersvilletimes.com/#%5BCrothersville%20FFA%20Receives%20Awards%5D(https%3A%2F%2Fcrothersvilletim",
+      "fetched_at": "2026-05-11T19:55:39.180Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "[American Legion Auxiliary Selling Mother’s Day Flowers](https://crothersvilletimes.com/american-legion-auxiliary-selling-mothers-day-flowers/)",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://www.crothersvilletimes.com/#%5BAmerican%20Legion%20Auxiliary%20Selling%20Mother%E2%80%99s%20Day%20Flowers%5D(htt",
+      "fetched_at": "2026-05-11T19:55:39.180Z"
+    },
+    {
+      "source": "crothersville-times",
+      "headline": "[Upsets in Republican Primary Elections](https://crothersvilletimes.com/upsets-in-republican-primary-elections/)",
+      "body_md": null,
+      "byline": null,
+      "published_at": null,
+      "url": "https://www.crothersvilletimes.com/#%5BUpsets%20in%20Republican%20Primary%20Elections%5D(https%3A%2F%2Fcrothersvil",
+      "fetched_at": "2026-05-11T19:55:39.179Z"
+    }
+  ],
+  "civic": [
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![qlink-4",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/_new_images/deptlinksimages/qlink-4.png?t=202301161605000",
+      "fetched_at": "2026-05-11T19:58:16.752Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![Planning Logo (1)",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/_new_images/deptlinksimages/Planning%20Logo%20(1",
+      "fetched_at": "2026-05-11T19:58:16.752Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![Assessor Logo",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/Assessor%20Logo.png?t=202501240835190",
+      "fetched_at": "2026-05-11T19:58:16.752Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![Surveyor Logo",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/Surveyor%20Logo.png?t=202501240836310",
+      "fetched_at": "2026-05-11T19:58:16.752Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![qlink-1",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/_new_images/deptlinksimages/qlink-1.png?t=202301161603090",
+      "fetched_at": "2026-05-11T19:58:16.751Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![qlink-3",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/_new_images/deptlinksimages/qlink-3.png?t=202301161604250",
+      "fetched_at": "2026-05-11T19:58:16.751Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "![qlink-2",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/_new_images/deptlinksimages/qlink-2.png?t=202301161603530",
+      "fetched_at": "2026-05-11T19:58:16.751Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "404\\. The page/URL requested wasn't found on this page",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/agendas-and-minutes/#404%5C.%20The%20page%2FURL%20requested%20wasn't%20found%20on%20this%20page",
+      "fetched_at": "2026-05-11T19:58:16.751Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "404\\. The page/URL requested wasn't found on this page",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/calendar/#404%5C.%20The%20page%2FURL%20requested%20wasn't%20found%20on%20this%20page",
+      "fetched_at": "2026-05-11T19:58:16.433Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Building Permit Requirements",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://cms7.revize.com/revize/jackson/JCPZ%20App.%20Requirements.pdf",
+      "fetched_at": "2026-05-11T19:58:16.031Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Jackson County Zoning Ordinance",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://cms7.revize.com/revize/jackson/Jackson%20County%20Zoning%20Ordinance%20-%20Current.pdf",
+      "fetched_at": "2026-05-11T19:58:16.031Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "experience event calendar",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/#experience%20event%20calendar",
+      "fetched_at": "2026-05-11T19:58:16.031Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "view all events",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/calendar.php",
+      "fetched_at": "2026-05-11T19:58:16.031Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "May 2026",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/#May%202026",
+      "fetched_at": "2026-05-11T19:58:16.031Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Public Document Center",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://portal.sbsportals.com/modules/document-center.php?guid=93825342",
+      "fetched_at": "2026-05-11T19:58:16.030Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Jackson County Visitor's Center",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncountyin.com/",
+      "fetched_at": "2026-05-11T19:58:16.030Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Demographics",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/about_us/demographics/index.php",
+      "fetched_at": "2026-05-11T19:58:16.030Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Apply with Us",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/government/departments_a-h/human_resources/employment_opportunities.php",
+      "fetched_at": "2026-05-11T19:58:16.030Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "Find my Elected Official",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://jacksonin.wthgis.com/?soid=190128084131137",
+      "fetched_at": "2026-05-11T19:58:16.030Z"
+    },
+    {
+      "kind": "announcement",
+      "entity": "jackson-county",
+      "title": "County Commissioners",
+      "body_md": null,
+      "meeting_date": null,
+      "url": "https://www.jacksoncounty.in.gov/government/departments_a-h/county_commissioners/index.php",
+      "fetched_at": "2026-05-11T19:58:16.030Z"
+    }
+  ],
+  "events": [
+    {
+      "name": "![en",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/wp-content/plugins/gtranslate/flags/svg/en-us.svg",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.220Z"
+    },
+    {
+      "name": "[Freeman Army Airfield Museum Open](https://www.jacksoncountyin.com/event/freeman-army-airfield-museum-open-16/2026-06-06/ \"Freeman Army Airfield Museum Open\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BFreeman%20Army%20Airfield%20Museum%20Open%5D(https%3A%2F%2Fwww.jacksoncount",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "[Farmers Market](https://www.jacksoncountyin.com/event/farmers-market/2026-06-06/ \"Farmers Market\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BFarmers%20Market%5D(https%3A%2F%2Fwww.jacksoncountyin.com%2Fevent%2Ffarme",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "[Forrest Turner @ SICA](https://www.jacksoncountyin.com/event/forrest-turner-sica/ \"Forrest Turner @ SICA\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BForrest%20Turner%20%40%20SICA%5D(https%3A%2F%2Fwww.jacksoncountyin.com%2Feven",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "Google Calendar",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.google.com/calendar/render?cid=webcal%3A%2F%2Fwww.jacksoncountyin.com%2F%3Fpost_type%3Dtribe_events%26ical%3D1%26eventDisplay%3Dlist",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "Outlook 365",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://outlook.office.com/owa?path=/calendar/action/compose&rru=addsubscription&url=webcal%3A%2F%2Fwww.jacksoncountyin.com%2F%3Fpost_type%3Dtribe_events%26ical%3D1%26eventDisplay%3Dlist&name=Jackson+County+Visitor+Center+Events+Archive+-+Jackson+County+Visitor+Center",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "Outlook Live",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://outlook.live.com/owa?path=/calendar/action/compose&rru=addsubscription&url=webcal%3A%2F%2Fwww.jacksoncountyin.com%2F%3Fpost_type%3Dtribe_events%26ical%3D1%26eventDisplay%3Dlist&name=Jackson+County+Visitor+Center+Events+Archive+-+Jackson+County+Visitor+Center",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "Export .ics file",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/month/?ical=1",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "Export Outlook .ics file",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/month/?outlook-ical=1",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.219Z"
+    },
+    {
+      "name": "[Disc Golf League](https://www.jacksoncountyin.com/event/disc-golf-league/2026-06-02/ \"Disc Golf League\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BDisc%20Golf%20League%5D(https%3A%2F%2Fwww.jacksoncountyin.com%2Fevent%2Fdis",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.218Z"
+    },
+    {
+      "name": "[Music Bingo!](https://www.jacksoncountyin.com/event/music-bingo-8/2026-06-04/ \"Music Bingo!\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BMusic%20Bingo!%5D(https%3A%2F%2Fwww.jacksoncountyin.com%2Fevent%2Fmusic-b",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.218Z"
+    },
+    {
+      "name": "[Medora Brick Plant and Historical Sites Inc](https://www.jacksoncountyin.com/event/medora-brick-plant-and-historical-sites-inc/ \"Medora Brick Plant and Historical Sites Inc\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BMedora%20Brick%20Plant%20and%20Historical%20Sites%20Inc%5D(https%3A%2F%2Fwww.ja",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.218Z"
+    },
+    {
+      "name": "[Jimmy Fortune At Jackson Live](https://www.jacksoncountyin.com/event/jimmy-fortune-at-jackson-live/ \"Jimmy Fortune At Jackson Live\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BJimmy%20Fortune%20At%20Jackson%20Live%5D(https%3A%2F%2Fwww.jacksoncountyin.",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.218Z"
+    },
+    {
+      "name": "[Hen and Chicks Barn Market](https://www.jacksoncountyin.com/event/hen-and-chicks-barn-market/ \"Hen and Chicks Barn Market\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BHen%20and%20Chicks%20Barn%20Market%5D(https%3A%2F%2Fwww.jacksoncountyin.com",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.217Z"
+    },
+    {
+      "name": "[Fruhlingsfest 2025](https://www.jacksoncountyin.com/event/fruhlingsfest-2025/2026-05-15/ \"Fruhlingsfest 2025\")",
+      "when_start": null,
+      "when_end": null,
+      "location": "Jackson County, IN",
+      "body_md": null,
+      "source_url": "https://www.jacksoncountyin.com/events/#%5BFruhlingsfest%202025%5D(https%3A%2F%2Fwww.jacksoncountyin.com%2Fevent%2Ff",
+      "tags_csv": "event,community",
+      "fetched_at": "2026-05-11T19:56:48.217Z"
+    }
+  ],
+  "business": []
+}
