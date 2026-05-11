@@ -25,6 +25,11 @@
       <h2 id="curTemp" style="font-size:42px;margin:0">&mdash;</h2>
       <p id="curCond" class="muted" style="font-size:15px">Loading National Weather Service&hellip;</p>
       <p id="curWind" class="small muted"></p>
+      <p id="wxMeta" class="small muted" style="margin-top:8px"></p>
+      <p id="wxError" class="small" style="display:none;margin-top:8px;color:#f87171">
+        <span id="wxErrorMsg">Could not load forecast.</span>
+        <button id="wxRetry" type="button" style="margin-left:8px;background:transparent;border:1px solid currentColor;color:inherit;padding:2px 10px;border-radius:4px;cursor:pointer;font:inherit">Retry</button>
+      </p>
     </div>
 
     <h3 class="section-title mt-4">Next 7 days</h3>
@@ -52,53 +57,95 @@
 
 <script src="/assets/js/common.js"></script>
 <script>
-(async function () {
-  // Pulled live from api.thatcomputerguy26.org (NWS api.weather.gov upstream)
-  // — the /data/weather.json static cache was retired; the home server is
-  // now the canonical NWS proxy.
-  const w = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/weather/full');
-  if (!w) {
-    document.getElementById('curCond').textContent = 'Could not load weather snapshot.';
-    return;
+(function () {
+  // Pulled live from api.thatcomputerguy26.org (NWS api.weather.gov upstream).
+  // The /data/weather.json static cache was retired; the home server is now
+  // the canonical NWS proxy. Adds retry-with-backoff so a transient Cloudflare
+  // 502 (which strips CORS headers) doesn't leave the page stuck on "Loading…".
+  const ENDPOINT = 'https://api.thatcomputerguy26.org/api/seymour/weather/full';
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => (window.SH && SH.escapeHTML) ? SH.escapeHTML(s) : String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+
+  async function fetchOnce() {
+    const r = await fetch(ENDPOINT, { cache: 'no-cache' });
+    if (!r.ok) throw new Error('upstream ' + r.status);
+    return r.json();
   }
-  if (w.current) {
-    const c = w.current;
-    document.getElementById('curTemp').textContent = c.temperature + '°' + c.temperatureUnit;
-    document.getElementById('curCond').textContent = c.shortForecast + (c.detailedForecast ? ' — ' + c.detailedForecast : '');
-    document.getElementById('curWind').textContent = (c.windSpeed ? 'Wind: ' + c.windSpeed : '') + (c.windDirection ? ' ' + c.windDirection : '');
+  async function loadWithRetry() {
+    const delays = [0, 1500, 4000];
+    let lastErr;
+    for (let i = 0; i < delays.length; i++) {
+      if (delays[i]) await new Promise(res => setTimeout(res, delays[i]));
+      try { return await fetchOnce(); }
+      catch (e) { lastErr = e; }
+    }
+    throw lastErr || new Error('unknown');
   }
-  if (w.daily && w.daily.length) {
-    document.getElementById('fcGrid').innerHTML = w.daily.slice(0, 14).map(d =>
-      `<div class="fc-tile">
-        <div class="fc-day">${SH.escapeHTML(d.name)}</div>
-        <div class="fc-temp">${d.temperature}°${SH.escapeHTML(d.temperatureUnit)}</div>
-        <div class="fc-cond">${SH.escapeHTML(d.shortForecast || '')}</div>
-        <div class="small muted" style="margin-top:4px">${SH.escapeHTML(d.windSpeed || '')}</div>
-      </div>`
-    ).join('');
+  function render(w) {
+    $('wxError').style.display = 'none';
+    if (w.current) {
+      const c = w.current;
+      $('curTemp').textContent = (c.temperature != null ? c.temperature : '—') + '°' + (c.temperatureUnit || 'F');
+      $('curCond').textContent = (c.shortForecast || '') + (c.detailedForecast ? ' — ' + c.detailedForecast : '');
+      $('curWind').textContent = (c.windSpeed ? 'Wind: ' + c.windSpeed : '') + (c.windDirection ? ' ' + c.windDirection : '');
+    }
+    const meta = w.updatedAt || w.fetchedAt;
+    if (meta) {
+      const d = new Date(meta);
+      $('wxMeta').textContent = 'NWS · updated ' + d.toLocaleTimeString([], { hour:'numeric', minute:'2-digit' }) + (w.source ? ' · ' + w.source : '');
+    }
+    if (Array.isArray(w.daily) && w.daily.length) {
+      $('fcGrid').innerHTML = w.daily.slice(0, 14).map(d =>
+        `<div class="fc-tile">
+          <div class="fc-day">${esc(d.name)}</div>
+          <div class="fc-temp">${d.temperature}°${esc(d.temperatureUnit)}</div>
+          <div class="fc-cond">${esc(d.shortForecast || '')}</div>
+          <div class="small muted" style="margin-top:4px">${esc(d.windSpeed || '')}</div>
+        </div>`
+      ).join('');
+    }
+    if (Array.isArray(w.hourly) && w.hourly.length) {
+      const rows = w.hourly.slice(0, 24).map(h => {
+        const t = new Date(h.startTime);
+        const lbl = t.toLocaleTimeString([], { hour: 'numeric', hour12: true });
+        return `<tr>
+          <td>${esc(lbl)}</td>
+          <td><strong>${h.temperature}°${esc(h.temperatureUnit)}</strong></td>
+          <td>${esc(h.windSpeed || '')} ${esc(h.windDirection || '')}</td>
+          <td>${esc(h.shortForecast || '')}</td>
+        </tr>`;
+      }).join('');
+      document.querySelector('#hourlyTbl tbody').innerHTML = rows;
+    }
+    if (Array.isArray(w.alerts) && w.alerts.length) {
+      $('alertBox').innerHTML = w.alerts.map(a =>
+        `<div class="card mt-2" style="border-color:var(--accent-4);background:rgba(248,113,113,.08)">
+          <span class="pill pill-alert">${esc(a.severity || 'Alert')}</span>
+          <h3 class="card-title" style="margin-top:8px">${esc(a.event)}</h3>
+          <p class="card-blurb">${esc(a.headline || a.description || '')}</p>
+        </div>`
+      ).join('');
+    }
   }
-  if (w.hourly && w.hourly.length) {
-    const rows = w.hourly.slice(0, 24).map(h => {
-      const t = new Date(h.startTime);
-      const lbl = t.toLocaleTimeString([], { hour: 'numeric', hour12: true });
-      return `<tr>
-        <td>${SH.escapeHTML(lbl)}</td>
-        <td><strong>${h.temperature}°${SH.escapeHTML(h.temperatureUnit)}</strong></td>
-        <td>${SH.escapeHTML(h.windSpeed || '')} ${SH.escapeHTML(h.windDirection || '')}</td>
-        <td>${SH.escapeHTML(h.shortForecast || '')}</td>
-      </tr>`;
-    }).join('');
-    document.querySelector('#hourlyTbl tbody').innerHTML = rows;
+  function showError(err) {
+    $('wxError').style.display = '';
+    $('wxErrorMsg').textContent = 'Forecast feed temporarily unavailable (' + (err && err.message || 'network') + '). The Weather Service relay sometimes returns 502 for a few seconds — try again.';
+    // Still keep "Loading…" cleared so user knows it tried.
+    if ($('curCond').textContent.startsWith('Loading')) $('curCond').textContent = 'Forecast unavailable right now.';
   }
-  if (w.alerts && w.alerts.length) {
-    document.getElementById('alertBox').innerHTML = w.alerts.map(a =>
-      `<div class="card mt-2" style="border-color:var(--accent-4);background:rgba(248,113,113,.08)">
-        <span class="pill pill-alert">${SH.escapeHTML(a.severity || 'Alert')}</span>
-        <h3 class="card-title" style="margin-top:8px">${SH.escapeHTML(a.event)}</h3>
-        <p class="card-blurb">${SH.escapeHTML(a.headline || a.description || '')}</p>
-      </div>`
-    ).join('');
+  async function go() {
+    $('wxError').style.display = 'none';
+    try {
+      const w = await loadWithRetry();
+      render(w);
+    } catch (e) {
+      showError(e);
+    }
   }
+  document.getElementById('wxRetry').addEventListener('click', go);
+  go();
+  // Auto-refresh every 10 minutes so a tab left open stays current.
+  setInterval(go, 10 * 60 * 1000);
 })();
 </script>
 
