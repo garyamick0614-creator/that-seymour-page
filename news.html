@@ -35,6 +35,18 @@
     <div id="tribuneList" class="card-grid mt-4" style="grid-template-columns:1fr;gap:12px"></div>
   </section>
 
+  <!-- 2026-05-11 iter-10 — page marker: seymour-sheriff-renderer-2026-05-11
+       Local crime news from /api/public/seymour/sheriff. Different visual
+       treatment than Tribune section (red accent bar, POLICE pill). Refresh
+       every 15 min with shared 429 backoff. -->
+  <section class="section" id="sheriffSection" style="border-left:4px solid #f87171;padding-left:14px">
+    <p class="eyebrow" style="color:#f87171">Local crime news</p>
+    <h2 style="margin:6px 0 8px;font-size:26px">Sheriff &amp; Police Blotter</h2>
+    <p class="muted">Recent police and sheriff incidents covering Seymour and Jackson County: arrests, patrol announcements, road-safety enforcement, and other public-safety updates. Refreshed every 15 minutes.</p>
+    <div id="sheriffStatus" class="muted small" style="margin:10px 0 6px">Loading local crime news&hellip;</div>
+    <div id="sheriffList" class="card-grid mt-4" style="grid-template-columns:1fr;gap:12px"></div>
+  </section>
+
   <!-- 2026-05-11 iter-5 — page marker: seymour-indot-jackson-renderer-2026-05-11
        Jackson County INDOT alerts. /api/public/ibetcg/traffic-alerts?county=Jackson.
        Refresh every 5 min with 429 backoff. -->
@@ -313,11 +325,59 @@ function renderList(host, items) {
       });
   }
 
+  // ── Sheriff / Police local crime news ───────────────────────
+  var SHERIFF_API = 'https://api.thatcomputerguy26.org/api/public/seymour/sheriff';
+  var SHERIFF_MS = 15 * 60 * 1000;
+  function renderSheriff(items){
+    var list = $('sheriffList');
+    var status = $('sheriffStatus');
+    if (!items.length){
+      list.innerHTML = '';
+      status.textContent = 'No local crime news right now. Will retry in 15 min.';
+      return;
+    }
+    list.innerHTML = items.map(function(it){
+      var raw = String(it.narrative_md || '').replace(/\*\*/g,'').trim();
+      var trimmed = raw.length > 200 ? raw.slice(0,200).replace(/\s+\S*$/,'') + '…' : raw;
+      var kind = (it.kind || 'POLICE').toUpperCase();
+      var pillBg = 'rgba(248,113,113,.14)';
+      var pillFg = '#f87171';
+      var pillBd = '#f8717155';
+      return '<article class="card" style="border-left:3px solid #f87171">'+
+        '<div class="blog-meta">'+
+          '<span class="pill" style="background:'+pillBg+';color:'+pillFg+';border:1px solid '+pillBd+'">'+esc(kind)+'</span>'+
+          '<span class="muted small">'+esc(fmtTime(it.ts || it.fetched_at))+'</span>'+
+        '</div>'+
+        '<h3 class="card-title" style="margin:4px 0 6px"><a href="'+esc(it.source_url||'#')+'" target="_blank" rel="noopener">'+esc(it.headline||'(untitled)')+'</a></h3>'+
+        (trimmed ? '<p class="card-blurb">'+esc(trimmed)+'</p>' : '')+
+        (it.source_url ? '<a class="btn-o" style="margin-top:6px;font-size:13px;padding:5px 11px;border-color:#f87171;color:#f87171" href="'+esc(it.source_url)+'" target="_blank" rel="noopener">Read full story &rarr;</a>' : '')+
+      '</article>';
+    }).join('');
+    status.textContent = items.length + ' incident' + (items.length===1?'':'s') + ' · updated ' + new Date().toLocaleTimeString();
+  }
+  function loadSheriff(){
+    if (inBackoff()){ $('sheriffStatus').textContent = 'Rate-limited — backing off, retrying soon.'; return; }
+    $('sheriffStatus').textContent = 'Loading local crime news…';
+    fetch(SHERIFF_API + '?limit=10', {cache:'no-store'})
+      .then(function(r){
+        noteResponse(r);
+        if (r.status === 429) throw new Error('rate-limited');
+        if (!r.ok) throw new Error('HTTP '+r.status);
+        return r.json();
+      })
+      .then(function(j){ renderSheriff((j && j.items) || []); })
+      .catch(function(e){
+        $('sheriffStatus').textContent = 'Failed to load local crime news: '+(e && e.message ? e.message : String(e))+'. Will retry in 15 min.';
+      });
+  }
+
   function init(){
     loadTribune();
     loadIndot();
+    loadSheriff();
     setInterval(function(){ if (!inBackoff()) loadTribune(); }, TRIBUNE_MS);
     setInterval(function(){ if (!inBackoff()) loadIndot();   }, INDOT_MS);
+    setInterval(function(){ if (!inBackoff()) loadSheriff(); }, SHERIFF_MS);
   }
   if (document.readyState === 'complete' || document.readyState === 'interactive') init();
   else document.addEventListener('DOMContentLoaded', init);
