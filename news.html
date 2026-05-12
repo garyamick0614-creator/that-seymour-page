@@ -13,6 +13,39 @@
 <div id="site-header"></div>
 
 <main class="container">
+
+  <!-- Jackson County Daily News — auto-generated each morning at 06:20 from
+       public RSS, synthesized via local Ollama, kept Jackson-only. Hides
+       gracefully if /data/jackson-daily-feed.json is missing. -->
+  <section class="section" id="jacksonDailySection" style="display:none">
+    <p class="eyebrow">Jackson County daily news</p>
+    <h2 style="margin:6px 0 8px;font-size:26px">Today in Jackson County</h2>
+    <p class="muted" id="jacksonDailyMeta">Auto-synthesized each morning from public RSS feeds covering Seymour, Brownstown, Crothersville, Medora, and the rest of Jackson County. Sources cited under each brief.</p>
+    <div id="jacksonDailyArticles" class="card-grid mt-4" style="grid-template-columns:1fr;gap:14px"></div>
+  </section>
+
+  <!-- 2026-05-11 iter-5 — page marker: seymour-tribune-renderer-2026-05-11
+       Local Tribune stories from /api/public/seymour/tribune. Vanilla JS,
+       429-aware backoff matching amick-cam 585b496. Refresh every 30 min. -->
+  <section class="section" id="tribuneSection">
+    <p class="eyebrow">Hometown</p>
+    <h2 style="margin:6px 0 8px;font-size:26px">Local Tribune Stories</h2>
+    <p class="muted">Latest stories from the Seymour Tribune covering Jackson County and the surrounding area. Headline · byline · published time · excerpt with click-to-expand. Refreshed every 30 minutes from the upstream feed.</p>
+    <div id="tribuneStatus" class="muted small" style="margin:10px 0 6px">Loading Tribune stories&hellip;</div>
+    <div id="tribuneList" class="card-grid mt-4" style="grid-template-columns:1fr;gap:12px"></div>
+  </section>
+
+  <!-- 2026-05-11 iter-5 — page marker: seymour-indot-jackson-renderer-2026-05-11
+       Jackson County INDOT alerts. /api/public/ibetcg/traffic-alerts?county=Jackson.
+       Refresh every 5 min with 429 backoff. -->
+  <section class="section" id="indotSection">
+    <p class="eyebrow">Roads</p>
+    <h2 style="margin:6px 0 8px;font-size:26px">Today's Indiana INDOT Alerts &mdash; Jackson</h2>
+    <p class="muted">Live traffic incidents, closures, and construction alerts from INDOT/511IN, filtered to Jackson County. Refreshed every 5 minutes.</p>
+    <div id="indotStatus" class="muted small" style="margin:10px 0 6px">Loading INDOT alerts&hellip;</div>
+    <div id="indotList" class="card-grid mt-4" style="grid-template-columns:1fr;gap:10px"></div>
+  </section>
+
   <section class="section">
     <p class="eyebrow">Headlines</p>
     <h1 style="margin:6px 0 12px;font-size:32px">What's making news &mdash; close to home and far from it</h1>
@@ -47,6 +80,77 @@
 
 <script src="/assets/js/common.js"></script>
 <script>
+// Jackson-County daily-feed renderer. Pulls /data/jackson-daily-feed.json
+// (auto-generated daily by TCG-Seymour-Daily-Articles scheduled task) and
+// renders one card per topic-clustered article. Hides the section if the
+// feed is missing. Vanilla JS; no fetch deps.
+(function(){
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+  var sec  = document.getElementById('jacksonDailySection');
+  var box  = document.getElementById('jacksonDailyArticles');
+  var meta = document.getElementById('jacksonDailyMeta');
+  if(!sec || !box) return;
+  fetch('/data/jackson-daily-feed.json',{cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error('daily-feed '+r.status); return r.json(); })
+    .then(function(data){
+      var arts = (data && data.articles) || [];
+      if(arts.length === 0) return;
+      sec.style.display = '';
+      if(meta && data.coverageDate){
+        meta.textContent = 'Coverage date ' + data.coverageDate + ' · ' + arts.length + ' brief' + (arts.length===1?'':'s') + ' · ' + (data.sourceCount||0) + ' source items · auto-synthesized from public RSS feeds (cite sources before reusing).';
+      }
+      var html = arts.map(function(a){
+        var bodyParas = (a.body && a.body.length) ? a.body : (a.body_md ? String(a.body_md).split(/\n\n+/) : []);
+        var preview   = bodyParas.length ? bodyParas[0] : (a.lede || '');
+        if (preview.length > 200) preview = preview.slice(0, 200).replace(/\s+\S*$/, '') + '…';
+        var sourcesHtml = (a.sources || []).map(function(s,i){
+          return '<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener">['+(i+1)+'] '+esc(s.title)+'</a> <span class="muted small">— '+esc(s.source)+(s.pubDate?(' · '+esc(String(s.pubDate).slice(0,10))):'')+'</span></li>';
+        }).join('');
+        var fullBody = bodyParas.map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('');
+        var bulletsHtml = (a.bullets && a.bullets.length) ? ('<h4 style="margin:14px 0 6px;font-size:14px;color:var(--accent)">Key points</h4><ul style="margin:0 0 12px 18px">'+a.bullets.map(function(b){return '<li>'+esc(b)+'</li>';}).join('')+'</ul>') : '';
+        var detailId = 'jd-detail-' + esc(a.id || ('art-'+Math.random().toString(36).slice(2,8)));
+        return '<article class="card" data-topic="'+esc(a.topic||'general')+'">'
+             +   '<div class="blog-meta">'
+             +     '<span class="pill">'+esc(a.county||'Jackson')+' County</span>'
+             +     '<span class="pill" style="background:rgba(34,211,238,.12);color:var(--accent-5)">'+esc(a.topic||'general')+'</span>'
+             +     '<span class="muted small">'+esc(String(a.generatedAt||'').slice(0,16).replace('T',' '))+' UTC</span>'
+             +   '</div>'
+             +   '<h3 class="card-title" style="margin:6px 0 8px">'+esc(a.title||'')+'</h3>'
+             +   (a.lede ? '<p class="card-blurb" style="font-style:italic;border-left:3px solid var(--accent);padding-left:12px;margin:0 0 10px">'+esc(a.lede)+'</p>' : '')
+             +   '<p class="card-blurb" data-preview="1">'+esc(preview)+'</p>'
+             +   '<div id="'+detailId+'" data-full="1" style="display:none">'
+             +     fullBody
+             +     bulletsHtml
+             +     (sourcesHtml ? '<h4 style="margin:14px 0 6px;font-size:14px;color:var(--accent)">Sources</h4><ul style="margin:0 0 4px 18px">'+sourcesHtml+'</ul>' : '')
+             +   '</div>'
+             +   '<button type="button" class="btn-o" style="margin-top:8px;font-size:13px;padding:6px 12px" data-toggle="'+detailId+'">Read more</button>'
+             + '</article>';
+      }).join('');
+      box.innerHTML = html;
+      // Wire up the per-card Read more / Show less toggles.
+      box.querySelectorAll('button[data-toggle]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var id  = btn.getAttribute('data-toggle');
+          var det = document.getElementById(id);
+          if(!det) return;
+          var card = btn.closest('article');
+          var prev = card ? card.querySelector('[data-preview="1"]') : null;
+          if (det.style.display === 'none') {
+            det.style.display = '';
+            if (prev) prev.style.display = 'none';
+            btn.textContent = 'Show less';
+          } else {
+            det.style.display = 'none';
+            if (prev) prev.style.display = '';
+            btn.textContent = 'Read more';
+          }
+        });
+      });
+    })
+    .catch(function(){ /* silently hide if feed missing */ });
+})();
+</script>
+<script>
 function renderList(host, items) {
   if (!items || !items.length) {
     host.innerHTML = '<p class="muted">No headlines loaded yet. Scheduled refresh runs every 2 hours.</p>';
@@ -72,5 +176,152 @@ function renderList(host, items) {
 })();
 </script>
 
+<!-- 2026-05-11 iter-5 — tribune + INDOT-Jackson renderer
+     page markers: seymour-tribune-renderer-2026-05-11
+                   seymour-indot-jackson-renderer-2026-05-11 -->
+<script>
+(function(){
+  // 429-aware backoff (amick-cam 585b496 pattern). Shared across both fetchers
+  // on this page so a 429 from one stalls both — single Cloudflare rate-limit
+  // bucket per client.
+  var cfBackoffUntil = 0;
+  function inBackoff(){ return Date.now() < cfBackoffUntil; }
+  function noteResponse(r){
+    if (r && r.status === 429){
+      var ra = parseInt(r.headers && r.headers.get('retry-after'), 10) || 5;
+      cfBackoffUntil = Date.now() + Math.min(60, ra + Math.random() * 2) * 1000;
+    }
+  }
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+  function $(id){ return document.getElementById(id); }
+  function fmtTime(s){ if(!s) return ''; var d=new Date(s); if(isNaN(d.getTime())) return esc(String(s).slice(0,16).replace('T',' ')); return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); }
+
+  // ── Tribune ──────────────────────────────────────────────────
+  var TRIBUNE_API = 'https://api.thatcomputerguy26.org/api/public/seymour/tribune';
+  var TRIBUNE_MS = 30 * 60 * 1000;
+  function renderTribune(items){
+    var list = $('tribuneList');
+    var status = $('tribuneStatus');
+    if (!items.length){
+      list.innerHTML = '';
+      status.textContent = 'No Tribune stories available right now. Will retry in 30 min.';
+      return;
+    }
+    list.innerHTML = items.map(function(it, i){
+      var raw = String(it.body_md_excerpt || '').trim();
+      var trimmed = raw.length > 200 ? raw.slice(0,200).replace(/\s+\S*$/,'') + '…' : raw;
+      var hasMore = raw.length > 200;
+      var detailId = 'tr-d-'+i;
+      return '<article class="card" data-tribune="'+i+'">'+
+        '<div class="blog-meta">'+
+          '<span class="pill">Tribune</span>'+
+          (it.byline ? '<span class="muted small">'+esc(it.byline)+'</span>' : '')+
+          '<span class="muted small">'+esc(fmtTime(it.published_at))+'</span>'+
+        '</div>'+
+        '<h3 class="card-title" style="margin:4px 0 6px"><a href="'+esc(it.url||'#')+'" target="_blank" rel="noopener">'+esc(it.headline||'(untitled)')+'</a></h3>'+
+        '<p class="card-blurb" data-tprev="1">'+esc(trimmed)+'</p>'+
+        (hasMore ? '<div id="'+detailId+'" data-tfull="1" style="display:none"><p class="card-blurb">'+esc(raw)+'</p></div>' +
+                   '<button type="button" class="btn-o" style="margin-top:6px;font-size:13px;padding:5px 11px" data-ttoggle="'+detailId+'">Read more</button>' : '')+
+        (it.url ? ' <a class="btn-o" style="margin-top:6px;font-size:13px;padding:5px 11px" href="'+esc(it.url)+'" target="_blank" rel="noopener">Open at Tribune &rarr;</a>' : '')+
+      '</article>';
+    }).join('');
+    status.textContent = items.length + ' stories · updated ' + new Date().toLocaleTimeString();
+    list.querySelectorAll('button[data-ttoggle]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.getAttribute('data-ttoggle');
+        var det = document.getElementById(id);
+        if (!det) return;
+        var card = btn.closest('article');
+        var prev = card ? card.querySelector('[data-tprev="1"]') : null;
+        if (det.style.display === 'none'){ det.style.display=''; if(prev) prev.style.display='none'; btn.textContent='Show less'; }
+        else { det.style.display='none'; if(prev) prev.style.display=''; btn.textContent='Read more'; }
+      });
+    });
+  }
+  function loadTribune(){
+    if (inBackoff()){ $('tribuneStatus').textContent = 'Rate-limited — backing off, retrying soon.'; return; }
+    var status = $('tribuneStatus');
+    status.textContent = 'Loading Tribune stories…';
+    fetch(TRIBUNE_API + '?limit=20', {cache:'no-store'})
+      .then(function(r){
+        noteResponse(r);
+        if (r.status === 429) throw new Error('rate-limited');
+        if (!r.ok) throw new Error('HTTP '+r.status);
+        return r.json();
+      })
+      .then(function(j){ renderTribune((j && j.items) || []); })
+      .catch(function(e){
+        $('tribuneStatus').textContent = 'Failed to load Tribune: '+(e && e.message ? e.message : String(e))+'. Will retry in 30 min.';
+      });
+  }
+
+  // ── INDOT Jackson alerts ────────────────────────────────────
+  var INDOT_API = 'https://api.thatcomputerguy26.org/api/public/ibetcg/traffic-alerts';
+  var INDOT_MS = 5 * 60 * 1000;
+  function renderIndot(items){
+    var list = $('indotList');
+    var status = $('indotStatus');
+    if (!items.length){
+      list.innerHTML = '';
+      status.textContent = 'No active INDOT alerts in Jackson County right now. Roads clear. (Last check: ' + new Date().toLocaleTimeString() + ')';
+      return;
+    }
+    list.innerHTML = items.map(function(it){
+      var kind = (it.event_type || it.kind || it.category || 'alert').toUpperCase();
+      var route = it.route || it.road || it.location || '';
+      var sev = (it.severity || '').toLowerCase();
+      var sevColor = sev === 'high' || sev === 'severe' ? '#f87171' :
+                     sev === 'medium' || sev === 'moderate' ? '#fbbf24' :
+                     sev ? '#34d399' : 'var(--accent-5, #22d3ee)';
+      var when = it.starts_at || it.published_at || it.fetched_at || '';
+      return '<article class="card">'+
+        '<div class="blog-meta">'+
+          '<span class="pill" style="background:rgba(248,113,113,.12);color:'+sevColor+';border:1px solid '+sevColor+'33">'+esc(kind)+'</span>'+
+          (route ? '<span class="pill">'+esc(route)+'</span>' : '')+
+          (when ? '<span class="muted small">'+esc(fmtTime(when))+'</span>' : '')+
+        '</div>'+
+        '<h4 class="card-title" style="margin:4px 0 6px;font-size:16px">'+esc(it.headline || it.title || it.summary || 'INDOT alert')+'</h4>'+
+        (it.description ? '<p class="card-blurb">'+esc(it.description)+'</p>' : '')+
+        (it.url ? '<a class="btn-o" style="margin-top:6px;font-size:13px;padding:5px 11px" href="'+esc(it.url)+'" target="_blank" rel="noopener">Details &rarr;</a>' : '')+
+      '</article>';
+    }).join('');
+    status.textContent = items.length + ' active alert' + (items.length===1?'':'s') + ' · Jackson County · updated ' + new Date().toLocaleTimeString();
+  }
+  function loadIndot(){
+    if (inBackoff()){ $('indotStatus').textContent = 'Rate-limited — backing off.'; return; }
+    $('indotStatus').textContent = 'Loading INDOT alerts…';
+    fetch(INDOT_API + '?county=Jackson&limit=10', {cache:'no-store'})
+      .then(function(r){
+        noteResponse(r);
+        if (r.status === 429) throw new Error('rate-limited');
+        if (!r.ok) throw new Error('HTTP '+r.status);
+        return r.json();
+      })
+      .then(function(j){
+        // Filter Jackson-specific defensively (server may not always filter).
+        var items = (j && j.items) || [];
+        items = items.filter(function(it){
+          var blob = (it.county||'') + ' ' + (it.location||'') + ' ' + (it.description||'') + ' ' + (it.headline||'') + ' ' + (it.title||'');
+          // Pass if county field says Jackson OR text mentions Jackson/Seymour/Brownstown/Crothersville
+          if (it.county && /jackson/i.test(it.county)) return true;
+          return /\b(jackson|seymour|brownstown|crothersville|medora)\b/i.test(blob);
+        });
+        renderIndot(items);
+      })
+      .catch(function(e){
+        $('indotStatus').textContent = 'Failed to load INDOT: '+(e && e.message ? e.message : String(e))+'. Will retry in 5 min.';
+      });
+  }
+
+  function init(){
+    loadTribune();
+    loadIndot();
+    setInterval(function(){ if (!inBackoff()) loadTribune(); }, TRIBUNE_MS);
+    setInterval(function(){ if (!inBackoff()) loadIndot();   }, INDOT_MS);
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
 <script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script></body>
 </html>
