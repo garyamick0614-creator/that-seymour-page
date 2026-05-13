@@ -169,11 +169,14 @@ function deriveState(cam) {
   return 'IN';
 }
 
-const STATE = { cameras: [], q: '', tab: 'jackson', tick: 0 };
+// 2026-05-12: default-tab changed from 'jackson' (only 2 cams — both operator-
+// curated at I-65/US-50, looked like duplicates) to 'near40' (20 cams) so the
+// page lands on a useful set. Jackson tab still works; it's just not the default.
+const STATE = { cameras: [], q: '', tab: 'near40', tick: 0 };
 
 const TABS = [
-  { id: 'jackson',  label: 'Jackson County' },
   { id: 'near40',   label: '40 mi of Seymour' },
+  { id: 'jackson',  label: 'Jackson County' },
   { id: 'indiana',  label: 'Indiana' },
   { id: 'kentucky', label: 'Kentucky' },
   { id: 'all',      label: 'All' },
