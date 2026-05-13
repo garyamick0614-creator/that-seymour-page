@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Traffic &mdash; That Seymour Page</title>
-<meta name="description" content="Live traffic cameras around Seymour, Indiana &mdash; Jackson, Bartholomew, Scott, Jennings, Brown counties &mdash; refreshed every 5 minutes.">
+<meta name="description" content="Live traffic cameras within 40 miles of Seymour, Indiana plus the rest of Indiana and Kentucky &mdash; refreshed every 5 minutes.">
 <meta name="theme-color" content="#0e1116">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/css/site.css">
@@ -56,7 +56,7 @@
   <section class="section">
     <p class="eyebrow">Traffic</p>
     <h1 style="margin:6px 0 12px;font-size:32px">Live cameras around Seymour</h1>
-    <p class="muted">Live traffic cameras &mdash; Jackson County first, then within 40 miles of Seymour, then the rest of Indiana and Kentucky. Refreshes by itself every 5 minutes. Click a tile for a bigger picture.</p>
+    <p class="muted">Live traffic cameras within 40 miles of Seymour, then the rest of Indiana and Kentucky. Refreshes by itself every 5 minutes. Click a tile for a bigger picture.</p>
 
     <div class="chip-row" id="tabRow"></div>
 
@@ -169,24 +169,48 @@ function deriveState(cam) {
   return 'IN';
 }
 
-// 2026-05-12: default-tab changed from 'jackson' (only 2 cams — both operator-
-// curated at I-65/US-50, looked like duplicates) to 'near40' (20 cams) so the
-// page lands on a useful set. Jackson tab still works; it's just not the default.
+// 2026-05-13: removed 'jackson' tab per operator — the 2 operator-curated cams
+// at I-65/US-50 were near-duplicates and the tab confused users. Jackson cams
+// still appear in '40 mi of Seymour' (they're 0 mi away by definition).
 const STATE = { cameras: [], q: '', tab: 'near40', tick: 0 };
 
 const TABS = [
   { id: 'near40',   label: '40 mi of Seymour' },
-  { id: 'jackson',  label: 'Jackson County' },
   { id: 'indiana',  label: 'Indiana' },
   { id: 'kentucky', label: 'Kentucky' },
   { id: 'all',      label: 'All' },
 ];
 
+// 2026-05-13: de-dupe upstream registry. INDOT-511, Trafficwise, KYTC and the
+// operator-curated set sometimes publish the same physical camera under
+// different IDs (e.g. one I-65/US-50 location appears as both 'operator-curated'
+// and INDOT). Dedup key: rounded lat/lon (3 decimals ~ 110m), falling back to
+// normalized name. Source priority keeps the most authoritative feed first.
+const SOURCE_RANK = { 'indot-511in': 0, 'trafficwise': 1, 'kytc': 2, 'operator-curated': 3 };
+function dedupeKey(c) {
+  if (typeof c.lat === 'number' && typeof c.lon === 'number') {
+    return 'geo:' + c.lat.toFixed(3) + ',' + c.lon.toFixed(3);
+  }
+  return 'name:' + (c.name || c.camera_id || '').toLowerCase().replace(/\s+/g, ' ').trim();
+}
+function dedupeCameras(items) {
+  const best = new Map();
+  for (const c of items) {
+    const k = dedupeKey(c);
+    const prev = best.get(k);
+    if (!prev) { best.set(k, c); continue; }
+    const a = SOURCE_RANK[c.source] ?? 99;
+    const b = SOURCE_RANK[prev.source] ?? 99;
+    if (a < b) best.set(k, c);
+  }
+  return Array.from(best.values());
+}
+
 async function loadCameras() {
   const r = await fetch(TCG_API + '/api/indot/cameras?limit=500&t=' + Date.now(), { cache: 'no-cache' });
   if (!r.ok) throw new Error(r.status);
   const j = await r.json();
-  const items = j.items || [];
+  const items = dedupeCameras(j.items || []);
   // Enrich: derive county + state + miles-from-seymour
   for (const c of items) {
     c._county = deriveCounty(c) || c.county || null;
@@ -198,7 +222,6 @@ async function loadCameras() {
 
 function tabFilter(c) {
   switch (STATE.tab) {
-    case 'jackson':  return c._county === 'Jackson';
     case 'near40':   return c._miles <= 40;
     case 'indiana':  return c._state === 'IN';
     case 'kentucky': return c._state === 'KY';
@@ -237,10 +260,8 @@ function renderTabs() {
 function renderGrid() {
   const list = filtered();
   document.getElementById('counter').textContent = list.length + ' of ' + STATE.cameras.length + ' cameras';
-  // Sort: Jackson first, then by miles from Seymour ascending, then alpha
+  // Sort by miles from Seymour ascending, then alpha by name.
   list.sort((a, b) => {
-    const ja = a._county === 'Jackson' ? 0 : 1, jb = b._county === 'Jackson' ? 0 : 1;
-    if (ja !== jb) return ja - jb;
     if (a._miles !== b._miles) return a._miles - b._miles;
     return (a.name || '').localeCompare(b.name || '');
   });
@@ -250,11 +271,6 @@ function renderGrid() {
     grid.innerHTML = '<p class="muted">No cameras match. Try a different tab or clear the search.</p>';
     return;
   }
-  // Cache-bust image URLs so the browser pulls a fresh frame on each refresh.
-  // Server returns image_url as a path-only ('/api/proxy/<src>/camera-image?id=...')
-  // because most consumers are same-origin. We're cross-origin on netlify.app,
-  // so prepend TCG_API when image_url starts with '/'. Without this every <img>
-  // 404s and tiles show "No image right now".
   const t = STATE.tick;
   const absUrl = u => u && u.startsWith('/') ? TCG_API + u : u;
   grid.innerHTML = list.map(c => {
