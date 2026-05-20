@@ -44,12 +44,22 @@
   .topic-chip { font-size: 11px; padding: 3px 9px; border-radius: 999px; background: rgba(34, 211, 238, .14); color: var(--accent-5, #67e8f9); text-transform: uppercase; letter-spacing: .04em; }
   .empty { color: var(--dim); font-style: italic; padding: 12px 0; }
 </style>
+  <link rel="stylesheet" href="https://api.thatcomputerguy26.org/static/tcg-design-system/tokens.css">
+  <link rel="stylesheet" href="https://api.thatcomputerguy26.org/static/tcg-design-system/components.css">
+  <script defer src="https://api.thatcomputerguy26.org/static/tcg-design-system/components.js"></script>
+  <script defer src="https://api.thatcomputerguy26.org/static/tcg-design-system/CommandPalette.js"></script>
+  <style>
+    .tcg-skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .tcg-skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;background:#0e1116;color:#fbbf24;padding:8px 14px;border:2px solid #fbbf24;border-radius:6px;z-index:99999;font:700 14px system-ui,sans-serif;text-decoration:none}
+    :focus-visible{outline:2px solid #22d3ee;outline-offset:2px}
+  </style>
 </head>
 <body>
+<a class="tcg-skip-link" href="#main">Skip to main content</a>
 
 <div id="site-header"></div>
 
-<main class="container">
+<main id="main" class="container">
   <section class="section">
     <p class="eyebrow">Daily intelligence</p>
     <article class="hero">
@@ -172,5 +182,50 @@
 })();
 </script>
 <script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script>
+<script id="tcg-phase-e-bootstrap">
+(function(){
+  // Service worker registration (cache-first static + stale-while-revalidate /api/)
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').catch(function(e){ console.warn('[tcg-sw]', e); });
+    });
+  }
+  // Wire palette + Ctrl+K once design system is ready
+  function wireWhenReady(){
+    if (!window.tcg || !window.tcg.commandPalette || !window.tcg.kbd) { return setTimeout(wireWhenReady, 80); }
+    try {
+      window.tcg.commandPalette.registerMany([
+        { id: 'go-home', kind: 'nav', label: 'Home', target: '/', run: function(){ location.href='/'; } },
+          { id: 'go-news', kind: 'nav', label: 'News', target: '/news', run: function(){ location.href='/news.html'; } },
+          { id: 'go-events', kind: 'nav', label: 'Events', target: '/events', run: function(){ location.href='/events.html'; } },
+          { id: 'go-weather', kind: 'nav', label: 'Weather', target: '/weather', run: function(){ location.href='/weather.html'; } },
+          { id: 'go-traffic', kind: 'nav', label: 'Traffic', target: '/traffic', run: function(){ location.href='/traffic.html'; } },
+          { id: 'go-businesses', kind: 'nav', label: 'Businesses', target: '/businesses', run: function(){ location.href='/businesses.html'; } },
+          { id: 'go-community', kind: 'nav', label: 'Community', target: '/community', run: function(){ location.href='/community.html'; } },
+          { id: 'go-reviews', kind: 'nav', label: 'Reviews', target: '/reviews', run: function(){ location.href='/reviews.html'; } },
+          { id: 'go-schools', kind: 'nav', label: 'Schools', target: '/schools', run: function(){ location.href='/schools.html'; } },
+          { id: 'go-blog', kind: 'nav', label: 'Blog', target: '/blog', run: function(){ location.href='/blog.html'; } },
+          { id: 'go-civic', kind: 'nav', label: 'Civic', target: '/civic', run: function(){ location.href='/civic.html'; } },
+          { id: 'go-qa', kind: 'nav', label: 'Q&A', target: '/qa', run: function(){ location.href='/qa.html'; } },
+          { id: 'go-map', kind: 'nav', label: 'Map', target: '/map', run: function(){ location.href='/map.html'; } },
+          { id: 'go-tip', kind: 'nav', label: 'Submit a Tip', target: '/tip', run: function(){ location.href='/tip.html'; } },
+          { id: 'go-status', kind: 'nav', label: 'Status', target: '/status', run: function(){ location.href='/status.html'; } },
+          { id: 'go-gas', kind: 'nav', label: 'Gas Prices', target: '/gas', run: function(){ location.href='/gas.html'; } },
+          { id: 'go-hub', kind: 'nav', label: 'TCG Family Hub', target: '/hub', run: function(){ location.href='/hub.html'; } },
+          { id: 'scroll-top', kind: 'action', label: 'Scroll to top', target: 'action:top', run: function(){ window.scrollTo({top:0,behavior:'smooth'}); } }
+      ]);
+      if (window.tcg.commandPalette.init) {
+        try { window.tcg.commandPalette.init({ apiBase: 'https://api.thatcomputerguy26.org', currentRole: 'guest' }); } catch(e){}
+      }
+      window.tcg.kbd.bind('ctrl+k', function(){ window.tcg.commandPalette.open(); }, { description: 'Command palette' });
+      window.tcg.kbd.bind('meta+k', function(){ window.tcg.commandPalette.open(); }, { description: 'Command palette' });
+    } catch(e){ /* ignore */ }
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') { wireWhenReady(); }
+  else { document.addEventListener('DOMContentLoaded', wireWhenReady); }
+  // Also listen for design-system ready event
+  document.addEventListener('tcg-ds-ready', wireWhenReady);
+})();
+</script>
 </body>
 </html>
