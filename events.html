@@ -159,6 +159,29 @@
       <p id="nuBlurb"></p>
     </div>
 
+    <!-- D14 (Phase D, 2026-05-20) - iCal subscribe link. Mobile-friendly. webcal:// opens
+         the system calendar app (iOS Calendar, Google Calendar, Outlook) and subscribes
+         to /api/public/seymour/events.ics (21KB live VCALENDAR, refreshed daily). -->
+    <div data-marker="d14-ical-subscribe" style="margin:18px 0;padding:18px 22px;background:linear-gradient(135deg,rgba(96,165,250,.14),rgba(167,139,250,.06));border:1px solid rgba(96,165,250,.4);border-radius:14px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+      <div style="flex:1 1 280px;min-width:0">
+        <div style="font-size:13px;color:#60a5fa;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:4px">Get every Seymour event on your phone</div>
+        <div style="font-size:15px;color:var(--dim);line-height:1.45">Subscribe once and they'll show up automatically in your iPhone, Google, or Outlook calendar &mdash; refreshed daily, no app to install.</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a id="ical-subscribe-btn"
+           href="webcal://api.thatcomputerguy26.org/api/public/seymour/events.ics"
+           style="display:inline-flex;align-items:center;gap:8px;padding:11px 18px;background:#60a5fa;color:#0e1116;text-decoration:none;border-radius:10px;font-weight:700;font-size:14px;white-space:nowrap">
+          &#x1F4C5; Subscribe in your calendar
+        </a>
+        <a id="ical-download-btn"
+           href="https://api.thatcomputerguy26.org/api/public/seymour/events.ics"
+           download="seymour-events.ics"
+           style="display:inline-flex;align-items:center;gap:6px;padding:11px 14px;background:transparent;color:var(--dim);text-decoration:none;border:1px solid var(--border);border-radius:10px;font-weight:600;font-size:13px;white-space:nowrap">
+          Download .ics
+        </a>
+      </div>
+    </div>
+
     <div class="stat-strip" id="statStrip"></div>
 
     <div class="seg-toggle" id="segToggle" role="tablist">
