@@ -153,27 +153,55 @@
   <!-- Featured story -->
   <section class="section">
     <div class="section-head">
-      <p class="eyebrow">This week</p>
-      <h2>Storms hit, cleanup's on, and there's still plenty going on around town.</h2>
-      <p class="muted">Storm-recovery snapshot from late April; current weekly content lives in the news/events tiles below.</p>
+      <p class="eyebrow">This week in Seymour</p>
+      <h2>Live news and events &mdash; pulled fresh from city council, schools, public safety, and local press.</h2>
+      <p class="muted">Updated every 4 hours from the TCG Seymour-local feed. Open the news, events, weather, traffic, or QA tiles below for the full streams.</p>
     </div>
 
-    <div class="card" style="background:linear-gradient(135deg,rgba(248,113,113,.12),rgba(251,191,36,.04));border-color:rgba(248,113,113,.4)">
-      <p class="eyebrow" style="color:var(--accent-4)">Storm recovery</p>
-      <h3 class="card-title" style="font-size:18px">April 27 storms tore through Jackson County.</h3>
-      <p class="card-blurb">A line of thunderstorms came across central Indiana on Sunday afternoon &mdash; tornadoes, hail, hard wind, and flooding. The Weather Service confirmed a tornado on the ground in Jackson County between Bobtown and Cortland, just northwest of town. A lot of folks have trees down and yards to clear. Lucky timing in one way: the storm hit during Make Seymour Shine week (Apr 13&ndash;17), so the city's extra curbside pickup was already running.</p>
+    <div id="seymourLiveHighlights" class="card" style="background:linear-gradient(135deg,rgba(34,211,238,.10),rgba(168,85,247,.06));border-color:rgba(34,211,238,.35);min-height:120px">
+      <p class="eyebrow" style="color:var(--accent-1)">Loading live highlights &hellip;</p>
+      <p class="card-blurb" style="opacity:.7">Connecting to api.thatcomputerguy26.org &mdash; if this pane sits empty, the city feed is offline; check the news tile below.</p>
     </div>
 
-    <h3 class="section-title">Around town</h3>
-    <ul style="list-style:none;padding:0;margin:0">
-      <li class="card" style="margin-bottom:10px"><strong>Crossroads Acoustic Festival</strong> &mdash; Apr 24&ndash;25 (recap on Seymour Main Street)</li>
-      <li class="card" style="margin-bottom:10px"><strong>City Council</strong> &mdash; met Apr 27. Next ones: May 11 and May 26, 7 PM at George Green Chambers</li>
-      <li class="card" style="margin-bottom:10px"><strong>Crossroads of Cultures</strong> &mdash; May 2 downtown</li>
-      <li class="card" style="margin-bottom:10px"><strong>School budget re-vote</strong> &mdash; May 1 (the first one failed Apr 17, 614 to 924)</li>
-      <li class="card" style="margin-bottom:10px"><strong>BurgerFest 2026</strong> &mdash; September 19, downtown. 36th year. Elexco sponsoring the main stage again.</li>
-    </ul>
-
-    <p class="muted" style="margin-top:14px">Short version: town took a hit from the weather, but folks are doing what they always do &mdash; cleaning up, checking on neighbors, and getting on with the week. <a href="/events.html">See everything that's happening &rarr;</a></p>
+    <script>
+      (function () {
+        var box = document.getElementById('seymourLiveHighlights');
+        if (!box) return;
+        var API = 'https://api.thatcomputerguy26.org';
+        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+        function relTime(iso) {
+          if (!iso) return '';
+          var t = Date.parse(iso); if (!isFinite(t)) return '';
+          var d = Math.round((Date.now() - t) / 1000);
+          if (d < 60) return d + 's ago';
+          if (d < 3600) return Math.round(d / 60) + 'm ago';
+          if (d < 86400) return Math.round(d / 3600) + 'h ago';
+          return Math.round(d / 86400) + 'd ago';
+        }
+        fetch(API + '/api/seymour/sitrep', { cache: 'no-store', credentials: 'include' })
+          .then(function (r) { if (!r.ok) throw new Error('sitrep ' + r.status); return r.json(); })
+          .then(function (j) {
+            var items = (j && j.items) || (j && j.headlines) || [];
+            if (!Array.isArray(items) || items.length === 0) {
+              box.innerHTML = '<p class="eyebrow" style="color:var(--accent-4)">No headlines right now</p><p class="card-blurb">Server is reachable but no fresh items in the Seymour feed. Open the <a href="/news.html">news</a> tile for the full archive.</p>';
+              return;
+            }
+            var top = items.slice(0, 5);
+            var html = '<p class="eyebrow" style="color:var(--accent-1)">Latest from Seymour</p><ul style="list-style:none;padding:0;margin:0">';
+            top.forEach(function (it) {
+              var t = esc(it.title || it.headline || it.summary || 'Untitled');
+              var u = it.url || it.link || '/news.html';
+              var when = relTime(it.published_at || it.ts || it.pubDate);
+              html += '<li style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)"><a href="' + esc(u) + '" target="_blank" rel="noopener" style="color:var(--text);font-weight:500">' + t + '</a>' + (when ? ' <span class="muted" style="font-size:12px">&middot; ' + when + '</span>' : '') + '</li>';
+            });
+            html += '</ul><p class="muted" style="margin-top:10px;font-size:13px"><a href="/news.html">Full Seymour news &rarr;</a> &middot; <a href="/events.html">Events &amp; calendar</a></p>';
+            box.innerHTML = html;
+          })
+          .catch(function () {
+            box.innerHTML = '<p class="eyebrow" style="color:var(--accent-4)">Feed offline</p><p class="card-blurb">api.thatcomputerguy26.org is not responding right now. Try the <a href="/news.html">news</a> page directly, or check back in a few minutes.</p>';
+          });
+      })();
+    </script>
   </section>
 
   <!-- Seymour Stories — entertainment + history -->
@@ -340,7 +368,7 @@
           { id: 'go-reviews', kind: 'nav', label: 'Reviews', target: '/reviews', run: function(){ location.href='/reviews.html'; } },
           { id: 'go-schools', kind: 'nav', label: 'Schools', target: '/schools', run: function(){ location.href='/schools.html'; } },
           { id: 'go-blog', kind: 'nav', label: 'Blog', target: '/blog', run: function(){ location.href='/blog.html'; } },
-          { id: 'go-civic', kind: 'nav', label: 'Civic', target: '/civic', run: function(){ location.href='/civic.html'; } },
+          { id: 'go-civic', kind: 'nav', label: 'Civic Hub (IBE)', target: 'https://ibetcg.netlify.app/civic-hub.html', run: function(){ location.href='https://ibetcg.netlify.app/civic-hub.html'; } },
           { id: 'go-qa', kind: 'nav', label: 'Q&A', target: '/qa', run: function(){ location.href='/qa.html'; } },
           { id: 'go-map', kind: 'nav', label: 'Map', target: '/map', run: function(){ location.href='/map.html'; } },
           { id: 'go-tip', kind: 'nav', label: 'Submit a Tip', target: '/tip', run: function(){ location.href='/tip.html'; } },
