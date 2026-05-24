@@ -1,7 +1,7 @@
 /* TCG Phase E SW template (placed at /sw.js on each Netlify site).
    Policy:
      - HTML (navigation requests) -> network-only (never cache; freshness > offline).
-     - Static assets (css/js/svg/png/woff*/ico) -> cache-first, indefinite (cache-busted by URL).
+     - Static assets (css/js/svg/png/woff/ico) -> cache-first, indefinite (cache-busted by URL).
      - /api/* -> network-first with 24h max age (cache-fallback if offline).
    Bump SW_VERSION to invalidate.
 */
