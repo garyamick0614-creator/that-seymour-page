@@ -1,0 +1,169 @@
+/* H:\TCG Group\TCGProject\design-system\tokens.css
+   TCG Design System — canonical CSS custom properties.
+   Tokens lifted verbatim from OneSource/renderer/styles.css L8-32 and L214-228
+   so OneSource adoption is a literal find-and-replace of the @import line.
+
+   Consumers:
+     <link rel="stylesheet" href="/static/design-system/tokens.css">
+   then either:
+     <html data-theme="dark">   (default)
+     <html data-theme="light">
+
+   v0.1.0 — 2026-05-11 — Phase 0 of OneSource unification plan.
+*/
+
+:root,
+:root[data-theme="dark"] {
+  /* ── color: surfaces ─────────────────────────────────────── */
+  --bg-base:        #0d1117;   /* deepest — body backdrop */
+  --bg-raised:      #161b22;   /* cards, sidebar, modal */
+  --bg-soft:        #1c232b;   /* button rest, input rest */
+  --bg-hover:       #21262d;   /* hover for nav-btn, card-row */
+  --bg-input:       #0a0e14;   /* input/textarea field */
+
+  /* ── color: borders ──────────────────────────────────────── */
+  --bd-soft:        #30363d;
+  --bd-strong:      #444c56;
+
+  /* ── color: text ─────────────────────────────────────────── */
+  --tx-primary:     #e6edf3;
+  --tx-secondary:   #c9d1d9;
+  --tx-muted:       #7d8590;
+  --tx-faint:       #565f6a;
+
+  /* ── color: accent + state ───────────────────────────────── */
+  --accent:         #58a6ff;
+  --accent-soft:    #1f6feb33;
+  --ok:             #3fb950;
+  --warn:           #d29922;
+  --high:           #f78166;
+  --err:            #f85149;
+  --pending:        #8b949e;
+
+  /* ── color: convenience aliases (plan-spec names) ───────── */
+  --accent-green:   var(--ok);
+  --accent-yellow:  var(--warn);
+  --accent-red:     var(--err);
+  --accent-blue:    var(--accent);
+  --bg-0:           var(--bg-base);
+  --bg-1:           var(--bg-raised);
+  --bg-2:           var(--bg-soft);
+  --surface:        var(--bg-raised);
+  --border-subtle:  var(--bd-soft);
+  --border-strong:  var(--bd-strong);
+  --text-primary:   var(--tx-primary);
+  --text-muted:     var(--tx-muted);
+  --text-faint:     var(--tx-faint);
+
+  /* ── spacing scale: 4 / 8 / 12 / 16 / 20 / 24 / 32 / 48 ── */
+  --space-1:        4px;
+  --space-2:        8px;
+  --space-3:        12px;
+  --space-4:        16px;
+  --space-5:        20px;
+  --space-6:        24px;
+  --space-7:        32px;
+  --space-8:        48px;
+
+  /* ── typography ──────────────────────────────────────────── */
+  --font-sans:      "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:      ui-monospace, "Cascadia Code", Consolas, "Roboto Mono", "SFMono-Regular", Menlo, monospace;
+  --sans:           var(--font-sans);   /* alias matches OneSource */
+  --mono:           var(--font-mono);   /* alias matches OneSource */
+
+  --size-xs:        10px;
+  --size-sm:        11px;
+  --size-base:      13px;
+  --size-md:        14px;
+  --size-lg:        16px;
+  --size-xl:        18px;
+  --size-2xl:       22px;
+
+  --line-tight:     1.25;
+  --line-normal:    1.45;
+  --line-relaxed:   1.7;
+
+  /* ── radii ───────────────────────────────────────────────── */
+  --radius-sm:      4px;
+  --radius-md:      8px;
+  --radius-lg:      12px;
+  --radius-full:    999px;
+  --radius:         6px;        /* OneSource legacy default */
+  /* keep --radius-lg legacy alias (10px in OneSource) under a distinct name */
+  --radius-lg-onesource: 10px;
+
+  /* ── shadow ──────────────────────────────────────────────── */
+  --shadow-sm:      0 1px 2px rgba(0,0,0,0.20);
+  --shadow-md:      0 1px 0 rgba(255,255,255,0.04), 0 8px 24px -8px rgba(0,0,0,0.35);
+  --shadow-lg:      0 12px 48px -8px rgba(0,0,0,0.60);
+  --shadow-card:    var(--shadow-md);    /* OneSource alias */
+  --shadow-overlay: var(--shadow-lg);    /* OneSource alias */
+
+  /* ── motion ──────────────────────────────────────────────── */
+  --duration-fast:  120ms;
+  --duration-base:  180ms;
+  --duration-slow:  300ms;
+  --ease-standard:  cubic-bezier(0.2, 0, 0, 1);
+  --ease-in:        cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:       cubic-bezier(0, 0, 0.2, 1);
+  --ease-emphasis:  cubic-bezier(0.2, 0, 0, 1.4);
+
+  /* ── refresh cadence (new — anti-drift) ──────────────────── */
+  /* Use via JS: getComputedStyle(document.documentElement).getPropertyValue("--refresh-base").
+     Numeric ms also exposed in tokens.json for direct JS import. */
+  --refresh-fast:   1000ms;     /* live cam, sparkline tick */
+  --refresh-base:   10000ms;    /* service status, event tail */
+  --refresh-slow:   30000ms;    /* audit log, overview */
+  --refresh-lazy:   60000ms;    /* inventory, glossary, settings */
+
+  /* ── layout aux (carried from OneSource) ─────────────────── */
+  --rail-w:           320px;
+  --rail-w-collapsed: 36px;
+}
+
+/* ── light theme override (OneSource L214-228 verbatim + new aliases) */
+:root[data-theme="light"] {
+  --bg-base:        #f6f8fa;
+  --bg-raised:      #ffffff;
+  --bg-soft:        #f0f3f6;
+  --bg-hover:       #eaeef2;
+  --bg-input:       #ffffff;
+  --bd-soft:        #d0d7de;
+  --bd-strong:      #afb8c1;
+  --tx-primary:     #1f2328;
+  --tx-secondary:   #424a53;
+  --tx-muted:       #656d76;
+  --tx-faint:       #8c959f;
+  --accent:         #0969da;
+  --accent-soft:    #0969da22;
+  /* state colors stay the same — high-contrast meaning is preserved */
+}
+
+/* prefers-color-scheme bridge: if the document has not set data-theme,
+   honor the user's OS preference. data-theme="dark"/"light" still wins. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg-base:        #f6f8fa;
+    --bg-raised:      #ffffff;
+    --bg-soft:        #f0f3f6;
+    --bg-hover:       #eaeef2;
+    --bg-input:       #ffffff;
+    --bd-soft:        #d0d7de;
+    --bd-strong:      #afb8c1;
+    --tx-primary:     #1f2328;
+    --tx-secondary:   #424a53;
+    --tx-muted:       #656d76;
+    --tx-faint:       #8c959f;
+    --accent:         #0969da;
+    --accent-soft:    #0969da22;
+  }
+}
+
+/* reduced motion — collapse durations */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

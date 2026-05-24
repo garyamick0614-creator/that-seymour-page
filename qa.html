@@ -7,10 +7,10 @@
 <meta name="description" content="Quick answers to common Seymour questions: events, weather, schools, businesses, BurgerFest.">
 <meta name="theme-color" content="#0e1116">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="/assets/css/site.css">  <link rel="stylesheet" href="https://api.thatcomputerguy26.org/static/tcg-design-system/tokens.css">
-  <link rel="stylesheet" href="https://api.thatcomputerguy26.org/static/tcg-design-system/components.css">
-  <script defer src="https://api.thatcomputerguy26.org/static/tcg-design-system/components.js"></script>
-  <script defer src="https://api.thatcomputerguy26.org/static/tcg-design-system/CommandPalette.js"></script>
+<link rel="stylesheet" href="/assets/css/site.css">  <link rel="stylesheet" href="/static/tcg-design-system/tokens.css">
+  <link rel="stylesheet" href="/static/tcg-design-system/components.css">
+  <script defer src="/static/tcg-design-system/components.js"></script>
+  <script defer src="/static/tcg-design-system/CommandPalette.js"></script>
   <style>
     .tcg-skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .tcg-skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;background:#0e1116;color:#fbbf24;padding:8px 14px;border:2px solid #fbbf24;border-radius:6px;z-index:99999;font:700 14px system-ui,sans-serif;text-decoration:none}
@@ -33,11 +33,12 @@
       <div class="card"><h3 class="card-title">How do I submit an event for the next weekly hub?</h3>
       <p class="card-blurb">Use <a href="/tip.html">our tip form</a> with date, time, location, description, and a contact. For broader promotion, post free at <a href="https://www.visitindiana.com/events" target="_blank" rel="noopener">VisitIndiana.com</a> &mdash; events go live up to 9 months out after a quick review. You can also tip us directly through the <a href="/tip.html">tip form</a>.</p></div>
 
-      <div class="card"><h3 class="card-title">What's the storm-damage status?</h3>
-      <p class="card-blurb">April 27, 2026 storms confirmed multiple tornadoes across central Indiana, including Jackson County between Bobtown and Cortland. Cleanup is ongoing. Post any unmet need on the <a href="/blog.html">community blog</a>.</p></div>
+      <div class="card"><h3 class="card-title">Are there any active weather alerts for Jackson County right now?</h3>
+      <p class="card-blurb" id="qaWxStatus">Checking the National Weather Service feed&hellip;</p>
+      <p class="card-blurb" style="margin-top:6px;font-size:13px"><a href="/weather.html">Full forecast &amp; alerts page &rarr;</a></p></div>
 
       <div class="card"><h3 class="card-title">Is school in session today?</h3>
-      <p class="card-blurb">As of Apr 29, 2026: Open, no early dismissal. SHS budget workshop in session. Always check live alerts at <a href="https://www.scsc.k12.in.us/alerts" target="_blank" rel="noopener">scsc.k12.in.us/alerts</a>.</p></div>
+      <p class="card-blurb">Always check live alerts at <a href="https://www.scsc.k12.in.us/alerts" target="_blank" rel="noopener">scsc.k12.in.us/alerts</a> &mdash; cancellations and early dismissals post there first. Also see <a href="/schools.html">our schools page</a> for upcoming calendar items.</p></div>
 
       <div class="card"><h3 class="card-title">What happened with the school budget?</h3>
       <p class="card-blurb">Apr 17 referendum failed 614&ndash;924. Re-vote: May 1. Without it, $1.6M in cuts hit middle-school STEM &amp; science, HS French is eliminated, and staff/supply trims continue.</p></div>
@@ -67,7 +68,31 @@
 <div id="site-footer"></div>
 
 <script src="/assets/js/common.js"></script>
-
+<script>
+// Live NWS active-alerts probe for Jackson County, IN (FIPS 018071).
+// Honest, source-cited; no hardcoded storm data.
+(function(){
+  var el = document.getElementById('qaWxStatus');
+  if (!el) return;
+  fetch('https://api.weather.gov/alerts/active?zone=INC071', { headers: { 'Accept':'application/geo+json' }, cache:'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(j){
+      var feats = (j && j.features) || [];
+      if (!feats.length){
+        el.innerHTML = 'No active National Weather Service alerts for Jackson County right now. Last checked just now from <a href="https://api.weather.gov/alerts/active?zone=INC071" target="_blank" rel="noopener">api.weather.gov</a>.';
+        return;
+      }
+      var items = feats.slice(0,3).map(function(f){
+        var p = f.properties || {};
+        return '<strong>'+(p.event||'Weather alert')+':</strong> '+(p.headline||p.description||'').toString().slice(0,180);
+      }).join('<br>');
+      el.innerHTML = items + '<br><a href="https://forecast.weather.gov/MapClick.php?lat=38.9556&lon=-85.8900" target="_blank" rel="noopener" style="font-size:13px">Full NWS forecast for Seymour &rarr;</a>';
+    })
+    .catch(function(){
+      el.innerHTML = 'Could not reach the National Weather Service feed just now. Check <a href="/weather.html">our weather page</a> or <a href="https://forecast.weather.gov/MapClick.php?lat=38.9556&lon=-85.8900" target="_blank" rel="noopener">NWS directly</a>.';
+    });
+})();
+</script>
 <script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script><script id="tcg-phase-e-bootstrap">
 (function(){
   // Service worker registration (cache-first static + stale-while-revalidate /api/)

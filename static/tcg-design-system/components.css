@@ -1,0 +1,539 @@
+/* H:\TCG Group\TCGProject\design-system\components.css
+   TCG Design System — vanilla CSS for shared components.
+
+   Naming contract: every class is prefixed `tcg-` and uses BEM-style
+   `tcg-block__element--modifier` OR a `data-*` attribute for state.
+   State preference: data attribute (data-state, data-kind, data-shape,
+   data-active) — easier to set from vanilla JS and avoids
+   class-list-toggle churn.
+
+   Depends on: tokens.css must be loaded first.
+
+   Usage:
+     <link rel="stylesheet" href="/static/design-system/tokens.css">
+     <link rel="stylesheet" href="/static/design-system/components.css">
+*/
+
+/* ─── reset / base (minimal, opt-in via .tcg-app on <body>) ─── */
+.tcg-app {
+  background: var(--bg-base);
+  color: var(--tx-primary);
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  line-height: var(--line-normal);
+  -webkit-font-smoothing: antialiased;
+}
+.tcg-app *, .tcg-app *::before, .tcg-app *::after { box-sizing: border-box; }
+
+/* ═══════════════════════════════════════════════════════════════
+   1. tcg-status-pill — ok | warn | err | idle
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--size-sm);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  background: var(--bg-soft);
+  color: var(--tx-secondary);
+}
+.tcg-status-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tx-muted);
+  flex-shrink: 0;
+}
+.tcg-status-pill[data-state="ok"]   { background: rgba(63,185,80,0.10);  color: var(--ok);   border-color: rgba(63,185,80,0.30); }
+.tcg-status-pill[data-state="ok"]::before   { background: var(--ok); }
+.tcg-status-pill[data-state="warn"] { background: rgba(210,153,34,0.10); color: var(--warn); border-color: rgba(210,153,34,0.30); }
+.tcg-status-pill[data-state="warn"]::before { background: var(--warn); }
+.tcg-status-pill[data-state="err"]  { background: rgba(248,81,73,0.10);  color: var(--err);  border-color: rgba(248,81,73,0.30); }
+.tcg-status-pill[data-state="err"]::before  { background: var(--err); }
+.tcg-status-pill[data-state="idle"] { background: rgba(139,148,158,0.10);color: var(--pending); border-color: rgba(139,148,158,0.30); }
+.tcg-status-pill[data-state="idle"]::before { background: var(--pending); animation: tcg-pulse 1.4s infinite; }
+@keyframes tcg-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* legacy alias: OneSource's existing .tcg-pill / .tcg-pill-ok continues to work */
+.tcg-pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px var(--space-2); border-radius: var(--radius-full); font-size: var(--size-sm); font-family: var(--font-mono); border: 1px solid transparent; line-height: 1.6; white-space: nowrap; }
+.tcg-pill-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.tcg-pill-ok      { background: rgba(63,185,80,0.10);  color: var(--ok);   border-color: rgba(63,185,80,0.30); }
+.tcg-pill-ok      .tcg-pill-dot { background: var(--ok); }
+.tcg-pill-warn    { background: rgba(210,153,34,0.10); color: var(--warn); border-color: rgba(210,153,34,0.30); }
+.tcg-pill-warn    .tcg-pill-dot { background: var(--warn); }
+.tcg-pill-err     { background: rgba(248,81,73,0.10);  color: var(--err);  border-color: rgba(248,81,73,0.30); }
+.tcg-pill-err     .tcg-pill-dot { background: var(--err); }
+.tcg-pill-pending { background: rgba(139,148,158,0.10);color: var(--pending); border-color: rgba(139,148,158,0.30); }
+.tcg-pill-pending .tcg-pill-dot { background: var(--pending); animation: tcg-pulse 1.4s infinite; }
+.tcg-pill-neutral { background: var(--bg-soft); color: var(--tx-secondary); border-color: var(--bd-soft); }
+.tcg-pill-neutral .tcg-pill-dot { background: var(--tx-muted); }
+
+/* ═══════════════════════════════════════════════════════════════
+   2. tcg-btn — primary | ghost | danger
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--bd-soft);
+  background: var(--bg-soft);
+  color: var(--tx-primary);
+  font-size: var(--size-base);
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+  text-decoration: none;
+  line-height: 1.4;
+}
+.tcg-btn:hover           { background: var(--bg-hover); border-color: var(--bd-strong); }
+.tcg-btn:focus-visible   { outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+.tcg-btn:disabled,
+.tcg-btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+.tcg-btn--primary { border-color: var(--accent); color: var(--accent); }
+.tcg-btn--primary:hover { background: var(--accent-soft); }
+.tcg-btn--ghost   { background: transparent; }
+.tcg-btn--ghost:hover  { background: var(--bg-hover); }
+.tcg-btn--danger  { border-color: var(--err); color: var(--err); }
+.tcg-btn--danger:hover  { background: rgba(248,81,73,0.08); }
+.tcg-btn--sm      { padding: 2px var(--space-2); font-size: var(--size-sm); }
+.tcg-btn--lg      { padding: var(--space-2) var(--space-4); font-size: var(--size-md); }
+
+/* ═══════════════════════════════════════════════════════════════
+   3. tcg-toast-stack + tcg-toast
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-toast-stack {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 1000;
+  max-width: 380px;
+  pointer-events: none;
+}
+.tcg-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--bd-soft);
+  border-left-width: 3px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  color: var(--tx-primary);
+  font-size: var(--size-base);
+  animation: tcg-toast-in var(--duration-base) var(--ease-out) both;
+}
+.tcg-toast[data-leaving="true"] { animation: tcg-toast-out var(--duration-base) var(--ease-in) both; }
+.tcg-toast[data-kind="ok"]   { border-left-color: var(--ok); }
+.tcg-toast[data-kind="warn"] { border-left-color: var(--warn); }
+.tcg-toast[data-kind="err"]  { border-left-color: var(--err); }
+.tcg-toast[data-kind="info"] { border-left-color: var(--accent); }
+.tcg-toast__body  { flex: 1; line-height: 1.4; word-break: break-word; }
+.tcg-toast__title { font-weight: 600; margin-bottom: 2px; }
+.tcg-toast__close {
+  background: transparent;
+  border: 0;
+  color: var(--tx-muted);
+  font-size: var(--size-md);
+  cursor: pointer;
+  padding: 0 var(--space-1);
+  line-height: 1;
+}
+.tcg-toast__close:hover { color: var(--tx-primary); }
+@keyframes tcg-toast-in  { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes tcg-toast-out { from { opacity: 1; transform: translateX(0); }    to { opacity: 0; transform: translateX(20px); } }
+
+/* ═══════════════════════════════════════════════════════════════
+   4. tcg-modal
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  animation: tcg-fade-in var(--duration-base) var(--ease-out);
+}
+.tcg-modal {
+  background: var(--bg-raised);
+  border: 1px solid var(--bd-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  min-width: 380px;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: tcg-modal-in var(--duration-base) var(--ease-emphasis);
+}
+.tcg-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--bd-soft);
+}
+.tcg-modal__title {
+  font-weight: 600;
+  font-size: var(--size-md);
+  margin: 0;
+}
+.tcg-modal__close {
+  background: transparent;
+  border: 0;
+  color: var(--tx-muted);
+  font-size: var(--size-lg);
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+.tcg-modal__close:hover { background: var(--bg-hover); color: var(--tx-primary); }
+.tcg-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-5);
+  color: var(--tx-secondary);
+  line-height: var(--line-normal);
+}
+.tcg-modal__actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--bd-soft);
+}
+@keyframes tcg-fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tcg-modal-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+
+/* ═══════════════════════════════════════════════════════════════
+   5. tcg-empty-state — icon / title / description / cta slots
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-7);
+  border: 1px dashed var(--bd-soft);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  color: var(--tx-secondary);
+}
+.tcg-empty-state__icon  { font-size: 28px; color: var(--tx-muted); line-height: 1; }
+.tcg-empty-state__title { font-size: var(--size-md); color: var(--tx-primary); font-weight: 600; }
+.tcg-empty-state__desc  { font-size: var(--size-base); color: var(--tx-muted); max-width: 480px; line-height: var(--line-relaxed); }
+.tcg-empty-state__cta   { margin-top: var(--space-2); display: flex; gap: var(--space-2); }
+
+/* ═══════════════════════════════════════════════════════════════
+   6. tcg-skeleton — line | circle | card
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-skeleton {
+  display: block;
+  background: linear-gradient(90deg, var(--bg-soft) 0%, var(--bg-hover) 50%, var(--bg-soft) 100%);
+  background-size: 200% 100%;
+  animation: tcg-shimmer 1.4s infinite linear;
+  border-radius: var(--radius-sm);
+}
+.tcg-skeleton[data-shape="line"]   { height: 12px; width: 100%; }
+.tcg-skeleton[data-shape="circle"] { width: 32px; height: 32px; border-radius: 50%; }
+.tcg-skeleton[data-shape="card"]   { height: 80px; border-radius: var(--radius-md); }
+@keyframes tcg-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   7. tcg-kbd — keyboard hints
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-kbd {
+  display: inline-block;
+  background: var(--bg-input);
+  border: 1px solid var(--bd-soft);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--tx-muted);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. tcg-search — filter input with leading icon
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-search {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 1 1 200px;
+  max-width: 360px;
+}
+.tcg-search__icon {
+  position: absolute;
+  left: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tx-muted);
+  pointer-events: none;
+  width: 14px;
+  height: 14px;
+}
+.tcg-search__input {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--tx-primary);
+  border: 1px solid var(--bd-soft);
+  border-radius: var(--radius-sm);
+  padding: 5px var(--space-3) 5px 26px;
+  outline: none;
+  font: inherit;
+  font-size: var(--size-base);
+}
+.tcg-search__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. tcg-sidebar
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-raised);
+  border-right: 1px solid var(--bd-soft);
+  min-width: 220px;
+  height: 100%;
+}
+.tcg-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--bd-soft);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+.tcg-sidebar__section {
+  padding: var(--space-2) var(--space-1);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.tcg-sidebar__section-label {
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  font-size: var(--size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--tx-muted);
+}
+.tcg-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--tx-secondary);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+.tcg-sidebar__item:hover { background: var(--bg-hover); color: var(--tx-primary); }
+.tcg-sidebar__item[data-active="true"] { background: var(--accent-soft); color: var(--tx-primary); }
+.tcg-sidebar__item[data-active="true"] .tcg-sidebar__icon { color: var(--accent); }
+.tcg-sidebar__icon  { width: 16px; text-align: center; color: var(--tx-muted); flex-shrink: 0; }
+.tcg-sidebar__label { flex: 1; }
+.tcg-sidebar__hotkey { margin-left: auto; font-family: var(--font-mono); font-size: var(--size-xs); color: var(--tx-faint); }
+
+/* ═══════════════════════════════════════════════════════════════
+   10. tcg-card
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--bd-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow-md);
+}
+.tcg-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+.tcg-card__title { font-weight: 600; }
+.tcg-card__meta  { color: var(--tx-muted); font-family: var(--font-mono); font-size: var(--size-sm); }
+.tcg-card__row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-1) 0;
+  font-family: var(--font-mono);
+  font-size: var(--size-base);
+  color: var(--tx-secondary);
+}
+.tcg-card__row-label { color: var(--tx-muted); }
+
+/* ═══════════════════════════════════════════════════════════════
+   11. tcg-tile — denser than card, used in dashboards/grids
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--bg-raised);
+  border: 1px solid var(--bd-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  min-width: 0;
+}
+.tcg-tile__label { font-size: var(--size-sm); color: var(--tx-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.tcg-tile__value { font-size: var(--size-2xl); font-weight: 600; color: var(--tx-primary); font-family: var(--font-mono); line-height: var(--line-tight); }
+.tcg-tile__sub   { font-size: var(--size-sm); color: var(--tx-secondary); }
+.tcg-tile[data-state="ok"]   .tcg-tile__value { color: var(--ok); }
+.tcg-tile[data-state="warn"] .tcg-tile__value { color: var(--warn); }
+.tcg-tile[data-state="err"]  .tcg-tile__value { color: var(--err); }
+
+/* ═══════════════════════════════════════════════════════════════
+   12. tcg-sparkline (inline SVG class — colors only)
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-sparkline {
+  display: inline-block;
+  width: 120px;
+  height: 24px;
+  vertical-align: middle;
+}
+.tcg-sparkline rect       { fill: var(--accent); opacity: 0.7; }
+.tcg-sparkline rect.empty { fill: var(--bd-soft); opacity: 0.4; }
+.tcg-sparkline path       { fill: none; stroke: var(--accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.tcg-sparkline[data-state="ok"]   path { stroke: var(--ok); }
+.tcg-sparkline[data-state="warn"] path { stroke: var(--warn); }
+.tcg-sparkline[data-state="err"]  path { stroke: var(--err); }
+
+/* ═══════════════════════════════════════════════════════════════
+   13. tcg-copy-button — small "click to copy"
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-copy-button {
+  background: var(--bg-soft);
+  border: 1px solid var(--bd-soft);
+  color: var(--tx-secondary);
+  border-radius: var(--radius-sm);
+  padding: 1px var(--space-2);
+  font-size: var(--size-xs);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  margin-left: var(--space-1);
+  line-height: 1.5;
+  vertical-align: middle;
+}
+.tcg-copy-button:hover { background: var(--bg-hover); color: var(--tx-primary); }
+.tcg-copy-button[data-copied="true"] {
+  background: rgba(63,185,80,0.15);
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   14. command palette (used by CommandPalette.js)
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-cmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 96px;
+  z-index: 950;
+}
+.tcg-cmd-palette {
+  width: 600px;
+  max-width: 90vw;
+  background: var(--bg-raised);
+  border: 1px solid var(--bd-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.tcg-cmd-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--bd-soft);
+  border-radius: 0;
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--size-md);
+  background: var(--bg-raised);
+  color: var(--tx-primary);
+  outline: none;
+}
+.tcg-cmd-results { max-height: 400px; overflow-y: auto; }
+.tcg-cmd-result {
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--bd-soft);
+  cursor: pointer;
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  color: var(--tx-secondary);
+}
+.tcg-cmd-result:hover,
+.tcg-cmd-result[data-selected="true"] {
+  background: var(--bg-hover);
+  color: var(--tx-primary);
+}
+.tcg-cmd-result[data-selected="true"] {
+  border-left: 3px solid var(--accent);
+  padding-left: calc(var(--space-4) - 3px);
+}
+.tcg-cmd-kind {
+  width: 60px;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--tx-muted);
+  text-transform: uppercase;
+}
+.tcg-cmd-label { flex: 1; }
+.tcg-cmd-hint {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--tx-faint);
+}
+.tcg-cmd-empty {
+  padding: var(--space-4);
+  color: var(--tx-muted);
+  text-align: center;
+  font-size: var(--size-base);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   15. tcg-hint-bar — keyboard hints strip
+   ═══════════════════════════════════════════════════════════════ */
+.tcg-hint-bar {
+  display: flex;
+  gap: var(--space-5);
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px dashed var(--bd-soft);
+  font-size: var(--size-sm);
+  color: var(--tx-muted);
+  flex-wrap: wrap;
+}
+.tcg-hint-bar__item { display: inline-flex; align-items: center; gap: var(--space-1); }

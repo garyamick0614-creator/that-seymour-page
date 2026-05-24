@@ -1,0 +1,23 @@
+{
+  "updatedAt": "2026-05-08T22:00:00Z",
+  "description": "Deep humanized profiles of Seymour, Indiana businesses. Each profile is independently researched against public sources. Honest, specific, and not a press release.",
+  "profiles": [
+    { "slug": "rose-acre-farms", "name": "Rose Acre Farms", "category": "Agriculture", "score": 7.0, "summary": "Seymour-headquartered, second-largest U.S. egg producer. Loved as employer, controversial nationally over 2018 recall and antitrust verdict." },
+    { "slug": "schneck-medical-center", "name": "Schneck Medical Center", "category": "Healthcare", "score": 9.0, "summary": "Magnet-designated independent community hospital. Largest employer in Seymour, exceptional for its size." },
+    { "slug": "aisin-usa", "name": "Aisin USA Manufacturing", "category": "Manufacturing", "score": 7.5, "summary": "Toyota-affiliated tier-1 automotive supplier. Stable mid-tier manufacturing job; tough schedule, real benefits." },
+    { "slug": "cummins-seymour", "name": "Cummins Seymour Engine Plant", "category": "Manufacturing", "score": 8.5, "summary": "Cummins' high-horsepower engine plant. Highest-paying manufacturing job in town, hard to get hired." },
+    { "slug": "walmart-distribution-center", "name": "Walmart Distribution Center #6088", "category": "Distribution", "score": 7.0, "summary": "Grocery DC supplying Walmart Supercenters across the region. Hard physical work, real career path with tuition." },
+    { "slug": "valeo-north-america", "name": "Valeo North America (Seymour)", "category": "Manufacturing", "score": 6.5, "summary": "French-owned tier-1 automotive lighting plant. Steady, mid-pack manufacturing employer." },
+    { "slug": "jackson-county-bank", "name": "Jackson County Bank (JCB)", "category": "Banking", "score": 8.5, "summary": "Locally-headquartered community bank. 'Best Place to Work in Indiana' multi-year honoree, 100+ years in town." },
+    { "slug": "larrisons-diner", "name": "Larrison's Diner", "category": "American / Diner", "score": 9.0, "summary": "Downtown breakfast-and-lunch spot. The most Seymour breakfast in Seymour." },
+    { "slug": "rails-craft-brew", "name": "Rails Craft Brew & Eatery", "category": "American / Steakhouse / Brewpub", "score": 8.0, "summary": "Downtown steaks and house-brewed beer in the renovated B&O freight depot. Best big-room dining in town." },
+    { "slug": "townhouse-cafe", "name": "The Townhouse Cafe", "category": "American / Cafe", "score": 8.5, "summary": "Downtown lunch room a block off the courthouse. Daily specials, breaded tenderloin, the actual product." },
+    { "slug": "silgan-plastics", "name": "Silgan Plastics (Seymour)", "category": "Manufacturing", "score": 6.5, "summary": "Rigid plastic packaging plant under publicly-traded Silgan Holdings. Stable, mid-pay, hot work." },
+    { "slug": "seymour-tubing", "name": "Seymour Tubing, Inc.", "category": "Manufacturing", "score": 7.0, "summary": "Locally-owned precision welded steel tubing manufacturer. Quietly important since 1956." },
+    { "slug": "walmart-supercenter", "name": "Walmart Supercenter (Seymour)", "category": "Retail", "score": 7.0, "summary": "The Tipton Street Supercenter. Everyday everything store; competently-run example of the format." },
+    { "slug": "springhill-camps", "name": "SpringHill Camps Indiana", "category": "Camps / Nonprofit", "score": 8.5, "summary": "ACA-accredited Christian summer camp serving thousands of kids each year. Strong programming, openly Christian." },
+    { "slug": "blacksheep-pizza", "name": "Blacksheep Pizza (Brownstown)", "category": "Pizza / Independent", "score": 9.0, "summary": "12 minutes from Seymour, 4.8/5 across 100+ reviews. Worth the drive." },
+    { "slug": "kocolene", "name": "Kocolene Marketing", "category": "Fuel / Convenience", "score": 7.0, "summary": "Seymour-headquartered family-owned multi-state fuel & retail operator (since 1937). Quiet local economic anchor." },
+    { "slug": "pepsico-seymour", "name": "PepsiCo Seymour Distribution", "category": "Distribution", "score": 7.0, "summary": "Beverage distribution operation for southern Indiana. Solid mid-tier logistics employer with brand and training." }
+  ]
+}

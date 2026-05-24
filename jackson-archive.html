@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#0e1116">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="https://api.thatcomputerguy26.org/static/tcg-design-system/tokens.css">
-  <link rel="stylesheet" href="https://api.thatcomputerguy26.org/static/tcg-design-system/components.css">
-  <script defer src="https://api.thatcomputerguy26.org/static/tcg-design-system/components.js"></script>
-  <script defer src="https://api.thatcomputerguy26.org/static/tcg-design-system/CommandPalette.js"></script>
+  <link rel="stylesheet" href="/static/tcg-design-system/tokens.css">
+  <link rel="stylesheet" href="/static/tcg-design-system/components.css">
+  <script defer src="/static/tcg-design-system/components.js"></script>
+  <script defer src="/static/tcg-design-system/CommandPalette.js"></script>
   <style>
     .tcg-skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .tcg-skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;background:#0e1116;color:#fbbf24;padding:8px 14px;border:2px solid #fbbf24;border-radius:6px;z-index:99999;font:700 14px system-ui,sans-serif;text-decoration:none}
@@ -82,8 +82,8 @@
     });
 
     countEl.textContent = filtered.length + ' article' + (filtered.length===1?'':'s')
-      + (q ? ' matching "' + q + '"' : '') + ' &middot; archive updated '
-      + ''.replace(/.*/,''); // placeholder
+      + (q ? ' matching "' + q + '"' : '')
+      + (window.__archiveGeneratedAt ? ' · archive updated ' + window.__archiveGeneratedAt : '');
 
     if (filtered.length === 0) {
       byMonthHost.innerHTML = '';
@@ -147,6 +147,12 @@
         var db = b.generatedAt ? Date.parse(b.generatedAt) : 0;
         return db - da;
       });
+      // Surface latest-article generatedAt so the count line can show freshness.
+      if (ALL.length && ALL[0].generatedAt) {
+        try { window.__archiveGeneratedAt = ALL[0].generatedAt.slice(0,10); } catch(_){ }
+      } else if (data && data.generatedAt) {
+        try { window.__archiveGeneratedAt = String(data.generatedAt).slice(0,10); } catch(_){ }
+      }
       render('');
     })
     .catch(function(e){

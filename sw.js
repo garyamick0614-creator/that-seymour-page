@@ -5,7 +5,7 @@
      - /api/* -> network-first with 24h max age (cache-fallback if offline).
    Bump SW_VERSION to invalidate.
 */
-const SW_VERSION = 'tcg-phase-e-seymour-2026-05-20-v1';
+const SW_VERSION = 'tcg-phase-e-that-seymour-page-2026-05-24-v1';
 const STATIC_CACHE = SW_VERSION + '-static';
 const API_CACHE    = SW_VERSION + '-api';
 const API_MAX_AGE_MS = 24 * 60 * 60 * 1000;

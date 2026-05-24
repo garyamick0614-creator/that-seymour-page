@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Civic &mdash; That Seymour Page</title>
+<meta name="description" content="Jackson County, Indiana civic content — County Council and County Commissioners meeting minutes, agendas, resolutions, plus the local civic action feed. Live from the That Seymour Page intake pipeline.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1116'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23fbbf24' font-size='13' font-family='sans-serif' font-weight='800'%3ESEY%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/static/tcg-design-system/tokens.css">
+<link rel="stylesheet" href="/static/tcg-design-system/components.css">
+<script defer src="/static/tcg-design-system/components.js"></script>
+<script defer src="/static/tcg-design-system/CommandPalette.js"></script>
+<style>
+  .tcg-skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .tcg-skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;background:#0e1116;color:#fbbf24;padding:8px 14px;border:2px solid #fbbf24;border-radius:6px;z-index:99999;font:700 14px system-ui,sans-serif;text-decoration:none}
+  :focus-visible{outline:2px solid #22d3ee;outline-offset:2px}
+  .meta-tabs { display:flex; gap:6px; flex-wrap:wrap; margin: 0 0 16px; }
+  .meta-tabs button { background: rgba(31,38,48,.55); border:1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius:999px; cursor:pointer; font:600 13px system-ui,sans-serif; }
+  .meta-tabs button[aria-selected="true"] { background: rgba(251,191,36,.18); border-color: var(--accent); color: var(--accent); }
+  .panel { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; background: rgba(31, 38, 48, .45); margin-bottom: 20px; }
+  .panel h2 { font-size: 20px; margin: 0 0 4px; }
+  .panel .sub { color: var(--dim); font-size: 13px; margin: 0 0 14px; }
+  .list { list-style:none; padding:0; margin:0; }
+  .list li { padding:12px 0; border-top:1px solid var(--border); }
+  .list li:first-child { border-top:0; padding-top:0; }
+  .row-title { display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+  .row-title a { color: var(--accent); text-decoration:none; }
+  .row-title a:hover { text-decoration: underline; }
+  .row-meta { color: var(--dim); font-size: 12px; }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:.05em; font-weight:700; }
+  .b-council { background: rgba(34,211,238,.16); color: #67e8f9; }
+  .b-commissioners { background: rgba(251,191,36,.16); color: var(--accent); }
+  .b-proposed { background: rgba(167,139,250,.16); color: #c4b5fd; }
+  .b-passed { background: rgba(34,197,94,.18); color:#86efac; }
+  .b-failed { background: rgba(239,68,68,.18); color:#fca5a5; }
+  .b-tabled { background: rgba(148,163,184,.16); color:#cbd5e1; }
+  .empty { color: var(--dim); font-style: italic; padding: 12px 0; }
+  .stats-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .stat { padding: 14px; border:1px solid var(--border); border-radius:var(--radius); background: rgba(14,17,22,.55); }
+  .stat .v { font-size:24px; font-weight:800; color:var(--accent); }
+  .stat .l { font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.08em; margin-top:2px; }
+</style>
+</head>
+<body>
+<a class="tcg-skip-link" href="#main">Skip to main content</a>
+
+<div id="site-header"></div>
+
+<main id="main" class="container">
+  <section class="section">
+    <p class="eyebrow">Civic — Jackson County, Indiana</p>
+    <h1 style="margin:6px 0 6px;font-size:32px">County Council, Commissioners, and civic action feed</h1>
+    <p class="muted" style="margin:0 0 16px">Live meeting minutes, agendas, and resolutions from the Jackson County Council and County Commissioners — plus the rolling civic-items feed (notices, RFPs, agenda posts, deadlines). Refreshed daily by the That Seymour Page pipeline.</p>
+
+    <div class="panel" id="statsPanel">
+      <h2>At a glance</h2>
+      <p class="sub" id="statsAsOf">Loading…</p>
+      <div class="stats-grid" id="statsGrid"><div class="stat"><div class="v">…</div><div class="l">Loading</div></div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Meetings</h2>
+      <p class="sub">Council + Commissioners, most recent first. Source: Jackson County, IN public meeting record.</p>
+      <div class="meta-tabs" role="tablist" aria-label="Filter meetings by body">
+        <button role="tab" aria-selected="true" data-mfilter="all">All</button>
+        <button role="tab" aria-selected="false" data-mfilter="county-council">County Council</button>
+        <button role="tab" aria-selected="false" data-mfilter="county-commissioners">Commissioners</button>
+      </div>
+      <ul class="list" id="meetingsList"><li class="empty">Loading…</li></ul>
+    </div>
+
+    <div class="panel">
+      <h2>Resolutions</h2>
+      <p class="sub">Resolutions tracked from agendas + minutes. Status updates when the next meeting is posted.</p>
+      <div class="meta-tabs" role="tablist" aria-label="Filter resolutions by status">
+        <button role="tab" aria-selected="true" data-rfilter="all">All</button>
+        <button role="tab" aria-selected="false" data-rfilter="proposed">Proposed</button>
+        <button role="tab" aria-selected="false" data-rfilter="passed">Passed</button>
+        <button role="tab" aria-selected="false" data-rfilter="failed">Failed</button>
+        <button role="tab" aria-selected="false" data-rfilter="tabled">Tabled</button>
+      </div>
+      <ul class="list" id="resolutionsList"><li class="empty">Loading…</li></ul>
+    </div>
+
+    <div class="panel">
+      <h2>Civic action feed</h2>
+      <p class="sub">Notices, RFPs, agenda posts, and other civic items the scraper has surfaced recently.</p>
+      <ul class="list" id="civicFeedList"><li class="empty">Loading…</li></ul>
+    </div>
+
+    <div class="panel">
+      <h2>Source links</h2>
+      <ul class="list">
+        <li><div class="row-title"><a href="https://www.jacksoncounty.in.gov/" target="_blank" rel="noopener">Jackson County, IN — official site</a></div><div class="row-meta">County government home; minutes, calendars, departments.</div></li>
+        <li><div class="row-title"><a href="https://www.seymourin.org/" target="_blank" rel="noopener">City of Seymour</a></div><div class="row-meta">City Council agendas, calendar, public comment.</div></li>
+        <li><div class="row-title"><a href="https://ibetcg.netlify.app/civic-hub.html" target="_blank" rel="noopener">TCG Civic Hub</a></div><div class="row-meta">Statewide portal: mycase.in.gov, IDOC, IRACS, county clerks.</div></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/common.js"></script>
+<script>
+(function(){
+  var API = 'https://api.thatcomputerguy26.org';
+
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+  function fmtDate(d){ if(!d) return ''; try { return new Date(d).toISOString().slice(0,10); } catch(e){ return String(d).slice(0,10); } }
+  function bodyBadge(b){ return b==='county-council' ? '<span class="badge b-council">Council</span>' : '<span class="badge b-commissioners">Commissioners</span>'; }
+  function statusBadge(s){ return '<span class="badge b-'+esc(s||'proposed')+'">'+esc(s||'proposed')+'</span>'; }
+
+  var meetingsAll = [], resolutionsAll = [], mFilter='all', rFilter='all';
+
+  function renderMeetings(){
+    var box = document.getElementById('meetingsList');
+    var filtered = mFilter==='all' ? meetingsAll : meetingsAll.filter(function(m){ return (m.body||'') === mFilter; });
+    if (!filtered.length) { box.innerHTML = '<li class="empty">No meetings on file for this filter.</li>'; return; }
+    box.innerHTML = filtered.map(function(m){
+      var title = m.title || (m.body==='county-council'?'County Council meeting':'County Commissioners meeting');
+      var dt = fmtDate(m.meeting_date || m.date);
+      var link = m.minutes_url || m.agenda_url || m.source_url || '#';
+      return '<li><div class="row-title">'+bodyBadge(m.body)+
+             '<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(title)+'</a></div>'+
+             '<div class="row-meta">'+esc(dt)+(m.location?' &middot; '+esc(m.location):'')+'</div></li>';
+    }).join('');
+  }
+  function renderResolutions(){
+    var box = document.getElementById('resolutionsList');
+    var filtered = rFilter==='all' ? resolutionsAll : resolutionsAll.filter(function(r){ return (r.status||'proposed') === rFilter; });
+    if (!filtered.length) { box.innerHTML = '<li class="empty">No resolutions on file for this filter.</li>'; return; }
+    box.innerHTML = filtered.map(function(r){
+      var title = r.title || ('Resolution '+(r.number||r.id||''));
+      var dt = fmtDate(r.proposed_at || r.updated_at);
+      var link = r.source_url || '#';
+      return '<li><div class="row-title">'+statusBadge(r.status)+
+             '<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(title)+'</a></div>'+
+             (r.summary ? '<div class="row-meta">'+esc(r.summary).slice(0,220)+'</div>' : '')+
+             '<div class="row-meta">'+esc(dt)+(r.body?' &middot; '+esc(r.body):'')+'</div></li>';
+    }).join('');
+  }
+
+  function loadStats(){
+    return fetch(API+'/api/public/seymour/co-council/stats', {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var c = (j && j.counts) || {};
+        var lr = (j && j.last_run) || {};
+        var asOf = document.getElementById('statsAsOf');
+        if (asOf) asOf.textContent = 'Last scraper run: '+(lr.ts ? lr.ts.replace('T',' ').slice(0,16)+' UTC' : 'unknown')+(lr.body?' · '+lr.body:'');
+        var grid = document.getElementById('statsGrid');
+        var entries = [
+          {l:'Meetings',v:c.meetings||0},
+          {l:'Council',v:c.meetings_council||0},
+          {l:'Commissioners',v:c.meetings_commish||0},
+          {l:'Resolutions',v:c.resolutions||0},
+          {l:'Passed',v:c.resolutions_passed||0}
+        ];
+        grid.innerHTML = entries.map(function(e){ return '<div class="stat"><div class="v">'+esc(e.v)+'</div><div class="l">'+esc(e.l)+'</div></div>'; }).join('');
+      })
+      .catch(function(){
+        var grid = document.getElementById('statsGrid');
+        if (grid) grid.innerHTML = '<div class="stat"><div class="v">—</div><div class="l">Stats unavailable</div></div>';
+        var asOf = document.getElementById('statsAsOf');
+        if (asOf) asOf.textContent = 'Stats endpoint not reachable; meeting + resolution lists below still load.';
+      });
+  }
+
+  function loadMeetings(){
+    return fetch(API+'/api/public/seymour/co-council/meetings?limit=40', {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        meetingsAll = (j && (j.items||j.meetings)) || [];
+        renderMeetings();
+      })
+      .catch(function(){
+        document.getElementById('meetingsList').innerHTML = '<li class="empty">Meetings endpoint not reachable. Try the source links below.</li>';
+      });
+  }
+  function loadResolutions(){
+    return fetch(API+'/api/public/seymour/co-council/resolutions?limit=40', {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        resolutionsAll = (j && (j.items||j.resolutions)) || [];
+        renderResolutions();
+      })
+      .catch(function(){
+        document.getElementById('resolutionsList').innerHTML = '<li class="empty">Resolutions endpoint not reachable. Try the source links below.</li>';
+      });
+  }
+  function loadCivicFeed(){
+    return fetch(API+'/api/public/seymour/civic?limit=20', {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var items = (j && j.items) || [];
+        var box = document.getElementById('civicFeedList');
+        if (!items.length) { box.innerHTML = '<li class="empty">No civic items posted in the recent window.</li>'; return; }
+        box.innerHTML = items.map(function(it){
+          var title = it.title || it.headline || '(untitled)';
+          var link = it.source_url || it.url || '#';
+          var dt = fmtDate(it.published_at || it.fetched_at);
+          var entity = it.entity || it.body || '';
+          var kind = it.kind ? '<span class="badge b-proposed">'+esc(it.kind)+'</span> ' : '';
+          return '<li><div class="row-title">'+kind+'<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(title)+'</a></div>'+
+                 '<div class="row-meta">'+esc(dt)+(entity?' &middot; '+esc(entity):'')+'</div></li>';
+        }).join('');
+      })
+      .catch(function(){
+        document.getElementById('civicFeedList').innerHTML = '<li class="empty">Civic feed endpoint not reachable.</li>';
+      });
+  }
+
+  // Tab handlers
+  document.querySelectorAll('[data-mfilter]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      mFilter = btn.getAttribute('data-mfilter');
+      document.querySelectorAll('[data-mfilter]').forEach(function(b){ b.setAttribute('aria-selected', b===btn ? 'true' : 'false'); });
+      renderMeetings();
+    });
+  });
+  document.querySelectorAll('[data-rfilter]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      rFilter = btn.getAttribute('data-rfilter');
+      document.querySelectorAll('[data-rfilter]').forEach(function(b){ b.setAttribute('aria-selected', b===btn ? 'true' : 'false'); });
+      renderResolutions();
+    });
+  });
+
+  loadStats(); loadMeetings(); loadResolutions(); loadCivicFeed();
+})();
+</script>
+<script defer src="https://api.thatcomputerguy26.org/static/tcg-visitor.js"></script>
+<script id="tcg-phase-e-bootstrap">
+(function(){
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').catch(function(e){ console.warn('[tcg-sw]', e); });
+    });
+  }
+  function wireWhenReady(){
+    if (!window.tcg || !window.tcg.commandPalette || !window.tcg.kbd) { return setTimeout(wireWhenReady, 80); }
+    try {
+      window.tcg.commandPalette.registerMany([
+        { id: 'go-home', kind: 'nav', label: 'Home', target: '/', run: function(){ location.href='/'; } },
+        { id: 'go-news', kind: 'nav', label: 'News', target: '/news', run: function(){ location.href='/news.html'; } },
+        { id: 'go-events', kind: 'nav', label: 'Events', target: '/events', run: function(){ location.href='/events.html'; } },
+        { id: 'go-weather', kind: 'nav', label: 'Weather', target: '/weather', run: function(){ location.href='/weather.html'; } },
+        { id: 'go-traffic', kind: 'nav', label: 'Traffic', target: '/traffic', run: function(){ location.href='/traffic.html'; } },
+        { id: 'go-businesses', kind: 'nav', label: 'Businesses', target: '/businesses', run: function(){ location.href='/businesses.html'; } },
+        { id: 'go-community', kind: 'nav', label: 'Community', target: '/community', run: function(){ location.href='/community.html'; } },
+        { id: 'go-reviews', kind: 'nav', label: 'Reviews', target: '/reviews', run: function(){ location.href='/reviews.html'; } },
+        { id: 'go-schools', kind: 'nav', label: 'Schools', target: '/schools', run: function(){ location.href='/schools.html'; } },
+        { id: 'go-blog', kind: 'nav', label: 'Blog', target: '/blog', run: function(){ location.href='/blog.html'; } },
+        { id: 'go-civic', kind: 'nav', label: 'Civic', target: '/civic', run: function(){ location.href='/civic.html'; } },
+        { id: 'go-qa', kind: 'nav', label: 'Q&A', target: '/qa', run: function(){ location.href='/qa.html'; } },
+        { id: 'go-map', kind: 'nav', label: 'Map', target: '/map', run: function(){ location.href='/map.html'; } },
+        { id: 'go-tip', kind: 'nav', label: 'Submit a Tip', target: '/tip', run: function(){ location.href='/tip.html'; } },
+        { id: 'go-status', kind: 'nav', label: 'Status', target: '/status', run: function(){ location.href='/status.html'; } },
+        { id: 'go-gas', kind: 'nav', label: 'Gas Prices', target: '/gas', run: function(){ location.href='/gas.html'; } },
+        { id: 'go-hub', kind: 'nav', label: 'TCG Family Hub', target: '/hub', run: function(){ location.href='/hub.html'; } },
+        { id: 'scroll-top', kind: 'action', label: 'Scroll to top', target: 'action:top', run: function(){ window.scrollTo({top:0,behavior:'smooth'}); } }
+      ]);
+      if (window.tcg.commandPalette.init) {
+        try { window.tcg.commandPalette.init({ apiBase: 'https://api.thatcomputerguy26.org', currentRole: 'guest' }); } catch(e){}
+      }
+      window.tcg.kbd.bind('ctrl+k', function(){ window.tcg.commandPalette.open(); }, { description: 'Command palette' });
+      window.tcg.kbd.bind('meta+k', function(){ window.tcg.commandPalette.open(); }, { description: 'Command palette' });
+    } catch(e){ /* ignore */ }
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') { wireWhenReady(); }
+  else { document.addEventListener('DOMContentLoaded', wireWhenReady); }
+  document.addEventListener('tcg-ds-ready', wireWhenReady);
+})();
+</script>
+</body>
+</html>
