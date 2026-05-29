@@ -5,7 +5,7 @@
      - /api/* -> network-first with 24h max age (cache-fallback if offline).
    Bump SW_VERSION to invalidate.
 */
-const SW_VERSION = 'tcg-phase-e-that-seymour-page-2026-05-24-v1';
+const SW_VERSION = 'tcg-phase-e-that-seymour-page-2026-05-29-v2';
 const STATIC_CACHE = SW_VERSION + '-static';
 const API_CACHE    = SW_VERSION + '-api';
 const API_MAX_AGE_MS = 24 * 60 * 60 * 1000;
@@ -30,6 +30,15 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+
+  // Cross-origin requests: never intercept. Let the browser fetch them natively
+  // so they are governed only by their own CSP directive (img/script/style-src),
+  // NOT by a SW-initiated fetch (connect-src). This is what lets self-hosted or
+  // CDN map libraries + OpenStreetMap/Carto/Esri tiles load without a connect-src
+  // block. The API host we DO want to cache is matched by isApi() before this.
+  if (url.origin !== self.location.origin && !/api\.thatcomputerguy26\.org/.test(url.hostname)) {
+    return; // browser default handling
+  }
 
   // HTML navigations: never cache. Network only.
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
