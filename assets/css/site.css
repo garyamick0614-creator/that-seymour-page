@@ -202,10 +202,16 @@ img, svg { max-width: 100%; height: auto; }
   .brand-text { display: none; }
 }
 
-/* Site header host — empty before common.js hydrates, hide so it never reserves layout space. */
-#site-header:empty { display: none; }
-/* When populated, no extra margin/padding so the topbar sits flush against status-bar/ticker stack. */
-#site-header { display: block; }
+/* Site header host — JS-injected (status bar + topbar + ticker) by common.js after first paint.
+   CLS guard: reserve the rendered header height up front so the page does NOT shift down when the
+   header mounts. Live measurement (fully hydrated) = 248px at a 1264px viewport: status-bar ~46px +
+   topbar ~165px (18 nav links wrap to several rows) + ticker ~37px. Nav-wrap peaks in the 821-1300px
+   band, so the desktop reservation must cover that worst case; 252px holds it with a small margin.
+   Wider screens fit the nav in fewer rows (shorter than this — reserved whitespace, but zero shift).
+   At <=820px the topbar nav collapses behind a hamburger (brand + status + ticker only), so the
+   mounted header is far shorter — reserve ~128px there to avoid a large empty band on phones. */
+#site-header { display: block; min-height: 252px; }
+@media (max-width: 820px) { #site-header { min-height: 128px; } }
 
 /* Hero — tightened 2026-05-09 to eliminate gap between nav and content. */
 .hero {
