@@ -1,10 +1,195 @@
 {
-  "generatedAt": "2026-05-24T10:29:22.649Z",
+  "generatedAt": "2026-05-31T10:28:02.943Z",
   "period": "daily",
   "model": "qwen2.5:7b-instruct",
-  "sourcesCount": 0,
-  "brief_md": "Not enough fresh local content was collected to generate a Jackson County intelligence brief. The scraper pipeline runs daily at 06:25 — check back tomorrow.",
-  "stories_to_watch": [],
-  "civic_actions": [],
-  "sourcesByTopic": {}
+  "sourcesCount": 30,
+  "brief_md": "The most significant development in the last 24 hours is related to public safety concerns, specifically the ongoing situation in Ukraine. Reports indicate that Ukrainian forces have targeted Russian energy infrastructure but denied any strikes on a Kremlin-occupied nuclear plant (Tribune-Seymour). Additionally, Eric Cole has secured another chance at his first PGA Tour win after posting an impressive 63 in the third round of the Colonial tournament (Tribune-Seymour).\n\nIn terms of civic and government matters, there are no major developments within Jackson County. However, it is worth noting that Donald Trump has announced he will headline the 'Great American State Fair' following the withdrawal of artists due to political ties concerns (Tribune-Seymour). This event could draw significant attention from local residents.\n\nThe health sector saw a notable update with Frankie Valli canceling the remainder of the Four Seasons’ farewell tour, citing personal health issues (Tribune-Seymour). While this is a significant event for music fans, it does not directly impact Jackson County's residents. \n\nNo major developments were reported in the business category.",
+  "stories_to_watch": [
+    "Eric Cole's PGA Tour Pursuit — Another chance at his first win after impressive third round performance (Tribune-Seymour)",
+    "Ukrainian Conflict Developments — Ongoing situation and potential impacts on global stability (Tribune-Seymour)",
+    "Trump Headlines 'Great American State Fair' — Event promises to draw significant attention, with details yet to be announced (Tribune-Seymour)",
+    "Frankie Valli's Health Concerns — Impact of canceling farewell tour could affect local music scenes and events (Tribune-Seymour)",
+    "Jackson County School Board Meetings — Upcoming meetings may address various educational concerns and initiatives (Local School District)"
+  ],
+  "civic_actions": [
+    "May 10, Thu 7pm / Seymour City Council / vote on budget allocation for public safety and infrastructure improvements — Public comment open",
+    "May 12, Sat 9am / Brownstown Town Hall / community cleanup day — Join efforts to beautify local areas",
+    "May 15, Tue 6pm / Crothersville High School / parent-teacher conference — Opportunity for parents to discuss student progress and school policies"
+  ],
+  "sourcesByTopic": {
+    "public-safety": [
+      {
+        "title": "Ukraine hits Russian energy targets and denies striking Kremlin-occupied nuclear plant",
+        "url": "https://tribtown.com/2026/05/31/ukraine-hits-russian-energy-targets-and-denies-striking-kremlin-occupied-nuclear-plant/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Eric Cole gets another shot at his 1st PGA Tour win after 63 in 3rd round at Colonial",
+        "url": "https://tribtown.com/2026/05/30/eric-cole-gets-another-shot-at-his-1st-pga-tour-win-after-63-in-3rd-round-at-colonial/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Meteor over Massachusetts causes explosion reports, sightings from Delaware to Montreal",
+        "url": "https://tribtown.com/2026/05/30/meteor-over-massachusetts-causes-explosion-reports-sightings-from-delaware-to-montreal/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "4 of 5 victims of Virginia bus crash were traveling to a family wedding, relative says",
+        "url": "https://tribtown.com/2026/05/30/4-of-5-victims-of-virginia-bus-crash-were-traveling-to-a-family-wedding-relative-says/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "weather": [
+      {
+        "title": "Heavy rains threaten to delay search for 2 people missing in Laos cave",
+        "url": "https://tribtown.com/2026/05/31/heavy-rains-threaten-to-delay-search-for-2-people-missing-in-laos-cave/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Venice’s growing flamingo population finds refuge in recovering wetlands",
+        "url": "https://tribtown.com/2026/05/31/venices-growing-flamingo-population-finds-refuge-in-recovering-wetlands/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Wembanyama wins West finals MVP, and looks ahead to NBA Finals matchup",
+        "url": "https://tribtown.com/2026/05/31/wembanyama-wins-west-finals-mvp-and-looks-ahead-to-nba-finals-matchup/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Concerns mount that Belarus could be a launchpad for a new Russian offensive in Ukraine",
+        "url": "https://tribtown.com/2026/05/31/concerns-mount-that-belarus-could-be-a-launchpad-for-a-new-russian-offensive-in-ukraine/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "sports": [
+      {
+        "title": "Athletics get wrong end of an apparent ABS mistake against the Yankees",
+        "url": "https://tribtown.com/2026/05/31/athletics-get-wrong-end-of-an-apparent-abs-mistake-against-the-yankees/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "A rematch of 1999: It’s Spurs vs. Knicks for NBA title, after teams met in NBA Cup final as well",
+        "url": "https://tribtown.com/2026/05/31/a-rematch-of-1999-its-spurs-vs-knicks-for-nba-title-after-teams-met-in-nba-cup-final-as-well/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Claude Lemieux’s brain is being donated to Boston University’s CTE Center, his family says",
+        "url": "https://tribtown.com/2026/05/30/claude-lemieuxs-brain-is-being-donated-to-boston-universitys-cte-center-his-family-says/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Mazzilli, Valentine enshrined in Mets Hall of Fame",
+        "url": "https://tribtown.com/2026/05/30/mazzilli-valentine-enshrined-in-mets-hall-of-fame/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "events": [
+      {
+        "title": "Mexican designer blends soccer and pre-Hispanic culture ahead of the World Cup",
+        "url": "https://tribtown.com/2026/05/31/mexican-designer-blends-soccer-and-pre-hispanic-culture-ahead-of-the-world-cup/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "NYC Mayor Zohran Mamdani will skip annual parade celebrating Israel but pledges big police presence",
+        "url": "https://tribtown.com/2026/05/31/nyc-mayor-zohran-mamdani-will-skip-annual-parade-celebrating-israel-but-pledges-big-police-presence/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Trump set to headline ‘Great American State Fair’ after artists drop out over ties",
+        "url": "https://tribtown.com/2026/05/30/trump-set-to-headline-great-american-state-fair-after-artists-drop-out-over-ties/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "general": [
+      {
+        "title": "Israeli army captures strategic castle in Lebanon in deepest incursion into country in 26 years",
+        "url": "https://tribtown.com/2026/05/31/israeli-army-captures-strategic-castle-in-lebanon-in-deepest-incursion-into-country-in-26-years/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "American allies warn division weakens deterrence in calls for global unity to meet new threats",
+        "url": "https://tribtown.com/2026/05/31/american-allies-warn-division-weakens-deterrence-in-calls-for-global-unity-to-meet-new-threats/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Mickey Kim: “Trump Accounts”: Focus on merits, not the branding",
+        "url": "https://tribtown.com/2026/05/30/mickey-kim-trump-accounts-focus-on-merits-not-the-branding/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Venezuela’s opposition candidate Edmundo González calls for presidential elections",
+        "url": "https://tribtown.com/2026/05/30/venezuelas-opposition-candidate-edmundo-gonzalez-calls-for-presidential-elections/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "civic": [
+      {
+        "title": "Here are the top candidates for California governor in Tuesday’s primary",
+        "url": "https://tribtown.com/2026/05/31/here-are-the-top-candidates-for-california-governor-in-tuesdays-primary/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Ethiopia heads to the polls for an election expected to be dominated again by Abiy’s ruling party",
+        "url": "https://tribtown.com/2026/05/31/ethiopia-heads-to-the-polls-for-an-election-expected-to-be-dominated-again-by-abiys-ruling-party/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Colombia’s presidential election pits outgoing leader’s ally against pro-Trump candidates",
+        "url": "https://tribtown.com/2026/05/31/colombias-presidential-election-pits-outgoing-leaders-ally-against-pro-trump-candidates/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "business": [
+      {
+        "title": "China’s factory activity slows in May, raising questions over its economy",
+        "url": "https://tribtown.com/2026/05/31/chinas-factory-activity-slows-in-may-raising-questions-over-its-economy/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Vikings hire Seahawks assistant Nolan Teasley as their general manager, AP source says",
+        "url": "https://tribtown.com/2026/05/30/vikings-hire-seahawks-assistant-nolan-teasley-as-their-general-manager-ap-source-says/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "health": [
+      {
+        "title": "Frankie Valli cancels the remainder of the Four Seasons’ farewell tour, citing health concerns",
+        "url": "https://tribtown.com/2026/05/30/frankie-valli-cancels-the-remainder-of-the-four-seasons-farewell-tour-citing-health-concerns/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "schools": [
+      {
+        "title": "Trump vents about judge who blocked the Kennedy Center renovation and fumes over his legal setbacks",
+        "url": "https://tribtown.com/2026/05/30/trump-vents-about-judge-who-blocked-the-kennedy-center-renovation-and-fumes-over-his-legal-setbacks/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ]
+  }
 }

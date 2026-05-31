@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-05-31T11:02:14.654Z",
+  "coverageDate": "2026-05-31",
+  "county": "Jackson",
+  "sourceCount": 5,
+  "feedCount": 13,
+  "articles": [
+    {
+      "id": "daily-2026-05-31-weather",
+      "county": "Jackson",
+      "topic": "weather",
+      "title": "Severe Weather and Flooding in Jackson County",
+      "lede": "Seymour residents are advised to remain alert for ongoing flood warnings on the East Fork White River and the White River.",
+      "body_md": "Flood Warning remains active until 2:00 PM EDT today, May 31, for rivers including the East Fork White River at Seymour and the White River at Petersburg and Hazleton.\n\nFlooding is expected to subside earlier than anticipated in Seymour, but caution is advised as water levels may still pose a risk.\n\nIndiana State Police are investigating a fatal crash on Interstate 65 near Seymour; all northbound lanes remain closed at mile marker 51.\n\n- Flood Warning issued for East Fork White River and White River in Jackson County [n]1\n- Flooding expected to end earlier than predicted, but caution advised [n]1\n- Fatal crash on I-65 near Seymour; northbound lanes closed [n]2",
+      "bullets": [
+        "Flood Warning issued for East Fork White River and White River in Jackson County [n]1",
+        "Flooding expected to end earlier than predicted, but caution advised [n]1",
+        "Fatal crash on I-65 near Seymour; northbound lanes closed [n]2"
+      ],
+      "body": [
+        "Flood Warning remains active until 2:00 PM EDT today, May 31, for rivers including the East Fork White River at Seymour and the White River at Petersburg and Hazleton.",
+        "Flooding is expected to subside earlier than anticipated in Seymour, but caution is advised as water levels may still pose a risk.",
+        "Indiana State Police are investigating a fatal crash on Interstate 65 near Seymour; all northbound lanes remain closed at mile marker 51."
+      ],
+      "sources": [
+        {
+          "title": "Flood Warning issued May 30 at 10:41PM EDT until May 31 at 2:00PM EDT by NWS Indianapolis IN",
+          "url": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.24323c6d5ba117fd97cfada645396ad6806b425c.001.1.cap",
+          "source": "NWS-Jackson",
+          "pubDate": "2026-05-31T02:41:00.000Z"
+        },
+        {
+          "title": "ISP: Fatal crash shuts down parts of I-65",
+          "url": "https://www.wlky.com/article/isp-fatal-crash-i-65-seymour-indiana-louisville/71450726",
+          "source": "WLKY",
+          "pubDate": "2026-05-31T05:44:00.000Z"
+        },
+        {
+          "title": "Indiana State Police investigating fatal crash on Interstate 65 in Jackson County",
+          "url": "https://fox59.com/news/indiana-state-police-investigating-fatal-crash-on-interstate-65-in-jackson-county/",
+          "source": "Fox59",
+          "pubDate": "2026-05-30T22:19:37.000Z"
+        }
+      ],
+      "score": 400,
+      "generatedAt": "2026-05-31T11:00:42.335Z"
+    },
+    {
+      "id": "daily-2026-05-31-public-safety",
+      "county": "Jackson",
+      "topic": "public-safety",
+      "title": "I-65 Reopened After Fatal Crash Near Seymour",
+      "lede": "A fatal crash on I-65 near Seymour has reopened the highway, but traffic disruptions remain.",
+      "body_md": "The Indiana State Police (ISP) has announced that southbound I-65 is now open following a tragic accident that occurred near Seymour on Saturday evening. However, northbound lanes are still closed as authorities continue their investigation.\n\nThe crash was severe enough to prompt the closure of all lanes in both directions near the Seymour exit. Multiple helicopters were deployed to assist with the scene and ensure public safety.\n\n- Southbound I-65 has reopened after a fatal crash near Seymour on Saturday evening [1].\n- Northbound lanes remain closed as ISP investigates the accident, which required assistance from multiple helicopters [2].",
+      "bullets": [
+        "Southbound I-65 has reopened after a fatal crash near Seymour on Saturday evening [1].",
+        "Northbound lanes remain closed as ISP investigates the accident, which required assistance from multiple helicopters [2]."
+      ],
+      "body": [
+        "The Indiana State Police (ISP) has announced that southbound I-65 is now open following a tragic accident that occurred near Seymour on Saturday evening. However, northbound lanes are still closed as authorities continue their investigation.",
+        "The crash was severe enough to prompt the closure of all lanes in both directions near the Seymour exit. Multiple helicopters were deployed to assist with the scene and ensure public safety."
+      ],
+      "sources": [
+        {
+          "title": "ISP: I-65 reopened after fatal crash near Seymour",
+          "url": "https://www.whas11.com/article/news/local/indiana/isp-i-65-closed-after-fatal-crash-near-seymour-jackson-county/417-c49bfdfd-4443-4c4e-8d05-c183f839b73c",
+          "source": "WHAS11",
+          "pubDate": "2026-05-31T02:40:48.000Z"
+        },
+        {
+          "title": "ISP investigating fatal crash on I-65 in Jackson County",
+          "url": "https://www.wthr.com/article/traffic/traffic-news/indiana-state-police-isp-fatal-crash-interstate-65-jackson-county/531-bad21dfa-6646-4a15-a776-cf67d023b4fc",
+          "source": "WTHR",
+          "pubDate": "2026-05-30T23:43:15.000Z"
+        }
+      ],
+      "score": 240,
+      "generatedAt": "2026-05-31T11:02:14.654Z"
+    }
+  ]
+}
