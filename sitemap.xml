@@ -9,13 +9,33 @@
   <url><loc>https://that-seymour-page.netlify.app/schools.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/businesses.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/community.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/local.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/civic.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/intelligence.html</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/jackson-archive.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/reviews.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/map.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/qa.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/blog.html</loc><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/tip.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://that-seymour-page.netlify.app/community.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/status.html</loc><changefreq>daily</changefreq><priority>0.4</priority></url>
   <url><loc>https://that-seymour-page.netlify.app/hub.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/aisin-usa.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/blacksheep-pizza.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/cummins-seymour.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/jackson-county-bank.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/kocolene.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/larrisons-diner.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/pepsico-seymour.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/rails-craft-brew.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/rose-acre-farms.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/schneck-medical-center.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/seymour-tubing.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/silgan-plastics.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/springhill-camps.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/townhouse-cafe.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/valeo-north-america.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/walmart-distribution-center.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://that-seymour-page.netlify.app/business/walmart-supercenter.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>

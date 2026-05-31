@@ -60,7 +60,7 @@
     :focus-visible{outline:2px solid #22d3ee;outline-offset:2px}
   </style>
 </head>
-<body data-update-from="/data/weather.json">
+<body data-update-from="https://api.thatcomputerguy26.org/api/seymour/weather/full">
 <a class="tcg-skip-link" href="#main">Skip to main content</a>
 <script>
 (function(){if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -60px 0px'});function arm(){document.querySelectorAll('section,.card,.tile,.cell,.fcard,.ext-card').forEach(function(el){if(!el.classList.contains('fade-in')&&!el.matches('.hero')){el.classList.add('fade-in');io.observe(el)}})}if(document.readyState!=='loading')arm();else document.addEventListener('DOMContentLoaded',arm);})();

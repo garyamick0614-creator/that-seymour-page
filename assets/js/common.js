@@ -235,7 +235,12 @@
       const src = stamp.getAttribute('data-update-from');
       loadJSON(src).then(d => {
         const el = document.getElementById('lastUpdate');
-        if (el && d && d.updatedAt) el.textContent = 'Updated ' + timeAgo(d.updatedAt);
+        // Static /data/*.json files stamp `updatedAt`; the live home-server
+        // endpoints (/api/seymour/*) stamp `fetchedAt`; the daily feed uses
+        // `generatedAt`. Accept whichever is present so the freshness chip
+        // renders regardless of which source a page registered.
+        const ts = d && (d.updatedAt || d.fetchedAt || d.generatedAt);
+        if (el && ts) el.textContent = 'Updated ' + timeAgo(ts);
       });
     }
   }
