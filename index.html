@@ -150,6 +150,32 @@
     </div>
   </section>
 
+  <!-- Seymour at a glance — charts (hand-rolled inline SVG, real API data) -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Seymour at a glance</p>
+      <h2>The week in charts.</h2>
+      <p class="muted">Live numbers, drawn straight from the data. Forecast highs from the National Weather Service, gas-price trend for Jackson County, and how the headline mix breaks down right now. Hand-drawn, no trackers, refreshes when the feeds do.</p>
+    </div>
+    <div class="card-grid" id="glanceCharts">
+      <div class="card" style="cursor:default">
+        <h3 class="card-title">&#x1F324; 7-day forecast highs <span id="wxChartChip" class="pill pill-info">loading</span></h3>
+        <div id="wxChart" style="margin-top:6px;min-height:150px"><p class="card-blurb" style="opacity:.7">Loading National Weather Service forecast&hellip;</p></div>
+        <p class="card-blurb" style="margin-top:8px;font-size:12px">Daytime highs &deg;F &middot; <a href="/weather.html">full forecast &rarr;</a></p>
+      </div>
+      <div class="card" style="cursor:default">
+        <h3 class="card-title">&#x26FD; Gas trend &mdash; Jackson County <span id="gasChartChip" class="pill">loading</span></h3>
+        <div id="gasChart" style="margin-top:6px;min-height:150px"><p class="card-blurb" style="opacity:.7">Loading Indiana gas history&hellip;</p></div>
+        <p class="card-blurb" style="margin-top:8px;font-size:12px">Regular, $/gal &middot; <a href="/gas.html">all Indiana gas prices &rarr;</a></p>
+      </div>
+      <div class="card" style="cursor:default">
+        <h3 class="card-title">&#x1F4F0; Headlines by region <span id="newsChartChip" class="pill">loading</span></h3>
+        <div id="newsChart" style="margin-top:6px;min-height:150px"><p class="card-blurb" style="opacity:.7">Loading headline counts&hellip;</p></div>
+        <p class="card-blurb" style="margin-top:8px;font-size:12px" id="eventsCountLine">&nbsp;</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured story -->
   <section class="section">
     <div class="section-head">
@@ -169,6 +195,7 @@
         if (!box) return;
         var API = 'https://api.thatcomputerguy26.org';
         function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+        function decodeEntities(s) { var d = document.createElement('textarea'); d.innerHTML = String(s == null ? '' : s); return d.value; }
         function relTime(iso) {
           if (!iso) return '';
           var t = Date.parse(iso); if (!isFinite(t)) return '';
@@ -178,10 +205,13 @@
           if (d < 86400) return Math.round(d / 3600) + 'h ago';
           return Math.round(d / 86400) + 'd ago';
         }
-        fetch(API + '/api/seymour/sitrep', { cache: 'no-store', credentials: 'include' })
-          .then(function (r) { if (!r.ok) throw new Error('sitrep ' + r.status); return r.json(); })
+        fetch(API + '/api/seymour/news', { cache: 'no-store', credentials: 'include' })
+          .then(function (r) { if (!r.ok) throw new Error('news ' + r.status); return r.json(); })
           .then(function (j) {
-            var items = (j && j.items) || (j && j.headlines) || [];
+            var items = []
+              .concat((j && j.indiana) || [])
+              .concat((j && j.us) || [])
+              .concat((j && j.global) || []);
             if (!Array.isArray(items) || items.length === 0) {
               box.innerHTML = '<p class="eyebrow" style="color:var(--accent-4)">No headlines right now</p><p class="card-blurb">Server is reachable but no fresh items in the Seymour feed. Open the <a href="/news.html">news</a> tile for the full archive.</p>';
               return;
@@ -189,9 +219,9 @@
             var top = items.slice(0, 5);
             var html = '<p class="eyebrow" style="color:var(--accent-1)">Latest from Seymour</p><ul style="list-style:none;padding:0;margin:0">';
             top.forEach(function (it) {
-              var t = esc(it.title || it.headline || it.summary || 'Untitled');
-              var u = it.url || it.link || '/news.html';
-              var when = relTime(it.published_at || it.ts || it.pubDate);
+              var t = esc(decodeEntities(it.title || it.headline || it.summary || 'Untitled'));
+              var u = it.link || it.url || '/news.html';
+              var when = esc(it.pubDateLabel || relTime(it.published_at || it.ts || it.pubDate));
               html += '<li style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)"><a href="' + esc(u) + '" target="_blank" rel="noopener" style="color:var(--text);font-weight:500">' + t + '</a>' + (when ? ' <span class="muted" style="font-size:12px">&middot; ' + when + '</span>' : '') + '</li>';
             });
             html += '</ul><p class="muted" style="margin-top:10px;font-size:13px"><a href="/news.html">Full Seymour news &rarr;</a> &middot; <a href="/events.html">Events &amp; calendar</a></p>';
@@ -298,36 +328,34 @@
 (async function () {
   const API = 'https://api.thatcomputerguy26.org';
 
-  // Weather: Open-Meteo daily forecast for Seymour, IN. Pull today's max/min
-  // and turn the wmo weather_code into a one-word condition.
+  // Weather: National Weather Service current conditions + daily forecast for
+  // Seymour, IN, via the home server. Chip = current temp; blurb = current
+  // conditions plus the next forecast period.
   try {
-    const w = await SH.loadJSON(API + '/api/proxy/weather/forecast?lat=38.96&lon=-85.89&days=1');
-    if (w && w.daily && w.daily.time && w.daily.time.length) {
-      const max  = Math.round(w.daily.temperature_2m_max[0]);
-      const min  = Math.round(w.daily.temperature_2m_min[0]);
-      const code = w.daily.weather_code[0];
-      const conds = { 0:'Clear', 1:'Mostly clear', 2:'Partly cloudy', 3:'Cloudy', 45:'Foggy', 48:'Foggy', 51:'Drizzle', 53:'Drizzle', 55:'Drizzle', 61:'Rain', 63:'Rain', 65:'Heavy rain', 71:'Snow', 73:'Snow', 75:'Heavy snow', 80:'Showers', 81:'Showers', 82:'Heavy showers', 95:'Thunder', 96:'Thunder', 99:'Thunder' };
-      const cond = conds[code] || 'Mixed';
-      document.getElementById('weatherBlurb').textContent = cond + ' · ' + max + '°F high · ' + min + '°F low';
+    const w = await SH.loadJSON(API + '/api/seymour/weather/full');
+    if (w && w.current && w.daily && w.daily.length) {
+      const cur = w.current;
+      const d0  = w.daily[0];
+      document.getElementById('weatherBlurb').textContent =
+        cur.shortForecast + ' · ' + d0.name + ' ' + d0.temperature + '°F';
       const chip = document.getElementById('weatherChip');
-      chip.textContent = max + '°F';
+      chip.textContent = cur.temperature + '°F';
       chip.className = 'pill pill-info';
     }
   } catch (_) { /* card stays in loading state */ }
 
-  // Events: pull from /api/seymour/sitrep (alerts include date-ranged civic
-  // events). If the upstream is dry we leave the loading state alone.
+  // Events: pull operator-curated upcoming Seymour events from the home server.
+  // Chip = count of upcoming events; blurb = the next one up.
   try {
-    const sit = await SH.loadJSON(API + '/api/seymour/sitrep');
-    const alerts = (sit && sit.alerts) || [];
-    if (alerts.length) {
-      const a = alerts[0];
-      const title = a.properties && a.properties.headline || a.event || 'Active alert';
-      const dateLabel = a.properties && a.properties.effective ? new Date(a.properties.effective).toLocaleDateString() : 'Active';
-      document.getElementById('eventBlurb').textContent = title + ' · ' + dateLabel;
-      document.getElementById('eventChip').textContent = alerts.length + ' active';
+    const ev = await SH.loadJSON(API + '/api/seymour/events');
+    const upcoming = (ev && ev.upcoming) || [];
+    if (upcoming.length) {
+      const e0 = upcoming[0];
+      document.getElementById('eventBlurb').textContent = e0.title + ' · ' + e0.dateLabel;
+      const count = (ev.counts && ev.counts.upcoming != null) ? ev.counts.upcoming : upcoming.length;
+      document.getElementById('eventChip').textContent = count + ' upcoming';
     } else {
-      document.getElementById('eventBlurb').textContent = 'No live alerts. Check the events tab for what is on the calendar.';
+      document.getElementById('eventBlurb').textContent = 'Nothing on the calendar right now. Check the events tab for what is coming up.';
       document.getElementById('eventChip').textContent = 'all clear';
     }
   } catch (_) { /* card stays in loading state */ }
@@ -342,6 +370,197 @@
       document.getElementById('newsChip').className = 'pill pill-ok';
     }
   } catch (_) { /* card stays in loading state */ }
+})();
+</script>
+
+<script>
+// "Seymour at a glance" charts — hand-rolled inline SVG, real data only, honest
+// empty states. No libraries, no CDNs. Reads the same live home-server endpoints
+// the cards above use (via SH.loadJSON). Each chart degrades to a plain message
+// if its feed is reachable-but-empty, and to an "offline" message on failure.
+(function () {
+  var API = 'https://api.thatcomputerguy26.org';
+  var NS = 'http://www.w3.org/2000/svg';
+  var COL = { accent: '#fbbf24', cyan: '#22d3ee', purple: '#a78bfa', green: '#34d399', red: '#f87171', grid: 'rgba(255,255,255,.08)', dim: 'rgba(255,255,255,.55)' };
+
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) { if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]); }
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function svgRoot(w, h) {
+    var s = el('svg', { viewBox: '0 0 ' + w + ' ' + h, width: '100%', height: 'auto', role: 'img', preserveAspectRatio: 'xMidYMid meet' });
+    s.style.display = 'block';
+    s.style.maxWidth = '100%';
+    return s;
+  }
+  function msg(box, text) {
+    box.innerHTML = '';
+    var p = document.createElement('p');
+    p.className = 'card-blurb';
+    p.style.opacity = '.7';
+    p.textContent = text;
+    box.appendChild(p);
+  }
+  function setChip(id, text, cls) {
+    var c = document.getElementById(id);
+    if (c) { c.textContent = text; c.className = cls || 'pill'; }
+  }
+
+  // --- 1) 7-day forecast highs: bar chart of daytime highs from weather/full ---
+  function renderWeather() {
+    var box = document.getElementById('wxChart');
+    if (!box) return;
+    SH.loadJSON(API + '/api/seymour/weather/full').then(function (w) {
+      if (!w || !Array.isArray(w.daily) || !w.daily.length) {
+        msg(box, 'Weather feed is reachable but returned no forecast right now.');
+        setChip('wxChartChip', 'no data', 'pill');
+        return;
+      }
+      var days = w.daily.filter(function (d) { return d && d.isDaytime && typeof d.temperature === 'number'; }).slice(0, 7);
+      if (!days.length) {
+        msg(box, 'No daytime highs in the current forecast window.');
+        setChip('wxChartChip', 'no data', 'pill');
+        return;
+      }
+      var W = 320, H = 150, padL = 8, padR = 8, padT = 16, padB = 26;
+      var plotW = W - padL - padR, plotH = H - padT - padB;
+      var temps = days.map(function (d) { return d.temperature; });
+      var lo = Math.min.apply(null, temps), hi = Math.max.apply(null, temps);
+      var floor = Math.max(0, lo - 8), ceil = hi + 4, range = (ceil - floor) || 1;
+      var n = days.length, gap = 10, barW = (plotW - gap * (n - 1)) / n;
+      var svg = svgRoot(W, H);
+      days.forEach(function (d, i) {
+        var t = d.temperature;
+        var bh = ((t - floor) / range) * plotH;
+        var x = padL + i * (barW + gap);
+        var y = padT + (plotH - bh);
+        svg.appendChild(el('rect', { x: x.toFixed(1), y: y.toFixed(1), width: barW.toFixed(1), height: Math.max(1, bh).toFixed(1), rx: 4, fill: COL.accent, opacity: i === 0 ? 1 : 0.78 }));
+        svg.appendChild(el('text', { x: (x + barW / 2).toFixed(1), y: (y - 4).toFixed(1), 'text-anchor': 'middle', fill: COL.accent, 'font-size': 11, 'font-weight': 700 }, t + '°'));
+        var lbl = (i === 0 ? 'Today' : String(d.name || '').slice(0, 3));
+        svg.appendChild(el('text', { x: (x + barW / 2).toFixed(1), y: (H - 8).toFixed(1), 'text-anchor': 'middle', fill: COL.dim, 'font-size': 10 }, lbl));
+      });
+      svg.appendChild(el('title', {}, '7-day forecast highs for Seymour: ' + temps.join('°, ') + '°F'));
+      box.innerHTML = '';
+      box.appendChild(svg);
+      setChip('wxChartChip', 'live', 'pill pill-ok');
+    }).catch(function () {
+      msg(box, 'Weather feed offline right now. Try the weather page.');
+      setChip('wxChartChip', 'offline', 'pill');
+    });
+  }
+
+  // --- 2) Gas trend (Jackson County, regular): line chart from gas history ---
+  function renderGas() {
+    var box = document.getElementById('gasChart');
+    if (!box) return;
+    SH.loadJSON(API + '/api/indiana-gas/history?days=30').then(function (g) {
+      var series = g && g.byCity && Array.isArray(g.byCity.Jackson) ? g.byCity.Jackson : null;
+      var pts = series ? series.filter(function (p) { return p && typeof p.regular === 'number'; }) : [];
+      if (pts.length < 2) {
+        msg(box, 'Gas history is reachable but has no Jackson County series yet.');
+        setChip('gasChartChip', 'no data', 'pill');
+        return;
+      }
+      var vals = pts.map(function (p) { return p.regular; });
+      var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+      var pad = (hi - lo) * 0.15 || 0.05;
+      var floor = lo - pad, ceil = hi + pad, range = (ceil - floor) || 1;
+      var W = 320, H = 150, padL = 38, padR = 8, padT = 12, padB = 22;
+      var plotW = W - padL - padR, plotH = H - padT - padB;
+      var x = function (i) { return padL + (i / (pts.length - 1)) * plotW; };
+      var y = function (v) { return padT + (plotH - ((v - floor) / range) * plotH); };
+      var svg = svgRoot(W, H);
+      // y gridlines + labels (low / mid / high)
+      [floor + range, floor + range / 2, floor].forEach(function (gv, k) {
+        var gy = padT + (plotH * k / 2);
+        svg.appendChild(el('line', { x1: padL, y1: gy.toFixed(1), x2: (W - padR), y2: gy.toFixed(1), stroke: COL.grid, 'stroke-width': 1 }));
+        svg.appendChild(el('text', { x: (padL - 5).toFixed(1), y: (gy + 3).toFixed(1), 'text-anchor': 'end', fill: COL.dim, 'font-size': 10 }, '$' + gv.toFixed(2)));
+      });
+      var dPath = '', aPath = '';
+      pts.forEach(function (p, i) {
+        var px = x(i).toFixed(1), py = y(p.regular).toFixed(1);
+        dPath += (i === 0 ? 'M' : 'L') + px + ' ' + py + ' ';
+        aPath += (i === 0 ? 'M' : 'L') + px + ' ' + py + ' ';
+      });
+      var x0 = x(0).toFixed(1), xL = x(pts.length - 1).toFixed(1), yBase = (padT + plotH).toFixed(1);
+      aPath = 'M' + x0 + ' ' + yBase + ' ' + aPath.replace(/^M/, 'L') + 'L' + xL + ' ' + yBase + ' Z';
+      svg.appendChild(el('path', { d: aPath, fill: COL.green, opacity: 0.10 }));
+      svg.appendChild(el('path', { d: dPath.trim(), fill: 'none', stroke: COL.green, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+      // last point marker + value
+      var lastV = pts[pts.length - 1].regular;
+      svg.appendChild(el('circle', { cx: xL, cy: y(lastV).toFixed(1), r: 3.5, fill: COL.green }));
+      svg.appendChild(el('text', { x: (W - padR).toFixed(1), y: (y(lastV) - 7).toFixed(1), 'text-anchor': 'end', fill: COL.green, 'font-size': 11, 'font-weight': 700 }, '$' + lastV.toFixed(2)));
+      svg.appendChild(el('title', {}, 'Jackson County regular gas, ' + pts.length + ' readings: low $' + lo.toFixed(2) + ', high $' + hi.toFixed(2)));
+      box.innerHTML = '';
+      box.appendChild(svg);
+      var first = pts[0].regular, delta = lastV - first;
+      var arrow = delta > 0.001 ? '▲' : (delta < -0.001 ? '▼' : '→');
+      setChip('gasChartChip', arrow + ' $' + lastV.toFixed(2), delta <= 0.001 ? 'pill pill-ok' : 'pill');
+    }).catch(function () {
+      msg(box, 'Gas history offline right now. Try the gas page.');
+      setChip('gasChartChip', 'offline', 'pill');
+    });
+  }
+
+  // --- 3) Headlines by region (mini bar) + upcoming-events count ---
+  function renderNews() {
+    var box = document.getElementById('newsChart');
+    if (!box) return;
+    SH.loadJSON(API + '/api/seymour/news').then(function (n) {
+      var counts = (n && n.counts) || {};
+      var rows = [
+        { label: 'Indiana', val: (counts.indiana != null ? counts.indiana : ((n && n.indiana) || []).length), col: COL.accent },
+        { label: 'U.S.', val: (counts.us != null ? counts.us : ((n && n.us) || []).length), col: COL.cyan },
+        { label: 'Global', val: (counts.global != null ? counts.global : ((n && n.global) || []).length), col: COL.purple }
+      ];
+      var total = rows.reduce(function (a, r) { return a + (r.val || 0); }, 0);
+      if (!total) {
+        msg(box, 'News feed is reachable but has no headlines right now.');
+        setChip('newsChartChip', 'no data', 'pill');
+        return;
+      }
+      var max = Math.max.apply(null, rows.map(function (r) { return r.val || 0; })) || 1;
+      var W = 320, H = 150, padL = 56, padR = 30, padT = 12, padB = 8;
+      var plotW = W - padL - padR;
+      var rowH = (H - padT - padB) / rows.length;
+      var svg = svgRoot(W, H);
+      rows.forEach(function (r, i) {
+        var cy = padT + i * rowH + rowH / 2;
+        var bw = ((r.val || 0) / max) * plotW;
+        svg.appendChild(el('text', { x: (padL - 8).toFixed(1), y: (cy + 4).toFixed(1), 'text-anchor': 'end', fill: COL.dim, 'font-size': 11 }, r.label));
+        svg.appendChild(el('rect', { x: padL, y: (cy - 9).toFixed(1), width: Math.max(1, bw).toFixed(1), height: 18, rx: 4, fill: r.col, opacity: 0.85 }));
+        svg.appendChild(el('text', { x: (padL + bw + 6).toFixed(1), y: (cy + 4).toFixed(1), fill: r.col, 'font-size': 11, 'font-weight': 700 }, String(r.val || 0)));
+      });
+      svg.appendChild(el('title', {}, 'Headlines by region: Indiana ' + rows[0].val + ', U.S. ' + rows[1].val + ', Global ' + rows[2].val));
+      box.innerHTML = '';
+      box.appendChild(svg);
+      setChip('newsChartChip', total + ' total', 'pill pill-ok');
+    }).catch(function () {
+      msg(box, 'News feed offline right now. Try the news page.');
+      setChip('newsChartChip', 'offline', 'pill');
+    });
+    // Upcoming events count under the news chart
+    var line = document.getElementById('eventsCountLine');
+    if (line) {
+      SH.loadJSON(API + '/api/seymour/events').then(function (ev) {
+        var up = (ev && ev.counts && ev.counts.upcoming != null) ? ev.counts.upcoming : ((ev && ev.upcoming) || []).length;
+        if (up != null) {
+          line.innerHTML = '\u{1F4C5} ' + up + ' upcoming event' + (up === 1 ? '' : 's') + ' · <a href="/events.html">calendar &rarr;</a>';
+        }
+      }).catch(function () { /* leave placeholder */ });
+    }
+  }
+
+  function go() {
+    if (!window.SH || !SH.loadJSON) { return setTimeout(go, 80); }
+    renderWeather();
+    renderGas();
+    renderNews();
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', go); }
+  else { go(); }
 })();
 </script>
 
