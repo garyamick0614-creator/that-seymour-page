@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-06-06T11:45:05.990Z",
-  "coverageDate": "2026-06-06",
+  "generatedAt": "2026-06-14T11:45:07.284Z",
+  "coverageDate": "2026-06-14",
   "county": "Jackson",
   "sourceCount": 0,
   "feedCount": 13,
   "articles": [
     {
-      "id": "daily-2026-06-06-quiet-day",
+      "id": "daily-2026-06-14-quiet-day",
       "county": "Jackson",
       "topic": "general",
-      "title": "Quiet news day for Jackson County (2026-06-06)",
+      "title": "Quiet news day for Jackson County (2026-06-14)",
       "lede": "Public RSS sweeps turned up no fresh Jackson County items in the last 24 hours.",
       "body_md": "The daily generator scans more than a dozen public RSS feeds (Indianapolis, Louisville, Bloomington and Columbus broadcasters, plus the National Weather Service) every morning at 06:20.\n\nToday no items matched Jackson County, Seymour, Brownstown, Crothersville, Medora, or any of the local ZIP codes. That can mean a genuinely slow news day, or that broadcasters did not tag a Jackson story with a recognizable town name. The generator will re-run tomorrow.\n\nIn the meantime, the rolling /news page (above) still pulls fresh Indiana headlines every two hours via the TCG Seymour news API.",
       "bullets": [],
       "body": [],
       "sources": [],
       "score": 0,
-      "generatedAt": "2026-06-06T11:45:05.990Z"
+      "generatedAt": "2026-06-14T11:45:07.284Z"
     }
   ]
 }

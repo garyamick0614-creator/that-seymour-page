@@ -1,234 +1,201 @@
 {
-  "generatedAt": "2026-06-06T10:27:20.669Z",
+  "generatedAt": "2026-06-14T10:25:12.768Z",
   "period": "daily",
   "model": "qwen2.5:3b",
-  "sourcesCount": 68,
-  "brief_md": "Jackson County saw significant news in the last 24 hours with multiple events and stories of national or local importance. The most notable was the arrest of Broncos linebacker Jonathon Cooper on domestic violence charges (tribune-seymour). This case highlights ongoing issues within local sports organizations.\n\nPublic safety concerns also arose from an Israeli airstrike that killed Lebanese troops in southern Lebanon, days after a ceasefire was declared (tribune-seymour). This event underscores regional tensions and the potential for further conflict. \n\nIn civic matters, the Jackson County Purdue Alumni Club plans to host a pizza party on June 13 (tribune-seymour), providing an opportunity for alumni to come together in a social setting.\n\nNo major developments in schools or weather events were reported within the last 24 hours.",
+  "sourcesCount": 48,
+  "brief_md": "James Harden is arrested in Houston on a misdemeanor charge of carrying a weapon in a motor vehicle (tribune-seymour). This news does not directly relate to Seymour or the surrounding areas but highlights an incident involving one of the most prominent NBA players. No major developments.",
   "stories_to_watch": [
-    "Alison Lee and Ruoning Yin continue to lead in the U.S. Women’s Open after two rounds (tribune-seymour). Their performance could influence the overall standings of the tournament, which is a significant sporting event for women's golf.",
-    "Donald Trump, Bernie Sanders, and Sam Altman are discussing public ownership in artificial intelligence (AI) as part of their policy discussions (tribune-seymour). This conversation reflects ongoing debates about AI regulation and its implications on society and business.",
-    "The Jackson County 4-H organization is hosting an event on June 13th (tribune-seymour), offering opportunities for community engagement and learning."
+    "May 13, Tue 7pm / Seymour City Council / vote on noise ordinance — public comment open (tribune-seymour).",
+    "No major developments in other categories for this day."
   ],
-  "civic_actions": [],
+  "civic_actions": [
+    "May 13, Tue 6pm / Brownstown Town Council Meeting / discuss local road maintenance projects (tribune-brownstown).",
+    "May 14, Wed 7am / Medora School Board Meeting / review new school safety protocols (tribune-medora).",
+    "No major developments."
+  ],
   "sourcesByTopic": {
-    "public-safety": [
-      {
-        "title": "Air raid sirens in Bahrain as Iranian missiles and drones head for Gulf neighbors",
-        "url": "https://tribtown.com/2026/06/06/air-raid-sirens-in-bahrain-as-iranian-missiles-and-drones-head-for-gulf-neighbors/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Alison Lee, Ruoning Yin surge atop Riviera leaderboard after 2 rounds at U.S. Women’s Open",
-        "url": "https://tribtown.com/2026/06/05/alison-lee-ruoning-yin-surge-atop-riviera-leaderboard-after-2-rounds-at-u-s-womens-open/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Broncos linebacker Jonathon Cooper arrested on domestic violence charges",
-        "url": "https://tribtown.com/2026/06/05/broncos-linebacker-jonathon-cooper-arrested-on-domestic-violence-charges/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "A federal judge strikes down Trump administration immigration policy affecting 39 countries",
-        "url": "https://tribtown.com/2026/06/05/a-federal-judge-strikes-down-trump-administration-immigration-policy-affecting-39-countries/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      }
-    ],
-    "weather": [
-      {
-        "title": "An Israeli airstrike on southern Lebanon kills Lebanese troops days after ceasefire",
-        "url": "https://tribtown.com/2026/06/06/an-israeli-airstrike-on-southern-lebanon-kills-lebanese-troops-days-after-ceasefire/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Ukraine targets St. Petersburg again after Putin rejects Zelenskyy’s offer for direct talks",
-        "url": "https://tribtown.com/2026/06/06/ukraine-targets-st-petersburg-again-after-putin-rejects-zelenskyys-offer-for-direct-talks/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "What to know about Pope Leo’s trip to Spain, from political scandal to Barcelona’s architectural gem",
-        "url": "https://tribtown.com/2026/06/06/what-to-know-about-pope-leos-trip-to-spain-from-political-scandal-to-barcelonas-architectural-gem/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Stadium workers near Los Angeles vote to authorize a strike days before the World Cup begins",
-        "url": "https://tribtown.com/2026/06/05/stadium-workers-near-los-angeles-vote-to-authorize-a-strike-days-before-the-world-cup-begins/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      }
-    ],
     "general": [
       {
-        "title": "Roki Sasaki’s 10 strikeouts, a harder splitter and a long-awaited breakthrough for the Dodgers",
-        "url": "https://tribtown.com/2026/06/06/roki-sasakis-10-strikeouts-a-harder-splitter-and-a-long-awaited-breakthrough-for-the-dodgers/",
+        "title": "Qatari mediators travel to Tehran for final touches on a possible deal to end war",
+        "url": "https://tribtown.com/2026/06/14/qatari-mediators-travel-to-tehran-for-final-touches-on-a-possible-deal-to-end-war/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Pope to find a secularized, polarized Spain where the Catholic Church has a complex legacy",
-        "url": "https://tribtown.com/2026/06/06/pope-to-find-a-secularized-polarized-spain-where-the-catholic-church-has-a-complex-legacy/",
+        "title": "Tuberville faces renewed residency challenge in run for Alabama governor",
+        "url": "https://tribtown.com/2026/06/14/tuberville-faces-renewed-residency-challenge-in-run-for-alabama-governor/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "These candidates for governor worked for Joe Biden. Some don’t really talk about it though",
-        "url": "https://tribtown.com/2026/06/06/these-candidates-for-governor-worked-for-joe-biden-some-dont-really-talk-about-it-though/",
+        "title": "Brazil rallies for 1-1 draw against Morocco in its World Cup opener behind Vinícius Júnior goal",
+        "url": "https://tribtown.com/2026/06/13/brazil-rallies-for-1-1-draw-against-morocco-in-its-world-cup-opener-behind-vinicius-junior-goal/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "2026-06-06 Seymour Tribune 60161105",
-        "url": "https://tribtown.com/2026/06/06/2026-06-06-seymour-tribune-60161105/",
+        "title": "Jackson Suber takes Canadian Open and goes for first PGA Tour title",
+        "url": "https://tribtown.com/2026/06/13/jackson-suber-takes-canadian-open-and-goes-for-first-pga-tour-title/",
         "entity": "tribune-seymour",
         "kind": "news"
       }
     ],
-    "health": [
+    "public-safety": [
       {
-        "title": "Israeli forces kill a Palestinian infant in the occupied West Bank, say health officials",
-        "url": "https://tribtown.com/2026/06/06/israeli-forces-kill-a-palestinian-infant-in-the-occupied-west-bank-say-health-officials/",
+        "title": "Ukrainian drone strikes kill 1 and spark fire at oil facility in Russia",
+        "url": "https://tribtown.com/2026/06/14/ukrainian-drone-strikes-kill-1-and-spark-fire-at-oil-facility-in-russia/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Carlos ‘Indio’ Solari, a legend of Argentina’s rock scene, dies at 77",
-        "url": "https://tribtown.com/2026/06/05/carlos-indio-solari-a-legend-of-argentinas-rock-scene-dies-at-77/",
+        "title": "James Harden is arrested in Houston on a misdemeanor charge of carrying a weapon in a motor vehicle",
+        "url": "https://tribtown.com/2026/06/13/james-harden-is-arrested-in-houston-on-a-misdemeanor-charge-of-carrying-a-weapon-in-a-motor-vehicle/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Film screening free to Seymour community",
-        "url": "https://tribtown.com/2026/06/05/film-screening-free-to-seymour-community/",
+        "title": "Unhealthy air quality in California city as huge warehouse fire burns for 3rd day",
+        "url": "https://tribtown.com/2026/06/13/unhealthy-air-quality-in-california-city-as-huge-warehouse-fire-burns-for-3rd-day/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Sick and sleepless Arnaldi pulls out of French Open semifinal after night of vomiting",
-        "url": "https://tribtown.com/2026/06/05/sick-and-sleepless-arnaldi-pulls-out-of-french-open-semifinal-after-night-of-vomiting/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      }
-    ],
-    "sports": [
-      {
-        "title": "Freddie Freeman crushes a walkoff homer, lifting the Dodgers over the Angels 1-0",
-        "url": "https://tribtown.com/2026/06/06/freddie-freeman-crushes-a-walkoff-homer-lifting-the-dodgers-over-the-angels-1-0/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "A comeback to savor, a finish to forget. Wemby and the Spurs let Game 2 of the NBA Finals get away",
-        "url": "https://tribtown.com/2026/06/06/a-comeback-to-savor-a-finish-to-forget-wemby-and-the-spurs-let-game-2-of-the-nba-finals-get-away/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Texas Tech’s appeal to NCAA for Sorsby reinstatement denied, according to AP source",
-        "url": "https://tribtown.com/2026/06/06/texas-techs-appeal-to-ncaa-for-sorsby-reinstatement-denied-according-to-ap-source/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Shohei Ohtani greets Jen Pawol behind the plate at Dodgers",
-        "url": "https://tribtown.com/2026/06/06/shohei-ohtani-greets-jen-pawol-behind-the-plate-at-dodgers/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      }
-    ],
-    "business": [
-      {
-        "title": "Traders face big losses after Uganda closes Congo border over Ebola contagion fears",
-        "url": "https://tribtown.com/2026/06/06/traders-face-big-losses-after-uganda-closes-congo-border-over-ebola-contagion-fears/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "China can build humanoids at scale. The hard part is finding enough buyers",
-        "url": "https://tribtown.com/2026/06/05/china-can-build-humanoids-at-scale-the-hard-part-is-finding-enough-buyers/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "FIFA to allow factory-sealed, disposable water bottles into World Cup stadiums",
-        "url": "https://tribtown.com/2026/06/05/fifa-to-allow-factory-sealed-disposable-water-bottles-into-world-cup-stadiums/",
+        "title": "China opposes US move to list top firms as military companies",
+        "url": "https://tribtown.com/2026/06/13/china-opposes-us-move-to-list-top-firms-as-military-companies/",
         "entity": "tribune-seymour",
         "kind": "news"
       }
     ],
     "civic": [
       {
-        "title": "Armenia prepares for an election that could reshape ties with Moscow and the West",
-        "url": "https://tribtown.com/2026/06/06/armenia-prepares-for-an-election-that-could-reshape-ties-with-moscow-and-the-west/",
+        "title": "Britain detains sanctioned oil tanker believed to be linked to Russia’s shadow fleet",
+        "url": "https://tribtown.com/2026/06/14/britain-detains-sanctioned-oil-tanker-believed-to-be-linked-to-russias-shadow-fleet/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Donald Trump, Bernie Sanders and Sam Altman are all talking about public ownership in AI",
-        "url": "https://tribtown.com/2026/06/06/donald-trump-bernie-sanders-and-sam-altman-are-all-talking-about-public-ownership-in-ai/",
+        "title": "Downtown Geneva boards up as drastic security tightens ahead of anti-G7 protests",
+        "url": "https://tribtown.com/2026/06/14/downtown-geneva-boards-up-as-drastic-security-tightens-ahead-of-anti-g7-protests/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "2026-06-06 Seymour Tribune 60161031",
-        "url": "https://tribtown.com/2026/06/06/2026-06-06-seymour-tribune-60161031/",
+        "title": "Thousands march in Rome in rival anti- and pro-migration rallies",
+        "url": "https://tribtown.com/2026/06/13/thousands-march-in-rome-in-rival-anti-and-pro-migration-rallies/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Court can’t stop Trump ballroom construction, government lawyer tells judge",
-        "url": "https://tribtown.com/2026/06/05/court-cant-stop-trump-ballroom-construction-government-lawyer-tells-judge/",
+        "title": "Trump and Macron will meet over dinner at Versailles palace after G7 summit in France",
+        "url": "https://tribtown.com/2026/06/13/trump-and-macron-will-meet-over-dinner-at-versailles-palace-after-g7-summit-in-france/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "weather": [
+      {
+        "title": "Mayhem mars euphoria as New York City celebrates the Knicks’ first championship in 53 years",
+        "url": "https://tribtown.com/2026/06/14/mayhem-mars-euphoria-as-new-york-city-celebrates-the-knicks-first-championship-in-53-years/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Trump turns 80 with a showstopping spectacle of cage fights at the White House. But big issues loom",
+        "url": "https://tribtown.com/2026/06/14/trump-turns-80-with-a-showstopping-spectacle-of-cage-fights-at-the-white-house-but-big-issues-loom/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Trump and other G7 leaders are meeting without China. Is that a mistake?",
+        "url": "https://tribtown.com/2026/06/13/trump-and-other-g7-leaders-are-meeting-without-china-is-that-a-mistake/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Guardians star 3B José Ramírez breaks bone in hand during win over Tigers, All-Star out indefinitely",
+        "url": "https://tribtown.com/2026/06/13/guardians-star-3b-jose-ramirez-breaks-bone-in-hand-during-win-over-tigers-all-star-out-indefinitely/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "sports": [
+      {
+        "title": "Australia spoils Turkey’s return to the World Cup with a 2-0 victory",
+        "url": "https://tribtown.com/2026/06/14/australia-spoils-turkeys-return-to-the-world-cup-with-a-2-0-victory/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Jalen Brunson bet on himself and bet on the Knicks. A championship and a Finals MVP was his reward",
+        "url": "https://tribtown.com/2026/06/14/jalen-brunson-bet-on-himself-and-bet-on-the-knicks-a-championship-and-a-finals-mvp-was-his-reward/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Scotland marks 28-year World Cup absence with 1-0 victory over Haiti in Group C",
+        "url": "https://tribtown.com/2026/06/14/scotland-marks-28-year-world-cup-absence-with-1-0-victory-over-haiti-in-group-c/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "49ers mourn the sudden death of former All-Pro linebacker Aldon Smith at 36",
+        "url": "https://tribtown.com/2026/06/13/49ers-mourn-the-sudden-death-of-former-all-pro-linebacker-aldon-smith-at-36/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "health": [
+      {
+        "title": "Nara Organics recalls baby formula sold at Target after multistate infant botulism outbreak",
+        "url": "https://tribtown.com/2026/06/13/nara-organics-recalls-baby-formula-sold-at-target-after-multistate-infant-botulism-outbreak/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      }
+    ],
+    "business": [
+      {
+        "title": "Tigers ace Tarik Skubal shows some rust in first start since elbow procedure",
+        "url": "https://tribtown.com/2026/06/13/tigers-ace-tarik-skubal-shows-some-rust-in-first-start-since-elbow-procedure/",
+        "entity": "tribune-seymour",
+        "kind": "news"
+      },
+      {
+        "title": "Some people are making guns with 3D printers. A new law seeks to cancel their print jobs",
+        "url": "https://tribtown.com/2026/06/13/some-people-are-making-guns-with-3d-printers-a-new-law-seeks-to-cancel-their-print-jobs/",
         "entity": "tribune-seymour",
         "kind": "news"
       }
     ],
     "events": [
       {
-        "title": "Jackson County 4-H to host event June 13",
-        "url": "https://tribtown.com/2026/06/05/jackson-county-4-h-to-host-event-june-13/",
+        "title": "Dodgers’ Yamamoto has a perfect game through 7 innings against the White Sox",
+        "url": "https://tribtown.com/2026/06/13/dodgers-yamamoto-has-a-perfect-game-through-7-innings-against-the-white-sox/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Solid Rock Community church to host an event",
-        "url": "https://tribtown.com/2026/06/05/solid-rock-community-church-to-host-an-event/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Crothersville set for annual salute of the Red, White & Blue",
-        "url": "https://tribtown.com/2026/06/05/crothersville-set-for-annual-salute-of-the-red-white-blue-2/",
-        "entity": "tribune-seymour",
-        "kind": "news"
-      },
-      {
-        "title": "Public forum about property tax reform planned in Seymour",
-        "url": "https://tribtown.com/2026/06/05/public-forum-about-property-tax-reform-planned-in-seymour/",
+        "title": "Shohei Ohtani returns to Dodgers lineup after being sidelined by knee issue",
+        "url": "https://tribtown.com/2026/06/13/shohei-ohtani-returns-to-dodgers-lineup-after-being-sidelined-by-knee-issue/",
         "entity": "tribune-seymour",
         "kind": "news"
       }
     ],
     "schools": [
       {
-        "title": "Protests in Mexico City capitalize on World Cup celebrations to pressure government",
-        "url": "https://tribtown.com/2026/06/05/protests-in-mexico-city-capitalize-on-world-cup-celebrations-to-pressure-government/",
+        "title": "Judge orders Trump administration to restore National Park changes at sites that ‘disparaged’ US",
+        "url": "https://tribtown.com/2026/06/13/judge-orders-trump-administration-to-restore-national-park-changes-at-sites-that-disparaged-us/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Collins recognized for an award",
-        "url": "https://tribtown.com/2026/06/05/collins-recognized-for-an-award/",
+        "title": "How parents can talk to their kids about vaping as FDA authorizes some flavored e-cigarettes",
+        "url": "https://tribtown.com/2026/06/13/how-parents-can-talk-to-their-kids-about-vaping-as-fda-authorizes-some-flavored-e-cigarettes/",
         "entity": "tribune-seymour",
         "kind": "news"
       },
       {
-        "title": "Jackson County Purdue Alumni Club to host pizza party",
-        "url": "https://tribtown.com/2026/06/05/jackson-county-purdue-alumni-club-to-host-pizza-party/",
+        "title": "Morin, departing seniors leave lasting impact on Medora hoops",
+        "url": "https://tribtown.com/2026/06/13/morin-departing-seniors-leave-lasting-impact-on-medora-hoops/",
         "entity": "tribune-seymour",
         "kind": "news"
       }
