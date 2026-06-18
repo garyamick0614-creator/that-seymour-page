@@ -399,7 +399,7 @@ function normalize(e) {
   // server reads operator-curated entries from TCGSecrets/config/seymour-events.json.
   const j = await SH.loadJSON('https://api.thatcomputerguy26.org/api/seymour/events');
   if (!j) { document.getElementById('eventList').innerHTML = '<p class="muted">Could not load events. Try again.</p>'; return; }
-  STATE.all = (j.upcoming || []).concat(j.pastWeek || j.past || []).map(normalize);
+  STATE.all = (j.upcoming || []).concat(j.pastWeek || j.past || []).concat(j.undated || []).map(normalize);
 
   renderHero();
   renderStats();

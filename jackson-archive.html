@@ -137,8 +137,15 @@
     byMonthHost.innerHTML = html;
   }
 
-  fetch('/data/jackson-archive.json', { cache: 'no-store' })
-    .then(function(r){ if (!r.ok) throw new Error('archive '+r.status); return r.json(); })
+  function loadArchive(url) {
+    return fetch(url, { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('archive '+r.status); return r.json(); });
+  }
+
+  // Try the live API first; fall back to the static snapshot.
+  var API_URL = 'https://api.thatcomputerguy26.org/api/seymour/jackson-archive';
+  var STATIC_URL = '/data/jackson-archive.json';
+  loadArchive(API_URL).catch(function(){ return loadArchive(STATIC_URL); })
     .then(function(data){
       ALL = (data && data.articles) || [];
       // Already sorted newest-first in the backfill script, but resort defensively.
@@ -147,11 +154,12 @@
         var db = b.generatedAt ? Date.parse(b.generatedAt) : 0;
         return db - da;
       });
-      // Surface latest-article generatedAt so the count line can show freshness.
+      // Surface freshness: prefer newest article date, then root updatedAt/generatedAt.
       if (ALL.length && ALL[0].generatedAt) {
         try { window.__archiveGeneratedAt = ALL[0].generatedAt.slice(0,10); } catch(_){ }
-      } else if (data && data.generatedAt) {
-        try { window.__archiveGeneratedAt = String(data.generatedAt).slice(0,10); } catch(_){ }
+      } else {
+        var ts = data && (data.updatedAt || data.generatedAt);
+        if (ts) { try { window.__archiveGeneratedAt = String(ts).slice(0,10); } catch(_){ } }
       }
       render('');
     })
