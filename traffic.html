@@ -217,7 +217,7 @@ function dedupeCameras(items) {
 }
 
 async function loadCameras() {
-  const r = await fetch(TCG_API + '/api/indot/cameras?limit=500&t=' + Date.now(), { cache: 'no-cache' });
+  const r = await fetch(TCG_API + '/api/indot/cameras?limit=1000&t=' + Date.now(), { cache: 'no-cache' });
   if (!r.ok) throw new Error(r.status);
   const j = await r.json();
   const items = dedupeCameras(j.items || []);

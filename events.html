@@ -240,15 +240,17 @@ function pillTone(t) {
 }
 
 function eventCard(e) {
-  const dt = parseISODate(e.date);
-  const day = dt.getUTCDate();
-  const mon = MONTH_NAMES[dt.getUTCMonth()];
+  const dt = e.date ? parseISODate(e.date) : null;
+  const hasDate = dt && !isNaN(dt.getTime());
+  const day = hasDate ? dt.getUTCDate() : '—';
+  const mon = hasDate ? MONTH_NAMES[dt.getUTCMonth()] : 'TBD';
+  const rel = hasDate ? relLabel(e.date) : (e.dateLabel || 'undated');
   const tags = (e.tag ? `<span class="pill ${pillTone(e.pillTone)}">${SH.escapeHTML(e.tag)}</span>` : '');
   return `<div class="ev-card kind-${e.kind || 'city'}" data-url="${SH.escapeHTML(e.url || '')}">
     <div class="ev-date">
       <div class="ev-day">${day}</div>
       <div class="ev-mon">${mon}</div>
-      <div class="ev-rel">${relLabel(e.date)}</div>
+      <div class="ev-rel">${SH.escapeHTML(rel)}</div>
     </div>
     <div class="ev-body">
       <h4 class="ev-title">${SH.escapeHTML(e.title)}</h4>
@@ -264,10 +266,13 @@ function getList() {
   return STATE.all
     .filter(e => {
       const t = parseISODate(e.date).getTime();
-      if (STATE.seg === 'upcoming' && t < t0) return false;
-      if (STATE.seg === 'past' && (t >= t0 || t < t0 - 30*86400000)) return false;
+      const undated = isNaN(t);
+      // Undated events: exclude from "past" segment; pass through upcoming/all
+      if (STATE.seg === 'past') { if (undated || t >= t0 || t < t0 - 30*86400000) return false; }
+      if (STATE.seg === 'upcoming' && !undated && t < t0) return false;
       if (STATE.kind && e.kind !== STATE.kind) return false;
       if (STATE.month) {
+        if (undated) return false; // undated can't match a month filter
         const m = parseISODate(e.date);
         const ym = m.getUTCFullYear() + '-' + String(m.getUTCMonth()+1).padStart(2,'0');
         if (ym !== STATE.month) return false;
@@ -277,6 +282,11 @@ function getList() {
     .sort((a, b) => {
       const ta = parseISODate(a.date).getTime();
       const tb = parseISODate(b.date).getTime();
+      const undA = isNaN(ta), undB = isNaN(tb);
+      // Undated sort to end
+      if (undA && undB) return (a.title || '').localeCompare(b.title || '');
+      if (undA) return 1;
+      if (undB) return -1;
       return STATE.seg === 'past' ? tb - ta : ta - tb;
     });
 }
@@ -307,7 +317,7 @@ function render() {
 
 function renderHero() {
   const upcoming = STATE.all
-    .filter(e => parseISODate(e.date).getTime() >= Date.now() - 86400000)
+    .filter(e => { const t = parseISODate(e.date).getTime(); return !isNaN(t) && t >= Date.now() - 86400000; })
     .sort((a, b) => parseISODate(a.date) - parseISODate(b.date));
   const next = upcoming[0];
   if (!next) {
@@ -323,28 +333,32 @@ function renderHero() {
 function renderStats() {
   const today = new Date(); today.setHours(0,0,0,0);
   const t0 = today.getTime();
-  const upcoming = STATE.all.filter(e => parseISODate(e.date).getTime() >= t0).length;
+  const undated = STATE.all.filter(e => !e.date || isNaN(parseISODate(e.date).getTime())).length;
+  const upcoming = STATE.all.filter(e => { const t = parseISODate(e.date).getTime(); return !isNaN(t) && t >= t0; }).length;
   const this7 = STATE.all.filter(e => {
     const t = parseISODate(e.date).getTime();
-    return t >= t0 && t < t0 + 7*86400000;
+    return !isNaN(t) && t >= t0 && t < t0 + 7*86400000;
   }).length;
   const past30 = STATE.all.filter(e => {
     const t = parseISODate(e.date).getTime();
-    return t < t0 && t >= t0 - 30*86400000;
+    return !isNaN(t) && t < t0 && t >= t0 - 30*86400000;
   }).length;
-  const fests = STATE.all.filter(e => e.kind === 'festival' && parseISODate(e.date).getTime() >= t0).length;
+  const fests = STATE.all.filter(e => e.kind === 'festival' && !isNaN(parseISODate(e.date).getTime()) && parseISODate(e.date).getTime() >= t0).length;
 
   document.getElementById('statStrip').innerHTML = `
     <div class="stat"><strong>${this7}</strong><span>Next 7 days</span></div>
     <div class="stat"><strong>${upcoming}</strong><span>Upcoming total</span></div>
     <div class="stat"><strong>${past30}</strong><span>Last 30 days</span></div>
-    <div class="stat"><strong>${fests}</strong><span>Festivals coming</span></div>`;
+    <div class="stat"><strong>${fests}</strong><span>Festivals coming</span></div>
+    <div class="stat"><strong>${undated}</strong><span>Calendar links</span></div>`;
 }
 
 function renderMonthChips() {
   const monSet = new Set();
   STATE.all.forEach(e => {
+    if (!e.date) return;
     const d = parseISODate(e.date);
+    if (isNaN(d.getTime())) return;
     monSet.add(d.getUTCFullYear() + '-' + String(d.getUTCMonth()+1).padStart(2,'0'));
   });
   const months = Array.from(monSet).sort();
