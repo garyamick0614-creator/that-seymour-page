@@ -23,16 +23,17 @@
     {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",                         "status": 200, "ms": 210,  "ok": true},
     {"url": "https://www.aljazeera.com/xml/rss/all.xml",                           "status": 200, "ms": 299,  "ok": true}
   ],
-  "events": {"added": 27, "updated": 0},
+  "events": {"added": 0, "updated": 0},
   "notes": [
-    "CRITICAL: Entire Netlify site returning 404 — root URL and all data/API endpoints down. Site has been down since approximately 2026-09-27 (day 16+). Requires human intervention to investigate Netlify deploy/build failure.",
-    "CRITICAL: Previous 6 maintenance runs (Oct 6–11) committed to detached HEAD and were never pushed to main. 27 events recovered from orphaned commits and restored in this commit.",
-    "tips API (thatcomputerguy26.org) returning 530 — Netlify upstream error. Persistent failure.",
-    "FeedBurner AP Top feed returning 404 — this feed appears dead. Manual update of news-refresh.mjs SOURCES recommended.",
-    "The Republic RSS returning 403 — blocked by their server. News function will silently skip this source.",
-    "Indiana Public Media RSS redirects to 404 — feed URL may have changed.",
-    "businesses.json: no entries with closed:true found; closed-flag audit not applicable.",
-    "seymourin.org/calendar.aspx returned 404 — city calendar page currently unavailable.",
-    "NWS weather API healthy: 200 OK."
+    "CRITICAL (day 16+): Entire Netlify site root returning 404; all data/API endpoints down. Site has been unreachable since approximately 2026-09-27. Human intervention required — check Netlify dashboard for deploy/build failure.",
+    "CRITICAL: Previous 6 maintenance runs (Oct 6–11) committed to detached HEAD and were never pushed to main until today; orphaned commits were later pushed externally. events-source.json is now fully in sync on main.",
+    "FAIL (persistent): api.thatcomputerguy26.org/api/tips/submit returning 530 — Netlify upstream/origin unreachable.",
+    "FAIL: feeds.feedburner.com/TopAPNews returned 404 — AP RSS feed dead. Recommend replacing in news-refresh.mjs SOURCES.",
+    "FAIL: www.therepublic.com/feed/ returned 403 — bot-blocked.",
+    "FAIL: indianapublicmedia.org/news/feed redirects to 404 — feed URL likely changed.",
+    "INFO: seymourin.org/calendar.aspx returned 404 — city calendar page unavailable.",
+    "INFO: Facebook/SeymourMainStreet requires login; no OG metadata available.",
+    "INFO: businesses.json has no closed:true entries.",
+    "INFO: NWS weather API healthy: 200 OK."
   ]
 }
