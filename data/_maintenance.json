@@ -22,15 +22,14 @@
     { "url": "https://feeds.bbci.co.uk/news/world/rss.xml",                       "status": 200, "ms": 647,  "ok": true },
     { "url": "https://www.aljazeera.com/xml/rss/all.xml",                         "status": 200, "ms": 698,  "ok": true }
   ],
-  "events": { "added": 5, "updated": 0 },
+  "events": { "added": 2, "updated": 0 },
   "notes": [
     "CRITICAL (day 20+): All that-seymour-page.netlify.app data/API endpoints returning 404 — site has been down since ~2026-09-27. Human intervention required urgently.",
     "ALERT: api.thatcomputerguy26.org/api/tips/submit returned 530 (Cloudflare/origin error) — tips endpoint unhealthy.",
     "WARN: therepublic.com/feed/ returns 403 — Indiana RSS source blocked.",
     "WARN: feeds.feedburner.com/TopAPNews returns 404 — AP Feedburner feed dead; replace in news-refresh.mjs.",
-    "INFO: Previous maintenance runs had committed to detached HEAD without pushing; this run resolves merge conflict and restores 5 missing events to main.",
     "INFO: No closed:true businesses in businesses.json.",
     "INFO: seymourin.org/calendar.aspx returns 404; used /index.php/calendar instead (OK).",
-    "Added events: Seymour Farmers Market 2026-10-17 (Patch.com); Freeman Army Airfield Museum 2026-10-17 (Patch.com); Breast Cancer Awareness Golf Outing 2026-10-17 (Patch.com); Family French @ Jackson Live 2026-10-23 (Patch.com); restored Oct 15 Open Mic @ Brewskies, Oct 28 NHS Ceremony, Oct 29 SHS Last Day of Marking Period from prior detached-HEAD runs."
+    "Added 2 new events today: Seymour Farmers Market 2026-10-17 (Patch.com); Family French @ Jackson Live 2026-10-23 (Patch.com)."
   ]
 }
