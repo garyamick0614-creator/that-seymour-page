@@ -18,19 +18,19 @@
     {"url": "https://indianapublicmedia.org/news/feed", "status": 301, "ms": 225, "ok": false, "note": "Permanent redirect — feed URL may have changed"},
     {"url": "https://wibc.com/feed/", "status": 200, "ms": 3675, "ok": true},
     {"url": "https://feeds.npr.org/1001/rss.xml", "status": 200, "ms": 278, "ok": true},
-    {"url": "https://feeds.feedburner.com/TopAPNews", "status": 404, "ms": 303, "ok": false, "note": "FeedBurner AP Top feed is gone — needs replacement URL"},
+    {"url": "https://feeds.feedburner.com/TopAPNews", "status": 404, "ms": 303, "ok": false, "note": "FeedBurner AP Top feed is dead — needs replacement URL in news-refresh.mjs"},
     {"url": "https://feeds.bbci.co.uk/news/world/rss.xml", "status": 200, "ms": 163, "ok": true},
     {"url": "https://www.aljazeera.com/xml/rss/all.xml", "status": 200, "ms": 169, "ok": true}
   ],
   "events": {"added": 0, "updated": 0},
   "notes": [
-    "CRITICAL: All 11 that-seymour-page.netlify.app data and API endpoints returned 404 (day 23+). Includes /data/weather.json, /data/news.json, /data/events.json, /api/whoami, /api/blog, and all other data blobs. Site features that depend on these are likely broken. Investigate Netlify Blob storage and function deployment.",
-    "api.thatcomputerguy26.org/api/tips/submit returned 530 (origin connection error) — tips submission endpoint down.",
-    "FeedBurner AP Top RSS (feeds.feedburner.com/TopAPNews) returns 404 — dead URL. Update news-refresh.mjs to use a live AP feed URL.",
+    "CRITICAL (day 23+): All 11 that-seymour-page.netlify.app data and API endpoints still returning 404. Includes /data/weather.json, /data/news.json, /data/events.json, /api/whoami, /api/blog, and all other data blobs. Netlify Blob storage or function deployment needs human investigation.",
+    "api.thatcomputerguy26.org/api/tips/submit still returning 530 (origin connection error) — tips submission endpoint down.",
+    "FeedBurner AP Top RSS feed (feeds.feedburner.com/TopAPNews) dead (404). Needs replacement URL in news-refresh.mjs — note only, not modifying code.",
+    "Indiana Public Media RSS (indianapublicmedia.org/news/feed) returning 301 — check and update the feed URL in news-refresh.mjs — note only, not modifying code.",
     "The Republic RSS (therepublic.com/feed/) returns 403 — feed blocked.",
-    "Indiana Public Media RSS returns 301 — check and update the feed URL in news-refresh.mjs.",
     "seymourin.org/calendar.aspx returned 404 — city calendar page unavailable during this run.",
-    "No new events found from any source (Patch.com, SHS calendar, SCSC, city calendar). 0 events added.",
+    "No new events found from any source. 0 events added.",
     "businesses.json: no entries with closed:true found."
   ]
 }
