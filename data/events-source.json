@@ -75,6 +75,8 @@
     { "date": "2026-10-22", "kind": "school",   "title": "Poetry Alive — Bungay Elementary (day 2)", "blurb": "Poetry Alive program continues for grades 3 and 4 at Bungay Elementary, all day.", "tag": "School", "pillTone": "info" },
     { "date": "2026-10-22", "kind": "city",     "title": "Open Mic Night @ Brewskies",  "blurb": "Open mic performance night at Brewskies, Seymour. Evening.", "tag": "Entertainment", "pillTone": "info" },
     { "date": "2026-10-22", "kind": "city",     "title": "Music Bingo",                 "blurb": "Music Bingo night, downtown Seymour, 6:00 PM.", "tag": "Entertainment", "pillTone": "info" },
+    { "date": "2026-10-23", "kind": "city",     "title": "Rhythm Race at Lydia Grove",   "blurb": "Live music event at Lydia Grove, 6361 N County Road 760 E, Seymour, 6:00 PM.", "tag": "Entertainment", "pillTone": "info" },
+    { "date": "2026-10-23", "kind": "city",     "title": "Brian Hopkins at Brooklyn Pizza Co", "blurb": "Live music at Brooklyn Pizza Co (Seymour Brewing), 753 W 2nd St, Seymour, 6:30 PM.", "tag": "Entertainment", "pillTone": "info" },
     { "date": "2026-10-23", "kind": "festival", "title": "Family French @ Jackson Live", "blurb": "French cultural event at Jackson Live & Event Center, 981 C Ave E, Seymour, 6:00 PM.", "tag": "Entertainment", "pillTone": "info" },
     { "date": "2026-10-24", "kind": "festival", "title": "Artful Fair @ SICA",             "blurb": "Art fair at Southern Indiana Center for the Arts, 2001 N Ewing St, Seymour, 8:00 AM.", "tag": "Arts", "pillTone": "info" },
     { "date": "2026-10-24", "kind": "city",     "title": "Seymour Farmers Market",         "blurb": "Weekly farmers market, 8:00 AM, Downtown Seymour.", "tag": "Community", "pillTone": "info" },
@@ -97,11 +99,14 @@
     { "date": "2026-11-09", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
     { "date": "2026-11-11", "kind": "city",     "title": "Veterans Day — City offices closed", "blurb": "City of Seymour offices closed for Veterans Day.", "tag": "Holiday", "pillTone": "info" },
     { "date": "2026-11-12", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
+    { "date": "2026-11-12", "kind": "city",     "title": "Plan Commission",            "blurb": "Monthly planning & zoning review, 5:00 PM, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
+    { "date": "2026-11-16", "kind": "city",     "title": "Parks & Recreation Board meeting", "blurb": "Monthly Parks & Recreation Board meeting, 4:00 PM.", "tag": "Board", "pillTone": "info" },
     { "date": "2026-11-23", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
     { "date": "2026-11-25", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
     { "date": "2026-11-26", "kind": "city",     "title": "Thanksgiving Day — City offices closed", "blurb": "City of Seymour offices closed for Thanksgiving.", "tag": "Holiday", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/city-holidays/11-26-26" },
     { "date": "2026-11-27", "kind": "city",     "title": "Day after Thanksgiving — City offices closed", "blurb": "City of Seymour offices closed (additional Thanksgiving holiday).", "tag": "Holiday", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/city-holidays/11-27-26" },
     { "date": "2026-12-10", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
-    { "date": "2026-12-14", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" }
+    { "date": "2026-12-14", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
+    { "date": "2026-12-30", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" }
   ]
 }
