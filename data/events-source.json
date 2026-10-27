@@ -101,6 +101,7 @@
     { "date": "2026-11-12", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
     { "date": "2026-11-12", "kind": "city",     "title": "Plan Commission",            "blurb": "Monthly planning & zoning review, 5:00 PM, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
     { "date": "2026-11-16", "kind": "city",     "title": "Parks & Recreation Board meeting", "blurb": "Monthly Parks & Recreation Board meeting, 4:00 PM.", "tag": "Board", "pillTone": "info" },
+    { "date": "2026-11-16", "kind": "city",     "title": "Airport Authority meeting",        "blurb": "Monthly Airport Authority meeting, 7:15 PM.", "tag": "Board", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar" },
     { "date": "2026-11-23", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
     { "date": "2026-11-25", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
     { "date": "2026-11-26", "kind": "city",     "title": "Thanksgiving Day — City offices closed", "blurb": "City of Seymour offices closed for Thanksgiving.", "tag": "Holiday", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/city-holidays/11-26-26" },
