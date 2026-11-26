@@ -132,6 +132,12 @@
     { "date": "2026-12-04", "kind": "school",   "title": "SMS Holiday Bonfire", "blurb": "Seymour Middle School Holiday Bonfire, 5:00–7:00 PM (weather permitting).", "tag": "School", "pillTone": "ok", "url": "https://shs.seymourschools.org/shs-calendar" },
     { "date": "2026-12-10", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
     { "date": "2026-12-14", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info" },
-    { "date": "2026-12-30", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" }
+    { "date": "2026-12-21", "kind": "city",     "title": "Parks & Recreation Board meeting", "blurb": "Monthly Parks & Recreation Board meeting, 4:00 PM.", "tag": "Board", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/park-recreation-board/12-21-2026-parks" },
+    { "date": "2026-12-21", "kind": "city",     "title": "Airport Authority meeting",        "blurb": "Monthly Airport Authority meeting, 7:15 PM.", "tag": "Board", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/airport-authority/12-21-2026-aa" },
+    { "date": "2026-12-24", "kind": "city",     "title": "Christmas Eve — City offices closed", "blurb": "City of Seymour offices closed for Christmas Eve.", "tag": "Holiday", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/city-holidays/12-24-26" },
+    { "date": "2026-12-25", "kind": "city",     "title": "Christmas Day — City offices closed", "blurb": "City of Seymour offices closed for Christmas Day.", "tag": "Holiday", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/city-holidays/12-25-26" },
+    { "date": "2026-12-28", "kind": "city",     "title": "City Council meeting",       "blurb": "7 PM, George Green Chambers.", "tag": "Council", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/city-council/12-28-26" },
+    { "date": "2026-12-30", "kind": "city",     "title": "Board of Public Works & Safety", "blurb": "11:00 AM, George Green Council Chambers, Seymour City Hall.", "tag": "Board", "pillTone": "info" },
+    { "date": "2026-12-10", "kind": "city",     "title": "Plan Commission",            "blurb": "Monthly planning & zoning review, 5:00 PM, Seymour Council Chambers.", "tag": "Board", "pillTone": "info", "url": "https://www.seymourin.org/index.php/calendar/plan-commission/12-10-2026-pc" }
   ]
 }
