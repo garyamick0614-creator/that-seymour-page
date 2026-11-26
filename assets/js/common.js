@@ -27,9 +27,9 @@
 
   const FAMILY = [
     { url: 'https://thatcomputerguy26.org',          label: 'TCG Solutions' },
-    { url: 'https://ibetcg.netlify.app',             label: 'Indiana Businesses Exposed' },
+    { url: 'https://ibetcg.thatcomputerguy26.org',             label: 'Indiana Businesses Exposed' },
     { url: 'https://tcgpredictions.netlify.app',     label: 'TCG Predictions' },
-    { url: 'https://ibetcg.netlify.app/civic-hub.html', label: 'Civic Hub' },
+    { url: 'https://ibetcg.thatcomputerguy26.org/civic-hub.html', label: 'Civic Hub' },
     { url: 'https://southern-indiana-justice.netlify.app', label: 'Southern Indiana Justice' }
   ];
 
@@ -75,8 +75,8 @@
     '/qa.html':          ['Submit a question → /tip.html', 'Events list → /events.html', 'Schools info → /schools.html'],
     '/blog.html':        ['Recent posts → /blog.html', 'Submit a tip → /tip.html', 'Today\'s events → /events.html'],
     '/tip.html':         ['Call 812-414-9097 → tel:8124149097', 'Email Gary → mailto:gary.amick0614@gmail.com', 'Add an event → /tip.html'],
-    '/about.html':       ['TCG main site → https://thatcomputerguy26.org', 'Indiana Businesses Exposed → https://ibetcg.netlify.app', 'Call Gary → tel:8124149097'],
-    '/hub.html':         ['Everything in one place → /hub.html', 'TCG Solutions → https://thatcomputerguy26.org', 'IBE → https://ibetcg.netlify.app']
+    '/about.html':       ['TCG main site → https://thatcomputerguy26.org', 'Indiana Businesses Exposed → https://ibetcg.thatcomputerguy26.org', 'Call Gary → tel:8124149097'],
+    '/hub.html':         ['Everything in one place → /hub.html', 'TCG Solutions → https://thatcomputerguy26.org', 'IBE → https://ibetcg.thatcomputerguy26.org']
   };
 
   function buildTicker() {
