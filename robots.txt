@@ -3,4 +3,4 @@ Allow: /
 Disallow: /.netlify/
 Disallow: /api/
 
-Sitemap: https://that-seymour-page.netlify.app/sitemap.xml
+Sitemap: https://seymour.thatcomputerguy26.org/sitemap.xml

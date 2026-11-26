@@ -44,7 +44,7 @@
     <div class="tab-panel active" id="tab-ibe">
       <div class="row" style="margin-bottom:14px">
         <input type="search" id="ibeFilter" placeholder="Filter IBE articles..." style="max-width:300px">
-        <a href="https://ibetcg.netlify.app/articles.html" target="_blank" rel="noopener" class="btn-o">Full archive at IBE &rarr;</a>
+        <a href="https://ibetcg.thatcomputerguy26.org/articles.html" target="_blank" rel="noopener" class="btn-o">Full archive at IBE &rarr;</a>
         <a href="/map.html" class="btn-o">View on map &rarr;</a>
       </div>
       <div id="ibeList" class="card-grid"></div>
@@ -80,7 +80,7 @@ function renderIBE(filter) {
   const q = (filter || '').toLowerCase();
   const list = q ? IBE.filter(a => JSON.stringify(a).toLowerCase().includes(q)) : IBE;
   document.getElementById('ibeList').innerHTML = list.map(a =>
-    `<a class="card review-card ${severityClass(a.severity)}" href="https://ibetcg.netlify.app/article/${SH.escapeHTML(a.slug)}.html" target="_blank" rel="noopener">
+    `<a class="card review-card ${severityClass(a.severity)}" href="https://ibetcg.thatcomputerguy26.org/article/${SH.escapeHTML(a.slug)}.html" target="_blank" rel="noopener">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">${severityPill(a.severity)}<span class="muted small">${SH.escapeHTML(a.address || '')}</span></div>
       <h3 class="card-title" style="font-size:16px">${SH.escapeHTML(a.title)}</h3>
       <p class="card-blurb">${SH.escapeHTML(a.blurb || '')}</p>

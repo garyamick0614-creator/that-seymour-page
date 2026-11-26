@@ -341,7 +341,7 @@ function renderLayerKey() {
         .bindPopup(popup(a.title, `IBE Review &middot; ${SH.escapeHTML(a.severity)}`,
           `<div>${SH.escapeHTML(a.address || '')}</div>` +
           `<div style="margin-top:6px">${SH.escapeHTML(a.blurb || '')}</div>`,
-          `<a href="https://ibetcg.netlify.app/article/${SH.escapeHTML(a.slug)}.html" target="_blank" rel="noopener">Read at IBE &rarr;</a>`
+          `<a href="https://ibetcg.thatcomputerguy26.org/article/${SH.escapeHTML(a.slug)}.html" target="_blank" rel="noopener">Read at IBE &rarr;</a>`
         ));
       m.addTo(STATE.layers[good ? 'ibeGood' : 'ibeBad'].layer);
     });
@@ -542,7 +542,7 @@ function renderLayerKey() {
         title: a.title,
         sub: a.address || '',
         body: a.blurb || '',
-        href: 'https://ibetcg.netlify.app/article/' + a.slug + '.html',
+        href: 'https://ibetcg.thatcomputerguy26.org/article/' + a.slug + '.html',
         external: true,
         color: sevColor
       });
